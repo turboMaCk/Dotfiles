@@ -1,0 +1,37 @@
+{
+	"always_prompt_for_file_reload": true,
+	"auto_indent": true,
+	"bold_folder_labels": true,
+	"close_windows_when_empty": true,
+	"color_scheme": "Packages/Tomorrow Color Schemes/Tomorrow-Night.tmTheme",
+	"copy_with_empty_selection": false,
+	"create_window_at_startup": false,
+	"detect_indentation": true,
+	"draw_centered": false,
+	"fade_fold_buttons": false,
+	"find_selected_text": true,
+	"font_size": 13.0,
+	"highlight_modified_tabs": true,
+	"ignored_packages":
+	[
+	],
+	"indent_guide_options":
+	[
+		"draw_active"
+	],
+	"index_files": true,
+	"line_padding_bottom": 1.5,
+	"line_padding_top": 1.5,
+	"margin": 0,
+	"scroll_past_end": true,
+	"show_minimap": false,
+	"show_tab_close_buttons": false,
+	"tabSize": 2,
+	"theme": "Soda Dark 3.sublime-theme",
+	"translateTabsToSpaces": true,
+	"trim_automatic_white_space": true,
+	"trim_trailing_white_space_on_save": true,
+	"useTabStops": true,
+	"word_wrap": false,
+	"wrap_width": 0
+}
