@@ -1,0 +1,7 @@
+[core]
+	excludesfile = ~/.gitignore
+[color]
+	ui = true
+[user]
+	name = Marek Fajkus
+	email = marek.faj@gmail.com

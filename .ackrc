@@ -1,0 +1,6 @@
+# ignore npm modules
+--ignore-dir=node_modules
+
+# ignore rails folder
+--ignore-dir=rails
+
