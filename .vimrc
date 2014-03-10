@@ -2,8 +2,8 @@
 source ~/.vimrc.bundles
 
 " Quickly edit/reload the vimrc file
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
+" nmap <silent> <leader>ev :e $MYVIMRC<CR>
+" nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 " Disable bleep!
 set visualbell           " don't beep
@@ -12,12 +12,11 @@ set noerrorbells         " don't beep
 " Basics
 set number
 set relativenumber
-set nocompatible        " Must be first line
 
 " General
 set background=dark         " Assume a dark background
 filetype plugin indent on   " Automatically detect file types.
-syntax on                   " Syntax highlighting
+syntax on                   " Syntax highlighting/no
 set mouse=a                 " Automatically enable mouse usage
 set mousehide               " Hide the mouse cursor while typing
 scriptencoding utf-8
@@ -270,15 +269,6 @@ set nobomb
 set termencoding=utf-8
 set fileencodings=utf-8,iso-8859-15
 
-" Use local gvimrc if available and gui is running {
-"if has('gui_running')
-    "if filereadable(expand("~/.gvimrc.local"))
-        "source ~/.gvimrc
-    "endif
-"endif
-" }
-
-
 " ===================================
 " PLUGINS
 " ===================================
@@ -415,46 +405,41 @@ nnoremap <silent> <leader>ge :Gedit<CR>
 nnoremap <silent> <leader>gi :Git add -p %<CR>
 nnoremap <silent> <leader>gg :SignifyToggle<CR>
 
-" You complete me
-if count(g:spf13_bundle_groups, 'youcompleteme')
-    let g:acp_enableAtStartup = 0
+" enable completion from tags
+" let g:ycm_collect_identifiers_from_tags_files = 1
 
-    " enable completion from tags
-    let g:ycm_collect_identifiers_from_tags_files = 1
+" remap Ultisnips for compatibility for YCM
+let g:UltiSnipsExpandTrigger = '<C-j>'
+let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 
-    " remap Ultisnips for compatibility for YCM
-    let g:UltiSnipsExpandTrigger = '<C-j>'
-    let g:UltiSnipsJumpForwardTrigger = '<C-j>'
-    let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
-    " Enable omni completion.
-    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-    autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-    autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-
-    " Haskell post write lint and check with ghcmod
-    " $ `cabal install ghcmod` if missing and ensure
-    " ~/.cabal/bin is in your $PATH.
-    if !executable("ghcmod")
-        autocmd BufWritePost *.hs GhcModCheckAndLintAsync
-    endif
-
-    " For snippet_complete marker.
-    if !exists("g:spf13_no_conceal")
-        if has('conceal')
-            set conceallevel=2 concealcursor=i
-        endif
-    endif
-
-    " Disable the neosnippet preview candidate window
-    " When enabled, there can be too much visual noise
-    " especially when splits are used.
-    set completeopt-=preview
+" Haskell post write lint and check with ghcmod
+" $ `cabal install ghcmod` if missing and ensure
+" ~/.cabal/bin is in your $PATH.
+if !executable("ghcmod")
+    autocmd BufWritePost *.hs GhcModCheckAndLintAsync
 endif
+
+" For snippet_complete marker.
+if !exists("g:spf13_no_conceal")
+    if has('conceal')
+        set conceallevel=2 concealcursor=i
+    endif
+endif
+
+" Disable the neosnippet preview candidate window
+" When enabled, there can be too much visual noise
+" especially when splits are used.
+set completeopt-=preview
 
 " neocomplete cache
 let g:acp_enableAtStartup = 0
@@ -568,20 +553,14 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
 
-" Airline theme
-let g:airline_theme = 'solarized'
-
-" initialize neard tree as needed
-redir => bufoutput
-buffers!
-redir END
-let idx = stridx(bufoutput, "NERD_tree")
-if idx > -1
-    NERDTreeMirror
-    NERDTreeFind
-    wincmd l
+if !exists('g:airline_theme')
+    let g:airline_theme = 'solarized'
 endif
-
+if !exists('g:airline_powerline_fonts')
+    " Use the default set of separators with a few customizations
+    let g:airline_left_sep='›'  " Slightly fancier than '>'
+    let g:airline_right_sep='‹' " Slightly fancier than '<'
+endif
 
 " Strip whitespace
 function! StripTrailingWhitespace()
@@ -596,23 +575,15 @@ function! StripTrailingWhitespace()
     call cursor(l, c)
 endfunction
 
-" Shell command
-function! s:RunShellCommand(cmdline)
-    botright new
-
-    setlocal buftype=nofile
-    setlocal bufhidden=delete
-    setlocal nobuflisted
-    setlocal noswapfile
-    setlocal nowrap
-    setlocal filetype=shell
-    setlocal syntax=shell
-
-    call setline(1, a:cmdline)
-    call setline(2, substitute(a:cmdline, '.', '=', 'g'))
-    execute 'silent $read !' . escape(a:cmdline, '%#')
-    setlocal nomodifiable
-    1
+" Restore cursor to file position in previous editing session
+function! ResCur()
+    if line("'\"") <= line("$")
+        normal! g`"
+        return 1
+    endif
 endfunction
 
-command! -complete=file -nargs=+ Shell call s:RunShellCommand(<q-args>)
+augroup resCur
+    autocmd!
+    autocmd BufWinEnter * call ResCur()
+augroup END

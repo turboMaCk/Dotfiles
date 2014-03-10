@@ -1,3 +1,13 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+set wildignore=doc
+
+
 " Use Vundle for plugin management
 Bundle 'gmarik/vundle'
 
@@ -12,24 +22,21 @@ Bundle 'mileszs/ack.vim'
 
 " basic plugins
 Bundle 'scrooloose/nerdtree'
-Bundle 'spf13/vim-colors'
 Bundle 'spf13/vim-autoclose'
+Bundle 'altercation/vim-colors-solarized'
 Bundle 'kien/ctrlp.vim'
-Bundle 'terryma/vim-multiple-cursors'
+" Bundle 'terryma/vim-multiple-cursors'
 Bundle 'vim-scripts/sessionman.vim'
-Bundle 'matchit.zip'
-Bundle 'Lokaltog/powerline', {'rtp':'/powerline/bindings/vim'}
-Bundle 'bling/vim-bufferline'
+" Bundle 'matchit.zip'
+Bundle 'bling/vim-airline'
 Bundle 'Lokaltog/vim-easymotion'
-Bundle 'godlygeek/csapprox'
 Bundle 'jistr/vim-nerdtree-tabs'
-Bundle 'flazz/vim-colorschemes'
 Bundle 'mbbill/undotree'
-Bundle 'nathanaelkane/vim-indent-guides'
+" Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'vim-scripts/restore_view.vim'
 Bundle 'mhinz/vim-signify'
-Bundle 'tpope/vim-abolish.git'
-Bundle 'osyo-manga/vim-over'
+"Bundle 'tpope/vim-abolish.git'
+"Bundle 'osyo-manga/vim-over'
 
 " Pick one of the checksyntax, jslint, or syntastic
 Bundle 'scrooloose/syntastic'
@@ -51,17 +58,11 @@ if filereadable(expand("~/.vim/bundle/vim-snippets/snippets/support_functions.vi
 endif
 
 " You complete me
-Bundle 'Valloric/YouCompleteMe'
-Bundle 'SirVer/ultisnips'
+" Bundle 'Valloric/YouCompleteMe'
+" Bundle 'SirVer/ultisnips'
 
 " Neocomplete cache
 Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/neosnippet'
-Bundle 'Shougo/neosnippet-snippets'
-Bundle 'honza/vim-snippets'
-
-" Neocomplete
-Bundle 'Shougo/neocomplete.vim.git'
 Bundle 'Shougo/neosnippet'
 Bundle 'Shougo/neosnippet-snippets'
 Bundle 'honza/vim-snippets'
@@ -88,8 +89,8 @@ Bundle 'briancollins/vim-jst'
 Bundle 'kchmck/vim-coffee-script'
 
 " JAVA (when goes crazy)
-"Bundle 'derekwyatt/vim-scala'
-"Bundle 'derekwyatt/vim-sbt'
+Bundle 'derekwyatt/vim-scala'
+Bundle 'derekwyatt/vim-sbt'
 
 " HASKEL (So nerdy)
 "Bundle 'travitch/hasksyn'
