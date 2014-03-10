@@ -54,6 +54,7 @@ endif
 set swapfile
 set dir=~/tmp
 set backupdir=~/tmp
+set noundofile
 
 " Add exclusions to mkview and loadview
 " eg: *.*, svn-commit.tmp

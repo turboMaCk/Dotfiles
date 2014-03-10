@@ -12,4 +12,8 @@ ln -s $cwd/.zshrc .zshrc
 ln -s $cwd/.gitignore .gitignore
 ln -s $cwd/.gitconfig gitconfig
 
+# sublime symlinks
+ln -s $cwd/Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings
+ln -s $cwd/Package\ Control.sublime-settings Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Package\ Control.sublime-settings
+
 cd $cwd

@@ -21,7 +21,7 @@ defaults write NSGlobalDomain AppleFontSmoothing -int 2
 defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate
-defaults write NSGlobalDomain KeyRepeat -int 3
+defaults write NSGlobalDomain KeyRepeat -int 10
 
 # Enable tap to click (Trackpad) for this user and for the login screen
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
@@ -43,9 +43,6 @@ defaults write com.apple.finder QuitMenuItem -bool true
 
 # Show all filename extensions in Finder
 defaults write NSGlobalDomain AppleShowAllExtensions -bool true
-
-# Show status bar in Finder
-defaults write com.apple.finder ShowStatusBar -bool true
 
 # Allow text selection in Quick Look
 defaults write com.apple.finder QLEnableTextSelection -bool true

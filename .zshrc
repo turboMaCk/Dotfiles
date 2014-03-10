@@ -70,12 +70,7 @@ export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/marek/.rvm/bin"
 export PATH=/usr/local/bin:$PATH
 
 # ALIASES
-alias g="git"
-alias gs="git status"
-alias gc="git commit -m"
 alias gch="git checkout"
-alias gm="git merge"
-alias gb="git brange"
 alias v="vim"
 alias s="subl"
 
