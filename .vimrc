@@ -13,6 +13,10 @@ set noerrorbells         " don't beep
 set number
 set relativenumber
 
+" dont need this oldsschool staff
+set nobackup
+set nowritebackupt
+
 " General
 set background=dark         " Assume a dark background
 filetype plugin indent on   " Automatically detect file types.
