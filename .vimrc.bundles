@@ -1,2 +1,133 @@
+" Use Vundle for plugin management
+Bundle 'gmarik/vundle'
+
+" Cache files
+Bundle 'vim-addon-mw-utils'
+
+" Another have to bundle
+Bundle 'tomtom/tlib_vim'
+
+" Ack is better than grep
+Bundle 'mileszs/ack.vim'
+
+" basic plugins
+Bundle 'scrooloose/nerdtree'
+Bundle 'spf13/vim-colors'
+Bundle 'spf13/vim-autoclose'
+Bundle 'kien/ctrlp.vim'
+Bundle 'terryma/vim-multiple-cursors'
+Bundle 'vim-scripts/sessionman.vim'
+Bundle 'matchit.zip'
+Bundle 'Lokaltog/powerline', {'rtp':'/powerline/bindings/vim'}
+Bundle 'bling/vim-bufferline'
+Bundle 'Lokaltog/vim-easymotion'
+Bundle 'godlygeek/csapprox'
+Bundle 'jistr/vim-nerdtree-tabs'
+Bundle 'flazz/vim-colorschemes'
+Bundle 'mbbill/undotree'
+Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'vim-scripts/restore_view.vim'
+Bundle 'mhinz/vim-signify'
+Bundle 'tpope/vim-abolish.git'
+Bundle 'osyo-manga/vim-over'
+
+" Pick one of the checksyntax, jslint, or syntastic
+Bundle 'scrooloose/syntastic'
+Bundle 'tpope/vim-fugitive'
+Bundle 'mattn/webapi-vim'
+Bundle 'mattn/gist-vim'
+Bundle 'scrooloose/nerdcommenter'
+Bundle 'godlygeek/tabular'
+if executable('ctags')
+    Bundle 'majutsushi/tagbar'
+endif
+
+" Snippets
+Bundle 'garbas/vim-snipmate'
+Bundle 'honza/vim-snippets'
+" Source support_function.vim to support vim-snippets.
+if filereadable(expand("~/.vim/bundle/vim-snippets/snippets/support_functions.vim"))
+    source ~/.vim/bundle/vim-snippets/snippets/support_functions.vim
+endif
+
+" You complete me
+Bundle 'Valloric/YouCompleteMe'
+Bundle 'SirVer/ultisnips'
+
+" Neocomplete cache
+Bundle 'Shougo/neocomplcache'
+Bundle 'Shougo/neosnippet'
+Bundle 'Shougo/neosnippet-snippets'
+Bundle 'honza/vim-snippets'
+
+" Neocomplete
+Bundle 'Shougo/neocomplete.vim.git'
+Bundle 'Shougo/neosnippet'
+Bundle 'Shougo/neosnippet-snippets'
+Bundle 'honza/vim-snippets'
+
+"=================================
+" LANGUAGES /FRAMEWORKS SPECIFIC
+"=================================
+
+" PHP (memories)
+Bundle 'spf13/PIV'
+Bundle 'arnaud-lb/vim-php-namespace'
+
+" PYTHON (monty)
+" Pick either python-mode or pyflakes & pydoc
+Bundle 'klen/python-mode'
+Bundle 'python.vim'
+Bundle 'python_match.vim'
+Bundle 'pythoncomplete'
+
+" JAVASCRIPT (love or madness)
+Bundle 'elzr/vim-json'
+Bundle 'pangloss/vim-javascript'
+Bundle 'briancollins/vim-jst'
+Bundle 'kchmck/vim-coffee-script'
+
+" JAVA (when goes crazy)
+"Bundle 'derekwyatt/vim-scala'
+"Bundle 'derekwyatt/vim-sbt'
+
+" HASKEL (So nerdy)
+"Bundle 'travitch/hasksyn'
+"Bundle 'dag/vim2hs'
+"Bundle 'Twinside/vim-haskellConceal'
+"Bundle 'lukerandall/haskellmode-vim'
+"Bundle 'eagletmt/neco-ghc'
+"Bundle 'eagletmt/ghcmod-vim'
+"Bundle 'Shougo/vimproc'
+"Bundle 'adinapoli/cumino'
+"Bundle 'bitc/vim-hdevtools'
+
+" HTML (corpses)
+Bundle 'amirh/HTML-AutoCloseTag'
+Bundle 'gorodinskiy/vim-coloresque'
+Bundle 'tpope/vim-haml'
+
+" CSS/preprocessors (paiting)
+Bundle 'hail2u/vim-css3-syntax'
+Bundle 'groenewege/vim-less'
+" haml bundle include sass support
+
+" RUBY (for rains)
+Bundle 'tpope/vim-rails'
+
+" GO (google lick ass)
+"Bundle 'Blackrush/vim-gocode'
+
+" TEXTing (writer like)
+Bundle 'tpope/vim-markdown'
+Bundle 'spf13/vim-preview'
+Bundle 'tpope/vim-cucumber'
+Bundle 'quentindecock/vim-cucumber-align-pipes'
+Bundle 'Puppet-Syntax-Highlighting'
+
+" Ember.js (MCV or what)
 Bundle 'dsawardekar/ember.vim'
 Bundle 'nono/vim-handlebars'
+
+" NETTE FW
+Bundle 'Janiczek/vim-latte'

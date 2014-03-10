@@ -277,3 +277,342 @@ set fileencodings=utf-8,iso-8859-15
     "endif
 "endif
 " }
+
+
+" ===================================
+" PLUGINS
+" ===================================
+
+" PIV
+let g:DisableAutoPHPFolding = 0
+let g:PIVAutoClose = 0
+
+" Misc
+let g:NERDShutUp=1
+let b:match_ignorecase = 1
+
+" OmniComplete
+if !exists('g:spf13_no_omni_complete')
+    if has("autocmd") && exists("+omnifunc")
+        autocmd Filetype *
+            \if &omnifunc == "" |
+            \setlocal omnifunc=syntaxcomplete#Complete |
+            \endif
+    endif
+
+    hi Pmenu  guifg=#000000 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
+    hi PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=lightgray cterm=NONE
+    hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
+
+    " Some convenient mappings
+    inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
+    inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
+    inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
+    inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+    inoremap <expr> <C-d>      pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
+    inoremap <expr> <C-u>      pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
+
+    " Automatically open and close the popup menu / preview window
+    au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+    set completeopt=menu,preview,longest
+endif
+
+" Ctags
+"set tags=./tags;/,~/.vimtags
+
+"" Make tags placed in .git/tags file available in all levels of a repository
+"let gitroot = substitute(system('git rev-parse --show-toplevel'), '[\n\r]', '', 'g')
+"if gitroot != ''
+    "let &tags = &tags . ',' . gitroot . '/.git/tags'
+"endif
+
+" AutoClose Tag (xml and xHtml support)
+au FileType xhtml,xml ru ftplugin/html/autoclosetag.vim
+nmap <Leader>ac <Plug>ToggleAutoCloseMappings
+
+" Snipmate (author settings)
+let g:snips_author = 'Marek Fajkus <marek.faj@gmail.com>'
+
+" NERD TREE
+map <C-e> <plug>NERDTreeTabsToggle<CR>
+
+let NERDTreeShowBookmarks=1
+let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+let NERDTreeChDirMode=0
+let NERDTreeQuitOnOpen=0
+let NERDTreeMouseMode=2
+let NERDTreeShowHidden=1
+let NERDTreeKeepTreeInNewTab=1
+let g:nerdtree_tabs_open_on_gui_startup=0
+
+" Tabularize
+nmap <Leader>a& :Tabularize /&<CR>
+vmap <Leader>a& :Tabularize /&<CR>
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a: :Tabularize /:<CR>
+vmap <Leader>a: :Tabularize /:<CR>
+nmap <Leader>a:: :Tabularize /:\zs<CR>
+vmap <Leader>a:: :Tabularize /:\zs<CR>
+nmap <Leader>a, :Tabularize /,<CR>
+vmap <Leader>a, :Tabularize /,<CR>
+nmap <Leader>a,, :Tabularize /,\zs<CR>
+vmap <Leader>a,, :Tabularize /,\zs<CR>
+nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
+
+" Sessiong List
+set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
+nmap <leader>sl :SessionList<CR>
+nmap <leader>ss :SessionSave<CR>
+nmap <leader>sc :SessionClose<CR>
+
+" JSON
+nmap <leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
+
+" PyMode
+let g:pymode_lint_checker = "pyflakes"
+let g:pymode_utils_whitespaces = 0
+let g:pymode_options = 0
+
+" ctrlp
+let g:ctrlp_working_path_mode = 'ra'
+nnoremap <silent> <D-t> :CtrlP<CR>
+nnoremap <silent> <D-r> :CtrlPMRU<CR>
+let g:ctrlp_custom_ignore = {
+    \ 'dir':  '\.git$\|\.hg$\|\.svn$',
+    \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
+
+if executable('ack')
+    let s:ctrlp_fallback = 'ack %s --nocolor -f'
+else
+    let s:ctrlp_fallback = 'find %s -type f'
+endif
+let g:ctrlp_user_command = {
+    \ 'types': {
+        \ 1: ['.git', 'cd %s && git ls-files . --cached --exclude-standard --others'],
+        \ 2: ['.hg', 'hg --cwd %s locate -I .'],
+    \ },
+    \ 'fallback': s:ctrlp_fallback
+\ }
+
+" PYthonMode
+if !has('python')
+    let g:pymode = 0
+endif
+
+" Fugitive
+nnoremap <silent> <leader>gs :Gstatus<CR>
+nnoremap <silent> <leader>gd :Gdiff<CR>
+nnoremap <silent> <leader>gc :Gcommit<CR>
+nnoremap <silent> <leader>gb :Gblame<CR>
+nnoremap <silent> <leader>gl :Glog<CR>
+nnoremap <silent> <leader>gp :Git push<CR>
+nnoremap <silent> <leader>gr :Gread<CR>
+nnoremap <silent> <leader>gw :Gwrite<CR>
+nnoremap <silent> <leader>ge :Gedit<CR>
+" Mnemonic _i_nteractive
+nnoremap <silent> <leader>gi :Git add -p %<CR>
+nnoremap <silent> <leader>gg :SignifyToggle<CR>
+
+" You complete me
+if count(g:spf13_bundle_groups, 'youcompleteme')
+    let g:acp_enableAtStartup = 0
+
+    " enable completion from tags
+    let g:ycm_collect_identifiers_from_tags_files = 1
+
+    " remap Ultisnips for compatibility for YCM
+    let g:UltiSnipsExpandTrigger = '<C-j>'
+    let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+    let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+
+    " Enable omni completion.
+    autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+    autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+    autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+    autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+    autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+    autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+    autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+
+    " Haskell post write lint and check with ghcmod
+    " $ `cabal install ghcmod` if missing and ensure
+    " ~/.cabal/bin is in your $PATH.
+    if !executable("ghcmod")
+        autocmd BufWritePost *.hs GhcModCheckAndLintAsync
+    endif
+
+    " For snippet_complete marker.
+    if !exists("g:spf13_no_conceal")
+        if has('conceal')
+            set conceallevel=2 concealcursor=i
+        endif
+    endif
+
+    " Disable the neosnippet preview candidate window
+    " When enabled, there can be too much visual noise
+    " especially when splits are used.
+    set completeopt-=preview
+endif
+
+" neocomplete cache
+let g:acp_enableAtStartup = 0
+let g:neocomplcache_enable_at_startup = 1
+let g:neocomplcache_enable_camel_case_completion = 1
+let g:neocomplcache_enable_smart_case = 1
+let g:neocomplcache_enable_underbar_completion = 1
+let g:neocomplcache_enable_auto_delimiter = 1
+let g:neocomplcache_max_list = 15
+let g:neocomplcache_force_overwrite_completefunc = 1
+
+" Define dictionary.
+let g:neocomplcache_dictionary_filetype_lists = {
+            \ 'default' : '',
+            \ 'vimshell' : $HOME.'/.vimshell_hist',
+            \ 'scheme' : $HOME.'/.gosh_completions'
+            \ }
+
+" Define keyword.
+if !exists('g:neocomplcache_keyword_patterns')
+    let g:neocomplcache_keyword_patterns = {}
+endif
+let g:neocomplcache_keyword_patterns._ = '\h\w*'
+
+" Plugin key-mappings {
+    " These two lines conflict with the default digraph mapping of <C-K>
+    imap <C-k> <Plug>(neosnippet_expand_or_jump)
+    smap <C-k> <Plug>(neosnippet_expand_or_jump)
+    if exists('g:spf13_noninvasive_completion')
+        iunmap <CR>
+        " <ESC> takes you out of insert mode
+        inoremap <expr> <Esc>   pumvisible() ? "\<C-y>\<Esc>" : "\<Esc>"
+        " <CR> accepts first, then sends the <CR>
+        inoremap <expr> <CR>    pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
+        " <Down> and <Up> cycle like <Tab> and <S-Tab>
+        inoremap <expr> <Down>  pumvisible() ? "\<C-n>" : "\<Down>"
+        inoremap <expr> <Up>    pumvisible() ? "\<C-p>" : "\<Up>"
+        " Jump up and down the list
+        inoremap <expr> <C-d>   pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
+        inoremap <expr> <C-u>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
+    else
+        imap <silent><expr><C-k> neosnippet#expandable() ?
+                    \ "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ?
+                    \ "\<C-e>" : "\<Plug>(neosnippet_expand_or_jump)")
+        smap <TAB> <Right><Plug>(neosnippet_jump_or_expand)
+
+        inoremap <expr><C-g> neocomplcache#undo_completion()
+        inoremap <expr><C-l> neocomplcache#complete_common_string()
+        inoremap <expr><CR> neocomplcache#complete_common_string()
+
+        " <CR>: close popup
+        " <s-CR>: close popup and save indent.
+        inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup()"\<CR>" : "\<CR>"
+        inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+
+        " <C-h>, <BS>: close popup and delete backword char.
+        inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+        inoremap <expr><C-y> neocomplcache#close_popup()
+    endif
+    " <TAB>: completion.
+    inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+    inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
+" }
+
+" Enable omni completion.
+autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+
+" Enable heavy omni completion.
+if !exists('g:neocomplcache_omni_patterns')
+    let g:neocomplcache_omni_patterns = {}
+endif
+let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
+let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
+let g:neocomplcache_omni_patterns.ruby = '[^. *\t]\.\h\w*\|\h\w*::'
+
+" Snippets
+
+" Use honza's snippets.
+let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
+
+" Enable neosnippet snipmate compatibility mode
+let g:neosnippet#enable_snipmate_compatibility = 1
+
+" For snippet_complete marker.
+if !exists("g:spf13_no_conceal")
+    if has('conceal')
+        set conceallevel=2 concealcursor=i
+    endif
+endif
+
+" Disable the neosnippet preview candidate window
+" When enabled, there can be too much visual noise
+" especially when splits are used.
+set completeopt-=preview
+
+" Undo Tree
+nnoremap <Leader>u :UndotreeToggle<CR>
+" If undotree is opened, it is likely one wants to interact with it.
+let g:undotree_SetFocusWhenToggle=1
+
+" Indent guides
+let g:indent_guides_start_level = 2
+let g:indent_guides_guide_size = 1
+let g:indent_guides_enable_on_vim_startup = 1
+
+" Airline theme
+let g:airline_theme = 'solarized'
+
+" initialize neard tree as needed
+redir => bufoutput
+buffers!
+redir END
+let idx = stridx(bufoutput, "NERD_tree")
+if idx > -1
+    NERDTreeMirror
+    NERDTreeFind
+    wincmd l
+endif
+
+
+" Strip whitespace
+function! StripTrailingWhitespace()
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " do the business:
+    %s/\s\+$//e
+    " clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
+
+" Shell command
+function! s:RunShellCommand(cmdline)
+    botright new
+
+    setlocal buftype=nofile
+    setlocal bufhidden=delete
+    setlocal nobuflisted
+    setlocal noswapfile
+    setlocal nowrap
+    setlocal filetype=shell
+    setlocal syntax=shell
+
+    call setline(1, a:cmdline)
+    call setline(2, substitute(a:cmdline, '.', '=', 'g'))
+    execute 'silent $read !' . escape(a:cmdline, '%#')
+    setlocal nomodifiable
+    1
+endfunction
+
+command! -complete=file -nargs=+ Shell call s:RunShellCommand(<q-args>)
