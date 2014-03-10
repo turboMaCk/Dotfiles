@@ -44,23 +44,38 @@ augroup resCur
     autocmd BufWinEnter * call ResCur()
 augroup END
 
+<<<<<<< HEAD
 set backup                  " Backups are nice ...
 if has('persistent_undo')
     set undodir=~/tmp
+=======
+" Setting up the directories
+set backup                  " Backups are nice ...
+if has('persistent_undo')
+>>>>>>> vim-plugins
     set undofile                " So is persistent undo ...
     set undolevels=1000         " Maximum number of changes that can be undone
     set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
 endif
 
+<<<<<<< HEAD
 set swapfile
 set dir=~/tmp
 set backupdir=~/tmp
 
+=======
+>>>>>>> vim-plugins
 " Add exclusions to mkview and loadview
 " eg: *.*, svn-commit.tmp
 let g:skipview_files = [
     \ '\[example pattern\]'
     \ ]
+<<<<<<< HEAD
+=======
+
+" Store swap files in fixed location, not current directory.
+set dir=~/.vimswap//,/var/tmp//,/tmp//,."
+>>>>>>> vim-plugins
 
 if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
     let g:solarized_termcolors=256
