@@ -13,10 +13,6 @@ set noerrorbells         " don't beep
 set number
 set relativenumber
 
-" dont need this oldsschool staff
-set nobackup
-set nowritebackupt
-
 " General
 set background=dark         " Assume a dark background
 filetype plugin indent on   " Automatically detect file types.
@@ -48,20 +44,22 @@ augroup resCur
     autocmd BufWinEnter * call ResCur()
 augroup END
 
-" Setting up the directories {
-    set backup                  " Backups are nice ...
-    if has('persistent_undo')
-        set undofile                " So is persistent undo ...
-        set undolevels=1000         " Maximum number of changes that can be undone
-        set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
-    endif
+set backup                  " Backups are nice ...
+if has('persistent_undo')
+    set undofile                " So is persistent undo ...
+    set undolevels=1000         " Maximum number of changes that can be undone
+    set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
+endif
 
-    " Add exclusions to mkview and loadview
-    " eg: *.*, svn-commit.tmp
-    let g:skipview_files = [
-        \ '\[example pattern\]'
-        \ ]
-" }
+set swapfile
+set dir=~/tmp
+set backupdir=~/tmp
+
+" Add exclusions to mkview and loadview
+" eg: *.*, svn-commit.tmp
+let g:skipview_files = [
+    \ '\[example pattern\]'
+    \ ]
 
 if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
     let g:solarized_termcolors=256
