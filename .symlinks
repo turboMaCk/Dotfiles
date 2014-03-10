@@ -1,0 +1,15 @@
+# Store current working (repo) directory to variable
+cwd=$(pwd)
+
+# Change directory to home
+cd ~/
+
+# Generate symlinks to files in repo
+ln -s $cwd/.vimrc.bundles .vimrc.bundles.local
+ln -s $cwd/.vimrc .vimrc.bundles.local
+ln -s $cwd/.ackrc .ackrc
+ln -s $cwd/.zshrc .zshrc
+ln -s $cwd/.gitignore .gitignore
+ln -s $cwd/.gitconfig gitconfig
+
+cd $cwd
