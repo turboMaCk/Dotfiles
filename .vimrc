@@ -160,9 +160,6 @@ map <C-K> <C-W>k<C-W>_
 map <C-L> <C-W>l<C-W>_
 map <C-H> <C-W>h<C-W>_
 
-" map w to window command
-nmap w <C-W>
-
 " Wrapped lines goes down/up to next row, rather than next line in file.
 noremap j gj
 noremap k gk

@@ -71,6 +71,10 @@ export PATH=/usr/local/bin:$PATH
 
 # ALIASES
 alias gch="git checkout"
+alias gs="git status"
+alias ga="git add"
+alias gc="git commit"
+alias gp="git push"
 alias v="vim"
 alias s="subl"
 
