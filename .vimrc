@@ -44,38 +44,25 @@ augroup resCur
     autocmd BufWinEnter * call ResCur()
 augroup END
 
-<<<<<<< HEAD
-set backup                  " Backups are nice ...
-if has('persistent_undo')
-    set undodir=~/tmp
-=======
 " Setting up the directories
 set backup                  " Backups are nice ...
 if has('persistent_undo')
->>>>>>> vim-plugins
     set undofile                " So is persistent undo ...
     set undolevels=1000         " Maximum number of changes that can be undone
     set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
+    set undodir=~/tmp
 endif
 
-<<<<<<< HEAD
 set swapfile
 set dir=~/tmp
 set backupdir=~/tmp
 
-=======
->>>>>>> vim-plugins
 " Add exclusions to mkview and loadview
 " eg: *.*, svn-commit.tmp
 let g:skipview_files = [
     \ '\[example pattern\]'
     \ ]
-<<<<<<< HEAD
-=======
 
-" Store swap files in fixed location, not current directory.
-set dir=~/.vimswap//,/var/tmp//,/tmp//,."
->>>>>>> vim-plugins
 
 if filereadable(expand("~/.vim/bundle/vim-colors-solarized/colors/solarized.vim"))
     let g:solarized_termcolors=256
@@ -482,45 +469,43 @@ if !exists('g:neocomplcache_keyword_patterns')
 endif
 let g:neocomplcache_keyword_patterns._ = '\h\w*'
 
-" Plugin key-mappings {
-    " These two lines conflict with the default digraph mapping of <C-K>
-    imap <C-k> <Plug>(neosnippet_expand_or_jump)
-    smap <C-k> <Plug>(neosnippet_expand_or_jump)
-    if exists('g:spf13_noninvasive_completion')
-        iunmap <CR>
-        " <ESC> takes you out of insert mode
-        inoremap <expr> <Esc>   pumvisible() ? "\<C-y>\<Esc>" : "\<Esc>"
-        " <CR> accepts first, then sends the <CR>
-        inoremap <expr> <CR>    pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
-        " <Down> and <Up> cycle like <Tab> and <S-Tab>
-        inoremap <expr> <Down>  pumvisible() ? "\<C-n>" : "\<Down>"
-        inoremap <expr> <Up>    pumvisible() ? "\<C-p>" : "\<Up>"
-        " Jump up and down the list
-        inoremap <expr> <C-d>   pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
-        inoremap <expr> <C-u>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
-    else
-        imap <silent><expr><C-k> neosnippet#expandable() ?
-                    \ "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ?
-                    \ "\<C-e>" : "\<Plug>(neosnippet_expand_or_jump)")
-        smap <TAB> <Right><Plug>(neosnippet_jump_or_expand)
+" These two lines conflict with the default digraph mapping of <C-K>
+imap <C-k> <Plug>(neosnippet_expand_or_jump)
+smap <C-k> <Plug>(neosnippet_expand_or_jump)
+if exists('g:spf13_noninvasive_completion')
+    iunmap <CR>
+    " <ESC> takes you out of insert mode
+    inoremap <expr> <Esc>   pumvisible() ? "\<C-y>\<Esc>" : "\<Esc>"
+    " <CR> accepts first, then sends the <CR>
+    inoremap <expr> <CR>    pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
+    " <Down> and <Up> cycle like <Tab> and <S-Tab>
+    inoremap <expr> <Down>  pumvisible() ? "\<C-n>" : "\<Down>"
+    inoremap <expr> <Up>    pumvisible() ? "\<C-p>" : "\<Up>"
+    " Jump up and down the list
+    inoremap <expr> <C-d>   pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
+    inoremap <expr> <C-u>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
+else
+    imap <silent><expr><C-k> neosnippet#expandable() ?
+                \ "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ?
+                \ "\<C-e>" : "\<Plug>(neosnippet_expand_or_jump)")
+    smap <TAB> <Right><Plug>(neosnippet_jump_or_expand)
 
-        inoremap <expr><C-g> neocomplcache#undo_completion()
-        inoremap <expr><C-l> neocomplcache#complete_common_string()
-        inoremap <expr><CR> neocomplcache#complete_common_string()
+    inoremap <expr><C-g> neocomplcache#undo_completion()
+    inoremap <expr><C-l> neocomplcache#complete_common_string()
+    inoremap <expr><CR> neocomplcache#complete_common_string()
 
-        " <CR>: close popup
-        " <s-CR>: close popup and save indent.
-        inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup()"\<CR>" : "\<CR>"
-        inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+    " <CR>: close popup
+    " <s-CR>: close popup and save indent.
+    inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup()"\<CR>" : "\<CR>"
+    inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
 
-        " <C-h>, <BS>: close popup and delete backword char.
-        inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-        inoremap <expr><C-y> neocomplcache#close_popup()
-    endif
-    " <TAB>: completion.
-    inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
-    inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
-" }
+    " <C-h>, <BS>: close popup and delete backword char.
+    inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+    inoremap <expr><C-y> neocomplcache#close_popup()
+endif
+" <TAB>: completion.
+inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -535,6 +520,7 @@ autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 if !exists('g:neocomplcache_omni_patterns')
     let g:neocomplcache_omni_patterns = {}
 endif
+
 let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
