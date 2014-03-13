@@ -23,7 +23,7 @@ Bundle 'mileszs/ack.vim'
 " basic plugins
 Bundle 'scrooloose/nerdtree'
 Bundle 'spf13/vim-autoclose'
-Bundle 'altercation/vim-colors-solarized'
+Bundle 'vim-scripts/xoria256.vim'
 Bundle 'kien/ctrlp.vim'
 " Bundle 'terryma/vim-multiple-cursors'
 Bundle 'vim-scripts/sessionman.vim'
