@@ -39,6 +39,9 @@ function! ResCur()
     endif
 endfunction
 
+" System cliboard
+set clipboard=unnamed
+
 augroup resCur
     autocmd!
     autocmd BufWinEnter * call ResCur()
