@@ -4,6 +4,9 @@ cwd=$(pwd)
 # Change directory to home
 cd ~/
 
+# Create tmp directory for vim swap
+mkdir ~/tmp/
+
 # Generate symlinks to files in repo
 ln -s $cwd/.vimrc.bundles .vimrc.bundles
 ln -s $cwd/.vimrc .vimrc
