@@ -68,6 +68,7 @@ let g:skipview_files = [
 
 set t_Co=256
 colorscheme xoria256
+"colorscheme github
 
 set tabpagemax=15               " Only show 15 tabs
 set showmode                    " Display the current mode

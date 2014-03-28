@@ -11,6 +11,8 @@ mkdir ~/tmp/
 ln -s $cwd/.vimrc.bundles .vimrc.bundles
 ln -s $cwd/.vimrc .vimrc
 ln -s $cwd/.ackrc .ackrc
+# remove old .zshrc
+rm -f $/.zshrc
 ln -s $cwd/.zshrc .zshrc
 ln -s $cwd/.gitignore .gitignore
 ln -s $cwd/gitconfig gitconfig
