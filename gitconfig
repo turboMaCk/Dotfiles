@@ -1,7 +1,25 @@
-[core]
-	excludesfile = ~/.gitignore
-[color]
-	ui = true
+[github]
+  user=turbomack
+
 [user]
-	name = Marek Fajkus
-	email = marek.faj@gmail.com
+  name = Marek Fajkus
+  email = marek.faj@gmail.com
+
+[core]
+  excludesfile = ~/.gitignore
+
+[color]
+  ui = true
+
+[hub]
+  protocol = https
+
+[core]
+  pager = less -R
+
+[push]
+  default = matching
+[branch]
+  autosetuprebase = always
+[help]
+  autocorrect = 1
