@@ -47,7 +47,7 @@ augroup resCur
     autocmd BufWinEnter * call ResCur()
 augroup END
 
-" Setting up the directories
+"Setting up the directories
 set backup                  " Backups are nice ...
 if has('persistent_undo')
     set undofile                " So is persistent undo ...
@@ -67,8 +67,8 @@ let g:skipview_files = [
     \ ]
 
 set t_Co=256
-"colorscheme xoria256
-colorscheme github
+colorscheme xoria256
+"colorscheme github
 
 set tabpagemax=15               " Only show 15 tabs
 set showmode                    " Display the current mode
@@ -552,8 +552,12 @@ let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
 
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+let g:Powerline_symbols = 'fancy'
+
 if !exists('g:airline_theme')
-    let g:airline_theme = 'solarized'
+    "let g:airline_theme = 'solarized'
 endif
 if !exists('g:airline_powerline_fonts')
     " Use the default set of separators with a few customizations

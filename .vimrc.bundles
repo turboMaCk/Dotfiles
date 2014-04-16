@@ -39,7 +39,7 @@ Bundle 'mhinz/vim-signify'
 "Bundle 'tpope/vim-abolish.git'
 "Bundle 'osyo-manga/vim-over'
 
-" Pick one of the checksyntax, jslint, or syntastic
+" Pick one of the checksyntax, jshint, or syntastic
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-fugitive'
 Bundle 'mattn/webapi-vim'
