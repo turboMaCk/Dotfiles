@@ -46,9 +46,7 @@ Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
 Bundle 'scrooloose/nerdcommenter'
 Bundle 'godlygeek/tabular'
-if executable('ctags')
-    Bundle 'majutsushi/tagbar'
-endif
+Bundle 'majutsushi/tagbar'
 
 " Snippets
 Bundle 'garbas/vim-snipmate'

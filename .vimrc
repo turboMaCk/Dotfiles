@@ -120,7 +120,7 @@ set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic white
 " Formating
 set nowrap                      " Do not wrap long lines
 set autoindent                  " Indent at the same level of the previous line
-set smartindent
+"set smartindent
 set shiftwidth=2                " Use indents of 4 spaces
 set expandtab                   " Tabs are spaces, not tabs
 set tabstop=2                   " An indentation every four columns
@@ -274,6 +274,9 @@ set fileencodings=utf-8,iso-8859-15
 " PLUGINS
 " ===================================
 
+" CONTROLP
+map <Leader>m :CtrlPBuffer<CR>
+
 " PIV
 let g:DisableAutoPHPFolding = 0
 let g:PIVAutoClose = 0
@@ -309,13 +312,15 @@ if !exists('g:spf13_no_omni_complete')
 endif
 
 " Ctags
-"set tags=./tags;/,~/.vimtags
+set tags=./tags;/,~/.vimtags
 
-"" Make tags placed in .git/tags file available in all levels of a repository
-"let gitroot = substitute(system('git rev-parse --show-toplevel'), '[\n\r]', '', 'g')
-"if gitroot != ''
-    "let &tags = &tags . ',' . gitroot . '/.git/tags'
-"endif
+" Make tags placed in .git/tags file available in all levels of a repository
+let gitroot = substitute(system('git rev-parse --show-toplevel'), '[\n\r]', '', 'g')
+if gitroot != ''
+    let &tags = &tags . ',' . gitroot . '/.git/tags'
+endif
+
+nmap <leader>t :TagbarToggle<CR>
 
 " AutoClose Tag (xml and xHtml support)
 au FileType xhtml,xml ru ftplugin/html/autoclosetag.vim
@@ -407,7 +412,7 @@ nnoremap <silent> <leader>gi :Git add -p %<CR>
 nnoremap <silent> <leader>gg :SignifyToggle<CR>
 
 " enable completion from tags
-" let g:ycm_collect_identifiers_from_tags_files = 1
+ let g:ycm_collect_identifiers_from_tags_files = 1
 
 " remap Ultisnips for compatibility for YCM
 let g:UltiSnipsExpandTrigger = '<C-j>'
