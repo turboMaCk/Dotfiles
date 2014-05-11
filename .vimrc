@@ -595,3 +595,7 @@ augroup resCur
     autocmd!
     autocmd BufWinEnter * call ResCur()
 augroup END
+
+
+" MAC VIM
+set guifont=Literation\ Mono\ Powerline:h12
