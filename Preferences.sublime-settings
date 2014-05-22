@@ -32,6 +32,7 @@
 	"trim_automatic_white_space": true,
 	"trim_trailing_white_space_on_save": true,
 	"useTabStops": true,
+	"vintage_start_in_command_mode": true,
 	"word_wrap": false,
 	"wrap_width": 0
 }

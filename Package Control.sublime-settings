@@ -1,6 +1,7 @@
 {
 	"installed_packages":
 	[
+		"All Autocomplete",
 		"Alternate VIM Navigation",
 		"ApacheConf.tmLanguage",
 		"Autoprefixer",
@@ -38,6 +39,8 @@
 		"Theme - Soda",
 		"Theme - Spacegray",
 		"Tomorrow Color Schemes",
-		"VimL"
+		"VimL",
+		"Vintage-Origami",
+		"Vn Ime"
 	]
 }
