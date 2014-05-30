@@ -598,7 +598,7 @@ augroup END
 
 
 " MAC VIM
-set guifont=Literation\ Mono\ Powerline:h12
+set guifont=Literation\ Mono\ Powerline:h11
 set guioptions-=T
 set guioptions-=r
 set guioptions-=L

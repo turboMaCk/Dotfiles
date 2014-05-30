@@ -75,10 +75,10 @@ Bundle 'arnaud-lb/vim-php-namespace'
 
 " PYTHON (monty)
 " Pick either python-mode or pyflakes & pydoc
-Bundle 'klen/python-mode'
-Bundle 'python.vim'
-Bundle 'python_match.vim'
-Bundle 'pythoncomplete'
+"Bundle 'klen/python-mode'
+"Bundle 'python.vim'
+"Bundle 'python_match.vim'
+"Bundle 'pythoncomplete'
 
 " JAVASCRIPT (love or madness)
 Bundle 'elzr/vim-json'
@@ -87,8 +87,8 @@ Bundle 'briancollins/vim-jst'
 Bundle 'kchmck/vim-coffee-script'
 
 " JAVA (when goes crazy)
-Bundle 'derekwyatt/vim-scala'
-Bundle 'derekwyatt/vim-sbt'
+"Bundle 'derekwyatt/vim-scala'
+"Bundle 'derekwyatt/vim-sbt'
 
 " HASKEL (So nerdy)
 "Bundle 'travitch/hasksyn'
@@ -126,8 +126,8 @@ Bundle 'quentindecock/vim-cucumber-align-pipes'
 Bundle 'Puppet-Syntax-Highlighting'
 
 " Ember.js (MCV or what)
-Bundle 'dsawardekar/ember.vim'
-Bundle 'nono/vim-handlebars'
+"Bundle 'dsawardekar/ember.vim'
+"Bundle 'nono/vim-handlebars'
 
 " NETTE FW
 Bundle 'Janiczek/vim-latte'
