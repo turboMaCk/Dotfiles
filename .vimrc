@@ -13,6 +13,9 @@ set noerrorbells         " don't beep
 set number
 set relativenumber
 
+" tmux colors
+set t_Co=256
+
 " General
 set background=dark         " Assume a dark background
 filetype plugin indent on   " Automatically detect file types.

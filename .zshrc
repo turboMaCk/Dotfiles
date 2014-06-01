@@ -55,17 +55,17 @@ export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/marek/.rvm/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
 # # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+ if [[ -n $SSH_CONNECTION ]]; then
+   export EDITOR='vim'
+ else
+   export EDITOR='mvim'
+ fi
 
 # Compilation flags
-# export ARCHFLAGS="-arch x86_64"
+ export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+ #export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 export PATH=/usr/local/bin:$PATH
 
@@ -77,6 +77,8 @@ alias gc="git commit"
 alias gp="git push"
 alias v="vim"
 alias s="subl"
+
+export TERM=screen-256color
 
 # Shortcuts
 alias fs="stat -f \"%z bytes\""

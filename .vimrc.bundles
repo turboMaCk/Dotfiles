@@ -39,6 +39,9 @@ Bundle 'mhinz/vim-signify'
 "Bundle 'tpope/vim-abolish.git'
 "Bundle 'osyo-manga/vim-over'
 
+" Vimux for tmux integration
+Bundle 'benmills/vimux'
+
 " Pick one of the checksyntax, jshint, or syntastic
 Bundle 'scrooloose/syntastic'
 Bundle 'tpope/vim-fugitive'
