@@ -16,6 +16,22 @@ set relativenumber
 " tmux colors
 set t_Co=256
 
+" vimux (tmux) kaybinfing
+" Prompt for a command to run
+map <leader>rp :PromptVimTmuxCommand
+
+" Run last command executed by RunVimTmuxCommand
+map <leader>rl :RunLastVimTmuxCommand
+
+" Inspect runner pane
+map <leader>ri :InspectVimTmuxRunner
+
+" Close all other tmux panes in current window
+map <leader>rx :CloseVimTmuxPanes
+
+" Interrupt any command running in the runner pane
+map <leader>rs :InterruptVimTmuxRunner
+
 " General
 set background=dark         " Assume a dark background
 filetype plugin indent on   " Automatically detect file types.
@@ -71,7 +87,6 @@ let g:skipview_files = [
 
 set t_Co=256
 colorscheme xoria256
-"colorscheme github
 
 set tabpagemax=15               " Only show 15 tabs
 set showmode                    " Display the current mode
@@ -222,7 +237,6 @@ nnoremap Y y$
 " Most prefer to toggle search highlighting rather than clear the current
 " search results. To clear search highlighting rather than toggle it on
 nmap <silent> <leader>/ :set invhlsearch<CR>
-nmap <silent> <leader>ú :set invhlsearch<CR> " better for czech keyboard
 
 " Easy split with file open
 map <Leader>e :e <C-R>=expand("%:p:H") . '/'<CR>
@@ -289,30 +303,28 @@ let g:NERDShutUp=1
 let b:match_ignorecase = 1
 
 " OmniComplete
-if !exists('g:spf13_no_omni_complete')
-    if has("autocmd") && exists("+omnifunc")
-        autocmd Filetype *
-            \if &omnifunc == "" |
-            \setlocal omnifunc=syntaxcomplete#Complete |
-            \endif
-    endif
+"if has("autocmd") && exists("+omnifunc")
+    "autocmd Filetype *
+        "\if &omnifunc == "" |
+        "\setlocal omnifunc=syntaxcomplete#Complete |
+        "\endif
+"endif
 
-    hi Pmenu  guifg=#000000 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
-    hi PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=lightgray cterm=NONE
-    hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
+"hi Pmenu  guifg=#000000 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
+"hi PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=lightgray cterm=NONE
+"hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
 
-    " Some convenient mappings
-    inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
-    inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
-    inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-    inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
-    inoremap <expr> <C-d>      pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
-    inoremap <expr> <C-u>      pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
+"" Some convenient mappings
+"inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
+"inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
+"inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
+"inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
+"inoremap <expr> <C-d>      pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
+"inoremap <expr> <C-u>      pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
 
-    " Automatically open and close the popup menu / preview window
-    au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-    set completeopt=menu,preview,longest
-endif
+"" Automatically open and close the popup menu / preview window
+"au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
+"set completeopt=menu,preview,longest
 
 " Ctags
 set tags=./tags;/,~/.vimtags
@@ -439,11 +451,9 @@ if !executable("ghcmod")
 endif
 
 " For snippet_complete marker.
-if !exists("g:spf13_no_conceal")
-    if has('conceal')
-        set conceallevel=2 concealcursor=i
-    endif
-endif
+"if has('conceal')
+    "set conceallevel=2 concealcursor=i
+"endif
 
 " Disable the neosnippet preview candidate window
 " When enabled, there can be too much visual noise
@@ -477,7 +487,7 @@ let g:neocomplcache_keyword_patterns._ = '\h\w*'
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
 
-iunmap <CR>
+"iunmap <CR>
 " <ESC> takes you out of insert mode
 inoremap <expr> <Esc>   pumvisible() ? "\<C-y>\<Esc>" : "\<Esc>"
 " <CR> accepts first, then sends the <CR>
@@ -520,9 +530,7 @@ autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 " Enable heavy omni completion.
-if !exists('g:neocomplcache_omni_patterns')
-    let g:neocomplcache_omni_patterns = {}
-endif
+let g:neocomplcache_omni_patterns = {}
 
 let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
 let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
@@ -539,10 +547,8 @@ let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 let g:neosnippet#enable_snipmate_compatibility = 1
 
 " For snippet_complete marker.
-if !exists("g:spf13_no_conceal")
-    if has('conceal')
-        set conceallevel=2 concealcursor=i
-    endif
+if has('conceal')
+    set conceallevel=2 concealcursor=i
 endif
 
 " Disable the neosnippet preview candidate window
@@ -601,7 +607,7 @@ augroup END
 
 
 " MAC VIM
-set guifont=Literation\ Mono\ Powerline:h11
+set guifont=Literation\ Mono\ Powerline:h12
 set guioptions-=T
 set guioptions-=r
 set guioptions-=L

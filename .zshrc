@@ -54,7 +54,7 @@ source $ZSH/oh-my-zsh.sh
 export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/marek/.rvm/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
 
-# # Preferred editor for local and remote sessions
+# Preferred editor for local and remote sessions
  if [[ -n $SSH_CONNECTION ]]; then
    export EDITOR='vim'
  else
@@ -77,7 +77,10 @@ alias gc="git commit"
 alias gp="git push"
 alias v="vim"
 alias s="subl"
+alias love="/Applications/love.app/Contents/MacOS/love"
+alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 
+# 256 color support (tmux)
 export TERM=screen-256color
 
 # Shortcuts
