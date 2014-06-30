@@ -2,8 +2,8 @@
 source ~/.vimrc.bundles
 
 " Quickly edit/reload the vimrc file
-" nmap <silent> <leader>ev :e $MYVIMRC<CR>
-" nmap <silent> <leader>sv :so $MYVIMRC<CR>
+nmap <silent> <leader>ev :e $MYVIMRC<CR>
+nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
 " Disable bleep!
 set visualbell           " don't beep
@@ -86,7 +86,8 @@ let g:skipview_files = [
     \ ]
 
 set t_Co=256
-colorscheme xoria256
+"colorscheme xoria256
+colorscheme github
 
 set tabpagemax=15               " Only show 15 tabs
 set showmode                    " Display the current mode
@@ -349,6 +350,7 @@ map <C-e> <plug>NERDTreeTabsToggle<CR>
 
 let NERDTreeShowBookmarks=1
 let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+let NERDTreeIgnore += ['^\.bundle$', '^\.bzr$', '^\.git$', '^\.hg$', '^\.sass-cache$', '^\.svn$', '^\.$', '^\.\.$', '^Thumbs\.db$']
 let NERDTreeChDirMode=0
 let NERDTreeQuitOnOpen=0
 let NERDTreeMouseMode=2
@@ -391,7 +393,7 @@ let g:ctrlp_working_path_mode = 'ra'
 "nnoremap <silent> <D-t> :CtrlP<CR>
 nnoremap <leader>p :CtrlPMRU<CR>
 let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\.git$\|\.hg$\|\.svn$',
+    \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.sass-cache$',
     \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
 
 if executable('ack')
@@ -568,11 +570,9 @@ let g:indent_guides_enable_on_vim_startup = 1
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
-let g:Powerline_symbols = 'fancy'
+let g:airline_theme = 'tomorrow'
 
-if !exists('g:airline_theme')
-    "let g:airline_theme = 'solarized'
-endif
+" If powerline fonts are not supported
 if !exists('g:airline_powerline_fonts')
     " Use the default set of separators with a few customizations
     let g:airline_left_sep='›'  " Slightly fancier than '>'

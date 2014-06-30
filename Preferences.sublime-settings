@@ -3,7 +3,7 @@
 	"auto_indent": true,
 	"bold_folder_labels": true,
 	"close_windows_when_empty": true,
-	"color_scheme": "Packages/Tomorrow Color Schemes/Tomorrow-Night.tmTheme",
+	"color_scheme": "Packages/Github Color Theme/GitHub.tmTheme",
 	"copy_with_empty_selection": false,
 	"create_window_at_startup": false,
 	"detect_indentation": true,
@@ -27,12 +27,13 @@
 	"show_minimap": false,
 	"show_tab_close_buttons": false,
 	"tabSize": 2,
-	"theme": "Soda Dark 3.sublime-theme",
+	"theme": "Soda Light 3.sublime-theme",
 	"translateTabsToSpaces": true,
 	"trim_automatic_white_space": true,
 	"trim_trailing_white_space_on_save": true,
 	"useTabStops": true,
 	"vintage_start_in_command_mode": true,
 	"word_wrap": false,
-	"wrap_width": 0
+	"wrap_width": 0,
+	"folder_exclude_patterns": [".svn", ".git", ".hg", "CVS", ".sass-cache"]
 }
