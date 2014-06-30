@@ -35,5 +35,5 @@
 	"vintage_start_in_command_mode": true,
 	"word_wrap": false,
 	"wrap_width": 0,
-	"folder_exclude_patterns": [".svn", ".git", ".hg", "CVS", ".sass-cache"]
+	"folder_exclude_patterns": [".svn", ".git", ".hg", "CVS", ".sass-cache", "Thumbs.db", "bower_components", "node_modules"]
 }

@@ -393,7 +393,7 @@ let g:ctrlp_working_path_mode = 'ra'
 "nnoremap <silent> <D-t> :CtrlP<CR>
 nnoremap <leader>p :CtrlPMRU<CR>
 let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.sass-cache$',
+    \ 'dir': '\.git$\|\.hg$\|\.svn$\|\.sass-cache$\|bower_components$\|\node_modules$',
     \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
 
 if executable('ack')
