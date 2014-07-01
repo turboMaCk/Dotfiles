@@ -5,6 +5,9 @@ source ~/.vimrc.bundles
 nmap <silent> <leader>ev :e $MYVIMRC<CR>
 nmap <silent> <leader>sv :so $MYVIMRC<CR>
 
+map <leader>l :bn<cr>
+map <leader>h :bp<cr>
+
 " Disable bleep!
 set visualbell           " don't beep
 set noerrorbells         " don't beep
@@ -87,7 +90,7 @@ let g:skipview_files = [
 
 set t_Co=256
 "colorscheme xoria256
-colorscheme github
+colorscheme tomorrow
 
 set tabpagemax=15               " Only show 15 tabs
 set showmode                    " Display the current mode
@@ -393,7 +396,7 @@ let g:ctrlp_working_path_mode = 'ra'
 "nnoremap <silent> <D-t> :CtrlP<CR>
 nnoremap <leader>p :CtrlPMRU<CR>
 let g:ctrlp_custom_ignore = {
-    \ 'dir': '\.git$\|\.hg$\|\.svn$\|\.sass-cache$\|bower_components$\|\node_modules$',
+    \ 'dir': '\.git$\|\.hg$\|\.svn$\|\.sass-cache$\|bower_components$\|node_modules$\|dist$',
     \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
 
 if executable('ack')
