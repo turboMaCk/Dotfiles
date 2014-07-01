@@ -80,6 +80,12 @@ alias s="subl"
 alias love="/Applications/love.app/Contents/MacOS/love"
 alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 
+# folder aliases
+alias projects="cd ~/Projects/"
+alias documents="cd ~/Documents/"
+alias downloads="cd ~/Downloads/"
+alias dotfiles="cd ~/Dotfiles/"
+
 # 256 color support (tmux)
 export TERM=screen-256color
 
