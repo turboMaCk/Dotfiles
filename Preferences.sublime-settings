@@ -1,6 +1,27 @@
 {
 	"always_prompt_for_file_reload": true,
 	"auto_indent": true,
+	"binary_file_patterns":
+	[
+		"*.jpg",
+		"*.jpeg",
+		"*.png",
+		"*.gif",
+		"*.ttf",
+		"*.tga",
+		"*.dds",
+		"*.ico",
+		"*.eot",
+		"*.pdf",
+		"*.swf",
+		"*.jar",
+		"*.zip",
+		"bower_components/",
+		"node_modules/",
+		"Thumbs.db",
+		".tmp/",
+		"dist/"
+	],
 	"bold_folder_labels": true,
 	"close_windows_when_empty": true,
 	"color_scheme": "Packages/Github Color Theme/GitHub.tmTheme",
@@ -10,6 +31,14 @@
 	"draw_centered": false,
 	"fade_fold_buttons": false,
 	"find_selected_text": true,
+	"folder_exclude_patterns":
+	[
+		".svn",
+		".git",
+		".hg",
+		"CVS",
+		".sass-cache"
+	],
 	"font_size": 13.0,
 	"highlight_modified_tabs": true,
 	"ignored_packages":
@@ -34,6 +63,5 @@
 	"useTabStops": true,
 	"vintage_start_in_command_mode": true,
 	"word_wrap": false,
-	"wrap_width": 0,
-	"folder_exclude_patterns": [".svn", ".git", ".hg", "CVS", ".sass-cache", "Thumbs.db", "bower_components", "node_modules"]
+	"wrap_width": 0
 }
