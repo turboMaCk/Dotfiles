@@ -572,15 +572,11 @@ let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
 
 let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
 let g:airline_theme = 'tomorrow'
 
-" If powerline fonts are not supported
-if !exists('g:airline_powerline_fonts')
-    " Use the default set of separators with a few customizations
-    let g:airline_left_sep='›'  " Slightly fancier than '>'
-    let g:airline_right_sep='‹' " Slightly fancier than '<'
-endif
+let g:airline_left_sep='›'
+let g:airline_right_sep='‹'
 
 " Strip whitespace
 function! StripTrailingWhitespace()
