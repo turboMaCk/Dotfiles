@@ -137,7 +137,7 @@ set scrolljump=5                " Lines to scroll when cursor leaves screen
 set scrolloff=3                 " Minimum lines to keep above and below cursor
 set foldenable                  " Auto fold code
 set list
-set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
+set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:< " Highlight problematic whitespace
 
 " Formating
 set nowrap                      " Do not wrap long lines
@@ -609,16 +609,13 @@ augroup resCur
 augroup END
 
 "change cursor in terminal
-
-" solid underscore
-let &t_SI .= "\<Esc>[4 q"
-" solid block
-let &t_EI .= "\<Esc>[2 q"
-" 1 or 0 -> blinking block
-" 3 -> blinking underscore
-" Recent versions of xterm (282 or above) also support
-" 5 -> blinking vertical bar
-" 6 -> solid vertical bar
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
 
 " MAC VIM
 set guifont=Literation\ Mono\ Powerline:h12
