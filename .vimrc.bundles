@@ -17,6 +17,9 @@ Bundle 'vim-addon-mw-utils'
 " Another have to bundle
 Bundle 'tomtom/tlib_vim'
 
+" Editor config is another have to
+Bundle 'editorconfig/editorconfig-vim'
+
 " Ack is better than grep
 Bundle 'mileszs/ack.vim'
 
@@ -90,6 +93,7 @@ Bundle 'elzr/vim-json'
 Bundle 'pangloss/vim-javascript'
 Bundle 'briancollins/vim-jst'
 Bundle 'kchmck/vim-coffee-script'
+Bundle 'nono/vim-handlebars'
 
 " JAVA (when goes crazy)
 "Bundle 'derekwyatt/vim-scala'
@@ -120,8 +124,9 @@ Bundle 'groenewege/vim-less'
 Bundle 'wavded/vim-stylus'
 " haml bundle include sass support
 
-" RUBY (for rains)
+" RUBY (for rails)
 Bundle 'tpope/vim-rails'
+Bundle 'tpope/vim-endwise'
 
 " GO (google lick ass)
 "Bundle 'Blackrush/vim-gocode'

@@ -1,13 +1,6 @@
 " separate bundles
 source ~/.vimrc.bundles
 
-" Quickly edit/reload the vimrc file
-nmap <silent> <leader>ev :e $MYVIMRC<CR>
-nmap <silent> <leader>sv :so $MYVIMRC<CR>
-
-map <leader>l :bn<cr>
-map <leader>h :bp<cr>
-
 " Disable bleep!
 set visualbell           " don't beep
 set noerrorbells         " don't beep
@@ -51,7 +44,6 @@ set history=1000                    " Store a ton of history (default is 20)
 set undolevels=1000      " use many muchos levels of undo
 set spell                           " Spell checking on
 set hidden                          " Allow buffer switching without saving
-
 
 " Restore cursor to file position in previous editing session
 function! ResCur()
@@ -240,7 +232,7 @@ nnoremap Y y$
 
 " Most prefer to toggle search highlighting rather than clear the current
 " search results. To clear search highlighting rather than toggle it on
-nmap <silent> <leader>/ :set invhlsearch<CR>
+nmap <silent> <leader>/ :nohlsearch<CR>
 
 " Easy split with file open
 map <Leader>e :e <C-R>=expand("%:p:H") . '/'<CR>
@@ -396,7 +388,7 @@ let g:ctrlp_working_path_mode = 'ra'
 "nnoremap <silent> <D-t> :CtrlP<CR>
 nnoremap <leader>p :CtrlPMRU<CR>
 let g:ctrlp_custom_ignore = {
-    \ 'dir': '\.git$\|\.hg$\|\.svn$\|\.sass-cache$\|bower_components$\|node_modules$\|dist$',
+    \ 'dir': '\.git$\|\.hg$\|\.svn$\|\.sass-cache$\|\bower_components$\|\node_modules$\|\dist$',
     \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
 
 if executable('ack')
@@ -434,10 +426,10 @@ nnoremap <silent> <leader>gg :SignifyToggle<CR>
 " enable completion from tags
  let g:ycm_collect_identifiers_from_tags_files = 1
 
-" remap Ultisnips for compatibility for YCM
-let g:UltiSnipsExpandTrigger = '<C-j>'
-let g:UltiSnipsJumpForwardTrigger = '<C-j>'
-let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
+" remap Ultis55nips for compatibility for YCM
+"let g:UltiSnipsExpandTrigger = '<C-j>'
+"let g:UltiSnipsJumpForwardTrigger = '<C-j>'
+"let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
 
 " Enable omni completion.
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
@@ -456,9 +448,9 @@ if !executable("ghcmod")
 endif
 
 " For snippet_complete marker.
-"if has('conceal')
-    "set conceallevel=2 concealcursor=i
-"endif
+if has('conceal')
+    set conceallevel=2 concealcursor=i
+endif
 
 " Disable the neosnippet preview candidate window
 " When enabled, there can be too much visual noise
@@ -477,10 +469,10 @@ let g:neocomplcache_force_overwrite_completefunc = 1
 
 " Define dictionary.
 let g:neocomplcache_dictionary_filetype_lists = {
-            \ 'default' : '',
-            \ 'vimshell' : $HOME.'/.vimshell_hist',
-            \ 'scheme' : $HOME.'/.gosh_completions'
-            \ }
+\ 'default' : '',
+\ 'vimshell' : $HOME.'/.vimshell_hist',
+\ 'scheme' : $HOME.'/.gosh_completions'
+\ }
 
 " Define keyword.
 if !exists('g:neocomplcache_keyword_patterns')
@@ -506,20 +498,20 @@ inoremap <expr> <C-u>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
 "imap <silent><expr><C-k> neosnippet#expandable() ?
             "\ "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ?
             "\ "\<C-e>" : "\<Plug>(neosnippet_expand_or_jump)")
-"smap <TAB> <Right><Plug>(neosnippet_jump_or_expand)
+smap <TAB> <Right><Plug>(neosnippet_jump_or_expand)
 
 "inoremap <expr><C-g> neocomplcache#undo_completion()
 "inoremap <expr><C-l> neocomplcache#complete_common_string()
 "inoremap <expr><CR> neocomplcache#complete_common_string()
 
-"" <CR>: close popup
-"" <s-CR>: close popup and save indent.
-"inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup()"\<CR>" : "\<CR>"
-"inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+"<CR>: "close popup
+"<s-CR>: "close popup and save indent.
+inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup()"\<CR>" : "\<CR>"
+inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
 
-"" <C-h>, <BS>: close popup and delete backword char.
-"inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
-"inoremap <expr><C-y> neocomplcache#close_popup()
+"<C-h>, <BS>: close popup and delete backword char.
+inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+inoremap <expr><C-y> neocomplcache#close_popup()
 
 " <TAB>: completion.
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
@@ -604,6 +596,14 @@ augroup resCur
     autocmd BufWinEnter * call ResCur()
 augroup END
 
+" buffer swithing
+map <silent> <leader>l :bn<CR>
+map <silent> <leader>h :bp<CR>
+
+" Quickly edit/reload the vimrc file
+nmap <silent> <leader>ec :e $MYVIMRC<CR>
+nmap <silent> <leader>sc :so $MYVIMRC<CR>
+
 "change cursor in terminal
 if exists('$TMUX')
   let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
@@ -618,3 +618,4 @@ set guifont=Literation\ Mono\ Powerline:h12
 set guioptions-=T
 set guioptions-=r
 set guioptions-=L
+
