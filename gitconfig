@@ -1,19 +1,23 @@
 [user]
-  email = marek.faj@gmail.com
   name = Marek Fajkus
+  email = marek.faj@gmail.com
 
 [github]
   user = turbomack
+  token = token
 
 [push]
   default = matching
 
-[alias]
-  tree = log --graph --decorate --pretty=oneline --abbrev-commit
+[color]
+  ui = true
+
+[web]
+  browser = google-chrome
 
 [merge]
-	tool = diffmerge
+  tool = gvimdiff
+  conflictstyle = diff3
 
-[mergetool "diffmerge"]
-	cmd = "diffmerge --merge --result=\"$MERGED\" \"$LOCAL\" \"$(if test -f \"$BASE\"; then echo \"$BASE\"; else echo \"$LOCAL\"; fi)\" \"$REMOTE\""
-	trustExitCode = true
+[alias]
+  tree = log --graph --decorate --pretty=oneline --abbrev-commit
