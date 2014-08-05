@@ -1,12 +1,9 @@
-set nocompatible              " be iMproved, required
-filetype off                  " required
+" required
+filetype off
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
-
-set wildignore=doc
-
 
 " Use Vundle for plugin management
 Bundle 'gmarik/vundle'
@@ -26,12 +23,8 @@ Bundle 'mileszs/ack.vim'
 " basic plugins
 Bundle 'scrooloose/nerdtree'
 Bundle 'spf13/vim-autoclose'
-Bundle 'vim-scripts/xoria256.vim'
-Bundle 'endel/vim-github-colorscheme'
-Bundle 'vim-scripts/summerfruit256.vim'
 Bundle 'ChrisKempson/Vim-Tomorrow-Theme'
 Bundle 'kien/ctrlp.vim'
-" Bundle 'terryma/vim-multiple-cursors'
 Bundle 'vim-scripts/sessionman.vim'
 " Bundle 'matchit.zip'
 Bundle 'bling/vim-airline'
@@ -53,7 +46,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'mattn/webapi-vim'
 Bundle 'mattn/gist-vim'
 Bundle 'scrooloose/nerdcommenter'
-Bundle 'godlygeek/tabular'
+" Bundle 'godlygeek/tabular'
 Bundle 'majutsushi/tagbar'
 
 " Snippets
@@ -74,7 +67,7 @@ Bundle 'Shougo/neosnippet'
 Bundle 'Shougo/neosnippet-snippets'
 
 "=================================
-" LANGUAGES /FRAMEWORKS SPECIFIC
+" LANGUAGES / FRAMEWORKS SPECIFIC
 "=================================
 
 " PHP (memories)
@@ -156,14 +149,14 @@ Bundle 'Janiczek/vim-latte'
 "
 " Note: This file just adds the new tags from HTML 5
 "       and don't replace default html.vim syntax file
- 
+
 " HTML 5 tags
 syn keyword htmlTagName contained article aside audio bb canvas command datagrid
 syn keyword htmlTagName contained datalist details dialog embed figure footer
 syn keyword htmlTagName contained header hgroup keygen mark meter nav output
 syn keyword htmlTagName contained progress time ruby rt rp section time video
 syn keyword htmlTagName contained source figcaption
- 
+
 " HTML 5 arguments
 syn keyword htmlArg contained autofocus autocomplete placeholder min max step
 syn keyword htmlArg contained contenteditable contextmenu draggable hidden item

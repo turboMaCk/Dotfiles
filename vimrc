@@ -1,49 +1,195 @@
-" separate bundles
-source ~/.vimrc.bundles
+" Use Vim settings, rather then Vi settings. This setting must be as early as
+" possible, as it has side effects.
+set nocompatible
 
 " Disable bleep!
-set visualbell           " don't beep
-set noerrorbells         " don't beep
+set visualbell
+set noerrorbells
 
-" Basics
-set number
-set relativenumber
+" Leader
+let mapleader = ","
 
-" tmux colors
-set t_Co=256
+" backup, undo and swap files
+set backup
+set undofile
+set writebackup
+set swapfile
+set dir=~/.vimswap//,/var/tmp//,/tmp//,.
 
-" vimux (tmux) kaybinfing
-" Prompt for a command to run
-map <leader>rp :PromptVimTmuxCommand
+" load boundles
+if filereadable(expand("~/.vimrc.bundles"))
+  source ~/.vimrc.bundles
+endif
 
-" Run last command executed by RunVimTmuxCommand
-map <leader>rl :RunLastVimTmuxCommand
+" ======================
+" Interface
+" ======================
 
-" Inspect runner pane
-map <leader>ri :InspectVimTmuxRunner
+" setup commandline
+if has('cmdline_info')
+  set ruler
+  set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
+  set showcmd
+endif
 
-" Close all other tmux panes in current window
-map <leader>rx :CloseVimTmuxPanes
+" setup statusline
+if has('statusline')
+  set laststatus=2
+  set statusline=%<%f\ " Filename
+  set statusline+=%w%h%m%r " Options
+  set statusline+=%{fugitive#statusline()} " Git Hotness
+  set statusline+=\ [%{&ff}/%Y] " Filetype
+  set statusline+=\ [%{getcwd()}] " Current dir
+  set statusline+=%=%-14.(%l,%c%V%)\ %p%% " Right aligned file nav info
+endif
 
-" Interrupt any command running in the runner pane
-map <leader>rs :InterruptVimTmuxRunner
+" ======================
+" Editor setup
+" ======================
 
-" General
-set background=dark         " Assume a dark background
-filetype plugin indent on   " Automatically detect file types.
-syntax on                   " Syntax highlighting/no
-set mouse=a                 " Automatically enable mouse usage
-set mousehide               " Hide the mouse cursor while typing
+" Syntax highlighting
+syntax on
+
+" Set encoding
 scriptencoding utf-8
+set encoding=utf-8
+setglobal fileencoding=utf-8
+set nobomb
+set termencoding=utf-8
+set fileencodings=utf-8,iso-8859-15
 
-"set autowrite                       " Automatically write a file when leaving a modified buffer
-set shortmess+=filmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
-set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
-set virtualedit=onemore             " Allow for cursor beyond last character
-set history=1000                    " Store a ton of history (default is 20)
-set undolevels=1000      " use many muchos levels of undo
-set spell                           " Spell checking on
-set hidden                          " Allow buffer switching without saving
+" Setup mouse support
+set mouse=a " Automatically enable mouse usage
+set mousehide " Hide the mouse cursor while typing
+
+" Easy backspace
+set backspace=indent,eol,start
+
+" Use system cliboard
+set clipboard=unnamed
+
+" Wildmenu
+set wildmenu " Show list instead of just completing
+set wildmode=list:longest,full " Command <Tab> completion, list matches, then longest common part, then all.
+set whichwrap=b,s,h,l,<,>,[,] " Backspace and cursor keys wrap too
+
+" Scrolling
+set scrolljump=5 " Lines to scroll when cursor leaves screen
+set scrolloff=3 " Minimum lines to keep above and below cursor
+set foldenable " Auto fold code
+
+" Abbrev. of messages (avoids 'hit enter')
+set shortmess+=filmnrxoOtT
+
+" Better Unix / Windows compatibility
+set viewoptions=folds,options,cursor,unix,slash
+
+" Allow for cursor beyond last character
+set virtualedit=onemore
+
+" Setup history backup and undo
+set swapfile
+set backup
+set history=1000
+set undolevels=1000 " use many muchos levels of undo
+set dir=~/.vim/tmp
+set undodir=~/.vim/undo
+set backupdir=~/.vim/backup
+
+" Spell checking on
+set spell
+
+" Allow buffer switching without saving
+set hidden
+
+"change cursor in terminal
+if exists('$TMUX')
+  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+else
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+endif
+
+" ======================
+" Formating setup
+" ======================
+
+" Setup colors
+set t_Co=256 " enable 256 colors
+colorscheme tomorrow " set colorscheme
+
+" No extra spaces between rows
+set linespace=3
+
+" Line numbers
+set number " Line numbers on
+set relativenumber " Like relative numbers mod
+
+" Show matching brackets/parenthesis
+set showmatch
+
+" Search setting
+set incsearch " Find as you type search
+set hlsearch " Highlight search terms
+set ignorecase " Case insensitive search
+set smartcase " Case sensitive when uc present
+
+" Windows can be 0 line high
+set winminheight=0
+
+" Lines settings
+set cursorline " Highlight current line
+set nowrap " Do not wrap long lines
+set tabpagemax=15 " Only show 15 tabs
+set showmode " Display the current mode
+
+" indentation
+set autoindent " Indent at the same level of the previous line
+filetype plugin indent on " when working with plaintext
+set shiftwidth=2  " Use indents of 2 spaces
+set expandtab " Tabs are spaces, not tabs
+set tabstop=2 " An indentation every four columns
+set softtabstop=2 " Let backspace delete indent
+
+" Show whitespaces
+set list
+set listchars=tab:»\ ,trail:›,extends:#,nbsp:. " Highlight problematic whitespace
+
+" Prevents inserting two spaces after punctuation on a join (J)
+set nojoinspaces
+
+" window spliting
+set splitright " Puts new vsplit windows to the right of the current
+set splitbelow " Puts new split windows to the bottom of the current
+"set matchpairs+=<:> " Match, to be used with %
+set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
+
+" ======================
+" AUTO CMDS
+" ======================
+
+" coffee script syntax
+autocmd BufNewFile,BufRead *.coffee set filetype=coffee
+
+" Remove trailing whitespaces and ^M chars
+autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> if !exists('g:spf13_keep_trailing_whitespace') | call StripTrailingWhitespace() | endif
+autocmd FileType go autocmd BufWritePre <buffer> Fmt
+autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
+autocmd FileType haskell setlocal expandtab shiftwidth=2 softtabstop=2
+
+" Strip whitespace
+function! StripTrailingWhitespace()
+    " Preparation: save last search, and cursor position.
+    let _s=@/
+    let l = line(".")
+    let c = col(".")
+    " do the business:
+    %s/\s\+$//e
+    " clean up: restore previous search history, and cursor position
+    let @/=_s
+    call cursor(l, c)
+endfunction
 
 " Restore cursor to file position in previous editing session
 function! ResCur()
@@ -53,125 +199,72 @@ function! ResCur()
     endif
 endfunction
 
-" System cliboard
-set clipboard=unnamed
-
 augroup resCur
     autocmd!
     autocmd BufWinEnter * call ResCur()
 augroup END
 
-"Setting up the directories
-set backup                  " Backups are nice ...
-if has('persistent_undo')
-    set undofile                " So is persistent undo ...
-    set undolevels=1000         " Maximum number of changes that can be undone
-    set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
-    set undodir=~/tmp
-endif
-
-set swapfile
-set dir=~/tmp
-set backupdir=~/tmp
-
-" Add exclusions to mkview and loadview
-" eg: *.*, svn-commit.tmp
-let g:skipview_files = [
-    \ '\[example pattern\]'
-    \ ]
-
-set t_Co=256
-"colorscheme xoria256
-colorscheme tomorrow
-
-set tabpagemax=15               " Only show 15 tabs
-set showmode                    " Display the current mode
-
-set cursorline                  " Highlight current line
-
-highlight clear SignColumn      " SignColumn should match background
-highlight clear LineNr          " Current line number row will have same background color in relative mode
-let g:CSApprox_hook_post = ['hi clear SignColumn']
-"highlight clear CursorLineNr    " Remove highlight color from current line number
-
-if has('cmdline_info')
-    set ruler                   " Show the ruler
-    set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
-    set showcmd                 " Show partial commands in status line and
-                                " Selected characters/lines in visual mode
-endif
-
-if has('statusline')
-    set laststatus=2
-
-    " Broken down into easily includeable segments
-    set statusline=%<%f\                     " Filename
-    set statusline+=%w%h%m%r                 " Options
-    set statusline+=%{fugitive#statusline()} " Git Hotness
-    set statusline+=\ [%{&ff}/%Y]            " Filetype
-    set statusline+=\ [%{getcwd()}]          " Current dir
-    set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
-endif
-
-set backspace=indent,eol,start  " Backspace for dummies
-set linespace=3                 " No extra spaces between rows
-set nu                          " Line numbers on
-set showmatch                   " Show matching brackets/parenthesis
-set incsearch                   " Find as you type search
-set hlsearch                    " Highlight search terms
-set winminheight=0              " Windows can be 0 line high
-set ignorecase                  " Case insensitive search
-set smartcase                   " Case sensitive when uc present
-set wildmenu                    " Show list instead of just completing
-set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
-set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
-set scrolljump=5                " Lines to scroll when cursor leaves screen
-set scrolloff=3                 " Minimum lines to keep above and below cursor
-set foldenable                  " Auto fold code
-set list
-set listchars=tab:»\ ,trail:›,extends:#,nbsp:. " Highlight problematic whitespace
-
-" Formating
-set nowrap                      " Do not wrap long lines
-set autoindent                  " Indent at the same level of the previous line
-"set smartindent
-set shiftwidth=2                " Use indents of 4 spaces
-set expandtab                   " Tabs are spaces, not tabs
-set tabstop=2                   " An indentation every four columns
-set softtabstop=2               " Let backspace delete indent
-set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
-set splitright                  " Puts new vsplit windows to the right of the current
-set splitbelow                  " Puts new split windows to the bottom of the current
-"set matchpairs+=<:>             " Match, to be used with %
-set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
-set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
-" Remove trailing whitespaces and ^M chars
-autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> if !exists('g:spf13_keep_trailing_whitespace') | call StripTrailingWhitespace() | endif
-autocmd FileType go autocmd BufWritePre <buffer> Fmt
-autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
-autocmd FileType haskell setlocal expandtab shiftwidth=2 softtabstop=2
-" preceding line best in a plugin but here for now.
-
-autocmd BufNewFile,BufRead *.coffee set filetype=coffee
-
-" Workaround vim-commentary for Haskell
-autocmd FileType haskell setlocal commentstring=--\ %s
-" Workaround broken colour highlighting in Haskell
-autocmd FileType haskell setlocal nospell
-" /formating
 
 "===============================
-" KEY REMAP
+" GUI SETTINGS (macvim)
 " ==============================
+set guifont=Literation\ Mono\ Powerline:h12
+set guioptions-=T
+set guioptions-=r
+set guioptions-=L
 
-" SET LEADER
-let mapleader = ','
+"===============================
+" KEY MAPING
+" ==============================
 
 " Easy window navigation
 map <C-J> <C-W>j<C-W>_
 map <C-K> <C-W>k<C-W>_
 map <C-L> <C-W>l<C-W>_
 map <C-H> <C-W>h<C-W>_
+
+" buffer swithing
+map <silent> <leader>l :bn<CR>
+map <silent> <leader>h :bp<CR>
+
+" Easy split with file open
+map <Leader>e :e <C-R>=expand("%:p:H") . '/'<CR>
+map <Leader>s :split <C-R>=expand("%:p:h") . '/'<CR>
+map <Leader>v :vnew <C-R>=expand("%:p:h") . '/'<CR>
+
+" Stupid shift key fixes
+command! -bang -nargs=* -complete=file E e<bang> <args>
+command! -bang -nargs=* -complete=file W w<bang> <args>
+command! -bang -nargs=* -complete=file Wq wq<bang> <args>
+command! -bang -nargs=* -complete=file WQ wq<bang> <args>
+command! -bang Wa wa<bang>
+command! -bang WA wa<bang>
+command! -bang Q q<bang>
+command! -bang QA qa<bang>
+command! -bang Qa qa<bang>
+cmap Tabe tabe
+
+" Toggle search highlighting rather than clear the current search results.
+nmap <silent> <leader>/ :nohlsearch<CR>
+
+" Visual shifting (does not exit Visual mode)
+vnoremap < <gv
+vnoremap > >gv
+
+" When forget to sudo.. Really Write the file.
+cmap w!! w !sudo tee % >/dev/null
+
+" Map <Leader>ff to display all lines with keyword under cursor and ask which one to jump to
+nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+
+" Find merge conflict markers
+map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
+
+" Adjust viewports to the same size
+map <Leader>= <C-w>=
+
+" Allow using the repeat operator with a visual selection (!)
+vnoremap . :normal .<CR>
 
 " Wrapped lines goes down/up to next row, rather than next line in file.
 noremap j gj
@@ -191,202 +284,15 @@ function! WrapRelativeMotion(key, ...)
     endif
 endfunction
 
-" Map g* keys in Normal, Operator-pending, and Visual+select
-noremap $ :call WrapRelativeMotion("$")<CR>
-noremap <End> :call WrapRelativeMotion("$")<CR>
-noremap 0 :call WrapRelativeMotion("0")<CR>
-noremap <Home> :call WrapRelativeMotion("0")<CR>
-noremap ^ :call WrapRelativeMotion("^")<CR>
-" Overwrite the operator pending $/<End> mappings from above
-" to force inclusive motion with :execute normal!
-onoremap $ v:call WrapRelativeMotion("$")<CR>
-onoremap <End> v:call WrapRelativeMotion("$")<CR>
-" Overwrite the Visual+select mode mappings from above
-" to ensure the correct vis_sel flag is passed to function
-vnoremap $ :<C-U>call WrapRelativeMotion("$", 1)<CR>
-vnoremap <End> :<C-U>call WrapRelativeMotion("$", 1)<CR>
-vnoremap 0 :<C-U>call WrapRelativeMotion("0", 1)<CR>
-vnoremap <Home> :<C-U>call WrapRelativeMotion("0", 1)<CR>
-vnoremap ^ :<C-U>call WrapRelativeMotion("^", 1)<CR>
-
-" The following two lines conflict with moving to top and
-" bottom of the screen
-map <S-H> gT
-map <S-L> gt
-
-" Stupid shift key fixes
-command! -bang -nargs=* -complete=file E e<bang> <args>
-command! -bang -nargs=* -complete=file W w<bang> <args>
-command! -bang -nargs=* -complete=file Wq wq<bang> <args>
-command! -bang -nargs=* -complete=file WQ wq<bang> <args>
-command! -bang Wa wa<bang>
-command! -bang WA wa<bang>
-command! -bang Q q<bang>
-command! -bang QA qa<bang>
-command! -bang Qa qa<bang>
-
-cmap Tabe tabe
-
-" Yank from the cursor to the end of the line, to be consistent with C and D.
-nnoremap Y y$
-
-" Most prefer to toggle search highlighting rather than clear the current
-" search results. To clear search highlighting rather than toggle it on
-nmap <silent> <leader>/ :nohlsearch<CR>
-
-" Easy split with file open
-map <Leader>e :e <C-R>=expand("%:p:H") . '/'<CR>
-map <Leader>s :split <C-R>=expand("%:p:h") . '/'<CR>
-map <Leader>v :vnew <C-R>=expand("%:p:h") . '/'<CR>
-
-" Clean search highlighting
-nmap <silent> ,ú :nohlsearch<CR>
-
-" Find merge conflict markers
-map <leader>fc /\v^[<\|=>]{7}( .*\|$)<CR>
-
-" Shortcuts
-" Change Working Directory to that of the current file
-cmap cwd lcd %:p:h
-cmap cd. lcd %:p:h
-
-" Visual shifting (does not exit Visual mode)
-vnoremap < <gv
-vnoremap > >gv
-
-" Allow using the repeat operator with a visual selection (!)
-" http://stackoverflow.com/a/8064607/127816
-vnoremap . :normal .<CR>
-
-" For when you forget to sudo.. Really Write the file.
-cmap w!! w !sudo tee % >/dev/null
-
-" Some helpers to edit mode
-" http://vimcasts.org/e/14
-cnoremap %% <C-R>=expand('%:h').'/'<cr>
-map <leader>ew :e %%
-map <leader>es :sp %%
-map <leader>ev :vsp %%
-map <leader>et :tabe %%
-
-" Adjust viewports to the same size
-map <Leader>= <C-w>=
-
-" Map <Leader>ff to display all lines with keyword under cursor
-" and ask which one to jump to
-nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
-
-"encoding
-set encoding=utf-8
-setglobal fileencoding=utf-8
-set nobomb
-set termencoding=utf-8
-set fileencodings=utf-8,iso-8859-15
-
 " ===================================
-" PLUGINS
+" CTRLP
 " ===================================
 
-" CONTROLP
+" Open buffer
 map <Leader>m :CtrlPBuffer<CR>
 
-" PIV
-let g:DisableAutoPHPFolding = 0
-let g:PIVAutoClose = 0
-
-" Misc
-let g:NERDShutUp=1
-let b:match_ignorecase = 1
-
-" OmniComplete
-"if has("autocmd") && exists("+omnifunc")
-    "autocmd Filetype *
-        "\if &omnifunc == "" |
-        "\setlocal omnifunc=syntaxcomplete#Complete |
-        "\endif
-"endif
-
-"hi Pmenu  guifg=#000000 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
-"hi PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=lightgray cterm=NONE
-"hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
-
-"" Some convenient mappings
-"inoremap <expr> <Esc>      pumvisible() ? "\<C-e>" : "\<Esc>"
-"inoremap <expr> <CR>       pumvisible() ? "\<C-y>" : "\<CR>"
-"inoremap <expr> <Down>     pumvisible() ? "\<C-n>" : "\<Down>"
-"inoremap <expr> <Up>       pumvisible() ? "\<C-p>" : "\<Up>"
-"inoremap <expr> <C-d>      pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
-"inoremap <expr> <C-u>      pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
-
-"" Automatically open and close the popup menu / preview window
-"au CursorMovedI,InsertLeave * if pumvisible() == 0|silent! pclose|endif
-"set completeopt=menu,preview,longest
-
-" Ctags
-set tags=./tags;/,~/.vimtags
-
-" Make tags placed in .git/tags file available in all levels of a repository
-let gitroot = substitute(system('git rev-parse --show-toplevel'), '[\n\r]', '', 'g')
-if gitroot != ''
-    let &tags = &tags . ',' . gitroot . '/.git/tags'
-endif
-
-nmap <leader>t :TagbarToggle<CR>
-
-" AutoClose Tag (xml and xHtml support)
-au FileType xhtml,xml ru ftplugin/html/autoclosetag.vim
-nmap <Leader>ac <Plug>ToggleAutoCloseMappings
-
-" Snipmate (author settings)
-let g:snips_author = 'Marek Fajkus <marek.faj@gmail.com>'
-
-" NERD TREE
-map <C-e> <plug>NERDTreeTabsToggle<CR>
-
-let NERDTreeShowBookmarks=1
-let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
-let NERDTreeIgnore += ['^\.bundle$', '^\.bzr$', '^\.git$', '^\.hg$', '^\.sass-cache$', '^\.svn$', '^\.$', '^\.\.$', '^Thumbs\.db$']
-let NERDTreeChDirMode=0
-let NERDTreeQuitOnOpen=0
-let NERDTreeMouseMode=2
-let NERDTreeShowHidden=1
-let NERDTreeKeepTreeInNewTab=1
-let g:nerdtree_tabs_open_on_gui_startup=0
-
-" Tabularize
-nmap <Leader>a& :Tabularize /&<CR>
-vmap <Leader>a& :Tabularize /&<CR>
-nmap <Leader>a= :Tabularize /=<CR>
-vmap <Leader>a= :Tabularize /=<CR>
-nmap <Leader>a: :Tabularize /:<CR>
-vmap <Leader>a: :Tabularize /:<CR>
-nmap <Leader>a:: :Tabularize /:\zs<CR>
-vmap <Leader>a:: :Tabularize /:\zs<CR>
-nmap <Leader>a, :Tabularize /,<CR>
-vmap <Leader>a, :Tabularize /,<CR>
-nmap <Leader>a,, :Tabularize /,\zs<CR>
-vmap <Leader>a,, :Tabularize /,\zs<CR>
-nmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-vmap <Leader>a<Bar> :Tabularize /<Bar><CR>
-
-" Sessiong List
-set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
-nmap <leader>sl :SessionList<CR>
-nmap <leader>ss :SessionSave<CR>
-nmap <leader>sc :SessionClose<CR>
-
-" JSON
-nmap <leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
-
-" PyMode
-let g:pymode_lint_checker = "pyflakes"
-let g:pymode_utils_whitespaces = 0
-let g:pymode_options = 0
-
-" ctrlp
+" working path node
 let g:ctrlp_working_path_mode = 'ra'
-"nnoremap <silent> <D-t> :CtrlP<CR>
-nnoremap <leader>p :CtrlPMRU<CR>
 let g:ctrlp_custom_ignore = {
     \ 'dir': '\.git$\|\.hg$\|\.svn$\|\.sass-cache$\|\bower_components$\|\node_modules$\|\dist$',
     \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
@@ -404,12 +310,47 @@ let g:ctrlp_user_command = {
     \ 'fallback': s:ctrlp_fallback
 \ }
 
-" PYthonMode
-if !has('python')
-    let g:pymode = 0
+" ===================================
+" CTAGS
+" ===================================
+
+" map tags key
+nmap <leader>t :TagbarToggle<CR>
+
+" setup tags
+set tags=./tags;/,~/.vimtags
+
+" Make tags placed in .git/tags file available in all levels of a repository
+let gitroot = substitute(system('git rev-parse --show-toplevel'), '[\n\r]', '', 'g')
+if gitroot != ''
+    let &tags = &tags . ',' . gitroot . '/.git/tags'
 endif
 
-" Fugitive
+" ===================================
+" NERD TREE
+" ===================================
+
+" map nertree key
+map <C-e> <plug>NERDTreeTabsToggle<CR>
+
+let NERDTreeShowBookmarks=1
+let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
+let NERDTreeIgnore += ['^\.bundle$', '^\.bzr$', '^\.git$', '^\.hg$', '^\.sass-cache$', '^\.svn$', '^\.$', '^\.\.$', '^Thumbs\.db$']
+let NERDTreeChDirMode=0
+let NERDTreeQuitOnOpen=0
+let NERDTreeMouseMode=2
+let NERDTreeShowHidden=1
+let NERDTreeKeepTreeInNewTab=1
+let g:nerdtree_tabs_open_on_gui_startup=0
+
+" ===================================
+" JSON
+" ===================================
+nmap <leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
+
+" ===================================
+" FUGITIVE GIT
+" ===================================
 nnoremap <silent> <leader>gs :Gstatus<CR>
 nnoremap <silent> <leader>gd :Gdiff<CR>
 nnoremap <silent> <leader>gc :Gcommit<CR>
@@ -419,19 +360,10 @@ nnoremap <silent> <leader>gp :Git push<CR>
 nnoremap <silent> <leader>gr :Gread<CR>
 nnoremap <silent> <leader>gw :Gwrite<CR>
 nnoremap <silent> <leader>ge :Gedit<CR>
-" Mnemonic _i_nteractive
-nnoremap <silent> <leader>gi :Git add -p %<CR>
-nnoremap <silent> <leader>gg :SignifyToggle<CR>
 
-" enable completion from tags
- let g:ycm_collect_identifiers_from_tags_files = 1
-
-" remap Ultis55nips for compatibility for YCM
-"let g:UltiSnipsExpandTrigger = '<C-j>'
-"let g:UltiSnipsJumpForwardTrigger = '<C-j>'
-"let g:UltiSnipsJumpBackwardTrigger = '<C-k>'
-
-" Enable omni completion.
+" ===================================
+" OMNI COMPLETION
+" ===================================
 autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
 autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
 autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
@@ -440,24 +372,11 @@ autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
 autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
-" Haskell post write lint and check with ghcmod
-" $ `cabal install ghcmod` if missing and ensure
-" ~/.cabal/bin is in your $PATH.
-if !executable("ghcmod")
-    autocmd BufWritePost *.hs GhcModCheckAndLintAsync
-endif
+" ===================================
+" NEOCOMPLETE CACHE
+" ===================================
 
-" For snippet_complete marker.
-if has('conceal')
-    set conceallevel=2 concealcursor=i
-endif
-
-" Disable the neosnippet preview candidate window
-" When enabled, there can be too much visual noise
-" especially when splits are used.
-set completeopt-=preview
-
-" neocomplete cache
+" basic settings
 let g:acp_enableAtStartup = 0
 let g:neocomplcache_enable_at_startup = 1
 let g:neocomplcache_enable_camel_case_completion = 1
@@ -484,30 +403,26 @@ let g:neocomplcache_keyword_patterns._ = '\h\w*'
 imap <C-k> <Plug>(neosnippet_expand_or_jump)
 smap <C-k> <Plug>(neosnippet_expand_or_jump)
 
+" Define dictionary.
+let g:neocomplcache_dictionary_filetype_lists = {
+\ 'default' : '',
+\ 'vimshell' : $HOME.'/.vimshell_hist',
+\ 'scheme' : $HOME.'/.gosh_completions'
+\ }
+
 "iunmap <CR>
 " <ESC> takes you out of insert mode
-inoremap <expr> <Esc>   pumvisible() ? "\<C-y>\<Esc>" : "\<Esc>"
-" <CR> accepts first, then sends the <CR>
-inoremap <expr> <CR>    pumvisible() ? "\<C-y>\<CR>" : "\<CR>"
+inoremap <expr><Esc> pumvisible() ? "\<C-y>\<Esc>" : "\<Esc>"
+
 " <Down> and <Up> cycle like <Tab> and <S-Tab>
 inoremap <expr> <Down>  pumvisible() ? "\<C-n>" : "\<Down>"
 inoremap <expr> <Up>    pumvisible() ? "\<C-p>" : "\<Up>"
+
 " Jump up and down the list
 inoremap <expr> <C-d>   pumvisible() ? "\<PageDown>\<C-p>\<C-n>" : "\<C-d>"
 inoremap <expr> <C-u>   pumvisible() ? "\<PageUp>\<C-p>\<C-n>" : "\<C-u>"
-"imap <silent><expr><C-k> neosnippet#expandable() ?
-            "\ "\<Plug>(neosnippet_expand_or_jump)" : (pumvisible() ?
-            "\ "\<C-e>" : "\<Plug>(neosnippet_expand_or_jump)")
+
 smap <TAB> <Right><Plug>(neosnippet_jump_or_expand)
-
-"inoremap <expr><C-g> neocomplcache#undo_completion()
-"inoremap <expr><C-l> neocomplcache#complete_common_string()
-"inoremap <expr><CR> neocomplcache#complete_common_string()
-
-"<CR>: "close popup
-"<s-CR>: "close popup and save indent.
-inoremap <expr><s-CR> pumvisible() ? neocomplcache#close_popup()"\<CR>" : "\<CR>"
-inoremap <expr><CR> pumvisible() ? neocomplcache#close_popup() : "\<CR>"
 
 "<C-h>, <BS>: close popup and delete backword char.
 inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
@@ -516,15 +431,6 @@ inoremap <expr><C-y> neocomplcache#close_popup()
 " <TAB>: completion.
 inoremap <expr><TAB> pumvisible() ? "\<C-n>" : "\<TAB>"
 inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<TAB>"
-
-" Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
-autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
-autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
-autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
 " Enable heavy omni completion.
 let g:neocomplcache_omni_patterns = {}
@@ -553,69 +459,27 @@ endif
 " especially when splits are used.
 set completeopt-=preview
 
-" Undo Tree
+" ======================
+" UNDO TREE
+" ======================
 nnoremap <Leader>u :UndotreeToggle<CR>
 " If undotree is opened, it is likely one wants to interact with it.
 let g:undotree_SetFocusWhenToggle=1
 
+
+" ======================
 " Indent guides
+" ======================
 let g:indent_guides_start_level = 2
 let g:indent_guides_guide_size = 1
 let g:indent_guides_enable_on_vim_startup = 1
 
+" ======================
+" Airline
+" ======================
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 0
 let g:airline_theme = 'tomorrow'
 
 let g:airline_left_sep='›'
 let g:airline_right_sep='‹'
-
-" Strip whitespace
-function! StripTrailingWhitespace()
-    " Preparation: save last search, and cursor position.
-    let _s=@/
-    let l = line(".")
-    let c = col(".")
-    " do the business:
-    %s/\s\+$//e
-    " clean up: restore previous search history, and cursor position
-    let @/=_s
-    call cursor(l, c)
-endfunction
-
-" Restore cursor to file position in previous editing session
-function! ResCur()
-    if line("'\"") <= line("$")
-        normal! g`"
-        return 1
-    endif
-endfunction
-
-augroup resCur
-    autocmd!
-    autocmd BufWinEnter * call ResCur()
-augroup END
-
-" buffer swithing
-map <silent> <leader>l :bn<CR>
-map <silent> <leader>h :bp<CR>
-
-" Quickly edit/reload the vimrc file
-nmap <silent> <leader>ec :e $MYVIMRC<CR>
-nmap <silent> <leader>sc :so $MYVIMRC<CR>
-
-"change cursor in terminal
-if exists('$TMUX')
-  let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
-else
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-endif
-
-" MAC VIM
-set guifont=Literation\ Mono\ Powerline:h12
-set guioptions-=T
-set guioptions-=r
-set guioptions-=L
-
