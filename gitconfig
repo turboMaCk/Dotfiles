@@ -12,6 +12,9 @@
 [color]
   ui = true
 
+[core]
+  excludesfile = ~/.gitignore_global
+
 [web]
   browser = google-chrome
 

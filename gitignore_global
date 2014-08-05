@@ -1,4 +1,53 @@
-.DS_Store
+# Compiled source #
+###################
+*.com
+*.class
+*.dll
+*.exe
+*.o
+*.so
+/target
+/classes
+
+# Packages #
+############
+# it's better to unpack these files and commit the raw source
+# git has its own built in compression methods
+*.7z
+*.dmg
+*.gz
+*.iso
+*.jar
+*.rar
+*.tar
+*.zip
+
+# vim swap files     #
+######################
+.*.swp
+
+# Mac OS generated files #
+##########################
+.DS_Store*
+ehthumbs.db
+Thumbs.db
+
+# Sublime Text files #
+######################
 .sublime-project
 .sublime-workspace
+
+# Codekit files #
+#################
 codekit-config.json
+
+# Xcode generated files #
+#########################
+*xcuserdata
+*.pbxuser
+*.mode1v3
+*.mode2v3
+*.perspectivev3
+*.xcuserstate
+project.xcworkspace/
+xcuserdata/
