@@ -65,7 +65,7 @@ export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/marek/.rvm/bin"
  export ARCHFLAGS="-arch x86_64"
 
 # ssh
- #export SSH_KEY_PATH="~/.ssh/dsa_id"
+# export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 export PATH=/usr/local/bin:$PATH
 
@@ -87,7 +87,7 @@ alias downloads="cd ~/Downloads/"
 alias dotfiles="cd ~/Dotfiles/"
 
 # 256 color support (tmux)
-export TERM=screen-256color
+#export TERM=screen-256color
 
 # Shortcuts
 alias fs="stat -f \"%z bytes\""
