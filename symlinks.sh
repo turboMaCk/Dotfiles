@@ -4,18 +4,14 @@ cwd=$(pwd)
 # Change directory to home
 cd ~/
 
-# Create tmp directory for vim swap
-mkdir ~/tmp/
-
 # Generate symlinks to files in repo
-ln -s $cwd/.vimrc.bundles .vimrc.bundles
-ln -s $cwd/.vimrc .vimrc
-ln -s $cwd/.ackrc .ackrc
-# remove old .zshrc
-rm -f $/.zshrc
-ln -s $cwd/.zshrc .zshrc
-ln -s $cwd/.gitignore .gitignore
-ln -s $cwd/gitconfig gitconfig
+ln -s $cwd/vimrc.bundles .vimrc.bundles
+ln -s $cwd/vimrc .vimrc
+ln -s $cwd/ackrc .ackrc
+ln -s $cwd/zshrc .zshrc
+ln -s $cwd/gitignore_global .gitignore_global
+ln -s $cwd/gitconfig .gitconfig
+ln -s $cwd/gemrc .gemrc
 
 # sublime symlinks
 ln -s $cwd/Preferences.sublime-settings ~/Library/Application\ Support/Sublime\ Text\ 3/Packages/User/Preferences.sublime-settings
