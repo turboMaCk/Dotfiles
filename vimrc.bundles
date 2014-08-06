@@ -66,6 +66,9 @@ Bundle 'Shougo/neocomplcache'
 Bundle 'Shougo/neosnippet'
 Bundle 'Shougo/neosnippet-snippets'
 
+" Dash documentation tool
+Bundle 'rizzatti/dash.vim'
+
 "=================================
 " LANGUAGES / FRAMEWORKS SPECIFIC
 "=================================
