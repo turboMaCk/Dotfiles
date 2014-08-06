@@ -51,3 +51,7 @@ codekit-config.json
 *.xcuserstate
 project.xcworkspace/
 xcuserdata/
+
+# NPM debug files #
+###################
+npm-debug.log
