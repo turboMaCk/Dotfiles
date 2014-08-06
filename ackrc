@@ -1,6 +1,19 @@
-# ignore npm modules
+# Always color, even if piping to a another program
+--color
+
+# ignore directories
 --ignore-dir=node_modules
-
-# ignore rails folder
 --ignore-dir=rails
+--ignore-dir=bower_components
 
+#make sure ack knows how to search common filetypes used in rails projects
+--type-add=css=scss
+--type-add=ruby=.haml,.rselm,.feature,.ru,.lock
+--type-set=coffeescript=.coffee
+--type-set=coffee=.coffee
+
+#make sure ack knows how to search common filetypes used in node.js projects
+--type-set=coffee=.coffee
+--type-set=jade=.jade
+--type-set=feature=.feature
+--type-set=json=.json
