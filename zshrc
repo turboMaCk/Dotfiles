@@ -51,9 +51,6 @@ source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/marek/.rvm/bin"
-# export MANPATH="/usr/local/man:$MANPATH"
-
 # Preferred editor for local and remote sessions
  if [[ -n $SSH_CONNECTION ]]; then
    export EDITOR='vim'
@@ -62,12 +59,10 @@ export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/marek/.rvm/bin"
  fi
 
 # Compilation flags
- export ARCHFLAGS="-arch x86_64"
+export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
-export PATH=/usr/local/bin:$PATH
+export SSH_KEY_PATH="~/.ssh/"
 
 # ALIASES
 alias g="git"
@@ -81,6 +76,7 @@ alias projects="cd ~/Projects/"
 alias documents="cd ~/Documents/"
 alias downloads="cd ~/Downloads/"
 alias dotfiles="cd ~/Dotfiles/"
+alias desktop="cd ~/Desktop/"
 
 # Shortcuts
 alias fs="stat -f \"%z bytes\""
@@ -92,4 +88,11 @@ alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; rm -rfv ~/.Trash"
 alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
 alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+# Show/Hide hidden files
+alias showdots="defaults write com.apple.finder AppleShowAllFiles TRUE & killall Finder"
+alias hidedots="defaults write com.apple.finder AppleShowAllFiles FALSE & killall Finder"
+
+# setup path
+export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/marek/.rvm/bin"
+export PATH=/usr/local/bin:$PATH
+export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
