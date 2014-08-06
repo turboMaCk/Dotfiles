@@ -10,6 +10,11 @@
 /target
 /classes
 
+# Files that might appear on external disks #
+#############################################
+.Spotlight-V100
+.Trashes
+
 # Packages #
 ############
 # it's better to unpack these files and commit the raw source
@@ -23,8 +28,8 @@
 *.tar
 *.zip
 
-# vim swap files     #
-######################
+# vim swap files #
+##################
 .*.swp
 
 # Mac OS generated files #
@@ -53,6 +58,15 @@ codekit-config.json
 project.xcworkspace/
 xcuserdata/
 
-# NPM debug files #
-###################
-npm-debug.log
+# Always-ignore extensions #
+############################
+*~
+*.diff
+*.err
+*.log
+*.orig
+*.pyc
+*.rej
+*.sass-cache
+*.sw?
+*.vi
