@@ -1,1 +1,12 @@
 gem: --no-document
+
+[push]
+  default = simple
+
+[color]
+  ui = auto
+
+[user]
+  name = "Marek Fajkus"
+  email = "marek.faj@gmail.com"
+
