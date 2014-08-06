@@ -14,6 +14,7 @@
 
 [core]
   excludesfile = ~/.gitignore_global
+  editor = vim
 
 [web]
   browser = google-chrome
@@ -23,7 +24,44 @@
   conflictstyle = diff3
 
 [alias]
-  a = add
-  c = commit
-  ch = checkout
+  s = status
+  sb = status -s -b
+  ##########
+	sa = stash apply
+	sc = stash clear
+	sd = stash drop
+	sl = stash list
+	sp = stash pop
+	ss = stash save
+	#############
+	d = diff
+	dc = diff --cached
+	dk = diff --check
+	dck = diff --cached --check
+	#############
+	c = commit
+	ca = commit -a
+	cm = commit -m
+	cam = commit -am
+	#############
+	a = add .
+	#############
+	l = log --oneline
+	lg = log --oneline --graph --decorate
+	#############
+	o = checkout
+	ob = checkout -b
+	#############
+	b = branch
+	ba = branch -a
+	bd = branch -d
+	br = branch -r
+	#############
+	m = merge
+	#############
+	ps = push
+	pl = pull
+	#############
+	rb = rebase
+	#############
   tree = log --graph --decorate --pretty=oneline --abbrev-commit
