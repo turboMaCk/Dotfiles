@@ -16,12 +16,18 @@
   excludesfile = ~/.gitignore_global
   editor = vim
 
-[web]
-  browser = google-chrome
+[diff]
+    tool = mvimdiff
+
+[difftool]
+    prompt = false
 
 [merge]
-  tool = gvimdiff
+  tool = mvimdiff
   conflictstyle = diff3
+
+[web]
+  browser = google-chrome
 
 [alias]
   s = status
