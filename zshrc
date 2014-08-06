@@ -70,11 +70,7 @@ export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/marek/.rvm/bin"
 export PATH=/usr/local/bin:$PATH
 
 # ALIASES
-alias gch="git checkout"
-alias gs="git status"
-alias ga="git add"
-alias gc="git commit"
-alias gp="git push"
+alias g="git"
 alias v="vim"
 alias s="subl"
 alias love="/Applications/love.app/Contents/MacOS/love"
@@ -85,9 +81,6 @@ alias projects="cd ~/Projects/"
 alias documents="cd ~/Documents/"
 alias downloads="cd ~/Downloads/"
 alias dotfiles="cd ~/Dotfiles/"
-
-# 256 color support (tmux)
-#export TERM=screen-256color
 
 # Shortcuts
 alias fs="stat -f \"%z bytes\""

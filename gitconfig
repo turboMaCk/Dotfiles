@@ -23,4 +23,7 @@
   conflictstyle = diff3
 
 [alias]
+  a = add
+  c = commit
+  ch = checkout
   tree = log --graph --decorate --pretty=oneline --abbrev-commit
