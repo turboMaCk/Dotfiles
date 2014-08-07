@@ -96,3 +96,4 @@ alias hidedots="defaults write com.apple.finder AppleShowAllFiles FALSE & killal
 export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/Users/marek/.rvm/bin"
 export PATH=/usr/local/bin:$PATH
 export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+export PATH="$(brew --prefix coreutils)/libexec/gnubin"
