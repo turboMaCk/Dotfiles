@@ -71,3 +71,5 @@
 	rb = rebase
 	#############
   tree = log --graph --decorate --pretty=oneline --abbrev-commit
+[mergetool]
+	keepBackup = true
