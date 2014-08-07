@@ -1,0 +1,31 @@
+# Install native apps
+# Usage: `brew bundle Caskfile`
+
+install caskroom/cask/brew-cask
+tap caskroom/versions
+
+# Browsers
+cask install google-chrome 2> /dev/null
+cask install google-chrome-canary 2> /dev/null
+cask install firefox
+cask install opera 2> /dev/null
+
+# Utilities
+cask install dropbox 2> /dev/null
+cask install the-unarchiver 2> /dev/null
+cask install transmission 2> /dev/null
+cask install vlc 2> /dev/null
+cask install adium 2> /dev/null
+cask install skype 2> /dev/null
+cask install alfred 2> /dev/null
+
+# Developer tools
+cask install macvim 2> /dev/null
+cask install sublime-text 2> /dev/null
+cask install iterm2 2> /dev/null
+cask install totalterminal 2> /dev/null
+cask install dash 2> /dev/null
+cask install transmit 2> /dev/null
+cask install parallels 2> /dev/null
+cask install tower 2> /dev/null
+cask install codekit 2> /dev/null

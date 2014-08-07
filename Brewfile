@@ -26,6 +26,7 @@ install php56
 install ack
 install git
 install git-flow
+insall ctags
 install imagemagick --with-webp
 install node # This installs `npm` too using the recommended installation method
 install macvim
