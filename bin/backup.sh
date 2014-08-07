@@ -1,6 +1,6 @@
 #!/bin/backup.sh
 
-backup_dir="backup"
+backup_dir="$(pwd)/backup"
 
 printf "Backup old files using $backup_dir directory\n"
 
