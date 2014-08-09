@@ -92,6 +92,9 @@ alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && k
 alias showdots="defaults write com.apple.finder AppleShowAllFiles TRUE & killall Finder"
 alias hidedots="defaults write com.apple.finder AppleShowAllFiles FALSE & killall Finder"
 
+# Http server
+alias server="open http://localhost:8000 && http-server -p 8000"
+
 # setup path
 export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/Users/marek/.rvm/bin"
 export PATH="/usr/local/bin:$PATH"
