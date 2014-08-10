@@ -17,13 +17,13 @@ install wget --enable-iri
 # Install more recent versions of some OS X tools
 install vim --override-system-vi
 install homebrew/dupes/grep
-install php56
+#install php56
 
 # Install other useful binaries
 install ack
 install git
 install git-flow
-insall ctags
+install ctags
 install imagemagick --with-webp
 install node # This installs `npm` too using the recommended installation method
 install macvim
@@ -33,11 +33,11 @@ install openssl
 install tmux
 install osxfuse
 install htop-osx
-brew install memcached
+install memcached
 
 # Databses
 install mysql
 install postgresql
 install sqlite
-brew install redis
-brew install mongodb
+install redis
+install mongo
