@@ -16,5 +16,14 @@ brew doctor
 # NVM
 curl https://raw.githubusercontent.com/creationix/nvm/v0.11.1/install.sh | bash
 
+# Vundle
+git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+
+# create new folders
+mkdir ~/.vim/tmp
+mkdir ~/.vim/undo
+mkdir ~/.vim/backup
+
+
 # source profile
 source ~/.profile
