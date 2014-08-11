@@ -72,7 +72,8 @@ alias love="/Applications/love.app/Contents/MacOS/love"
 alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 
 # folder aliases
-alias projects="cd ~/Projects/"
+alias developer="cd ~/Developer/"
+alias sites="cd ~/Sites/"
 alias documents="cd ~/Documents/"
 alias downloads="cd ~/Downloads/"
 alias dotfiles="cd ~/Dotfiles/"
