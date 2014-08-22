@@ -102,3 +102,7 @@ export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
 export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$PATH:$(brew --prefix coreutils)/libexec/gnubin"
+
+# set language
+export LC_ALL=en_US.UTF-8  
+export LANG=en_US.UTF-8

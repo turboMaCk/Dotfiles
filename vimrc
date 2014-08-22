@@ -208,7 +208,6 @@ augroup END
 "===============================
 " GUI SETTINGS (macvim)
 " ==============================
-set guifont=Literation\ Mono\ Powerline:h12
 set guioptions-=T
 set guioptions-=r
 set guioptions-=L
@@ -483,3 +482,9 @@ let g:airline_theme = 'tomorrow'
 
 let g:airline_left_sep='›'
 let g:airline_right_sep='‹'
+
+" ======================
+" Dash
+" ======================
+map <leader>d :Dash 
+map <leader>D :Dash<CR>
