@@ -97,12 +97,13 @@ alias hidedots="defaults write com.apple.finder AppleShowAllFiles FALSE & killal
 alias server="open http://localhost:8000 && http-server -p 8000"
 
 # setup path
-export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/Users/marek/.rvm/bin"
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
-export PATH="$PATH:$HOME/.rvm/bin"
 export PATH="$PATH:$(brew --prefix coreutils)/libexec/gnubin"
 
 # set language
 export LC_ALL=en_US.UTF-8  
 export LANG=en_US.UTF-8
+
+# RBENV
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi

@@ -117,7 +117,8 @@ endif
 
 " Setup colors
 set t_Co=256 " enable 256 colors
-colorscheme tomorrow " set colorscheme
+"colorscheme tomorrow " set colorscheme
+colorscheme jellybeans " set colorscheme
 
 " No extra spaces between rows
 set linespace=3

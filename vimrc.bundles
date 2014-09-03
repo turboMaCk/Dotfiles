@@ -24,6 +24,7 @@ Bundle 'mileszs/ack.vim'
 Bundle 'scrooloose/nerdtree'
 Bundle 'spf13/vim-autoclose'
 Bundle 'ChrisKempson/Vim-Tomorrow-Theme'
+Bundle 'nanotech/jellybeans.vim'
 Bundle 'kien/ctrlp.vim'
 Bundle 'vim-scripts/sessionman.vim'
 " Bundle 'matchit.zip'
@@ -123,6 +124,7 @@ Bundle 'wavded/vim-stylus'
 " RUBY (for rails)
 Bundle 'tpope/vim-rails'
 Bundle 'tpope/vim-endwise'
+Bundle 'yaymukund/vim-rabl'
 
 " GO (google lick ass)
 "Bundle 'Blackrush/vim-gocode'
