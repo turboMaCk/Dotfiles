@@ -174,7 +174,7 @@ set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
 autocmd BufNewFile,BufRead *.coffee set filetype=coffee
 
 " Remove trailing whitespaces and ^M chars
-autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer> if !exists('g:spf13_keep_trailing_whitespace') | call StripTrailingWhitespace() | endif
+autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer>  call StripTrailingWhitespace()
 autocmd FileType go autocmd BufWritePre <buffer> Fmt
 autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
 autocmd FileType haskell setlocal expandtab shiftwidth=2 softtabstop=2
