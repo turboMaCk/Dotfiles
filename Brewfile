@@ -34,6 +34,9 @@ install osxfuse
 install htop-osx
 install memcached
 
+# RBENV
+install rbenv ruby-build
+
 # Databses
 install mysql
 install postgresql
