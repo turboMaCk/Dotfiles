@@ -30,3 +30,4 @@ cask install transmit 2> /dev/null
 cask install tower 2> /dev/null
 cask install codekit 2> /dev/null
 cask install vagrant
+cask install tunnelblick
