@@ -2,146 +2,149 @@
 filetype off
 
 " set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " Use Vundle for plugin management
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 
 " Cache files
-Bundle 'vim-addon-mw-utils'
+Plugin 'vim-addon-mw-utils'
 
 " Another have to bundle
-Bundle 'tomtom/tlib_vim'
+Plugin 'tomtom/tlib_vim'
 
 " Editor config is another have to
-Bundle 'editorconfig/editorconfig-vim'
+Plugin 'editorconfig/editorconfig-vim'
 
 " Ack is better than grep
-Bundle 'mileszs/ack.vim'
+Plugin 'mileszs/ack.vim'
 
 " basic plugins
-Bundle 'scrooloose/nerdtree'
-Bundle 'spf13/vim-autoclose'
-Bundle 'ChrisKempson/Vim-Tomorrow-Theme'
-Bundle 'nanotech/jellybeans.vim'
-Bundle 'kien/ctrlp.vim'
-Bundle 'vim-scripts/sessionman.vim'
-" Bundle 'matchit.zip'
-Bundle 'bling/vim-airline'
-Bundle 'Lokaltog/vim-easymotion'
-Bundle 'jistr/vim-nerdtree-tabs'
-Bundle 'mbbill/undotree'
-"Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'vim-scripts/restore_view.vim'
-Bundle 'mhinz/vim-signify'
-"Bundle 'tpope/vim-abolish.git'
-"Bundle 'osyo-manga/vim-over'
+Plugin 'scrooloose/nerdtree'
+Plugin 'spf13/vim-autoclose'
+Plugin 'ChrisKempson/Vim-Tomorrow-Theme'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'vim-scripts/sessionman.vim'
+" Plugin 'matchit.zip'
+Plugin 'bling/vim-airline'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'mbbill/undotree'
+"Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'vim-scripts/restore_view.vim'
+Plugin 'mhinz/vim-signify'
+"Plugin 'tpope/vim-abolish.git'
+"Plugin 'osyo-manga/vim-over'
 
 " Vimux for tmux integration
-Bundle 'benmills/vimux'
+Plugin 'benmills/vimux'
 
 " Pick one of the checksyntax, jshint, or syntastic
-Bundle 'scrooloose/syntastic'
-Bundle 'tpope/vim-fugitive'
-Bundle 'mattn/webapi-vim'
-Bundle 'mattn/gist-vim'
-Bundle 'scrooloose/nerdcommenter'
-" Bundle 'godlygeek/tabular'
-Bundle 'majutsushi/tagbar'
+Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-fugitive'
+Plugin 'mattn/webapi-vim'
+Plugin 'mattn/gist-vim'
+Plugin 'scrooloose/nerdcommenter'
+" Plugin 'godlygeek/tabular'
+Plugin 'majutsushi/tagbar'
 
 " Snippets
-Bundle 'garbas/vim-snipmate'
-Bundle 'honza/vim-snippets'
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
 " Source support_function.vim to support vim-snippets.
 if filereadable(expand("~/.vim/bundle/vim-snippets/snippets/support_functions.vim"))
     source ~/.vim/bundle/vim-snippets/snippets/support_functions.vim
 endif
 
 " You complete me
-" Bundle 'Valloric/YouCompleteMe'
-" Bundle 'SirVer/ultisnips'
+" Plugin 'Valloric/YouCompleteMe'
+" Plugin 'SirVer/ultisnips'
 
 " Neocomplete cache
-Bundle 'Shougo/neocomplcache'
-Bundle 'Shougo/neosnippet'
-Bundle 'Shougo/neosnippet-snippets'
+Plugin 'Shougo/neocomplcache'
+Plugin 'Shougo/neosnippet'
+Plugin 'Shougo/neosnippet-snippets'
 
 " Dash documentation tool
-Bundle 'rizzatti/dash.vim'
+Plugin 'rizzatti/dash.vim'
 
 "=================================
 " LANGUAGES / FRAMEWORKS SPECIFIC
 "=================================
 
 " PHP (memories)
-Bundle 'spf13/PIV'
-Bundle 'arnaud-lb/vim-php-namespace'
+Plugin 'spf13/PIV'
+Plugin 'arnaud-lb/vim-php-namespace'
 
 " PYTHON (monty)
 " Pick either python-mode or pyflakes & pydoc
-"Bundle 'klen/python-mode'
-"Bundle 'python.vim'
-"Bundle 'python_match.vim'
-"Bundle 'pythoncomplete'
+"Plugin 'klen/python-mode'
+"Plugin 'python.vim'
+"Plugin 'python_match.vim'
+"Plugin 'pythoncomplete'
 
 " JAVASCRIPT (love or madness)
-Bundle 'elzr/vim-json'
-Bundle 'pangloss/vim-javascript'
-Bundle 'briancollins/vim-jst'
-Bundle 'kchmck/vim-coffee-script'
-Bundle 'nono/vim-handlebars'
+Plugin 'elzr/vim-json'
+Plugin 'pangloss/vim-javascript'
+Plugin 'briancollins/vim-jst'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'nono/vim-handlebars'
 
 " JAVA (when goes crazy)
-"Bundle 'derekwyatt/vim-scala'
-"Bundle 'derekwyatt/vim-sbt'
+"Plugin 'derekwyatt/vim-scala'
+"Plugin 'derekwyatt/vim-sbt'
 
 " HASKEL (So nerdy)
-"Bundle 'travitch/hasksyn'
-"Bundle 'dag/vim2hs'
-"Bundle 'Twinside/vim-haskellConceal'
-"Bundle 'lukerandall/haskellmode-vim'
-"Bundle 'eagletmt/neco-ghc'
-"Bundle 'eagletmt/ghcmod-vim'
-"Bundle 'Shougo/vimproc'
-"Bundle 'adinapoli/cumino'
-"Bundle 'bitc/vim-hdevtools'
+"Plugin 'travitch/hasksyn'
+"Plugin 'dag/vim2hs'
+"Plugin 'Twinside/vim-haskellConceal'
+"Plugin 'lukerandall/haskellmode-vim'
+"Plugin 'eagletmt/neco-ghc'
+"Plugin 'eagletmt/ghcmod-vim'
+"Plugin 'Shougo/vimproc'
+"Plugin 'adinapoli/cumino'
+"Plugin 'bitc/vim-hdevtools'
 
 " HTML (corpses)
-Bundle 'amirh/HTML-AutoCloseTag'
-Bundle 'othree/html5.vim'
-Bundle 'gorodinskiy/vim-coloresque'
-Bundle 'tpope/vim-haml'
-Bundle 'digitaltoad/vim-jade'
-Bundle 'mattn/emmet-vim'
+Plugin 'amirh/HTML-AutoCloseTag'
+Plugin 'othree/html5.vim'
+Plugin 'gorodinskiy/vim-coloresque'
+Plugin 'tpope/vim-haml'
+Plugin 'digitaltoad/vim-jade'
+Plugin 'mattn/emmet-vim'
 
 " CSS/preprocessors (paiting)
-Bundle 'hail2u/vim-css3-syntax'
-Bundle 'groenewege/vim-less'
-Bundle 'wavded/vim-stylus'
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'groenewege/vim-less'
+Plugin 'wavded/vim-stylus'
 " haml bundle include sass support
 
 " RUBY (for rails)
-Bundle 'tpope/vim-rails'
-Bundle 'tpope/vim-endwise'
-Bundle 'yaymukund/vim-rabl'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-endwise'
+Plugin 'yaymukund/vim-rabl'
 
 " GO (google lick ass)
-"Bundle 'Blackrush/vim-gocode'
+"Plugin 'Blackrush/vim-gocode'
 
 " TEXTing (writer like)
-Bundle 'tpope/vim-markdown'
-Bundle 'spf13/vim-preview'
-Bundle 'tpope/vim-cucumber'
-Bundle 'quentindecock/vim-cucumber-align-pipes'
-Bundle 'Puppet-Syntax-Highlighting'
+Plugin 'tpope/vim-markdown'
+Plugin 'spf13/vim-preview'
+Plugin 'tpope/vim-cucumber'
+Plugin 'quentindecock/vim-cucumber-align-pipes'
+Plugin 'Puppet-Syntax-Highlighting'
 
 " Ember.js (MCV or what)
-"Bundle 'dsawardekar/ember.vim'
-"Bundle 'nono/vim-handlebars'
+"Plugin 'dsawardekar/ember.vim'
+"Plugin 'nono/vim-handlebars'
 
 " NETTE FW
-Bundle 'Janiczek/vim-latte'
+Plugin 'Janiczek/vim-latte'
+
+call vundle#end()
+filetype plugin indent on
 
 " HTML 5
 " Vim syntax file
