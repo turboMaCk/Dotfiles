@@ -107,3 +107,6 @@ export LANG=en_US.UTF-8
 
 # RBENV
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# NVM
+source ~/.nvm/nvm.sh
