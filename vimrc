@@ -212,6 +212,7 @@ augroup END
 set guioptions-=T
 set guioptions-=r
 set guioptions-=L
+set guifont=Menlo:h12
 
 "===============================
 " KEY MAPING
