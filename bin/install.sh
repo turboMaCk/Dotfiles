@@ -3,8 +3,17 @@
 # Command Line Tools for XCode
 xcode-select --install
 
-# install OH MY ZSH
-curl -L http://install.ohmyz.sh | sh
+zsh
+
+# install prezto
+git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+
+setopt EXTENDED_GLOB
+for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+done
+
+chsh -s /bin/zsh
 
 # Home Brew
 ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"

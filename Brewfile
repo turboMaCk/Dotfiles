@@ -37,6 +37,12 @@ install memcached
 # RBENV
 install rbenv ruby-build
 
+# PYENV + virtualenv
+brew install pyenv-virtualenv
+
+# NVM
+brew install nvm
+
 # Databses
 install mysql
 install postgresql
@@ -45,8 +51,8 @@ install redis
 install mongo
 
 # PHP
-brew tap homebrew/homebrew-php
-brew tap homebrew/dupes
-brew tap homebrew/versions
-brew install php55-intl
-brew install homebrew/php/composer
+# brew tap homebrew/homebrew-php
+# brew tap homebrew/dupes
+# brew tap homebrew/versions
+# brew install php55-intl
+# brew install homebrew/php/composer
