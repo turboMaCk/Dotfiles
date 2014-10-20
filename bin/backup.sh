@@ -5,7 +5,7 @@ backup_dir="$(pwd)/backup"
 printf "Backup old files using $backup_dir directory\n"
 
 if [ -d "$backup_dir" ]; then
-  printf "Removing all backup...\n"
+  printf "Removing old backup...\n"
 
   rm -rf $backup_dir/*
 else
