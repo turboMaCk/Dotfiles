@@ -22,6 +22,7 @@ install homebrew/dupes/grep
 install ack
 install git
 install git-flow
+install tig
 install ctags
 install imagemagick --with-webp
 install node # This installs `npm` too using the recommended installation method
