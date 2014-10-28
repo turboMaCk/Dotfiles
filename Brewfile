@@ -19,7 +19,7 @@ install vim --override-system-vi
 install homebrew/dupes/grep
 
 # Install other useful binaries
-install ack
+install the_silver_searcher
 install git
 install git-flow
 install tig
@@ -57,3 +57,6 @@ install mongo
 # brew tap homebrew/versions
 # brew install php55-intl
 # brew install homebrew/php/composer
+
+# apache benchmark tool
+brew install homebrew/apache/ab

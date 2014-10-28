@@ -285,6 +285,13 @@ function! WrapRelativeMotion(key, ...)
     endif
 endfunction
 
+
+" ===================================
+" ACK.vim / AG
+" ===================================
+
+let g:ackprg = 'ag --nogroup --nocolor --column'
+
 " ===================================
 " CTRLP
 " ===================================
@@ -298,8 +305,8 @@ let g:ctrlp_custom_ignore = {
     \ 'dir': '\.git$\|\.hg$\|\.svn$\|\.sass-cache$\|\bower_components$\|\node_modules$\|\dist$',
     \ 'file': '\.exe$\|\.so$\|\.dll$\|\.pyc$' }
 
-if executable('ack')
-    let s:ctrlp_fallback = 'ack %s --nocolor -f'
+if executable('ag')
+    let s:ctrlp_fallback = 'ag %s --nocolor --nogroup --column -f'
 else
     let s:ctrlp_fallback = 'find %s -type f'
 endif
