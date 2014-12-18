@@ -91,6 +91,8 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'briancollins/vim-jst'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'nono/vim-handlebars'
+Plugin 'dsawardekar/ember.vim'
+Plugin 'mxw/vim-jsx'
 
 " JAVA (when goes crazy)
 "Plugin 'derekwyatt/vim-scala'
@@ -135,10 +137,6 @@ Plugin 'spf13/vim-preview'
 Plugin 'tpope/vim-cucumber'
 Plugin 'quentindecock/vim-cucumber-align-pipes'
 Plugin 'Puppet-Syntax-Highlighting'
-
-" Ember.js (MCV or what)
-"Plugin 'dsawardekar/ember.vim'
-"Plugin 'nono/vim-handlebars'
 
 " NETTE FW
 Plugin 'Janiczek/vim-latte'
