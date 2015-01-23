@@ -125,6 +125,7 @@ Plugin 'wavded/vim-stylus'
 
 " RUBY (for rails)
 Plugin 'tpope/vim-rails'
+Plugin 'thoughtbot/vim-rspec'
 Plugin 'tpope/vim-endwise'
 Plugin 'yaymukund/vim-rabl'
 

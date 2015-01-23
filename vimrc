@@ -470,6 +470,12 @@ endif
 set completeopt-=preview
 
 " ======================
+" RSPEC
+" ======================
+map <Leader>t :call RunCurrentSpecFile()<CR>
+map <Leader>r :call RunLastSpec()<CR>
+
+" ======================
 " UNDO TREE
 " ======================
 nnoremap <Leader>u :UndotreeToggle<CR>
