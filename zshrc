@@ -70,4 +70,5 @@ export LANG=en_US.UTF-8
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # NVM
-source ~/.nvm/nvm.sh
+export NVM_DIR=~/.nvm
+source $(brew --prefix nvm)/nvm.sh
