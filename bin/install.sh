@@ -19,9 +19,6 @@ chsh -s /bin/zsh
 ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go/install)"
 brew doctor
 
-# NVM
-curl https://raw.githubusercontent.com/creationix/nvm/v0.11.1/install.sh | bash
-
 # Vundle
 git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 

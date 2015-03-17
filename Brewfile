@@ -43,6 +43,7 @@ brew install pyenv-virtualenv
 
 # NVM
 brew install nvm
+source $(brew --prefix nvm)/nvm.sh
 
 # Databses
 install mysql
