@@ -52,6 +52,12 @@ install sqlite
 install redis
 install mongo
 
+# phantomjs
+install phantomjs
+
+# dns server
+brew install dnsmasq
+
 # PHP
 # brew tap homebrew/homebrew-php
 # brew tap homebrew/dupes
