@@ -27,7 +27,6 @@ install ctags
 install imagemagick --with-webp
 install node # This installs `npm` too using the recommended installation method
 install macvim
-install mysql
 install openssl
 install openssh --with-brewed-openssl --with-keychain-support
 install tmux

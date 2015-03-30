@@ -30,9 +30,6 @@ mkdir ~/.vim/backup
 # source profile
 source ~/.profile
 
-# Vagrant + parallels
-vagrant plugin install vagrant-parallels
-
 # ssh-copy-id
 sudo curl “https://raw.github.com/garmoncheg/ssh-copy-id-for-OSX/master/ssh-copy-id.sh” -o /usr/bin/ssh-copy-id
 chmod +x /usr/bin/ssh-copy-id
