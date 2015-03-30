@@ -56,14 +56,11 @@ install mongo
 install phantomjs
 
 # dns server
-brew install dnsmasq
-
-# PHP
-# brew tap homebrew/homebrew-php
-# brew tap homebrew/dupes
-# brew tap homebrew/versions
-# brew install php55-intl
-# brew install homebrew/php/composer
+install dnsmasq
 
 # apache benchmark tool
 brew install homebrew/apache/ab
+
+# neovim
+brew tap neovim/homebrew-neovim
+brew install --HEAD neovim
