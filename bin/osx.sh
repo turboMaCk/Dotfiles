@@ -621,3 +621,4 @@ for app in "Dock" "Finder" "SystemUIServer" "Terminal" "iCal"; do
     killall "${app}" > /dev/null 2>&1
 done
 echo "Done. Note that some of these changes require a logout/restart to take effect."
+

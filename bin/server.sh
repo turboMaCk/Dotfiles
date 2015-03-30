@@ -1,40 +1,28 @@
 #!/bin/dotfiles.sh
 
-cwd="$(dirname "$0")"
 
+# save locations
+cwd="$(dirname "$0")"
+pwd="$(pwd)"
+
+# CD to dotfiles
+cd $cwd
+cd ..
+
+# Files to backup and symlink
 dotfiles=('bashrc', 'vimrc', 'gemrc')
 
+# Backup directory
+backup_dir="$(pwd)/backup"
+
+# Dotfiles directory
+dotfiles_dir="$(pwd)/server"
+
 # backup first
-backup_dir="$cwd/../backup"
-
-printf "Backup old files using $backup_dir directory\n"
-
-if [ -d "$backup_dir" ]; then
-  printf "Removing old backup...\n"
-
-  rm -rf $backup_dir/*
-else
-  printf "Creating backup directory...\n"
-
-  mkdir $backup_dir
-fi
-
-printf "Backup current dotfiles...\n"
-
-# loop all files
-for i in "${dotfiles[@]}"; do
-
-  # check if file exist
-  if [ -f "~/.$i" ]; then
-    mv ~/.$i $backup_dir/$i
-  fi
-done
+source $cwd/backup.sh
 
 # symlink new
-dotfiles_dir="$cwd/../server"
+source $cwd/symlink.sh
 
-printf "Creating symlinks to $pwd directory\n"
-
-for i in "${dotfiles[@]}"; do
-  ln -fs $dotfiles_dir/$i ~/.$i
-done
+# CD back
+cd $pwd
