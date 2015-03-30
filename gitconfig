@@ -71,6 +71,8 @@
   rb = rebase
   #############
   tree = log --graph --decorate --pretty=oneline --abbrev-commit
+  ############
+  pu = !"git fetch origin -v; git fetch upstream -v; git merge upstream/master"
 [mergetool]
   keepBackup = false
 [mergetool "fugitive"]
