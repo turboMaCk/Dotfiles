@@ -1,40 +1,60 @@
-# turbo_MaCk's dotfiles
-This repository contains my dotfiles and setup mostly optipalized for **OSX**.
+turbo_MaCk's dotfiles
+=====================
+This repository contains my dotfiles and setup **OSX** developement machine and **Linux / BSD** servers.
 
-Submodules
-==========
-* My [Prezto](https://github.com/sorin-ionescu/prezto) fork (zsh plugins + config) [turbo_MaCk/prezto](https://github.com/turboMaCk/prezto)
+Server setup
+============
+Just basic bash, vim, ruby gems configuration.
+
+## Requirements
+* Bash
+
+## Editors
+* Vim
+
+## Installation
+Clone repository
+```shell
+$ git clone https://github.com/turboMaCk/Dotfiles "${ZDOTDIR:-$HOME}/Dotfiles"
+```
+
+Create symlinks
+```shell
+sh ~/Dotfiles/bin/server.sh
+```
+
+Developement setup
+==================
+Developement setup using ZSH, Prezto and much more.
+
+## Submodules
 * Custom prezto theme [turboMaCk/prezto-Prague-Shell](https://github.com/turboMaCk/prezto-Prague-Shell)
 
-Requirements
-============
+## Requirements
 * OSX
 * XCode + Command Line Tools
+* ZSH
 
-Install via bin/install.sh
-==========================
+## Install via bin/install.sh
 * Homebrew (ruby + curl)
 * Vundle - vim package managing (git install)
 * ssh-copy-id script (curl install)
 
-Developement enviroment managing
-================================
+## Developement enviroment managing
 * rbenv (homebrew install)
 * nvm (homebrew install)
 * pyenv (homebrew install)
-* phantom.js (homebrew install)o
+* phantom.js (homebrew install)
 * dnsmasq (homebrew install)
 * Vagrant (brew cask install)
 
-Editors
-=======
+## Editors
 * vim (homebrew install)
 * neoviem (homebrew install)
 * macvim (homebrew install)
 * sublime-text (**hand install**)
 
-Binaries and utils (all via homebrew)
-=====================================
+## Binaries and utils (all via homebrew)
 * coreutils
 * wget (iri enabled)
 * vim
@@ -54,23 +74,20 @@ Binaries and utils (all via homebrew)
 * memcached
 * apache ab
 
-Databases (all via homebrew)
-============================
+## Databases (all via homebrew)
 * mysql
 * postgresql
 * sqlite
 * redis
 * mongo
 
-Browsers (all via brewcask)
-===========================
+## Browsers (all via brewcask)
 * Google Chrome
 * Google Chrome Canary
 * Firefox
 * Opera
 
-Open source applications (all via brewcask)
-===========================================
+## Open source applications (all via brewcask)
 * Transmission
 * VLC
 * Adium
@@ -79,8 +96,7 @@ Open source applications (all via brewcask)
 * Vagrant
 * Tunelblick
 
-Proprietary applications (all via brew cask)
-============================================
+## Proprietary applications (all via brew cask)
 * DropBox
 * The Unarchiver
 * Skype
@@ -89,33 +105,32 @@ Proprietary applications (all via brew cask)
 * Tower Git
 * Codekit
 
-Pre-install setup
-=================
-Install command-line tools for XCode after install XCode via Appstore
+## Pre-install setup
+Install Command Line Tools for XCode after install XCode via App Store.
 
 Switch to ZSH
 ```shell
 $ zsh
 ```
 
+Install Command Line Tools
 ```shell
 $ xcode-select --install
 ```
 
-Install Dotfiles
-================
+## Install Dotfiles
 
-download with submodules
+Clone git with submodules
 ```shell
 $ git clone --recursive https://github.com/turboMaCk/Dotfiles "${ZDOTDIR:-$HOME}/Dotfiles"
 ```
 
-Clone Zprezto
+Clone Prezto fork
 ```shell
 $ git clone --recursive git@github.com:turboMaCk/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 ```
 
-Create a new Zsh configuration by copying the Zsh configuration files from prezto
+Create a new Zsh configuration by copying the Zsh configuration files from Prezto
 ```shell
 $ setopt EXTENDED_GLOB
 for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
@@ -149,5 +164,5 @@ $ sh ~/Dotfiles/bin/install.sh
 This is experimantal script and might be broken on some machines.
 
 ```shell
-$ sh bin/osx.sh
+$ sh ~/Dotfiles/bin/osx.sh
 ```
