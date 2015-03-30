@@ -11,6 +11,3 @@ done
 # symlink neovim
 ln -fs $dotfiles_dir/vimrc ~/.nvimrc
 ln -fs ~/.vim ~/.nvim
-
-# link custom shel theme
-ln -fs $dotfils_dir/prompt_marek_setup ~/.zprezto/modules/prompt/functions/prompt_marek_setup
