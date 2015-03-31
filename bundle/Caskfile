@@ -20,11 +20,12 @@ cask install skype 2> /dev/null
 cask install alfred 2> /dev/null
 
 # Developer tools
-#cask install sublime-text 2> /dev/null
-cask install iterm2 2> /dev/null
+cask install sublime-text 2> /dev/null
+cask install iterm2-nigtly 2> /dev/null
 cask install totalterminal 2> /dev/null
 cask install transmit 2> /dev/null
-#cask install parallels 2> /dev/null
+cask install virtualbox
+cask install parallels 2> /dev/null
 cask install tower 2> /dev/null
 cask install codekit 2> /dev/null
 cask install vagrant

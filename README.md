@@ -91,8 +91,9 @@ Developement setup using ZSH, Prezto and much more.
 * Transmission
 * VLC
 * Adium
-* iTerm2
+* iTerm2 nightly
 * Total Terminal
+* virtualbox
 * Vagrant
 * Tunelblick
 
@@ -103,7 +104,9 @@ Developement setup using ZSH, Prezto and much more.
 * Alfred
 * Transmit
 * Tower Git
+* Sublime Text
 * Codekit
+* Parallels
 
 ## Pre-install setup
 Install Command Line Tools for XCode after install XCode via App Store.
