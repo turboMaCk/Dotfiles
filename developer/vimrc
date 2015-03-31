@@ -117,8 +117,8 @@ endif
 
 " Setup colors
 set t_Co=256 " enable 256 colors
-"colorscheme tomorrow " set colorscheme
-colorscheme jellybeans " set colorscheme
+colorscheme abra " set colorscheme
+set background=dark
 
 " No extra spaces between rows
 set linespace=3
@@ -212,10 +212,10 @@ set guifont=Menlo:h12
 " ==============================
 
 " Easy window navigation
-map <C-J> <C-W>j<C-W>_
-map <C-K> <C-W>k<C-W>_
-map <C-L> <C-W>l<C-W>_
-map <C-H> <C-W>h<C-W>_
+nmap <silent> <C-J> <C-W>j<C-W><CR>
+nmap <silent> <C-K> <C-W>k<C-W><CR>
+nmap <silent> <C-L> <C-W>l<C-W><CR>
+nmap <silent> <C-H> <C-W>h<C-W><CR>
 
 " buffer swithing
 map <silent> <leader>l :bn<CR>
