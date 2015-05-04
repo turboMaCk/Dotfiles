@@ -1,4 +1,4 @@
-#!/bin/symlink.sh
+#!/bin/bash
 
 printf "Creating symlinks to $pwd directory\n"
 

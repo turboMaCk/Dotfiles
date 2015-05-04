@@ -1,4 +1,4 @@
-#!/bin/install.sh
+#!/bin/bash
 
 printf "Install script started... \n"
 

@@ -33,6 +33,7 @@ alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 
 # Use Neovim instead of vim
 alias v="nvim"
+alias vi="nvim"
 alias vim="nvim"
 alias nvim="NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim"
 
@@ -76,3 +77,6 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 # NVM
 export NVM_DIR=~/.nvm
 source $(brew --prefix nvm)/nvm.sh
+
+# Android SDK
+export ANDROID_HOME=/usr/local/opt/android-sdk

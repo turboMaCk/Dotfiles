@@ -111,7 +111,7 @@ Plugin 'mxw/vim-jsx'
 "Plugin 'bitc/vim-hdevtools'
 
 " HTML (corpses)
-Plugin 'amirh/HTML-AutoCloseTag'
+Plugin 'ypid/HTML-AutoCloseTag'
 Plugin 'othree/html5.vim'
 Plugin 'gorodinskiy/vim-coloresque'
 Plugin 'tpope/vim-haml'
@@ -142,6 +142,12 @@ Plugin 'Puppet-Syntax-Highlighting'
 
 " NETTE FW
 Plugin 'Janiczek/vim-latte'
+
+" Processing
+Plugin 'sophacles/vim-processing'
+
+" Android
+Plugin 'hsanson/vim-android'
 
 call vundle#end()
 filetype plugin indent on

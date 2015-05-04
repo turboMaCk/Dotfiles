@@ -1,4 +1,4 @@
-#!/bin/dotfiles.sh
+#!/bin/bash
 
 # save locations
 cwd="$(dirname "$0")"

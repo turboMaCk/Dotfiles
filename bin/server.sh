@@ -1,4 +1,4 @@
-#!/bin/dotfiles.sh
+#!/bin/bash
 
 
 # save locations
@@ -10,7 +10,7 @@ cd $cwd
 cd ..
 
 # Files to backup and symlink
-dotfiles=('bashrc', 'vimrc', 'gemrc')
+dotfiles=('bashrc' 'vimrc' 'gemrc')
 
 # Backup directory
 backup_dir="$(pwd)/backup"

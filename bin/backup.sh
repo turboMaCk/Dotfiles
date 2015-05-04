@@ -1,4 +1,4 @@
-#!/bin/backup.sh
+#!/bin/bash
 
 printf "Backup old files using $backup_dir directory\n"
 

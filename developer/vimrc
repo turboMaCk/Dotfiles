@@ -16,6 +16,9 @@ set writebackup
 set swapfile
 set dir=~/.vimswap//,/var/tmp//,/tmp//,.
 
+" Not writes are annoying
+set confirm
+
 " load boundles
 if filereadable(expand("~/.vimrc.bundles"))
   source ~/.vimrc.bundles
@@ -225,6 +228,12 @@ map <silent> <leader>h :bp<CR>
 map <Leader>e :e <C-R>=expand("%:p:H") . '/'<CR>
 map <Leader>s :split <C-R>=expand("%:p:h") . '/'<CR>
 map <Leader>v :vnew <C-R>=expand("%:p:h") . '/'<CR>
+
+" Easy split resize
+if bufwinnr(1)
+  map + <C-W>+
+  map - <C-W>-
+endif
 
 " Stupid shift key fixes
 command! -bang -nargs=* -complete=file E e<bang> <args>
