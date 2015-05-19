@@ -62,6 +62,9 @@ alias hidedots="defaults write com.apple.finder AppleShowAllFiles FALSE & killal
 # Http server
 alias server="open http://localhost:8000 && http-server -p 8000"
 
+# When using sudo, use alias expansion (otherwise sudo ignores your aliases)
+alias sudo="sudo "
+
 # setup path
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
