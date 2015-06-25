@@ -14,7 +14,7 @@
 
 [core]
   excludesfile = ~/.gitignore_global
-  editor = vim
+  editor = NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim
 
 [diff]
     tool = mvimdiff
@@ -76,4 +76,4 @@
 [mergetool]
   keepBackup = false
 [mergetool "fugitive"]
-  cmd = vim -f -c \"Gdiff\" \"$MERGED\"
+  cmd = nvim -f -c \"Gdiff\" \"$MERGED\"
