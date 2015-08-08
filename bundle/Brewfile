@@ -33,6 +33,7 @@ install tmux
 install osxfuse
 install htop-osx
 install memcached
+install reattach-to-user-namespace
 
 # RBENV
 install rbenv ruby-build

@@ -17,10 +17,10 @@
   editor = NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim
 
 [diff]
-    tool = mvimdiff
+  tool = vimdiff
 
 [difftool]
-    prompt = false
+  prompt = false
 
 [merge]
   tool = fugitive
@@ -76,4 +76,4 @@
 [mergetool]
   keepBackup = false
 [mergetool "fugitive"]
-  cmd = nvim -f -c \"Gdiff\" \"$MERGED\"
+  cmd = NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim -f -c \"Gdiff\" \"$MERGED\"

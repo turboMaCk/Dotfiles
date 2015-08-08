@@ -149,6 +149,9 @@ Plugin 'sophacles/vim-processing'
 " Android
 Plugin 'hsanson/vim-android'
 
+" Seamless navigation between tmux panes and vim splits
+Plugin 'christoomey/vim-tmux-navigator'
+
 call vundle#end()
 filetype plugin indent on
 

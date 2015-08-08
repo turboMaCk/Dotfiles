@@ -169,6 +169,10 @@ set splitbelow " Puts new split windows to the bottom of the current
 "set matchpairs+=<:> " Match, to be used with %
 set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
 
+if has('nvim')
+  nmap <bs> :<c-u>TmuxNavigateLeft<cr>
+endif
+
 " ======================
 " AUTO CMDS
 " ======================
