@@ -9,7 +9,7 @@ cd $cwd
 cd ..
 
 # Files to backup and symlink
-dotfiles=('ackrc' 'gemrc' 'gitconfig' 'gitignore_global' 'tmux.conf' 'vimrc' 'vimrc.bundles' 'zpreztorc' 'zshrc')
+dotfiles=('ackrc' 'gemrc' 'gitconfig' 'gitignore_global' 'tmux.conf' 'vimrc' 'vimrc.bundles' 'zpreztorc' 'zshrc' 'tmux-powerlinerc')
 
 # Backup directory
 backup_dir="$(pwd)/backup"
