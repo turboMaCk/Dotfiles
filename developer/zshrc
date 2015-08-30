@@ -23,6 +23,7 @@ export SSH_KEY_PATH="~/.ssh/"
 
 # ALIASES
 alias g="git"
+alias tm="tmux"
 alias s="subl"
 alias love="/Applications/love.app/Contents/MacOS/love"
 alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
@@ -40,6 +41,16 @@ alias documents="cd ~/Documents/"
 alias downloads="cd ~/Downloads/"
 alias dotfiles="cd ~/Dotfiles/"
 alias desktop="cd ~/Desktop/"
+
+# tmux aliases
+alias tml="tmux list-sessions"
+alias tma="tmux attach-session -t"
+alias tmc="clear && tmux clear-history"
+alias tmk="tmux kill-session"
+
+# Rails aliases
+alias rails="bundle exec rails"
+alias rake="bundle exec rake"
 
 # Shortcuts
 alias fs="stat -f \"%z bytes\""

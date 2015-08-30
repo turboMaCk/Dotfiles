@@ -16,6 +16,9 @@ set writebackup
 set swapfile
 set dir=~/.vimswap//,/var/tmp//,/tmp//,.
 
+" Reload file when it changes
+set autoread
+
 " Not writes are annoying
 set confirm
 
@@ -23,6 +26,10 @@ set confirm
 if filereadable(expand("~/.vimrc.bundles"))
   source ~/.vimrc.bundles
 endif
+
+" UTF-8 FTW
+set encoding=utf-8  " The encoding displayed.
+set fileencoding=utf-8  " The encoding written to file.
 
 " ======================
 " Interface
