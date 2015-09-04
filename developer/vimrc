@@ -31,6 +31,9 @@ endif
 set encoding=utf-8  " The encoding displayed.
 set fileencoding=utf-8  " The encoding written to file.
 
+" Disable Ex mode
+nnoremap Q <Nop>
+
 " ======================
 " Interface
 " ======================
@@ -127,7 +130,7 @@ endif
 
 " Setup colors
 set t_Co=256 " enable 256 colors
-colorscheme abra " set colorscheme
+colorscheme jellybeans " set colorscheme
 set background=dark
 
 " No extra spaces between rows
@@ -175,10 +178,6 @@ set splitright " Puts new vsplit windows to the right of the current
 set splitbelow " Puts new split windows to the bottom of the current
 "set matchpairs+=<:> " Match, to be used with %
 set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
-
-if has('nvim')
-  nmap <bs> :<c-u>TmuxNavigateLeft<cr>
-endif
 
 " ======================
 " AUTO CMDS
@@ -518,3 +517,9 @@ let g:airline_right_sep='‹'
 " ======================
 map <leader>d :Dash 
 map <leader>D :Dash<CR>
+
+" ======================
+" CoVim
+" ======================
+let CoVim_default_name = "cowork"
+let CoVim_default_port = "6262"

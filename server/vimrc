@@ -9,6 +9,9 @@ set noerrorbells
 " Leader
 let mapleader = ","
 
+" Disable Ex mode
+nnoremap Q <Nop>
+
 " ======================
 " Interface
 " ======================

@@ -18,7 +18,7 @@ Plugin 'tomtom/tlib_vim'
 Plugin 'editorconfig/editorconfig-vim'
 
 " Ack is better than grep
-Plugin 'mileszs/ack.vim'
+Plugin 'rking/ag.vim'
 
 " basic plugins
 Plugin 'scrooloose/nerdtree'
@@ -28,19 +28,15 @@ Plugin 'nanotech/jellybeans.vim'
 Plugin 'abra/vim-abra'
 Plugin 'kien/ctrlp.vim'
 Plugin 'vim-scripts/sessionman.vim'
-" Plugin 'matchit.zip'
+Plugin 'matchit.zip'
 Plugin 'bling/vim-airline'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'jistr/vim-nerdtree-tabs'
 Plugin 'mbbill/undotree'
-"Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'vim-scripts/restore_view.vim'
 Plugin 'mhinz/vim-signify'
-"Plugin 'tpope/vim-abolish.git'
-"Plugin 'osyo-manga/vim-over'
-
-" Vimux for tmux integration
-Plugin 'benmills/vimux'
+Plugin 'tpope/vim-abolish.git'
+Plugin 'osyo-manga/vim-over'
 
 " Pick one of the checksyntax, jshint, or syntastic
 Plugin 'scrooloose/syntastic'
@@ -48,7 +44,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
 Plugin 'scrooloose/nerdcommenter'
-" Plugin 'godlygeek/tabular'
+ Plugin 'godlygeek/tabular'
 Plugin 'majutsushi/tagbar'
 
 " Snippets
@@ -75,18 +71,18 @@ Plugin 'rizzatti/dash.vim'
 " LANGUAGES / FRAMEWORKS SPECIFIC
 "=================================
 
-" PHP (memories)
+" PHP
 Plugin 'spf13/PIV'
 Plugin 'arnaud-lb/vim-php-namespace'
 
-" PYTHON (monty)
+" PYTHON
 " Pick either python-mode or pyflakes & pydoc
 "Plugin 'klen/python-mode'
 "Plugin 'python.vim'
 "Plugin 'python_match.vim'
 "Plugin 'pythoncomplete'
 
-" JAVASCRIPT (love or madness)
+" JAVASCRIPT
 Plugin 'elzr/vim-json'
 Plugin 'pangloss/vim-javascript'
 Plugin 'briancollins/vim-jst'
@@ -95,11 +91,11 @@ Plugin 'nono/vim-handlebars'
 Plugin 'dsawardekar/ember.vim'
 Plugin 'mxw/vim-jsx'
 
-" JAVA (when goes crazy)
+" JAVA
 "Plugin 'derekwyatt/vim-scala'
 "Plugin 'derekwyatt/vim-sbt'
 
-" HASKEL (So nerdy)
+" HASKEL
 "Plugin 'travitch/hasksyn'
 "Plugin 'dag/vim2hs'
 "Plugin 'Twinside/vim-haskellConceal'
@@ -110,7 +106,7 @@ Plugin 'mxw/vim-jsx'
 "Plugin 'adinapoli/cumino'
 "Plugin 'bitc/vim-hdevtools'
 
-" HTML (corpses)
+" HTML
 Plugin 'ypid/HTML-AutoCloseTag'
 Plugin 'othree/html5.vim'
 Plugin 'gorodinskiy/vim-coloresque'
@@ -118,22 +114,22 @@ Plugin 'tpope/vim-haml'
 Plugin 'digitaltoad/vim-jade'
 Plugin 'mattn/emmet-vim'
 
-" CSS/preprocessors (paiting)
+" CSS/preprocessors
 Plugin 'hail2u/vim-css3-syntax'
 Plugin 'groenewege/vim-less'
 Plugin 'wavded/vim-stylus'
 " haml bundle include sass support
 
-" RUBY (for rails)
+" RUBY
 Plugin 'tpope/vim-rails'
 Plugin 'thoughtbot/vim-rspec'
 Plugin 'tpope/vim-endwise'
 Plugin 'yaymukund/vim-rabl'
 
-" GO (google lick ass)
+" GO
 "Plugin 'Blackrush/vim-gocode'
 
-" TEXTing (writer like)
+" TEXT
 Plugin 'tpope/vim-markdown'
 Plugin 'spf13/vim-preview'
 Plugin 'tpope/vim-cucumber'
@@ -149,8 +145,15 @@ Plugin 'sophacles/vim-processing'
 " Android
 Plugin 'hsanson/vim-android'
 
+" Vimux for tmux integration
+Plugin 'benmills/vimux'
+
 " Seamless navigation between tmux panes and vim splits
 Plugin 'christoomey/vim-tmux-navigator'
+
+" Vim cofworking
+" pip install twisted argparse
+Plugin 'FredKSchott/CoVim'
 
 call vundle#end()
 filetype plugin indent on

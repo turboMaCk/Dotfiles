@@ -9,7 +9,7 @@ cd $cwd
 cd ..
 
 # Files to backup and symlink
-dotfiles=('ackrc' 'gemrc' 'gitconfig' 'gitignore_global' 'tmux.conf' 'vimrc' 'vimrc.bundles' 'zpreztorc' 'zshrc')
+dotfiles=('ackrc' 'gemrc' 'gitconfig' 'gitignore_global' 'tmux.conf' 'vimrc' 'vimrc.bundles' 'nvimrc' 'zpreztorc' 'zshrc')
 
 # Backup directory
 backup_dir="$(pwd)/backup"
@@ -24,7 +24,6 @@ source $cwd/backup.sh
 source $cwd/symlink.sh
 
 # symlink neovim
-ln -fs $dotfiles_dir/vimrc ~/.nvimrc
 ln -fs ~/.vim ~/.nvim
 
 # CD back
