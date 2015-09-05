@@ -1,10 +1,16 @@
 # Always color, even if piping to a another program
 --color
 
+# Sort
+--sort-files
+-a
+
 # ignore directories
 --ignore-dir=node_modules
 --ignore-dir=rails
 --ignore-dir=bower_components
+--ignore-dir=log
+--ignore-dir=tmp
 
 #make sure ack knows how to search common filetypes used in rails projects
 --type-add=css=scss

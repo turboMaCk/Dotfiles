@@ -9,7 +9,7 @@ cd $cwd
 cd ..
 
 # Files to backup and symlink
-dotfiles=('ackrc' 'gemrc' 'gitconfig' 'gitignore_global' 'tmux.conf' 'vimrc' 'vimrc.bundles' 'nvimrc' 'zpreztorc' 'zshrc')
+dotfiles=('agrc' 'gemrc' 'gitconfig' 'gitignore_global' 'tmux.conf' 'vimrc' 'vimrc.bundles' 'nvimrc' 'zpreztorc' 'zshrc' 'irssirc')
 
 # Backup directory
 backup_dir="$(pwd)/backup"
@@ -25,6 +25,9 @@ source $cwd/symlink.sh
 
 # symlink neovim
 ln -fs ~/.vim ~/.nvim
+
+# symlink irc config
+ln -fs ~/.irssirc ~/.irssi/config
 
 # CD back
 cd $pwd
