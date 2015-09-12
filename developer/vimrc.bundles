@@ -37,6 +37,7 @@ Plugin 'vim-scripts/restore_view.vim'
 Plugin 'mhinz/vim-signify'
 Plugin 'tpope/vim-abolish.git'
 Plugin 'osyo-manga/vim-over'
+Plugin 'terryma/vim-multiple-cursors'
 
 " Pick one of the checksyntax, jshint, or syntastic
 Plugin 'scrooloose/syntastic'
@@ -44,7 +45,7 @@ Plugin 'tpope/vim-fugitive'
 Plugin 'mattn/webapi-vim'
 Plugin 'mattn/gist-vim'
 Plugin 'scrooloose/nerdcommenter'
- Plugin 'godlygeek/tabular'
+Plugin 'godlygeek/tabular'
 Plugin 'majutsushi/tagbar'
 
 " Snippets

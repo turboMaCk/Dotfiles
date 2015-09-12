@@ -62,6 +62,7 @@ endif
 
 " Syntax highlighting
 syntax on
+let g:syntastic_javascript_checkers = ['jsxhint']
 
 " Set encoding
 scriptencoding utf-8
