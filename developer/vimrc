@@ -22,11 +22,6 @@ set autoread
 " Not writes are annoying
 set confirm
 
-" load boundles
-if filereadable(expand("~/.vimrc.bundles"))
-  source ~/.vimrc.bundles
-endif
-
 " UTF-8 FTW
 set encoding=utf-8  " The encoding displayed.
 set fileencoding=utf-8  " The encoding written to file.
@@ -128,11 +123,6 @@ endif
 " ======================
 " Formating setup
 " ======================
-
-" Setup colors
-set t_Co=256 " enable 256 colors
-colorscheme jellybeans " set colorscheme
-set background=dark
 
 " No extra spaces between rows
 set linespace=3
@@ -298,6 +288,15 @@ function! WrapRelativeMotion(key, ...)
     endif
 endfunction
 
+" load boundles
+if filereadable(expand("~/.vimrc.bundles"))
+  source ~/.vimrc.bundles
+endif
+
+" Setup colors
+set t_Co=256 " enable 256 colors
+colorscheme jellybeans " set colorscheme
+set background=dark
 
 " ===================================
 " ACK.vim / AG
