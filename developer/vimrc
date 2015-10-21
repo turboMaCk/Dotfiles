@@ -57,7 +57,6 @@ endif
 
 " Syntax highlighting
 syntax on
-let g:syntastic_javascript_checkers = ['jsxhint']
 
 " Set encoding
 scriptencoding utf-8
@@ -371,6 +370,7 @@ nmap <leader>jt <Esc>:%!python -m json.tool<CR><Esc>:set filetype=json<CR>
 " ===================================
 " FUGITIVE GIT
 " ===================================
+set diffopt+=vertical
 nnoremap <silent> <leader>gs :Gstatus<CR>
 nnoremap <silent> <leader>gd :Gdiff<CR>
 nnoremap <silent> <leader>gc :Gcommit<CR>

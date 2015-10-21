@@ -7,7 +7,7 @@
   token = token
 
 [push]
-  default = matching
+  default = current
   followTags = true
 
 [color]
