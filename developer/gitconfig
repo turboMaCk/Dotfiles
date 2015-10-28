@@ -26,6 +26,7 @@
 [merge]
   tool = fugitive
   conflictstyle = diff3
+  ff = only
 
 [web]
   browser = google-chrome

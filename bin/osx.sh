@@ -13,8 +13,8 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 ############################################################################
 
 # Set computer name (as done via System Preferences → Sharing)
-sudo scutil --set ComputerName "Marek's MacBook pro"
-sudo scutil --set LocalHostName "Marek's MacBook pro"
+sudo scutil --set ComputerName "Marek's Mac"
+#sudo scutil --set LocalHostName "Marek's MacBook pro"
 sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "Marek's MacBook pro"
 
 # Set standby delay to 24 hours (default is 1 hour)
@@ -103,7 +103,7 @@ defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
 defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
 
 # Enable full keyboard access for all controls (e.g. enable Tab in modal dialogs)
-defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+defaults write NSGlobalDomain AppleKeyboardUIMode -int 1
 
 ############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input              #
