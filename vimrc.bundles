@@ -156,6 +156,8 @@ Plugin 'christoomey/vim-tmux-navigator'
 " pip install twisted argparse
 Plugin 'FredKSchott/CoVim'
 
+Plugin 'tclem/vim-arduino'
+
 call vundle#end()
 filetype plugin indent on
 
