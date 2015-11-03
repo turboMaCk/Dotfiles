@@ -66,8 +66,10 @@
   br = branch -r
   #############
   m = merge
+  ms = merge --squash
   #############
   ps = push
+  pf = push --force-with-lease
   pl = pull
   #############
   rb = rebase
