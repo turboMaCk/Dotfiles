@@ -1,27 +1,8 @@
 turbo_MaCk's dotfiles
 =====================
-This repository contains my dotfiles and setup **OSX** developement machine and **Linux / BSD** servers.
+This repository contains my dotfiles and setup **OSX** development machine.
 
-Server setup
-============
-Just basic bash, vim, ruby gems configuration.
-
-## Requirements
-* Bash
-
-## Editors
-* Vim
-
-## Installation
-Clone repository
-```shell
-$ git clone https://github.com/turboMaCk/Dotfiles "${ZDOTDIR:-$HOME}/Dotfiles"
-```
-
-Create symlinks
-```shell
-sh ~/Dotfiles/bin/server.sh
-```
+* server config: https://github.com/turboMaCk/dotserver
 
 Developement setup
 ==================
@@ -164,7 +145,7 @@ $ sh ~/Dotfiles/bin/install.sh
 ```
 
 ### setup OSX
-This is experimantal script and might be broken on some machines.
+This is experimental script and might be broken on some machines.
 
 ```shell
 $ sh ~/Dotfiles/bin/osx.sh
