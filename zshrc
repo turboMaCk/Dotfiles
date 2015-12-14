@@ -45,6 +45,7 @@ alias tml="tmux list-sessions"
 alias tma="tmux attach-session -t"
 alias tmc="clear && tmux clear-history"
 alias tmk="tmux kill-session"
+alias tmn="tmux new -s"
 
 # Rails aliases
 alias rails="bundle exec rails"
