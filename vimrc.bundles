@@ -25,7 +25,6 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'spf13/vim-autoclose'
 Plugin 'ChrisKempson/Vim-Tomorrow-Theme'
 Plugin 'nanotech/jellybeans.vim'
-Plugin 'abra/vim-abra'
 Plugin 'kien/ctrlp.vim'
 Plugin 'vim-scripts/sessionman.vim'
 Plugin 'matchit.zip'
@@ -36,7 +35,6 @@ Plugin 'mbbill/undotree'
 Plugin 'vim-scripts/restore_view.vim'
 Plugin 'mhinz/vim-signify'
 Plugin 'tpope/vim-abolish.git'
-Plugin 'osyo-manga/vim-over'
 Plugin 'terryma/vim-multiple-cursors'
 
 " Pick one of the checksyntax, jshint, or syntastic
@@ -61,9 +59,9 @@ endif
 " Plugin 'SirVer/ultisnips'
 
 " Neocomplete cache
-Plugin 'Shougo/neocomplcache'
-Plugin 'Shougo/neosnippet'
-Plugin 'Shougo/neosnippet-snippets'
+"Plugin 'Shougo/neocomplcache'
+"Plugin 'Shougo/neosnippet'
+"Plugin 'Shougo/neosnippet-snippets'
 
 " Dash documentation tool
 Plugin 'rizzatti/dash.vim'
@@ -141,10 +139,10 @@ Plugin 'Puppet-Syntax-Highlighting'
 Plugin 'Janiczek/vim-latte'
 
 " Processing
-Plugin 'sophacles/vim-processing'
+"Plugin 'sophacles/vim-processing'
 
 " Android
-Plugin 'hsanson/vim-android'
+"Plugin 'hsanson/vim-android'
 
 " Vimux for tmux integration
 Plugin 'benmills/vimux'
@@ -152,11 +150,7 @@ Plugin 'benmills/vimux'
 " Seamless navigation between tmux panes and vim splits
 Plugin 'christoomey/vim-tmux-navigator'
 
-" Vim cofworking
-" pip install twisted argparse
-Plugin 'FredKSchott/CoVim'
-
-Plugin 'tclem/vim-arduino'
+"Plugin 'tclem/vim-arduino'
 
 call vundle#end()
 filetype plugin indent on

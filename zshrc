@@ -13,7 +13,7 @@ fi
 # Customize to your needs...
 
 # Preferred editor for local and remote sessions
-export EDITOR='nvim'
+export EDITOR='vim'
 
 # Compilation flags
 export ARCHFLAGS="-arch x86_64"
@@ -28,9 +28,8 @@ alias s="subl"
 alias love="/Applications/love.app/Contents/MacOS/love"
 alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 
-# Use Neovim instead of vim
-alias v="nvim"
-alias nvim="NVIM_TUI_ENABLE_TRUE_COLOR=1 nvim"
+# vim
+alias v="vim"
 
 # folder aliases
 alias developer="cd ~/Developer/"
