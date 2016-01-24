@@ -36,6 +36,7 @@ Plugin 'vim-scripts/restore_view.vim'
 Plugin 'mhinz/vim-signify'
 Plugin 'tpope/vim-abolish.git'
 Plugin 'terryma/vim-multiple-cursors'
+Plugin 'tpope/vim-surround'
 
 " Pick one of the checksyntax, jshint, or syntastic
 Plugin 'scrooloose/syntastic'
@@ -55,8 +56,8 @@ if filereadable(expand("~/.vim/bundle/vim-snippets/snippets/support_functions.vi
 endif
 
 " You complete me
-" Plugin 'Valloric/YouCompleteMe'
-" Plugin 'SirVer/ultisnips'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'SirVer/ultisnips'
 
 " Neocomplete cache
 "Plugin 'Shougo/neocomplcache'
@@ -134,6 +135,9 @@ Plugin 'spf13/vim-preview'
 Plugin 'tpope/vim-cucumber'
 Plugin 'quentindecock/vim-cucumber-align-pipes'
 Plugin 'Puppet-Syntax-Highlighting'
+
+" ELIXIR
+Plugin 'elixir-lang/vim-elixir'
 
 " NETTE FW
 Plugin 'Janiczek/vim-latte'

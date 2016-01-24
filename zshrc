@@ -70,10 +70,15 @@ alias server="open http://localhost:8000 && http-server -p 8000"
 # When using sudo, use alias expansion (otherwise sudo ignores your aliases)
 alias sudo="sudo "
 
+# Docker
+alias dm="docker-machine"
+
 # setup path
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
-export PATH="$PATH:$(brew --prefix coreutils)/libexec/gnubin"
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+
+export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
 # set language
 export LC_ALL=en_US.UTF-8
