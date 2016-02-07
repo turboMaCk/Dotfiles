@@ -49,6 +49,7 @@ alias tmn="tmux new -s"
 # Rails aliases
 alias rails="bundle exec rails"
 alias rake="bundle exec rake"
+alias rspec="bundle exec rspec"
 
 # Shortcuts
 alias fs="stat -f \"%z bytes\""

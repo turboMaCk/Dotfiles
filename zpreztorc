@@ -49,6 +49,7 @@ zstyle ':prezto:load' pmodule \
   'osx' \
   'rails' \
   'ruby' \
+  'rails' \
   'ssh' \
   'tmux'
 

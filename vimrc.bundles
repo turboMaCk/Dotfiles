@@ -56,6 +56,7 @@ if filereadable(expand("~/.vim/bundle/vim-snippets/snippets/support_functions.vi
 endif
 
 " You complete me
+Plugin 'marijnh/tern_for_vim'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'SirVer/ultisnips'
 
@@ -90,6 +91,8 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'nono/vim-handlebars'
 Plugin 'dsawardekar/ember.vim'
 Plugin 'mxw/vim-jsx'
+" ELM
+Plugin 'lambdatoast/elm.vim'
 
 " JAVA
 "Plugin 'derekwyatt/vim-scala'
