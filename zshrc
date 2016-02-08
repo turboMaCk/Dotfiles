@@ -31,6 +31,9 @@ alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 # vim
 alias v="vim"
 
+# emacs
+alias e="emacs"
+
 # folder aliases
 alias developer="cd ~/Developer/"
 alias sites="cd ~/Sites/"
