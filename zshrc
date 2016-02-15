@@ -75,7 +75,11 @@ alias server="open http://localhost:8000 && http-server -p 8000"
 alias sudo="sudo "
 
 # Docker
+function _dmenv() {
+  eval $(docker-machine env $1)
+};
 alias dm="docker-machine"
+alias dme="_dmenv"
 
 # setup path
 export PATH="/usr/local/bin:$PATH"
