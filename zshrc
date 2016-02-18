@@ -81,6 +81,13 @@ function _dmenv() {
 alias dm="docker-machine"
 alias dme="_dmenv"
 
+# Toys
+function _wttr() {
+  url="wttr.in/$1"
+  curl $url
+}
+alias wttr="_wttr"
+
 # setup path
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
