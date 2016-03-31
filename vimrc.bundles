@@ -17,8 +17,10 @@ Plugin 'tomtom/tlib_vim'
 " Editor config is another have to
 Plugin 'editorconfig/editorconfig-vim'
 
-" Ack is better than grep
+" ~Ack~ AG is better than grep
 Plugin 'rking/ag.vim'
+
+Plugin 'matthewtodd/vim-twilight'
 
 " basic plugins
 Plugin 'scrooloose/nerdtree'
@@ -91,6 +93,7 @@ Plugin 'kchmck/vim-coffee-script'
 Plugin 'nono/vim-handlebars'
 Plugin 'dsawardekar/ember.vim'
 Plugin 'mxw/vim-jsx'
+
 " ELM
 Plugin 'lambdatoast/elm.vim'
 
@@ -144,6 +147,9 @@ Plugin 'elixir-lang/vim-elixir'
 
 " NETTE FW
 Plugin 'Janiczek/vim-latte'
+
+" RUST
+Plugin 'rust-lang/rust.vim'
 
 " Processing
 "Plugin 'sophacles/vim-processing'

@@ -294,7 +294,8 @@ endif
 
 " Setup colors
 set t_Co=256 " enable 256 colors
-colorscheme jellybeans " set colorscheme
+"colorscheme jellybeans " set colorscheme
+colorscheme twilight
 set background=dark
 
 " ===================================

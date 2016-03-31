@@ -80,6 +80,14 @@ function _dmenv() {
 };
 alias dm="docker-machine"
 alias dme="_dmenv"
+alias dcu="docker-compose up"
+alias dcs="docker-compose stop"
+
+# Fix no new lines endings
+function sanitizeFileEnds() {
+  find -type f -exec sh -c "tail -1 {} | xxd -p | tail -1 | grep -v 0a$" ';' -exec sh -c "echo >> {}" ';'
+}
+alias line-ends="sanitizeFileEnds"
 
 # Toys
 function _wttr() {
