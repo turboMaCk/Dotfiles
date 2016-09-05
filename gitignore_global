@@ -42,6 +42,10 @@ tags
 ehthumbs.db
 Thumbs.db
 
+# Emacs #
+#########
+.dir-locals.el
+
 # Sublime Text files #
 ######################
 .sublime-project

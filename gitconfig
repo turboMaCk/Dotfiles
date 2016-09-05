@@ -74,6 +74,7 @@
   pl = pull
   #############
   rb = rebase
+  rbi = rebase -i
   #############
   tree = log --graph --decorate --pretty=oneline --abbrev-commit
   ############
