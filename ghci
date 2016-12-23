@@ -1,1 +1,9 @@
 :set prompt "ghci> "
+
+-- Utils
+
+let ghciEscapeShellArg arg = "'" ++ concatMap (\c -> if c == '\"' then "'\"'\"'" else [c]) arg ++ "'"
+
+-- Hoogle
+:def! search return . (":! stack exec hoogle -- --color " ++) . ghciEscapeShellArg
+:def! doc return . (":! stack exec hoogle -- --info --color " ++) .ghciEscapeShellArg
