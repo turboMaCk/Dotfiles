@@ -132,7 +132,7 @@ Install Shell Theme
 $ sh ~/Dotfiles/prezto-Prague-Shell/bin/install.sh
 ```
 
-Install Dontfiles itself
+Install Dotfiles itself
 ```shell
 $ sh ~/Dotfiles/bin/dotfiles.sh
 ```
