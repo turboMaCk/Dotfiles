@@ -115,3 +115,4 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 # NVM
 export NVM_DIR=~/.nvm
 if which brew > /dev/null; then source "$(brew --prefix nvm)/nvm.sh"; fi
+export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
