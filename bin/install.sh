@@ -25,4 +25,3 @@ source ~/.profile
 printf "Installing ssh-copy-id script..."
 sudo curl “https://raw.github.com/garmoncheg/ssh-copy-id-for-OSX/master/ssh-copy-id.sh” -o /usr/bin/ssh-copy-id
 chmod +x /usr/bin/ssh-copy-id
-

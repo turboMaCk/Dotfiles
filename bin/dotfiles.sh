@@ -57,4 +57,3 @@ ln -fs ~/.irssirc ~/.irssi/config
 
 # CD back
 cd $pwd
-

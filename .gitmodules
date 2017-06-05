@@ -1,3 +1,6 @@
 [submodule "prezto-Prague-Shell"]
 	path = prezto-Prague-Shell
 	url = git@github.com:turboMaCk/prezto-Prague-Shell.git
+[submodule "prezto"]
+	path = prezto
+	url = git@github.com:turboMaCk/prezto.git
