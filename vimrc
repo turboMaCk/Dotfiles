@@ -9,6 +9,9 @@ set noerrorbells
 " Leader
 let mapleader = ","
 
+" File Type
+filetype plugin on
+
 " backup, undo and swap files
 set backup
 set undofile
@@ -483,12 +486,6 @@ endif
 set completeopt-=preview
 
 " ======================
-" RSPEC
-" ======================
-map <Leader>t :call RunCurrentSpecFile()<CR>
-map <Leader>r :call RunLastSpec()<CR>
-
-" ======================
 " UNDO TREE
 " ======================
 nnoremap <Leader>u :UndotreeToggle<CR>
@@ -520,7 +517,9 @@ map <leader>d :Dash
 map <leader>D :Dash<CR>
 
 " ======================
-" CoVim
+" Elm
 " ======================
-let CoVim_default_name = "cowork"
-let CoVim_default_port = "6262"
+let g:elm_format_autosave = 1
+let g:ycm_semantic_triggers = {
+     \ 'elm' : ['.'],
+     \}
