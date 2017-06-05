@@ -25,7 +25,6 @@ export SSH_KEY_PATH="~/.ssh/"
 alias g="git"
 alias tm="tmux"
 alias s="subl"
-alias love="/Applications/love.app/Contents/MacOS/love"
 alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 
 # vim
