@@ -9,7 +9,7 @@ cd $cwd
 cd ..
 
 # Files to backup and symlink
-dotfiles=('agrc' 'gemrc' 'gitconfig' 'gitignore_global' 'tmux.conf' 'vimrc' 'vimrc.bundles' 'nvimrc' 'zpreztorc' 'zshrc' 'irssirc', 'ghci')
+dotfiles=('agrc' 'gemrc' 'gitconfig' 'gitignore_global' 'tmux.conf' 'tmux.mac' 'vimrc' 'vimrc.bundles' 'nvimrc' 'zpreztorc' 'zshrc' 'irssirc' 'ghci')
 
 # Backup directory
 backup_dir="$(pwd)/backup"
@@ -53,7 +53,7 @@ done
 ln -fs ~/.vim ~/.nvim
 
 # symlink irc config
-ln -fs ~/.irssirc ~/.irssi/config
+#if ls ~/.irssi/config > /dev/null; then ln -fs ~/.irssirc ~/.irssi/config/.irssirc; fi
 
 # CD back
 cd $pwd
