@@ -28,6 +28,7 @@ alias s="subl"
 alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 
 # vim
+alias vi="vim"
 alias v="vim"
 
 # emacs
@@ -66,9 +67,6 @@ alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && k
 # Show/Hide hidden files
 alias showdots="defaults write com.apple.finder AppleShowAllFiles TRUE & killall Finder"
 alias hidedots="defaults write com.apple.finder AppleShowAllFiles FALSE & killall Finder"
-
-# Http server
-alias server="open http://localhost:8000 && http-server -p 8000"
 
 # When using sudo, use alias expansion (otherwise sudo ignores your aliases)
 alias sudo="sudo "
@@ -117,3 +115,6 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 export NVM_DIR=~/.nvm
 export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
 if which brew > /dev/null; then source "$(brew --prefix nvm)/nvm.sh"; fi
+
+# OPAM configuration
+. /Users/marek/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
