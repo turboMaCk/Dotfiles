@@ -5,7 +5,6 @@ tags
 # Compiled source #
 ###################
 *.app
-*.com
 *.class
 *.dll
 *.exe
