@@ -3,6 +3,7 @@
 #
 # Authors:
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
+#   Marek Fajkus <marek.faj@gmail.com>
 #
 
 # Source Prezto.

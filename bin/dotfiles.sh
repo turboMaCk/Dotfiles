@@ -9,7 +9,26 @@ cd $cwd
 cd ..
 
 # Files to backup and symlink
-dotfiles=('agrc' 'gemrc' 'gitconfig' 'gitignore_global' 'tmux.conf' 'tmux.mac' 'vimrc' 'vimrc.bundles' 'nvimrc' 'zpreztorc' 'zshrc' 'irssirc' 'ghci')
+dotfiles=('agrc'
+          'gemrc'
+          'gitconfig'
+          'gitignore_global'
+          'tmux.conf'
+          'tmux.mac'
+          'vimrc'
+          'vimrc.bundles'
+          'nvimrc'
+          'zpreztorc'
+          'zshrc'
+          'irssirc'
+          'ghci'
+          'Xresources'
+          'Xmodmap'
+          'xinitrc'
+          'xmobarrc'
+          'xmonad'
+          'emacs.d'
+          'stalonetrayrc')
 
 # Backup directory
 backup_dir="$(pwd)/backup"
