@@ -121,6 +121,3 @@ fi
 
 # OPAM configuration
 . /Users/marek/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-
-# Emacs Cask
-export PATH="/home/marek/.cask/bin:$PATH"
