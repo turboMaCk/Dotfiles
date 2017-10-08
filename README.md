@@ -1,20 +1,21 @@
 turbo_MaCk's dotfiles
 =====================
-This repository contains my dotfiles and setup **OSX** development machine.
+This repository contains my dotfiles and setup **macOS/Linux** development machine.
 
 * server config: https://github.com/turboMaCk/dotserver
 
 Developement setup
 ==================
-Developement setup using ZSH, Prezto and much more.
+Developement setup using ZSH, Prezto, Vim & other sw.
 
 ## Submodules
 * Custom prezto theme [turboMaCk/prezto-Prague-Shell](https://github.com/turboMaCk/prezto-Prague-Shell)
 
-## Requirements
-* OSX
-* XCode + Command Line Tools
-* ZSH
+Clone this repository with all submodules:
+
+```shell
+git clone --recursive https://github.com/turboMaCK/Dotfiles.git "${ZDOTDIR:-$HOME}/Dotfiles"
+```
 
 ## Install via bin/install.sh
 * Homebrew (ruby + curl)

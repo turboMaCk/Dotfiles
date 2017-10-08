@@ -69,7 +69,6 @@ alias showdots="defaults write com.apple.finder AppleShowAllFiles TRUE & killall
 alias hidedots="defaults write com.apple.finder AppleShowAllFiles FALSE & killall Finder"
 
 # When using sudo, use alias expansion (otherwise sudo ignores your aliases)
-alias sudo="sudo "
 
 # Docker
 function _dmenv() {
@@ -94,6 +93,7 @@ function _wttr() {
 }
 alias wttr="_wttr"
 
+
 # setup path
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
@@ -113,8 +113,11 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
 # NVM
 export NVM_DIR=~/.nvm
-export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-if which brew > /dev/null; then source "$(brew --prefix nvm)/nvm.sh"; fi
+if which brew > /dev/null; then
+  source "$(brew --prefix nvm)/nvm.sh";
+else
+  source /usr/share/nvm/nvm.sh
+fi
 
 # OPAM configuration
 . /Users/marek/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
