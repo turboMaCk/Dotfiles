@@ -94,9 +94,6 @@ function _wttr() {
 alias wttr="_wttr"
 
 
-# Linux Brew
-export PATH="/home/linuxbrew/.linuxbrew/bin:$PATH"
-
 # setup path
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
