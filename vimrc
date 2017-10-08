@@ -2,6 +2,210 @@
 " possible, as it has side effects.
 set nocompatible
 
+"==============
+"  Bundles
+"==============
+" required
+filetype off
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+" Use Vundle for plugin management
+Plugin 'gmarik/Vundle.vim'
+
+" Cache files
+Plugin 'vim-addon-mw-utils'
+
+" Another have to bundle
+Plugin 'tomtom/tlib_vim'
+
+" Editor config is another have to
+Plugin 'editorconfig/editorconfig-vim'
+
+" ~Ack~ AG is better than grep
+Plugin 'rking/ag.vim'
+
+Plugin 'matthewtodd/vim-twilight'
+
+" basic plugins
+Plugin 'scrooloose/nerdtree'
+Plugin 'spf13/vim-autoclose'
+Plugin 'ChrisKempson/Vim-Tomorrow-Theme'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'vim-scripts/sessionman.vim'
+Plugin 'matchit.zip'
+Plugin 'bling/vim-airline'
+Plugin 'Lokaltog/vim-easymotion'
+Plugin 'jistr/vim-nerdtree-tabs'
+Plugin 'mbbill/undotree'
+Plugin 'vim-scripts/restore_view.vim'
+Plugin 'mhinz/vim-signify'
+Plugin 'tpope/vim-abolish.git'
+Plugin 'terryma/vim-multiple-cursors'
+Plugin 'tpope/vim-surround'
+
+" Pick one of the checksyntax, jshint, or syntastic
+Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-fugitive'
+Plugin 'mattn/webapi-vim'
+Plugin 'mattn/gist-vim'
+Plugin 'scrooloose/nerdcommenter'
+Plugin 'godlygeek/tabular'
+Plugin 'majutsushi/tagbar'
+
+" Snippets
+Plugin 'garbas/vim-snipmate'
+Plugin 'honza/vim-snippets'
+" Source support_function.vim to support vim-snippets.
+if filereadable(expand("~/.vim/bundle/vim-snippets/snippets/support_functions.vim"))
+    source ~/.vim/bundle/vim-snippets/snippets/support_functions.vim
+endif
+
+" You complete me
+Plugin 'marijnh/tern_for_vim'
+Plugin 'Valloric/YouCompleteMe'
+Plugin 'SirVer/ultisnips'
+
+" Neocomplete cache
+"Plugin 'Shougo/neocomplcache'
+"Plugin 'Shougo/neosnippet'
+"Plugin 'Shougo/neosnippet-snippets'
+
+" Dash documentation tool
+Plugin 'rizzatti/dash.vim'
+
+"=================================
+" LANGUAGES / FRAMEWORKS SPECIFIC
+"=================================
+
+" PHP
+Plugin 'spf13/PIV'
+Plugin 'arnaud-lb/vim-php-namespace'
+
+" PYTHON
+" Pick either python-mode or pyflakes & pydoc
+"Plugin 'klen/python-mode'
+"Plugin 'python.vim'
+"Plugin 'python_match.vim'
+"Plugin 'pythoncomplete'
+
+" JAVASCRIPT
+Plugin 'elzr/vim-json'
+Plugin 'pangloss/vim-javascript'
+Plugin 'briancollins/vim-jst'
+Plugin 'kchmck/vim-coffee-script'
+Plugin 'nono/vim-handlebars'
+Plugin 'dsawardekar/ember.vim'
+Plugin 'mxw/vim-jsx'
+
+" ELM
+Plugin 'lambdatoast/elm.vim'
+
+" JAVA
+"Plugin 'derekwyatt/vim-scala'
+"Plugin 'derekwyatt/vim-sbt'
+
+" HASKEL
+"Plugin 'travitch/hasksyn'
+"Plugin 'dag/vim2hs'
+"Plugin 'Twinside/vim-haskellConceal'
+"Plugin 'lukerandall/haskellmode-vim'
+"Plugin 'eagletmt/neco-ghc'
+"Plugin 'eagletmt/ghcmod-vim'
+"Plugin 'Shougo/vimproc'
+"Plugin 'adinapoli/cumino'
+"Plugin 'bitc/vim-hdevtools'
+
+" HTML
+Plugin 'ypid/HTML-AutoCloseTag'
+Plugin 'othree/html5.vim'
+Plugin 'gorodinskiy/vim-coloresque'
+Plugin 'tpope/vim-haml'
+Plugin 'digitaltoad/vim-jade'
+Plugin 'mattn/emmet-vim'
+
+" CSS/preprocessors
+Plugin 'hail2u/vim-css3-syntax'
+Plugin 'groenewege/vim-less'
+Plugin 'wavded/vim-stylus'
+" haml bundle include sass support
+
+" RUBY
+Plugin 'tpope/vim-rails'
+Plugin 'thoughtbot/vim-rspec'
+Plugin 'tpope/vim-endwise'
+Plugin 'yaymukund/vim-rabl'
+
+" GO
+"Plugin 'Blackrush/vim-gocode'
+
+" TEXT
+Plugin 'tpope/vim-markdown'
+Plugin 'spf13/vim-preview'
+Plugin 'tpope/vim-cucumber'
+Plugin 'quentindecock/vim-cucumber-align-pipes'
+Plugin 'Puppet-Syntax-Highlighting'
+
+" ELIXIR
+Plugin 'elixir-lang/vim-elixir'
+
+" NETTE FW
+Plugin 'Janiczek/vim-latte'
+
+" RUST
+Plugin 'rust-lang/rust.vim'
+
+" Processing
+"Plugin 'sophacles/vim-processing'
+
+" Android
+"Plugin 'hsanson/vim-android'
+
+" Vimux for tmux integration
+Plugin 'benmills/vimux'
+
+" Seamless navigation between tmux panes and vim splits
+Plugin 'christoomey/vim-tmux-navigator'
+
+"Plugin 'tclem/vim-arduino'
+
+call vundle#end()
+filetype plugin indent on
+
+" HTML 5
+" Vim syntax file
+" Language:     HTML (version 5)
+" Maintainer:   Rodrigo Machado <rcmachado@gmail.com>
+" URL:          http://gist.github.com/256840
+" Last Change:  2010 Aug 26
+" License:      Public domain
+"               (but let me know if you liked it :) )
+"
+" Note: This file just adds the new tags from HTML 5
+"       and don't replace default html.vim syntax file
+
+" HTML 5 tags
+syn keyword htmlTagName contained article aside audio bb canvas command datagrid
+syn keyword htmlTagName contained datalist details dialog embed figure footer
+syn keyword htmlTagName contained header hgroup keygen mark meter nav output
+syn keyword htmlTagName contained progress time ruby rt rp section time video
+syn keyword htmlTagName contained source figcaption
+
+" HTML 5 arguments
+syn keyword htmlArg contained autofocus autocomplete placeholder min max step
+syn keyword htmlArg contained contenteditable contextmenu draggable hidden item
+syn keyword htmlArg contained itemprop list sandbox subject spellcheck
+syn keyword htmlArg contained novalidate seamless pattern formtarget manifest
+syn keyword htmlArg contained formaction formenctype formmethod formnovalidate
+syn keyword htmlArg contained sizes scoped async reversed sandbox srcdoc
+syn keyword htmlArg contained hidden role
+syn match   htmlArg "\<\(aria-[\-a-zA-Z0-9_]\+\)=" contained
+syn match   htmlArg contained "\s*data-[-a-zA-Z0-9_]\+"
+
+
 " Disable bleep!
 set visualbell
 set noerrorbells
@@ -290,11 +494,6 @@ function! WrapRelativeMotion(key, ...)
     endif
 endfunction
 
-" load boundles
-if filereadable(expand("~/.vimrc.bundles"))
-  source ~/.vimrc.bundles
-endif
-
 " Setup colors
 set t_Co=256 " enable 256 colors
 "colorscheme jellybeans " set colorscheme
@@ -513,7 +712,7 @@ let g:airline_right_sep=''
 " ======================
 " Dash
 " ======================
-map <leader>d :Dash 
+map <leader>d :Dash
 map <leader>D :Dash<CR>
 
 " ======================
