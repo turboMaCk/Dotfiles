@@ -12,4 +12,5 @@ killall stalonetray \
         redshift-gtk \
         rescruetime \
         browserpass \
-        wire-desktop
+        wire-desktop \
+        lightscreen

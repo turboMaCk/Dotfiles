@@ -21,9 +21,9 @@ xset +fp /usr/share/fonts/local
 numlockx on
 
 # compositer
-compton -d
 
-# set background
+# set background and xompositor
 feh --bg-fill ~/Dotfiles/images/wallpaper.jpg &
+compton -vsync opengl -cb
 
 exec xmonad

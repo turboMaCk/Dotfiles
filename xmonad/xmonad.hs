@@ -19,6 +19,7 @@ import XMonad.Layout.GridVariants
 import XMonad.Layout.Spacing              (spacingWithEdge)
 import qualified XMonad.Hooks.ManageDocks as Docks
 import qualified XMonad.StackSet          as W
+import XMonad.Util.Scratchpad             (scratchpadManageHook, scratchpadSpawnActionTerminal)
 
 import System.Exit                        (ExitCode(ExitSuccess), exitWith)
 import Data.Monoid                        (Endo)
@@ -41,6 +42,9 @@ main = xmonad =<< statusBar myBar myPP toggleStrutsKey myConfig
 myBar :: String
 myBar = "xmobar"
 
+myTerminal :: String
+myTerminal = "urxvt"
+
 
 -- Custom PP, configure it as you like. It determines what is being written to the bar.
 myPP :: PP
@@ -59,17 +63,26 @@ toggleStrutsKey XConfig { XMonad.modMask = modM } = ( modM, xK_b )
 
 -- Main configuration, override the defaults to your liking.
 myConfig = def { modMask            = mod1Mask
-               , terminal           = "urxvt"
+               , terminal           = myTerminal
                , workspaces         = myWorkspaces
                , keys               = myKeys
                , layoutHook         = smartBorders $ myLayoutHook
                , focusedBorderColor = "#2E9AFE"
                , normalBorderColor  = "#000000"
-               , manageHook         = myManageHook <+> manageHook def
+               , manageHook         = myManageHook <+> manageHook def <+> manageScratchPad
                , borderWidth        = 2
                , startupHook        = myStartupHook
                }
 
+-- then define your scratchpad management separately:
+manageScratchPad :: ManageHook
+manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
+  where
+
+    h = 0.1     -- terminal height, 10%
+    w = 1       -- terminal width, 100%
+    t = 1 - h   -- distance from top edge, 90%
+    l = 1 - w   -- distance from left edge, 0%
 
 xmobarEscape :: String -> String
 xmobarEscape = concatMap doubleLts
@@ -110,7 +123,7 @@ myWorkspaces = clickable . (map xmobarEscape) $
 myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
 
     -- launch a terminal
-    [ ((mod1Mask .|. shiftMask, xK_t), spawn "urxvt")
+    [ ((mod1Mask .|. shiftMask, xK_t), spawn myTerminal)
 
     -- launch a browser
     , ((mod1Mask .|. shiftMask, xK_b    ), spawn "chromium")
@@ -175,6 +188,7 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
 
     -- Restart xmonad
     , ((modMasq .|. shiftMask, xK_q     ), spawn "xmonad --recompile; ~/.xmonad/kill.sh; notify-send \"XMonad\" \"Reloaded!\"; xmonad --restart")
+    , ((modMasq, xK_w),    scratchpadSpawnActionTerminal myTerminal)
     ]
     ++
 

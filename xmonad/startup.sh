@@ -12,4 +12,5 @@ volumeicon &
 redshift-gtk &
 rescuetime &
 browserpass &
-wire-desktop
+wire-desktop &
+lightscreen -d
