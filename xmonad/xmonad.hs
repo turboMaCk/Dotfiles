@@ -78,7 +78,6 @@ myConfig = def { modMask            = mod1Mask
 manageScratchPad :: ManageHook
 manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
   where
-
     h = 0.1     -- terminal height, 10%
     w = 1       -- terminal width, 100%
     t = 1 - h   -- distance from top edge, 90%
@@ -188,7 +187,7 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
 
     -- Restart xmonad
     , ((modMasq .|. shiftMask, xK_q     ), spawn "xmonad --recompile; ~/.xmonad/kill.sh; notify-send \"XMonad\" \"Reloaded!\"; xmonad --restart")
-    , ((modMasq, xK_w),    scratchpadSpawnActionTerminal myTerminal)
+    , ((modMasq, xK_s),    scratchpadSpawnActionTerminal myTerminal)
     ]
     ++
 
