@@ -13,62 +13,6 @@ fi
 
 # Customize to your needs...
 
-# Preferred editor for local and remote sessions
-export EDITOR='vim'
-
-# Compilation flags
-export ARCHFLAGS="-arch x86_64"
-
-# ssh
-export SSH_KEY_PATH="~/.ssh/"
-
-# ALIASES
-alias g="git"
-alias tm="tmux"
-alias s="subl"
-alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
-
-# vim
-alias vi="vim"
-alias v="vim"
-
-# emacs
-alias e="emacs"
-
-# folder aliases
-alias developer="cd ~/Developer/"
-alias sites="cd ~/Sites/"
-alias documents="cd ~/Documents/"
-alias downloads="cd ~/Downloads/"
-alias dotfiles="cd ~/Dotfiles/"
-alias desktop="cd ~/Desktop/"
-
-# tmux aliases
-alias tml="tmux list-sessions"
-alias tma="tmux attach-session -t"
-alias tmc="clear && tmux clear-history"
-alias tmk="tmux kill-session"
-alias tmn="tmux new -s"
-
-# Rails aliases
-alias rails="bundle exec rails"
-alias rake="bundle exec rake"
-alias rspec="bundle exec rspec"
-
-# Shortcuts
-alias fs="stat -f \"%z bytes\""
-
-# Empty all thrashes
-alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; rm -rfv ~/.Trash"
-
-# Hide/show all desktop icons (useful when presenting)
-alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
-alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
-
-# Show/Hide hidden files
-alias showdots="defaults write com.apple.finder AppleShowAllFiles TRUE & killall Finder"
-alias hidedots="defaults write com.apple.finder AppleShowAllFiles FALSE & killall Finder"
-
 # When using sudo, use alias expansion (otherwise sudo ignores your aliases)
 
 # Docker
@@ -85,29 +29,12 @@ alias dcs="docker-compose stop"
 function sanitizeFileEnds() {
   find -type f -exec sh -c "tail -1 {} | xxd -p | tail -1 | grep -v 0a$" ';' -exec sh -c "echo >> {}" ';'
 }
-alias line-ends="sanitizeFileEnds"
 
 # Toys
 function _wttr() {
   url="wttr.in/$1"
   curl $url
 }
-alias wttr="_wttr"
-
-
-# setup path
-export PATH="/usr/local/bin:$PATH"
-export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-export PATH="$HOME/.cabal/bin:$PATH"
-export PATH="$HOME/.local/bin:$PATH"
-export LIBRARY_PATH="$LIBRARY_PATH:/usr/local/lib"
-
-export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
-
-# set language
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
 
 # RBENV
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
@@ -120,5 +47,10 @@ else
   source /usr/share/nvm/nvm.sh
 fi
 
-# OPAM configuration
+# OPAM (OCaml) configuration
 . /Users/marek/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+
+# source aliases
+if [ -f ~/.aliases ]; then
+    . ~/.aliases
+fi

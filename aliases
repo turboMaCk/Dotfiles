@@ -1,0 +1,49 @@
+alias g="git"
+alias tm="tmux"
+alias s="subl"
+alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
+
+# vim
+alias vi="vim"
+alias v="vim"
+
+# emacs
+alias e="emacs"
+
+# folder aliases
+alias developer="cd ~/Developer/"
+alias sites="cd ~/Sites/"
+alias documents="cd ~/Documents/"
+alias downloads="cd ~/Downloads/"
+alias dotfiles="cd ~/Dotfiles/"
+alias desktop="cd ~/Desktop/"
+
+# tmux aliases
+alias tml="tmux list-sessions"
+alias tma="tmux attach-session -t"
+alias tmc="clear && tmux clear-history"
+alias tmk="tmux kill-session"
+alias tmn="tmux new -s"
+
+# Rails aliases
+alias rails="bundle exec rails"
+alias rake="bundle exec rake"
+alias rspec="bundle exec rspec"
+
+# Shortcuts
+alias fs="stat -f \"%z bytes\""
+
+# Empty all thrashes
+alias emptytrash="sudo rm -rfv /Volumes/*/.Trashes; rm -rfv ~/.Trash"
+
+# Hide/show all desktop icons (useful when presenting)
+alias hidedesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+alias showdesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+
+# Show/Hide hidden files
+alias showdots="defaults write com.apple.finder AppleShowAllFiles TRUE & killall Finder"
+alias hidedots="defaults write com.apple.finder AppleShowAllFiles FALSE & killall Finder"
+
+# functions
+alias line-ends="sanitizeFileEnds"
+alias wttr="_wttr"
