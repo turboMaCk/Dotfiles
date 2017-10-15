@@ -8,7 +8,15 @@ alias vi="vim"
 alias v="vim"
 
 # emacs
-alias e="emacs"
+alias emacs="emacsclient -t"
+alias e="emacsclient -t"
+
+# docker
+alias dm="docker-machine"
+alias dco="docker-compose"
+alias dme="_dmenv"
+alias dcu="docker-compose up"
+alias dcs="docker-compose stop"
 
 # folder aliases
 alias developer="cd ~/Developer/"

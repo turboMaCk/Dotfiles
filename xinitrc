@@ -21,18 +21,9 @@ xset +fp /usr/share/fonts/local
 numlockx on
 
 # compositer
-compton
+compton -d
 
 # set background
 feh --bg-fill ~/Dotfiles/images/wallpaper.jpg &
-
-# auto start applications
-dropbox &
-caprine &
-volumeicon &
-redshift-gtk &
-rescuetime &
-browserpass &
-wire=desktop
 
 exec xmonad

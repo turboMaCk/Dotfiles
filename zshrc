@@ -15,15 +15,10 @@ fi
 
 # When using sudo, use alias expansion (otherwise sudo ignores your aliases)
 
-# Docker
+# Docker Machine ENV
 function _dmenv() {
   eval $(docker-machine env $1)
 };
-alias dm="docker-machine"
-alias dco="docker-compose"
-alias dme="_dmenv"
-alias dcu="docker-compose up"
-alias dcs="docker-compose stop"
 
 # Fix no new lines endings
 function sanitizeFileEnds() {

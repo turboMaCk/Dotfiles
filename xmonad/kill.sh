@@ -5,4 +5,11 @@
 #############
 # This script should be fired when xmonad is restarting
 
-killall stalonetray
+killall stalonetray \
+        dropbox \
+        caprine \
+        volumeicon \
+        redshift-gtk \
+        rescruetime \
+        browserpass \
+        wire-desktop

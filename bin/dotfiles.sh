@@ -65,11 +65,11 @@ printf "Creating symlinks to $pwd directory\n"
 
 # loop all
 for i in "${dotfiles[@]}"; do
-  ln -fs $dotfiles_dir/$i ~/.$i
+  ln -fs $dotfiles_dir/$i $HOME/.$i
 done
 
 # symlink neovim
-ln -fs ~/.vim ~/.nvim
+# ln -fs ~/.vim ~/.nvim
 
 # symlink irc config
 #if ls ~/.irssi/config > /dev/null; then ln -fs ~/.irssirc ~/.irssi/config/.irssirc; fi
