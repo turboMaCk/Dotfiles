@@ -216,6 +216,7 @@ myManageHook = composeAll
     , className =? "Spotify"      --> doFloat
     , className =? "Slack"        --> doShift communicateW
     , className =? "Thunderbird"  --> doShift emailW
+    , className =? "Wire"         --> doFloat
     , className =? "Caprine"      --> doFloat
     , className =? "pinentry"     --> doFloat
     , Docks.manageDocks

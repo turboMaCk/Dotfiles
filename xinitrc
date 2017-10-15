@@ -1,3 +1,5 @@
+#!/bin/bash
+
 if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 	for f in /etc/X11/xinit/xinitrc.d/?* ; do
 		[ -x "$f" ] && . "$f"
@@ -16,5 +18,21 @@ xset +fp /usr/share/fonts/local
 
 # xmodmap
 [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
+numlockx on
+
+# compositer
+compton
+
+# set background
+feh --bg-fill ~/Dotfiles/images/wallpaper.jpg &
+
+# auto start applications
+dropbox &
+caprine &
+volumeicon &
+redshift-gtk &
+rescuetime &
+browserpass &
+wire=desktop
 
 exec xmonad
