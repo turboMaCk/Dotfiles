@@ -13,6 +13,7 @@
 import XMonad
 import XMonad.Hooks.ManageHelpers         (isFullscreen, doFullFloat)
 import XMonad.Hooks.DynamicLog            (PP, ppVisible, ppCurrent, ppTitle, ppLayout, ppUrgent, statusBar, xmobarColor, xmobarPP, wrap)
+import XMonad.Actions.CopyWindow          (copyToAll)
 import XMonad.Layout.NoBorders            (smartBorders)
 import XMonad.Layout.Fullscreen           (fullscreenFull)
 import XMonad.Layout.GridVariants
@@ -20,6 +21,9 @@ import XMonad.Layout.Spacing              (spacingWithEdge)
 import qualified XMonad.Hooks.ManageDocks as Docks
 import qualified XMonad.StackSet          as W
 import XMonad.Util.Scratchpad             (scratchpadManageHook, scratchpadSpawnActionTerminal)
+import XMonad.Util.NamedScratchpad
+-- import XMonad.Hooks.EwmhDesktops (ewmh, fullscreenEventHook)
+
 
 import System.Exit                        (ExitCode(ExitSuccess), exitWith)
 import Data.Monoid                        (Endo)
@@ -82,6 +86,12 @@ manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
     w = 1       -- terminal width, 100%
     t = 1 - h   -- distance from top edge, 90%
     l = 1 - w   -- distance from left edge, 0%
+
+
+scratchpads = [ NS "htop" "urxvt -e htop" (title =? "htop") defaultFloating
+              , NS "caprine" "caprine" (title =? "Caprine") defaultFloating
+              , NS "wire" "wire" (title =? "Wire") defaultFloating
+              ] where role = stringProperty "WM_WINDOW_ROLE"
 
 xmobarEscape :: String -> String
 xmobarEscape = concatMap doubleLts
@@ -158,6 +168,8 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
     -- Move focus to the master window
     , ((modMasq,               xK_m     ), windows W.focusMaster)
 
+    , ((modMasq,               xK_a     ), windows copyToAll)
+
     -- Swap the focused window and the master window
     , ((modMasq,               xK_Return), windows W.swapMaster)
 
@@ -185,9 +197,11 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
     -- Quit xmonad
     , ((modMasq .|. shiftMask, xK_c     ), io (exitWith ExitSuccess))
 
+    -- Chat
+    , ((modMasq .|. shiftMask, xK_f     ), namedScratchpadAction scratchpads "caprine")
+
     -- Restart xmonad
     , ((modMasq .|. shiftMask, xK_q     ), spawn "xmonad --recompile; ~/.xmonad/kill.sh; notify-send \"XMonad\" \"Reloaded!\"; xmonad --restart")
-    , ((modMasq, xK_s),    scratchpadSpawnActionTerminal myTerminal)
     ]
     ++
 
@@ -226,12 +240,11 @@ myStartupHook = do
 myManageHook :: Query (Endo WindowSet)
 myManageHook = composeAll
     [ className =? "stalonetray"  --> doIgnore
-    , className =? "Spotify"      --> doFloat
     , className =? "Slack"        --> doShift communicateW
-    , className =? "Thunderbird"  --> doShift emailW
+    , className =? "thunderbird"  --> doShift emailW
     , className =? "Wire"         --> doFloat
     , className =? "Caprine"      --> doFloat
-    , className =? "pinentry"     --> doFloat
+    -- , className =? "pinentry"     --> doFloat
     , Docks.manageDocks
     , isFullscreen                --> (doF W.focusDown <+> doFullFloat)
     ]

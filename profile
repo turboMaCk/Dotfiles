@@ -19,5 +19,9 @@ export PATH="$HOME/.cabal/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export LIBRARY_PATH="$LIBRARY_PATH:/usr/local/lib"
 
+# Arch specific
+export PATH="/sbin:$PATH"
+export PATH="/usr/bin:$PATH"
+
 # Mac with Home Brew specific
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
