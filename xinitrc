@@ -23,7 +23,5 @@ numlockx on
 # compositer
 
 # set background and xompositor
-feh --bg-fill ~/Dotfiles/images/wallpaper.jpg &
-compton -vsync opengl -cb
-
+feh --bg-center ~/Dotfiles/images/wallpaper.jpg &
 exec xmonad

@@ -16,8 +16,10 @@ import XMonad.Hooks.DynamicLog            (PP, ppVisible, ppCurrent, ppTitle, pp
 import XMonad.Actions.CopyWindow          (copyToAll)
 import XMonad.Layout.NoBorders            (smartBorders)
 import XMonad.Layout.Fullscreen           (fullscreenFull)
-import XMonad.Layout.GridVariants
+import XMonad.Layout.Accordion            (Accordion(Accordion))
 import XMonad.Layout.Spacing              (spacingWithEdge)
+import XMonad.Layout.WorkspaceDir         (workspaceDir, changeDir)
+import XMonad.Prompt
 import qualified XMonad.Hooks.ManageDocks as Docks
 import qualified XMonad.StackSet          as W
 import XMonad.Util.Scratchpad             (scratchpadManageHook, scratchpadSpawnActionTerminal)
@@ -52,10 +54,10 @@ myTerminal = "urxvt"
 
 -- Custom PP, configure it as you like. It determines what is being written to the bar.
 myPP :: PP
-myPP = xmobarPP { ppVisible = xmobarColor "#ffffff" ""
-                , ppCurrent = xmobarColor "#222222" "#2E9AFE"
-                , ppTitle   = xmobarColor "#2E9AFE" ""
-                , ppLayout  = xmobarColor "#888888" ""
+myPP = xmobarPP { ppVisible = xmobarColor "#808080" ""
+                , ppCurrent = xmobarColor "#2E9AFE" ""
+                , ppTitle   = xmobarColor "#808080" ""
+                , ppLayout  = xmobarColor "#444444" ""
                 , ppUrgent  = xmobarColor "#900000" "" . wrap "[" "]"
                 }
 
@@ -71,10 +73,10 @@ myConfig = def { modMask            = mod1Mask
                , workspaces         = myWorkspaces
                , keys               = myKeys
                , layoutHook         = smartBorders $ myLayoutHook
-               , focusedBorderColor = "#2E9AFE"
+               , focusedBorderColor = "#808080"
                , normalBorderColor  = "#000000"
                , manageHook         = myManageHook <+> manageHook def <+> manageScratchPad
-               , borderWidth        = 2
+               , borderWidth        = 1
                , startupHook        = myStartupHook
                }
 
@@ -99,29 +101,31 @@ xmobarEscape = concatMap doubleLts
         doubleLts x   = [x]
 
 
-webW = "\xf268"
+webW = "\xf269"
 codeW = "\xf121"
 communicateW = "\xf086"
 emailW = "\xf0e0"
 terminalW = "\xf120"
 musicW = "\xf1bc"
+virtualW = "\xf17a"
+hiddenW = ""
 
 
 myWorkspaces :: [String]
 myWorkspaces = clickable . (map xmobarEscape) $
   [ webW
-  , codeW
   , communicateW
   , emailW
+  , codeW
+  , codeW
+  , terminalW
+  , terminalW
   , musicW
-  , terminalW
-  , terminalW
-  , terminalW
-  , terminalW ]
+  , virtualW ]
   where
     clickable l = [ " <action=xdotool key alt+" ++ show n ++ ">" ++ ws ++ "</action> " |
-                    (i , ws) <- zip [1..9] l,
-                    let n = i ]
+                    (i , ws) <- zip [1..10] l,
+                    let n = i ] ++ [ hiddenW ]
 
 
 -------------------------------------
@@ -132,16 +136,23 @@ myWorkspaces = clickable . (map xmobarEscape) $
 myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
 
     -- launch a terminal
-    [ ((mod1Mask .|. shiftMask, xK_t), spawn myTerminal)
+    [ ((modMasq .|. shiftMask, xK_t     ), spawn myTerminal)
+
+    -- set directory
+    , ((modMasq .|. shiftMask, xK_x     ), changeDir def)
 
     -- launch a browser
-    , ((mod1Mask .|. shiftMask, xK_b    ), spawn "chromium")
+    , ((mod1Mask .|. shiftMask, xK_b    ), spawn "firefox")
 
     -- launch emacs client frame
     , ((mod1Mask .|. shiftMask, xK_o    ), spawn "emacsclient -n -c")
 
     -- launch dmenu
     , ((modMasq,               xK_p     ), spawn "exe=`dmenu_path | dmenu` && eval \"exec $exe\"")
+
+    -- launch ranger
+    , ((modMasq .|. shiftMask, xK_m     ), spawn $ myTerminal ++ " -e ranger")
+
 
     -- close focused window
     , ((modMasq,               xK_q     ), kill)
@@ -173,7 +184,7 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
     -- Swap the focused window and the master window
     , ((modMasq,               xK_Return), windows W.swapMaster)
 
-    -- Swap the focused window with the next window
+    -- swap the focused window with the next window
     , ((modMasq .|. shiftMask, xK_j     ), windows W.swapDown)
 
     -- Swap the focused window with the previous window
@@ -197,8 +208,9 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
     -- Quit xmonad
     , ((modMasq .|. shiftMask, xK_c     ), io (exitWith ExitSuccess))
 
-    -- Chat
+    -- Sratchpads
     , ((modMasq .|. shiftMask, xK_f     ), namedScratchpadAction scratchpads "caprine")
+    , ((modMasq .|. shiftMask, xK_d     ), namedScratchpadAction scratchpads "wire")
 
     -- Restart xmonad
     , ((modMasq .|. shiftMask, xK_q     ), spawn "xmonad --recompile; ~/.xmonad/kill.sh; notify-send \"XMonad\" \"Reloaded!\"; xmonad --restart")
@@ -242,11 +254,11 @@ myManageHook = composeAll
     [ className =? "stalonetray"  --> doIgnore
     , className =? "Slack"        --> doShift communicateW
     , className =? "thunderbird"  --> doShift emailW
-    , className =? "Wire"         --> doFloat
-    , className =? "Caprine"      --> doFloat
+    , className =? "Wire"         --> doShift hiddenW <+> doFloat
+    , className =? "Caprine"      --> doShift hiddenW <+> doFloat
     -- , className =? "pinentry"     --> doFloat
     , Docks.manageDocks
-    , isFullscreen                --> (doF W.focusDown <+> doFullFloat)
+    , isFullscreen                --> doF W.focusDown <+> doFullFloat
     ]
 
 
@@ -254,13 +266,14 @@ myManageHook = composeAll
 -- layouts
 -------------------------------
 
-myLayoutHook = Docks.avoidStruts $ withSpaces tall ||| fullscreenFull Full ||| withSpaces half
+myLayoutHook =  Docks.avoidStruts $ workspaceDir "~" tall ||| fullscreenFull Full ||| Accordion
   where
     tall = Tall 1 (3/100) (2/3)
     half = Tall 1 (3/100) (1/2)
     withSpaces layout =
-      spacingWithEdge 5 $ layout
+      spacingWithEdge 2 $ layout
 
 -- Local Variables:
 -- flycheck-ghc-args: ("-Wno-missing-signatures")
--- End:
+
+  -- End:
