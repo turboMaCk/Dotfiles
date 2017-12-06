@@ -1,8 +1,14 @@
+Xft.antialias: 1
+
 URxvt.font: xft:monospace:size=9
 URxvt.scrollBar: false
 
-urxvt*foreground: #f2f2f2
-urxvt*background: #101010
+URxvt*foreground: #f2f2f2
+
+! Transparency
+URxvt*depth: 32
+URxvt*background: rgba:0000/0000/0200/c800
+
 
 ! Light
 ! color8     black
@@ -14,11 +20,14 @@ urxvt*background: #101010
 ! color14    cyan
 ! color15    white
 
-urxvt*color8:     #747474
-urxvt*color9:     #f99286
-urxvt*color10:    #c3f786
-urxvt*color11:    #fcfbcc
-urxvt*color12:    #b6defb
-urxvt*color13:    #fba1fb
-urxvt*color14:    #d7d9fc
-urxvt*color15:    #e2e2e2
+URxvt*color8:     #747474
+URxvt*color9:     #f99286
+URxvt*color10:    #c3f786
+URxvt*color11:    #fcfbcc
+URxvt*color12:    #2e9AFE
+URxvt*color13:    #fba1fb
+URxvt*color14:    #9cf0f1
+URxvt*color15:    #e2e2e2
+
+! Plugins
+URxvt.perl-ext-common: resize-font

@@ -1,7 +1,7 @@
 Config
     { font = "xft:SFN display:size=10,FontAwesome:size=9" --font = "xft:Droid Sans Mono for Powerline:size=9"
-    , bgColor = "#222222"
-    , fgColor = "#cccccc"
+    , bgColor = "#000000"
+    , fgColor = "#808080"
     , position = TopW L 100
     , commands = [ Run Network "wireless" ["-L","0","-H","32","--normal","green","--high","red"] 9
                  , Run Memory ["-t"," <usedratio>%"] 10
@@ -19,5 +19,5 @@ Config
     ]
     , sepChar = "%"
     , alignSep = "}{"
-    , template = " %UnsafeStdinReader% }{ <fc=#2E9AFE></fc> <fc=#808080>%cpu%</fc>  <fc=#2E9AFE></fc> <fc=#808080>%memory%</fc>  <fc=#2E9AFE></fc> <fc=#808080>%myvolume%</fc> <fc=#2E9AFE></fc> <fc=#808080>%date%</fc>                                   "
+    , template = " %UnsafeStdinReader% }{ <fc=#444444>cpu</fc> <fc=#808080>%cpu%</fc>  <fc=#444444>ram</fc> <fc=#808080>%memory%</fc>  <fc=#444444>vol</fc> <fc=#808080>%myvolume%</fc> <fc=#444444>time</fc> <fc=#808080>%date%</fc> "
     }
