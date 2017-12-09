@@ -62,13 +62,13 @@ myPP = xmobarPP { ppVisible = xmobarColor "#808080" ""
                 }
 
 
--- Key binding to toggle the gap for the bar.
+
 toggleStrutsKey :: XConfig a -> ( KeyMask, KeySym)
 toggleStrutsKey XConfig { XMonad.modMask = modM } = ( modM, xK_b )
 
 
 -- Main configuration, override the defaults to your liking.
-myConfig = def { modMask            = mod1Mask
+myConfig = def { modMask            = mod4Mask
                , terminal           = myTerminal
                , workspaces         = myWorkspaces
                , keys               = myKeys
@@ -142,10 +142,10 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
     , ((modMasq .|. shiftMask, xK_x     ), changeDir def)
 
     -- launch a browser
-    , ((mod1Mask .|. shiftMask, xK_b    ), spawn "firefox")
+    , ((modMasq .|. shiftMask, xK_b    ), spawn "firefox")
 
     -- launch emacs client frame
-    , ((mod1Mask .|. shiftMask, xK_o    ), spawn "emacsclient -n -c")
+    , ((modMasq .|. shiftMask, xK_o    ), spawn "emacsclient -n -c")
 
     -- launch dmenu
     , ((modMasq,               xK_p     ), spawn "exe=`dmenu_path | dmenu` && eval \"exec $exe\"")
