@@ -349,6 +349,9 @@ Which Key helps me with key bindings
 
   (global-color-identifiers-mode)
   (diminish 'color-identifiers-mode)
+
+  ;; autocomplete
+  (add-hook 'after-init-hook 'global-company-mode)
 #+END_SRC
 
 * Spell Check
@@ -488,8 +491,12 @@ npm install -g elm
 #+BEGIN_SRC emacs-lisp
   (require 'elm-mode)
 
+
+  ;; auto complete
+  (eval-after-load 'company
+    '(push 'company-elm company-backends))
+
   (add-hook 'elm-mode-hook #'elm-oracle-setup-completion)
-  (add-hook 'elm-mode-hook #'auto-complete-mode)
   (add-hook 'elm-mode-hook #'elm-oracle-setup-ac)
 
   (defun turbo_mack/init-elm ()
@@ -1092,11 +1099,18 @@ This is nice sugar for quickly moving to normal mode.
   (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile-find-file)
 #+END_SRC
 
-** Auto Complete
+** Auto Complete & Company
 
 #+BEGIN_SRC emacs-lisp
+  ;; auto-complete
   (define-key ac-mode-map (kbd "C-j") 'ac-next)
   (define-key ac-mode-map (kbd "C-k") 'ac-previous)
+
+    ;; company
+  (eval-after-load 'company
+    '(progn
+      (define-key company-active-map (kbd "C-j") 'company-select-next)
+      (define-key company-active-map (kbd "C-k") 'company-select-previous)))
 #+END_SRC
 
 ** Magit
