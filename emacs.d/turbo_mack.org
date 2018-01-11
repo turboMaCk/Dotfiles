@@ -283,10 +283,8 @@ This loads my customized version of twilight theme.
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
   (load-theme 'fogus t)
-  (set-face-background 'hl-line "#222222")
+  (set-face-background 'hl-line "#000000")
 #+END_SRC
-
-#+RESULTS:
 
 Making sense of love to all the sweet things on internet.
 
@@ -324,8 +322,8 @@ Theme agnostic UI settings
 Make window transparent (requires compositor):
 
 #+BEGIN_SRC emacs-lisp
-  (set-frame-parameter (selected-frame) 'alpha '(85 50))
-  (add-to-list 'default-frame-alist '(alpha 85 50))
+  (set-frame-parameter (selected-frame) 'alpha '(90 70))
+  (add-to-list 'default-frame-alist '(alpha 90 70))
 #+END_SRC
 
 * Which key
@@ -476,9 +474,6 @@ npm install -g tide
   ;; format options
   (setq tide-format-options '(:insertSpaceAfterFunctionKeywordForAnonymousFunctions t :placeOpenBraceOnNewLineForFunctions nil))
 #+END_SRC
-
-#+RESULTS:
-| :insertSpaceAfterFunctionKeywordForAnonymousFunctions | t | :placeOpenBraceOnNewLineForFunctions | nil |
 
 ** Elm
 ~elm-mode~ is great even with default settings.
