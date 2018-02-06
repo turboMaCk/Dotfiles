@@ -92,7 +92,7 @@ manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
 scratchpads = [ NS "htop" "urxvt -e htop" (title =? "htop") defaultFloating
               , NS "caprine" "caprine" (title =? "Caprine") defaultFloating
               , NS "wire" "wire" (title =? "Wire") defaultFloating
-              , NS "obs" "obs" (className =? "obs") defaultFloating
+              -- , NS "obs" "obs" (className =? "obs") defaultFloating
               ] where role = stringProperty "WM_WINDOW_ROLE"
 
 xmobarEscape :: String -> String
@@ -210,7 +210,7 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
     -- Sratchpads
     , ((modMasq .|. shiftMask, xK_f     ), namedScratchpadAction scratchpads "caprine")
     , ((modMasq .|. shiftMask, xK_d     ), namedScratchpadAction scratchpads "wire")
-    , ((modMasq .|. shiftMask, xK_g     ), namedScratchpadAction scratchpads "obs")
+    -- , ((modMasq .|. shiftMask, xK_g     ), namedScratchpadAction scratchpads "obs")
 
     -- Restart xmonad
     , ((modMasq .|. shiftMask, xK_q     ), spawn "xmonad --recompile; ~/.xmonad/kill.sh; notify-send \"XMonad\" \"Reloaded!\"; xmonad --restart")
@@ -256,7 +256,7 @@ myManageHook = composeAll
     , className =? "thunderbird"  --> doShift emailW
     , className =? "Wire"         --> doShift hiddenW <+> doFloat
     , className =? "Caprine"      --> doShift hiddenW <+> doFloat
-    , className =? "obs"          --> doShift hiddenW <+> doFloat
+    -- , className =? "obs"          --> doShift hiddenW <+> doFloat
     -- , className =? "pinentry"     --> doFloat
     , Docks.manageDocks
     , isFullscreen                --> doF W.focusDown <+> doFullFloat
