@@ -976,8 +976,6 @@ If you don't want to enter your credentials (login/password) each time you go to
 ~machine your-site.atlassian.net login you@example.com password yourPassword port 80~
 #+END_NAME
 
-
-
 * Yasnippet
 
 Honestly I never did get used to using snippets a lot. Anyway I'm keeping this as part of my configuration because
