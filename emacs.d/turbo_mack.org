@@ -957,8 +957,26 @@ Setup languages support for literate programming capabilities.
   ;; disable confirmation of evaluation
   (setq org-confirm-babel-evaluate nil)
 #+END_SRC
-
 ** TODO Fix SH integration
+
+** ORG-JIRA
+
+Setup JIRA project management tool integration.
+
+Documentation of package is located on [[https://github.com/ahungry/org-jira/tree/51a1b2248ec421aecdd38aaf5c2876a036b08bb7][github]]
+
+*** GlobalWebIndex settings
+
+#+BEGIN_SRC emacs-lisp :exports none
+  (setq jiralib-url "https://globalwebindex.atlassian.net")
+#+END_SRC
+
+#+BEGIN_NAME QUOTE
+If you don't want to enter your credentials (login/password) each time you go to connect, you can add to your ~/.authinfo.gpg or ~/.authinfo file, in a format similar to:
+~machine your-site.atlassian.net login you@example.com password yourPassword port 80~
+#+END_NAME
+
+
 
 * Yasnippet
 

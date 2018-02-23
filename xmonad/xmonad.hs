@@ -256,8 +256,7 @@ myManageHook = composeAll
     , className =? "thunderbird"  --> doShift emailW
     , className =? "Wire"         --> doShift hiddenW <+> doFloat
     , className =? "Caprine"      --> doShift hiddenW <+> doFloat
-    , className =? "obs"          --> doShift hiddenW <+> doFloat
-    -- , className =? "pinentry"     --> doFloat
+    , className =? "obs"          --> doFloat
     , Docks.manageDocks
     , isFullscreen                --> doF W.focusDown <+> doFullFloat
     ]
