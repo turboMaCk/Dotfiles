@@ -12,9 +12,7 @@
 (package-initialize)
 ;(set-default-font "Menlo")
 
-;; (require 'cask "~/.cask/cask.el")
-;; This works only for home brew versions!!!
-(require 'cask "/home/marek/.cask/cask.el")
+(require 'cask "~/.cask/cask.el")
 (cask-initialize)
 
 ;; Custom loads
@@ -55,8 +53,8 @@
  '(haskell-tags-on-save t)
   '(package-selected-packages
      (quote
-       (org-bullets org-pomodoro org-jira sublime-themes fontawesome cargo caml shm idris-mode bash-completion psc-ide psci purescript-mode helm-css-scss perspective which-key evil-org org-evil hindent robe multiple-cursors ob-restclient restclient nyan-mode)))
- '(purescript-mode-hook (quote (turn-on-purescript-indent)))
+       (slack org-bullets org-pomodoro org-jira sublime-themes fontawesome cargo caml shm idris-mode bash-completion psc-ide psci purescript-mode helm-css-scss perspective which-key evil-org org-evil hindent robe multiple-cursors ob-restclient restclient nyan-mode)))
+ '(purescript-mode-hook (quote (turn-on-purescript-indent)) t)
  '(send-mail-function (quote mailclient-send-it)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.

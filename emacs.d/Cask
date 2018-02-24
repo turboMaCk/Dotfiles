@@ -71,6 +71,7 @@
 (depends-on "scss-mode")
 (depends-on "shm")
 (depends-on "skewer-mode")
+(depends-on "slack")
 (depends-on "smartparens")
 (depends-on "smooth-scrolling")
 (depends-on "sublime-themes")

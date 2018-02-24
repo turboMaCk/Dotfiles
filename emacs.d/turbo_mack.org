@@ -13,6 +13,25 @@ To be honest while re-evaluating this I actually think that my original solution
 API directly - was the best of these. Anyway I believe Cask will be rock solid solution which will
 scale for years.
 
+* Secrets
+
+Some settings used within this file needs some secret variables to be set.
+For this you need to create ~secrets.el~ within your ~.emacs.d/~ directory.
+There is example file you can copy:
+
+#+BEGIN_SRC sh
+  cp ~/emacs.d/secrets.example.el ~/emacs.d/secrets.el
+#+END_SRC
+
+** Load Secrets
+
+#+BEGIN_SRC emacs-lisp :restuls none
+ (load "~/.emacs.d/secrets.el")
+#+END_SRC
+
+#+RESULTS:
+: t
+
 * Setup User Info
 
 
@@ -36,7 +55,7 @@ I'm using tramp-mode mainly to access remote machines via ssh.
 Setup environment and exec path. This is using ~exec-path-from-shell~ package.
 
 #+BEGIN_SRC emacs-lisp
-    (exec-path-from-shell-initialize)
+  (exec-path-from-shell-initialize)
 #+END_SRC
 
 These are one of the most important settings for Emacs' core and GUI.
@@ -937,7 +956,7 @@ Actually this whole configuration is one big org file.
 
   ;; Save org files to Dropbox
   (setq org-directory "~/Dropbox/org")
-  (setq org-agenda-files (list (concat org-directory "~/Dropbox/org/agenda.org")))
+  (setq org-agenda-files (list (concat org-directory "/agenda.org")))
   (setq org-default-notes-file (concat org-directory "/notes.org"))
 
   ;; setup faces
@@ -982,7 +1001,6 @@ Setup languages support for literate programming capabilities.
   ;; disable confirmation of evaluation
   (setq org-confirm-babel-evaluate nil)
 #+END_SRC
-** TODO Fix SH integration
 
 ** ORG-JIRA
 
@@ -1008,6 +1026,55 @@ I know it might be useful in future.
 
 #+BEGIN_SRC emacs-lisp
   (require 'yasnippet)
+#+END_SRC
+
+* Slack
+Setup [[https://github.com/yuya373/emacs-slack][emacs-slack]] for slack integration.
+#+BEGIN_SRC emacs-lisp :results none
+  (require 'slack)
+  (setq slack-buffer-emojify t)
+  (setq slack-prefer-current-team t)
+
+  ;; This are example binding from package README
+  ;; I'll probably change those later
+  (evil-define-key 'normal slack-info-mode-map
+    ",u" 'slack-room-update-messages)
+  (evil-define-key 'normal slack-mode-map
+    ",c" 'slack-buffer-kill
+    ",ra" 'slack-message-add-reaction
+    ",rr" 'slack-message-remove-reaction
+    ",rs" 'slack-message-show-reaction-users
+    ",pl" 'slack-room-pins-list
+    ",pa" 'slack-message-pins-add
+    ",pr" 'slack-message-pins-remove
+    ",mm" 'slack-message-write-another-buffer
+    ",me" 'slack-message-edit
+    ",md" 'slack-message-delete
+    ",u" 'slack-room-update-messages
+    ",2" 'slack-message-embed-mention
+    ",3" 'slack-message-embed-channel
+    "\C-n" 'slack-buffer-goto-next-message
+    "\C-p" 'slack-buffer-goto-prev-message)
+  (evil-define-key 'normal slack-edit-message-mode-map
+    ",k" 'slack-message-cancel-edit
+    ",s" 'slack-message-send-from-buffer
+    ",2" 'slack-message-embed-mention)
+#+END_SRC
+
+** Slack Organizations
+
+*** GlobalWebIndex
+
+#+BEGIN_SRC emacs-lisp :results none
+  (slack-register-team
+   :name "globalwebindex"
+   :default t
+   :client-id ""
+   :client-secret ""
+   :token turbo_mack/secret/slack_token_gwi
+   :subscribed-channels '(team-platform platform-engineering engineering)
+   :full-and-display-names t
+   )
 #+END_SRC
 
 * Bindings
@@ -1172,7 +1239,7 @@ Nice package for Sublime Text like multiple cursor support
 
 ** Terminal
 
-My custom function to quick access to terminal. Currently its using term mode but I'm thinking about switch to eshel by default.
+My custom function to quick access to terminal. Currently its using term mode but I'm thinking about switch to eshel as default.
 
 #+BEGIN_SRC emacs-lisp
   (defun turbo_mack/toggle-term()

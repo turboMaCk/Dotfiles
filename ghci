@@ -1,4 +1,4 @@
-:set prompt "ghci> "
+:set prompt "λ "
 
 -- Utils
 
