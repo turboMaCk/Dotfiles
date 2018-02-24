@@ -903,17 +903,24 @@ Org mode is super fantastic. As I'm more fascinated with application of literate
 I really fall in love with org-mode which is my tool of choice when it comes to exploring field as well as organizing stuff.
 Actually this whole configuration is one big org file.
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :results none
   (require 'org)
   (require 'ox)
   (require 'ob)
   (require 'flyspell)
   (require 'evil-org)
 
+  ;; Standard key bindings
+  (global-set-key "\C-cl" 'org-store-link)
+  (global-set-key "\C-ca" 'org-agenda)
+  (global-set-key "\C-cb" 'org-iswitchb)
+
   ;; setup TODOs
   (setq org-log-done t
-        org-todo-keywords '((sequence "TODO" "INPROGRESS" "DONE"))
-        org-todo-keyword-faces '(("INPROGRESS" . (:foreground "blue" :weight bold))))
+        org-todo-keywords '((sequence "TODO" "INPROGRESS" "DONE")))
+
+  ;; bulet mode
+  (add-hook 'org-mode-hook 'org-bullets-mode)
 
   ;; setup spell-checking
   (add-hook 'org-mode-hook
@@ -924,11 +931,29 @@ Actually this whole configuration is one big org file.
   (add-hook 'org-mode-hook
             (lambda ()
               (writegood-mode)))
-#+END_SRC
+
+  ;; log done items
+  (setq org-log-done t)
+
+  ;; Save org files to Dropbox
+  (setq org-directory "~/Dropbox/org")
+  (setq org-agenda-files (list (concat org-directory "~/Dropbox/org/agenda.org")))
+  (setq org-default-notes-file (concat org-directory "/notes.org"))
+
+  ;; setup faces
+  '(org-level-1 ((t (:inherit variable-pitch :foreground "#cb4b16" :weight bold :height 1.3))))
+  '(org-level-2 ((t (:inherit variable-pitch :foreground "#859900" :weight bold :height 1.2))))
+  '(org-level-3 ((t (:inherit variable-pitch :foreground "#268bd2" :weight bold :height 1.15))))
+  '(org-level-4 ((t (:inherit variable-pitch :foreground "#b58900" :weight bold :height 1.1))))
+  '(org-level-5 ((t (:inherit variable-pitch :foreground "#2aa198" :weight bold))))
+  '(org-level-6 ((t (:inherit variable-pitch :foreground "#6c71c4" :weight bold))))
+  '(org-level-7 ((t (:inherit variable-pitch :foreground "#d33682" :weight bold))))
+  '(org-level-8 ((t (:inherit variable-pitch :foreground "#dc322f" :weight bold))))
+#+end_src
 
 Setup languages support for literate programming capabilities.
 
-#+BEGIN_SRC emacs-lisp :exports none
+#+BEGIN_SRC emacs-lisp
   (require 'ob-sh)
   (require 'ob-shell)
   (require 'ob-emacs-lisp)
@@ -993,7 +1018,7 @@ This is exactly what this part is about.
 
 ** Window management
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :results none
   (defun turbo_mack/vsplit-and-skip()
     "split verticaly and skip to new window."
 
@@ -1033,6 +1058,10 @@ This is exactly what this part is about.
   "Winner mode"
   (define-key evil-normal-state-map (kbd "C-c l") 'winner-redo)
   (define-key evil-normal-state-map (kbd "C-c h") 'winner-undo)
+
+  "Org mode"
+  (define-key evil-normal-state-map (kbd "C-M-l") 'org-do-demote)
+  (define-key evil-normal-state-map (kbd "C-M-h") 'org-do-promote)
 #+END_SRC
 
 ** Improve line navigation
