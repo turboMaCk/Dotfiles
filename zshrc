@@ -11,6 +11,12 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
+# Vi as editor
+export EDITOR="vi"
+
+# Emacs as visual editor
+export VISUAL="emacs-client -n -c"
+
 # Customize to your needs...
 
 # When using sudo, use alias expansion (otherwise sudo ignores your aliases)

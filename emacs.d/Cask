@@ -47,6 +47,7 @@
 (depends-on "ob-typescript")
 (depends-on "org")
 (depends-on "org-evil")
+(depends-on "org-jira")
 (depends-on "osx-clipboard")
 (depends-on "ox-reveal")
 (depends-on "pallet" :git "https://githib.com/rdallasgray/pallet" :ref "master")

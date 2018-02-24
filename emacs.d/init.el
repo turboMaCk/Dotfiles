@@ -54,8 +54,9 @@
  '(haskell-tags-on-save t)
  '(package-selected-packages
    (quote
-    (sublime-themes fontawesome cargo caml shm idris-mode bash-completion psc-ide psci purescript-mode helm-css-scss perspective which-key evil-org org-evil hindent robe multiple-cursors ob-restclient restclient nyan-mode)))
- '(purescript-mode-hook (quote (turn-on-purescript-indent)) t))
+    (org-jira sublime-themes fontawesome cargo caml shm idris-mode bash-completion psc-ide psci purescript-mode helm-css-scss perspective which-key evil-org org-evil hindent robe multiple-cursors ob-restclient restclient nyan-mode)))
+ '(purescript-mode-hook (quote (turn-on-purescript-indent)))
+ '(send-mail-function (quote mailclient-send-it)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -89,10 +89,10 @@ manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
     t = 1 - h   -- distance from top edge, 90%
     l = 1 - w   -- distance from left edge, 0%
 
-
 scratchpads = [ NS "htop" "urxvt -e htop" (title =? "htop") defaultFloating
               , NS "caprine" "caprine" (title =? "Caprine") defaultFloating
               , NS "wire" "wire" (title =? "Wire") defaultFloating
+              , NS "obs" "obs" (className =? "obs") defaultFloating
               ] where role = stringProperty "WM_WINDOW_ROLE"
 
 xmobarEscape :: String -> String
@@ -101,13 +101,12 @@ xmobarEscape = concatMap doubleLts
         doubleLts x   = [x]
 
 
-webW = "\xf269"
-codeW = "\xf121"
-communicateW = "\xf086"
-emailW = "\xf0e0"
-terminalW = "\xf120"
-musicW = "\xf1bc"
-virtualW = "\xf17a"
+webW = "1"
+communicateW = "2"
+emailW = "3"
+codeW = "4"
+musicW = "8"
+virtualW = "9"
 hiddenW = ""
 
 
@@ -117,9 +116,9 @@ myWorkspaces = clickable . (map xmobarEscape) $
   , communicateW
   , emailW
   , codeW
-  , codeW
-  , terminalW
-  , terminalW
+  , "5"
+  , "6"
+  , "7"
   , musicW
   , virtualW ]
   where
@@ -211,6 +210,7 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
     -- Sratchpads
     , ((modMasq .|. shiftMask, xK_f     ), namedScratchpadAction scratchpads "caprine")
     , ((modMasq .|. shiftMask, xK_d     ), namedScratchpadAction scratchpads "wire")
+    , ((modMasq .|. shiftMask, xK_g     ), namedScratchpadAction scratchpads "obs")
 
     -- Restart xmonad
     , ((modMasq .|. shiftMask, xK_q     ), spawn "xmonad --recompile; ~/.xmonad/kill.sh; notify-send \"XMonad\" \"Reloaded!\"; xmonad --restart")
@@ -256,7 +256,7 @@ myManageHook = composeAll
     , className =? "thunderbird"  --> doShift emailW
     , className =? "Wire"         --> doShift hiddenW <+> doFloat
     , className =? "Caprine"      --> doShift hiddenW <+> doFloat
-    -- , className =? "pinentry"     --> doFloat
+    , className =? "obs"          --> doFloat
     , Docks.manageDocks
     , isFullscreen                --> doF W.focusDown <+> doFullFloat
     ]
