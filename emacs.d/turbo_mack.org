@@ -1028,6 +1028,24 @@ I know it might be useful in future.
   (require 'yasnippet)
 #+END_SRC
 
+* Wanderlust
+
+The email client of my choice.
+
+Quick configuration.
+
+#+BEGIN_SRC emacs-lisp :results none
+  (autoload 'wl "wl" "Wanderlust" t)
+#+END_SRC
+
+* Twitter
+
+Configuration of [[https://github.com/hayamiz/twittering-mode][twittering-mode]].
+
+#+BEGIN_SRC emacs-lisp
+  (setq twittering-icon-mode t)
+#+END_SRC
+
 * Slack
 Setup [[https://github.com/yuya373/emacs-slack][emacs-slack]] for slack integration.
 #+BEGIN_SRC emacs-lisp :results none

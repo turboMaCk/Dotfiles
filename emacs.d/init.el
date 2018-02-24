@@ -53,7 +53,7 @@
  '(haskell-tags-on-save t)
   '(package-selected-packages
      (quote
-       (slack org-bullets org-pomodoro org-jira sublime-themes fontawesome cargo caml shm idris-mode bash-completion psc-ide psci purescript-mode helm-css-scss perspective which-key evil-org org-evil hindent robe multiple-cursors ob-restclient restclient nyan-mode)))
+       (twittering-mode rust-mode s scss-mode simple-httpd smartparens tide tuareg typescript-mode web-mode with-editor writegood-mode yaml-mode yasnippet wanderlust slack org-bullets org-pomodoro org-jira sublime-themes fontawesome cargo caml shm idris-mode bash-completion psc-ide psci purescript-mode helm-css-scss perspective which-key evil-org org-evil hindent robe multiple-cursors ob-restclient restclient nyan-mode)))
  '(purescript-mode-hook (quote (turn-on-purescript-indent)) t)
  '(send-mail-function (quote mailclient-send-it)))
 (custom-set-faces
