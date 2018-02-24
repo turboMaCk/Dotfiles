@@ -85,7 +85,7 @@ Setup fringes (spaces around windows).
 
   (setq-default truncate-lines t)
   (setq line-spacing 3)
-  (set-face-attribute 'default nil :height 90)
+  (set-face-attribute 'default nil :height 120)
 #+END_SRC
 
 Setup garbage collection to gain some extra performance.
@@ -324,9 +324,12 @@ Theme agnostic UI settings
 Make window transparent (requires compositor):
 
 #+BEGIN_SRC emacs-lisp
-  (set-frame-parameter (selected-frame) 'alpha '(85 50))
-  (add-to-list 'default-frame-alist '(alpha 85 50))
+  (set-frame-parameter (selected-frame) 'alpha '(95 70))
+  (add-to-list 'default-frame-alist '(alpha 95 70))
 #+END_SRC
+
+#+RESULTS:
+: ((alpha 95 70) (alpha 85 50) (vertical-scroll-bars) (left-fringe . 2) (right-fringe . 2))
 
 * Which key
 
@@ -498,13 +501,6 @@ npm install -g elm
 
   (add-hook 'elm-mode-hook #'elm-oracle-setup-completion)
   (add-hook 'elm-mode-hook #'elm-oracle-setup-ac)
-
-  (defun turbo_mack/init-elm ()
-    (elm-tags-on-save t)
-    (elm-format-on-save t)
-  )
-
-  (add-hook 'elm-mode-hook 'turbo_mack/init-elm)
 #+END_SRC
 
 ** Haskell

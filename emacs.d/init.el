@@ -12,10 +12,9 @@
 (package-initialize)
 ;(set-default-font "Menlo")
 
-;; (require 'cask "~/.cask/cask.el")
 ;; This works only for home brew versions!!!
-(require 'cask "/home/marek/.cask/cask.el")
-(cask-initialize)
+(require 'cask "~/.cask/cask.el")
+ (cask-initialize)
 
 ;; Custom loads
 (add-to-list 'load-path
@@ -63,3 +62,4 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(put 'downcase-region 'disabled nil)
