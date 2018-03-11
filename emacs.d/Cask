@@ -33,6 +33,7 @@
 (depends-on "helm-ag")
 (depends-on "helm-css-scss")
 (depends-on "helm-projectile")
+(depends-on "helm-spotify")
 (depends-on "hindent")
 (depends-on "idris-mode")
 (depends-on "key-chord")

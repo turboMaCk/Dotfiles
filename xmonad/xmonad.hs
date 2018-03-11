@@ -17,7 +17,7 @@ import XMonad.Actions.CopyWindow          (copyToAll)
 import XMonad.Layout.NoBorders            (smartBorders)
 import XMonad.Layout.Fullscreen           (fullscreenFull)
 import XMonad.Layout.Accordion            (Accordion(Accordion))
-import XMonad.Layout.Spacing              (spacingWithEdge)
+import XMonad.Layout.Spacing              (smartSpacing)
 import XMonad.Layout.WorkspaceDir         (workspaceDir, changeDir)
 import XMonad.Prompt
 import qualified XMonad.Hooks.ManageDocks as Docks
@@ -268,12 +268,10 @@ myManageHook = composeAll
 
 myLayoutHook =  Docks.avoidStruts $ workspaceDir "~" tall ||| fullscreenFull Full ||| Accordion
   where
-    tall = Tall 1 (3/100) (2/3)
+    tall = smartSpacing 5 $ Tall 1 (3/100) (2/3)
     half = Tall 1 (3/100) (1/2)
-    withSpaces layout =
-      spacingWithEdge 2 $ layout
 
 -- Local Variables:
 -- flycheck-ghc-args: ("-Wno-missing-signatures")
 
-  -- End:
+-- End:
