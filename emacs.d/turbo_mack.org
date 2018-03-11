@@ -13,6 +13,25 @@ To be honest while re-evaluating this I actually think that my original solution
 API directly - was the best of these. Anyway I believe Cask will be rock solid solution which will
 scale for years.
 
+* Secrets
+
+Some settings used within this file needs some secret variables to be set.
+For this you need to create ~secrets.el~ within your ~.emacs.d/~ directory.
+There is example file you can copy:
+
+#+BEGIN_SRC sh
+  cp ~/emacs.d/secrets.example.el ~/emacs.d/secrets.el
+#+END_SRC
+
+** Load Secrets
+
+#+BEGIN_SRC emacs-lisp :restuls none
+ (load "~/.emacs.d/secrets.el")
+#+END_SRC
+
+#+RESULTS:
+: t
+
 * Setup User Info
 
 
@@ -36,7 +55,7 @@ I'm using tramp-mode mainly to access remote machines via ssh.
 Setup environment and exec path. This is using ~exec-path-from-shell~ package.
 
 #+BEGIN_SRC emacs-lisp
-    (exec-path-from-shell-initialize)
+  (exec-path-from-shell-initialize)
 #+END_SRC
 
 These are one of the most important settings for Emacs' core and GUI.
@@ -77,7 +96,7 @@ Show Line numbers in programming mode.
 
 Setup fringes (spaces around windows).
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :result none
   (when (display-graphic-p)
     (fringe-mode 2)
     (setq-default left-fringe-width 12)
@@ -85,8 +104,10 @@ Setup fringes (spaces around windows).
 
   (setq-default truncate-lines t)
   (setq line-spacing 3)
-  (set-face-attribute 'default nil :height 90)
+  (set-face-attribute 'default nil :height 100)
 #+END_SRC
+
+#+RESULTS:
 
 Setup garbage collection to gain some extra performance.
 
@@ -403,7 +424,7 @@ Line ends sanitization.
     (set-buffer-modified-p nil)))
 
 (add-hook 'find-file-hook 'turbo_mack/find-file-check-line-endings)
- #+END_SRC
+#+END_SRC
 
 * Languages and Platforms
 
@@ -897,23 +918,30 @@ Perspective is package for managing workspaces within Emacs.
   (persp-mode t)
 #+END_SRC
 
-* Org Mode
+* COMMENT Org Mode
 
 Org mode is super fantastic. As I'm more fascinated with application of literate programming and reproducible research.
 I really fall in love with org-mode which is my tool of choice when it comes to exploring field as well as organizing stuff.
 Actually this whole configuration is one big org file.
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :results none
   (require 'org)
   (require 'ox)
   (require 'ob)
   (require 'flyspell)
   (require 'evil-org)
 
+  ;; Standard key bindings
+  (global-set-key "\C-cl" 'org-store-link)
+  (global-set-key "\C-ca" 'org-agenda)
+  (global-set-key "\C-cb" 'org-iswitchb)
+
   ;; setup TODOs
   (setq org-log-done t
-        org-todo-keywords '((sequence "TODO" "INPROGRESS" "DONE"))
-        org-todo-keyword-faces '(("INPROGRESS" . (:foreground "blue" :weight bold))))
+        org-todo-keywords '((sequence "TODO" "INPROGRESS" "DONE")))
+
+  ;; bulet mode
+  (add-hook 'org-mode-hook 'org-bullets-mode)
 
   ;; setup spell-checking
   (add-hook 'org-mode-hook
@@ -924,11 +952,43 @@ Actually this whole configuration is one big org file.
   (add-hook 'org-mode-hook
             (lambda ()
               (writegood-mode)))
+
+  ;; log done items
+  (setq org-log-done t)
+
+  ;; setup faces
+  '(org-level-1 ((t (:inherit variable-pitch :foreground "#cb4b16" :weight bold :height 1.3))))
+  '(org-level-2 ((t (:inherit variable-pitch :foreground "#859900" :weight bold :height 1.2))))
+  '(org-level-3 ((t (:inherit variable-pitch :foreground "#268bd2" :weight bold :height 1.15))))
+  '(org-level-4 ((t (:inherit variable-pitch :foreground "#b58900" :weight bold :height 1.1))))
+  '(org-level-5 ((t (:inherit variable-pitch :foreground "#2aa198" :weight bold))))
+  '(org-level-6 ((t (:inherit variable-pitch :foreground "#6c71c4" :weight bold))))
+  '(org-level-7 ((t (:inherit variable-pitch :foreground "#d33682" :weight bold))))
+  '(org-level-8 ((t (:inherit variable-pitch :foreground "#dc322f" :weight bold))))
+#+end_src
+
+I'm storing my agenda files to Dropbox so they are always sync across devices.
+
+#+BEGIN_SRC emacs-lisp :results none
+  ;; Save org files to Dropbox
+  (setq org-directory "~/Dropbox/org")
+  (setq org-default-notes-file (concat org-directory "/agenda.org"))
+  (setq org-agenda-files (list (concat org-directory "/agenda.org")))
+#+END_SRC
+
+Better evil key binding for org-mode
+
+#+BEGIN_SRC emacs-lisp :results none
+  (require 'evil-org)
+  (add-hook 'org-mode-hook 'evil-org-mode)
+  (evil-org-set-key-theme '(navigation insert textobjects additional calendar))
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys)
 #+END_SRC
 
 Setup languages support for literate programming capabilities.
 
-#+BEGIN_SRC emacs-lisp :exports none
+#+BEGIN_SRC emacs-lisp
   (require 'ob-sh)
   (require 'ob-shell)
   (require 'ob-emacs-lisp)
@@ -957,7 +1017,6 @@ Setup languages support for literate programming capabilities.
   ;; disable confirmation of evaluation
   (setq org-confirm-babel-evaluate nil)
 #+END_SRC
-** TODO Fix SH integration
 
 ** ORG-JIRA
 
@@ -985,15 +1044,81 @@ I know it might be useful in future.
   (require 'yasnippet)
 #+END_SRC
 
+* Wanderlust
+
+The email client of my choice.
+
+Quick configuration.
+
+#+BEGIN_SRC emacs-lisp :results none
+  (autoload 'wl "wl" "Wanderlust" t)
+#+END_SRC
+
+* Twitter
+
+Configuration of [[https://github.com/hayamiz/twittering-mode][twittering-mode]].
+
+#+BEGIN_SRC emacs-lisp :results none
+  (setq twittering-icon-mode t)
+#+END_SRC
+
+* Slack
+Setup [[https://github.com/yuya373/emacs-slack][emacs-slack]] for slack integration.
+#+BEGIN_SRC emacs-lisp :results none
+  (require 'slack)
+  (setq slack-buffer-emojify t)
+  (setq slack-prefer-current-team t)
+
+  ;; This are example binding from package README
+  ;; I'll probably change those later
+  (evil-define-key 'normal slack-info-mode-map
+    ",u" 'slack-room-update-messages)
+  (evil-define-key 'normal slack-mode-map
+    ",c" 'slack-buffer-kill
+    ",ra" 'slack-message-add-reaction
+    ",rr" 'slack-message-remove-reaction
+    ",rs" 'slack-message-show-reaction-users
+    ",pl" 'slack-room-pins-list
+    ",pa" 'slack-message-pins-add
+    ",pr" 'slack-message-pins-remove
+    ",mm" 'slack-message-write-another-buffer
+    ",me" 'slack-message-edit
+    ",md" 'slack-message-delete
+    ",u" 'slack-room-update-messages
+    ",2" 'slack-message-embed-mention
+    ",3" 'slack-message-embed-channel
+    "\C-n" 'slack-buffer-goto-next-message
+    "\C-p" 'slack-buffer-goto-prev-message)
+  (evil-define-key 'normal slack-edit-message-mode-map
+    ",k" 'slack-message-cancel-edit
+    ",s" 'slack-message-send-from-buffer
+    ",2" 'slack-message-embed-mention)
+#+END_SRC
+
+** Slack Organizations
+
+*** GlobalWebIndex
+
+#+BEGIN_SRC emacs-lisp :results none
+  (slack-register-team
+   :name "globalwebindex"
+   :default t
+   :client-id ""
+   :client-secret ""
+   :token turbo_mack/secret/slack_token_gwi
+   :subscribed-channels '(team-platform platform-engineering engineering)
+   :full-and-display-names t
+   )
+#+END_SRC
+
 * Bindings
 
 One of the most important parts is to bind all functionality to keys and glue it together.
 This is exactly what this part is about.
 
-
 ** Window management
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :results none
   (defun turbo_mack/vsplit-and-skip()
     "split verticaly and skip to new window."
 
@@ -1030,9 +1155,21 @@ This is exactly what this part is about.
   (define-key evil-window-map (kbd "v") 'turbo_mack/vsplit-and-skip)
   (define-key evil-window-map (kbd "s") 'turbo_mack/split-and-skip)
 
+  "Window resizing"
+  (define-key evil-motion-state-map (kbd "C-=") 'enlarge-window-horizontally)
+  (define-key evil-motion-state-map (kbd "C--") 'shrink-window-horizontally)
+
+  "Resize text"
+  (define-key evil-motion-state-map (kbd "C-+") 'text-scale-increase)
+  (define-key evil-motion-state-map (kbd "C-_") 'text-scale-decrease)
+
   "Winner mode"
   (define-key evil-normal-state-map (kbd "C-c l") 'winner-redo)
   (define-key evil-normal-state-map (kbd "C-c h") 'winner-undo)
+
+  "Org mode"
+  (define-key evil-normal-state-map (kbd "C-M-l") 'org-do-demote)
+  (define-key evil-normal-state-map (kbd "C-M-h") 'org-do-promote)
 #+END_SRC
 
 ** Improve line navigation
@@ -1143,7 +1280,7 @@ Nice package for Sublime Text like multiple cursor support
 
 ** Terminal
 
-My custom function to quick access to terminal. Currently its using term mode but I'm thinking about switch to eshel by default.
+My custom function to quick access to terminal. Currently its using term mode but I'm thinking about switch to eshel as default.
 
 #+BEGIN_SRC emacs-lisp
   (defun turbo_mack/toggle-term()
@@ -1157,6 +1294,10 @@ My custom function to quick access to terminal. Currently its using term mode bu
   (define-key evil-normal-state-map (kbd "C-t") 'turbo_mack/toggle-term)
 #+END_SRC
 
+** Slack
+#+BEGIN_SRC emacs-lisp :results none
+  (define-key evil-normal-state-map (kbd "C-S-s") 'slack-select-rooms)
+#+END_SRC
 * OS specific configuration
 
 All OS specific settings should go here.

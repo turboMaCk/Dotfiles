@@ -1,5 +1,5 @@
 Config
-    { font = "xft:SFN display:size=10,FontAwesome:size=9" --font = "xft:Droid Sans Mono for Powerline:size=9"
+    { font = "xft:SFN display:size=11,FontAwesome:size=9" --font = "xft:Droid Sans Mono for Powerline:size=9"
     , bgColor = "#000000"
     , fgColor = "#808080"
     , position = TopW L 100
