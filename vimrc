@@ -109,15 +109,15 @@ Plugin 'lambdatoast/elm.vim'
 "Plugin 'derekwyatt/vim-sbt'
 
 " HASKEL
-"Plugin 'travitch/hasksyn'
-"Plugin 'dag/vim2hs'
-"Plugin 'Twinside/vim-haskellConceal'
-"Plugin 'lukerandall/haskellmode-vim'
-"Plugin 'eagletmt/neco-ghc'
-"Plugin 'eagletmt/ghcmod-vim'
-"Plugin 'Shougo/vimproc'
-"Plugin 'adinapoli/cumino'
-"Plugin 'bitc/vim-hdevtools'
+Plugin 'travitch/hasksyn'
+Plugin 'dag/vim2hs'
+Plugin 'Twinside/vim-haskellConceal'
+Plugin 'lukerandall/haskellmode-vim'
+Plugin 'eagletmt/neco-ghc'
+Plugin 'eagletmt/ghcmod-vim'
+Plugin 'Shougo/vimproc'
+Plugin 'adinapoli/cumino'
+Plugin 'bitc/vim-hdevtools'
 
 " HTML
 Plugin 'ypid/HTML-AutoCloseTag'
@@ -140,7 +140,7 @@ Plugin 'tpope/vim-endwise'
 Plugin 'yaymukund/vim-rabl'
 
 " GO
-"Plugin 'Blackrush/vim-gocode'
+Plugin 'Blackrush/vim-gocode'
 
 " TEXT
 Plugin 'tpope/vim-markdown'
@@ -311,9 +311,6 @@ set dir=~/.vim/tmp
 set undodir=~/.vim/undo
 set backupdir=~/.vim/backup
 
-" Spell checking on
-set spell
-
 " Allow buffer switching without saving
 set hidden
 
@@ -327,7 +324,7 @@ else
 endif
 
 " ======================
-" Formating setup
+" Formatting setup
 " ======================
 
 " No extra spaces between rows
@@ -357,33 +354,33 @@ set showmode " Display the current mode
 
 " indentation
 set autoindent " Indent at the same level of the previous line
-filetype plugin indent on " when working with plaintext
+filetype plugin indent on " when working with plain-text
 set shiftwidth=2  " Use indents of 2 spaces
 set expandtab " Tabs are spaces, not tabs
 set tabstop=2 " An indentation every four columns
 set softtabstop=2 " Let backspace delete indent
 
-" Show whitespaces
+" Show white-spaces
 set list
-set listchars=tab:»\ ,trail:›,extends:#,nbsp:. " Highlight problematic whitespace
+set listchars=tab:»\ ,trail:›,extends:#,nbsp:. " Highlight problematic white-space
 
 " Prevents inserting two spaces after punctuation on a join (J)
 set nojoinspaces
 
-" window spliting
-set splitright " Puts new vsplit windows to the right of the current
+" window splitting
+set splitright " Puts new vertical split windows to the right of the current
 set splitbelow " Puts new split windows to the bottom of the current
 "set matchpairs+=<:> " Match, to be used with %
 set comments=sl:/*,mb:*,elx:*/  " auto format comment blocks
 
 " ======================
-" AUTO CMDS
+" AUTO CMDs
 " ======================
 
 " coffee script syntax
 autocmd BufNewFile,BufRead *.coffee set filetype=coffee
 
-" Remove trailing whitespaces and ^M chars
+" Remove trailing whites-paces and ^M chars
 autocmd FileType c,cpp,java,go,php,javascript,python,twig,xml,yml autocmd BufWritePre <buffer>  call StripTrailingWhitespace()
 autocmd FileType go autocmd BufWritePre <buffer> Fmt
 autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
@@ -407,7 +404,6 @@ autocmd BufReadPost *
     \ if line("'\"") > 0 && line("'\"") <= line("$") |
     \ exe "normal g`\"" |
     \ endif
-
 
 "===============================
 " GUI SETTINGS (macvim)
@@ -499,6 +495,13 @@ set t_Co=256 " enable 256 colors
 "colorscheme jellybeans " set colorscheme
 colorscheme twilight
 set background=dark
+
+" Spell checking on
+set spell
+
+" setup spell error styles
+hi clear SpellBad
+hi SpellBad cterm=underline
 
 " ===================================
 " ACK.vim / AG
@@ -726,3 +729,4 @@ let g:elm_format_autosave = 1
 let g:ycm_semantic_triggers = {
      \ 'elm' : ['.'],
      \}
+
