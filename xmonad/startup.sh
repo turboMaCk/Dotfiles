@@ -11,5 +11,6 @@ caprine &
 volumeicon &
 redshift-gtk &
 rescuetime &
+browserpass &
 wire-desktop &
 lightscreen -d
