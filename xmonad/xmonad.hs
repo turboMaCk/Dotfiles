@@ -107,7 +107,6 @@ emailW = "3"
 codeW = "4"
 musicW = "8"
 virtualW = "9"
-hiddenW = ""
 
 
 myWorkspaces :: [String]
@@ -124,7 +123,7 @@ myWorkspaces = clickable . (map xmobarEscape) $
   where
     clickable l = [ " <action=xdotool key alt+" ++ show n ++ ">" ++ ws ++ "</action> " |
                     (i , ws) <- zip [1..10] l,
-                    let n = i ] ++ [ hiddenW ]
+                    let n = i ]
 
 
 -------------------------------------
@@ -252,10 +251,8 @@ myStartupHook = do
 myManageHook :: Query (Endo WindowSet)
 myManageHook = composeAll
     [ className =? "stalonetray"  --> doIgnore
-    , className =? "Slack"        --> doShift communicateW
-    , className =? "thunderbird"  --> doShift emailW
-    , className =? "Wire"         --> doShift hiddenW <+> doFloat
-    , className =? "Caprine"      --> doShift hiddenW <+> doFloat
+    , className =? "Wire"         --> doFloat
+    , className =? "Caprine"      --> doFloat
     , className =? "obs"          --> doFloat
     , Docks.manageDocks
     , isFullscreen                --> doF W.focusDown <+> doFullFloat

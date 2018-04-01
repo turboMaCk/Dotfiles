@@ -520,8 +520,12 @@ npm install -g elm
     (elm-format-on-save t)
   )
 
-  (add-hook 'elm-mode-hook 'turbo_mack/init-elm)
+  ;; Not worging with lastest elm-mode
+  ;; (add-hook 'elm-mode-hook 'turbo_mack/init-elm)
 #+END_SRC
+
+#+RESULTS:
+: turbo_mack/init-elm
 
 ** Haskell
 

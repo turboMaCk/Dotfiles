@@ -25,3 +25,7 @@ export PATH="/usr/bin:$PATH"
 
 # Mac with Home Brew specific
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
+
+# NIX path
+source ~/.nix-profile/etc/profile.d/nix.sh
+nix-env -i nss-cacert
