@@ -25,12 +25,9 @@ There is example file you can copy:
 
 ** Load Secrets
 
-#+BEGIN_SRC emacs-lisp :restuls none
+#+BEGIN_SRC emacs-lisp :results none
  (load "~/.emacs.d/secrets.el")
 #+END_SRC
-
-#+RESULTS:
-: t
 
 * Setup User Info
 
@@ -104,7 +101,7 @@ Setup fringes (spaces around windows).
 
   (setq-default truncate-lines t)
   (setq line-spacing 3)
-  (set-face-attribute 'default nil :height 100)
+  (set-face-attribute 'default nil :height 120)
 #+END_SRC
 
 #+RESULTS:
