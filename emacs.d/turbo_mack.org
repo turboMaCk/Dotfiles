@@ -301,7 +301,6 @@ This loads my customized version of twilight theme.
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
   (load-theme 'fogus t)
-  (set-face-background 'hl-line "#000000")
 #+END_SRC
 
 Making sense of love to all the sweet things on internet.
@@ -335,6 +334,16 @@ Theme agnostic UI settings
   (frame-parameter (make-frame '((border-width . 5))) 'border-width)
 
   (set-frame-parameter (selected-frame) 'internal-border-width 0)
+#+END_SRC
+
+Setup comments style to be more visible
+
+#+BEGIN_SRC emacs-lisp :results none
+  ;; pink comments
+  (set-face-foreground 'font-lock-comment-face "light pink")
+
+  ;; black bg behind current line
+  (set-face-background 'hl-line "#000000")
 #+END_SRC
 
 Make window transparent (requires compositor):
@@ -377,6 +386,12 @@ Which Key helps me with key bindings
   (setq ispell-program-name "aspell")
 #+END_SRC
 
+* COMMENT Makdown
+Specify pandoc location
+#+BEGIN_SRC emacs-lisp :results none
+  (custom-set-variables
+   '(markdown-command "/usr/bin/pandoc"))
+#+END_SRC
 * Indentation Settings
 
 Honestly this is one of the most annoying things in Emacs.
