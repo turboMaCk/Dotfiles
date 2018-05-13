@@ -37,8 +37,9 @@ function _wttr() {
   curl $url
 }
 
-# RBENV
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+# CHRUBY
+source /usr/local/opt/chruby/share/chruby/chruby.sh
+source /usr/local/opt/chruby/share/chruby/auto.sh
 
 # NVM
 export NVM_DIR=~/.nvm
