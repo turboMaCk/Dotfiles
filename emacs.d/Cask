@@ -66,7 +66,6 @@
 (depends-on "psci")
 (depends-on "purescript-mode")
 (depends-on "rainbow-delimiters")
-(depends-on "rbenv")
 (depends-on "recentf")
 (depends-on "restclient")
 (depends-on "robe")

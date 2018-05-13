@@ -621,18 +621,8 @@ Another ML like language
 
 I sometimes write Ruby since it's so popular language for writing APIs and web apps.
 I past I was writing a lot of Ruby myself and I keep to maintain my workflow and environment.
-I prefer rbenv over RVM.
-
-On Mac with Home Brew:
-
-#+BEGIN_SRC shell :exports none :results none
-brew install rbenv
-#+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-  (require 'rbenv)
-  (rbenv-use-corresponding)
-
   ;; Rails
   (require 'projectile-rails)
   (add-hook 'projectile-mode-hook 'projectile-rails-on)
