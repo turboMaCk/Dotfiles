@@ -6,6 +6,10 @@
 #   Marek Fajkus <marek.faj@gmail.com>
 #
 
+# prezto depends on coreutils
+# This is fix for error in prompt on MacOS
+export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
@@ -44,6 +48,7 @@ source /usr/local/opt/chruby/share/chruby/auto.sh
 # NVM
 export NVM_DIR=~/.nvm
 if which brew > /dev/null; then
+  export NVM_DIR=~/.nvm
   source "$(brew --prefix nvm)/nvm.sh";
 else
   source /usr/share/nvm/nvm.sh

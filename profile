@@ -14,7 +14,6 @@ export SSH_KEY_PATH="~/.ssh/"
 # setup path
 export PATH="/usr/local/bin:$PATH"
 export PATH="/usr/local/sbin:$PATH"
-export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 export PATH="$HOME/.cabal/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export LIBRARY_PATH="$LIBRARY_PATH:/usr/local/lib"
