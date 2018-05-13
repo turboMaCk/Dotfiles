@@ -26,6 +26,8 @@
 (depends-on "flycheck-ocaml")
 (depends-on "flycheck-rust")
 (depends-on "fontawesome")
+(depends-on "go")
+(depends-on "go-mode")
 (depends-on "graphene" "20141030.219")
 (depends-on "handlebars-mode")
 (depends-on "haskell-mode")

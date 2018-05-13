@@ -56,4 +56,8 @@ if [ -f ~/.aliases ]; then
     . ~/.aliases
 fi
 
+# GO FUCK YOURSELF
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+
 screenfetch
