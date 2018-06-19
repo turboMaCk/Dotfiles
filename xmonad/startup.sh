@@ -9,7 +9,6 @@
 dropbox &
 caprine &
 volumeicon &
-redshift-gtk &
 rescuetime &
 browserpass &
 wire-desktop &

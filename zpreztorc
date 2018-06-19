@@ -106,7 +106,7 @@ zstyle ':prezto:module:prompt' theme 'prague_shell'
 #
 
 # Auto switch the Ruby version on directory change.
-zstyle ':prezto:module:ruby:chruby' auto-switch 'yes'
+#zstyle ':prezto:module:ruby:chruby' auto-switch 'yes'
 
 #
 # Screen

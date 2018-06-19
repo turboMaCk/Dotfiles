@@ -51,10 +51,6 @@ I'm using tramp-mode mainly to access remote machines via ssh.
 
 Setup environment and exec path. This is using ~exec-path-from-shell~ package.
 
-#+BEGIN_SRC emacs-lisp
-  (exec-path-from-shell-initialize)
-#+END_SRC
-
 These are one of the most important settings for Emacs' core and GUI.
 
 Start Emacs server if it's not running. This allows you to use ~emacsclient [filename]~ to attach to already running Emacs.
@@ -1319,7 +1315,8 @@ so it should be safe to enable it unconditionally even if you share your configu
 
 #+BEGIN_SRC emacs-lisp
   (when (fboundp 'osx-clip-board-mode)
-            (osx-clip-board-mode t))
+            (osx-clip-board-mode t)
+            (exec-path-from-shell-initialize))
 #+END_SRC
 
 Command same as ctrl
@@ -1334,6 +1331,7 @@ On linux magit needs to know pid of SSH agent otherwise it prompts for passphras
 
 #+BEGIN_SRC emacs-lisp
 (when window-system
+    (set-face-attribute 'default nil :height 100)
     (exec-path-from-shell-copy-env "SSH_AGENT_PID")
     (exec-path-from-shell-copy-env "SSH_AUTH_SOCK"))
 #+END_SRC
