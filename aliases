@@ -1,7 +1,6 @@
 alias g="git"
 alias tm="tmux"
 alias s="subl"
-alias subl="/Applications/Sublime\ Text.app/Contents/SharedSupport/bin/subl"
 
 # vim
 alias vi="vim"
