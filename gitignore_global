@@ -42,6 +42,10 @@ TAGS
 ehthumbs.db
 Thumbs.db
 
+# Linux generated files #
+#########################
+.directory
+
 # Emacs #
 #########
 .dir-locals.el
