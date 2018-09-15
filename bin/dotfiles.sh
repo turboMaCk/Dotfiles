@@ -1,4 +1,4 @@
-#!/bin/bash
+# !bash
 
 # save locations
 cwd="$(dirname "$0")"

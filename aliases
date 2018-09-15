@@ -8,7 +8,6 @@ alias vi="vim"
 alias v="vim"
 
 # emacs
-alias emacs="emacsclient -t"
 alias e="emacsclient -t"
 
 # docker

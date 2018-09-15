@@ -10,7 +10,6 @@ killall dropbox \
         caprine \
         volumeicon \
         redshift-gtk \
-        rescruetime \
         browserpass \
         wire-desktop \
         lightscreen
