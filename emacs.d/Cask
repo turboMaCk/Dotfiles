@@ -57,7 +57,6 @@
 (depends-on "org-jira")
 (depends-on "org-pomodoro")
 (depends-on "osx-clipboard")
-(depends-on "ox-reveal")
 (depends-on "pallet" :git "https://githib.com/rdallasgray/pallet" :ref "master")
 (depends-on "pallet")
 (depends-on "pbcopy")

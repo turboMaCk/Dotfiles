@@ -97,7 +97,7 @@ Setup fringes (spaces around windows).
 
   (setq-default truncate-lines t)
   (setq line-spacing 3)
-  (set-face-attribute 'default nil :height 120)
+  (set-face-attribute 'default nil :height 100)
 #+END_SRC
 
 #+RESULTS:
@@ -626,8 +626,8 @@ brew install rbenv
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp
-  (require 'rbenv)
-  (rbenv-use-corresponding)
+  ;;(require 'rbenv)
+  ;;(rbenv-use-corresponding)
 
   ;; Rails
   (require 'projectile-rails)
@@ -1341,7 +1341,6 @@ On linux magit needs to know pid of SSH agent otherwise it prompts for passphras
 
 #+BEGIN_SRC emacs-lisp
 (when window-system
-    (set-face-attribute 'default nil :height 100)
     (exec-path-from-shell-copy-env "SSH_AGENT_PID")
     (exec-path-from-shell-copy-env "SSH_AUTH_SOCK"))
 #+END_SRC

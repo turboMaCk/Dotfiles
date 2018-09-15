@@ -1,153 +1,53 @@
-turbo_MaCk's dotfiles
-=====================
-This repository contains my dotfiles and setup **macOS/Linux** development machine.
+My Dotfiles
+===========
+This repository contains my dotfiles and setup **macOS/NixOS** development machine.
 
-* server config: https://github.com/turboMaCk/dotserver
+**Purpose of this repository is to archive my configuration as it evolves and share
+usefull parts of my config with other. That's being say you're free to use and modify
+any part of this config to suit your own needs however, this repository evolves a lot
+and from time to time can be contain outdated information or messy workarounds.**
 
-Developement setup
-==================
-Developement setup using ZSH, Prezto, Vim & other sw.
+## Shell
+I'm ZSH and prezto user. I also use my [custom theme](https://github.com/turboMaCk/prezto-Prague-Shell).
 
-## Submodules
-* Custom prezto theme [turboMaCk/prezto-Prague-Shell](https://github.com/turboMaCk/prezto-Prague-Shell)
+## Install Dotfiles
 
-Clone this repository with all submodules:
+I'm using only git for instalation. I always clone this repository to Home.
+
+On Mac command line tools are required:
 
 ```shell
-git clone --recursive https://github.com/turboMaCK/Dotfiles.git "${ZDOTDIR:-$HOME}/Dotfiles"
+$ xcode-select --install # mac only
 ```
 
-## Install via bin/install.sh
-* Homebrew (ruby + curl)
-* Vundle - vim package managing (git install)
-* ssh-copy-id script (curl install)
+**Note that this clone is using HTTPS and not SSH. At the time clone I usually don't have ssh setuped yet!**
 
-## Developement enviroment managing
-* rbenv (homebrew install)
-* nvm (homebrew install)
-* pyenv (homebrew install)
-* phantom.js (homebrew install)
-* dnsmasq (homebrew install)
-* Vagrant (brew cask install)
+```shell
+git clone --recursive https://github.com/turboMaCK/Dotfiles.git "$HOME/Dotfiles"
+```
 
-## Editors
-* vim (homebrew install)
-* neoviem (homebrew install)
-* macvim (homebrew install)
-* sublime-text (**hand install**)
+Switch to ZSH (don't forget to install it!)
 
-## Binaries and utils (all via homebrew)
-* coreutils
-* wget (iri enabled)
-* vim
-* grep
-* the silver searcher
-* git
-* git flow
-* tig
-* ctags
-* imagemagic (with webp)
-* node (just system version)
-* openssl
-* open ssh
-* tmux
-* osxfuse
-* htop-osx
-* memcached
-* apache ab
-
-## Databases (all via homebrew)
-* mysql
-* postgresql
-* sqlite
-* redis
-* mongo
-
-## Browsers (all via brewcask)
-* Google Chrome
-* Google Chrome Canary
-* Firefox
-* Opera
-
-## Open source applications (all via brewcask)
-* Transmission
-* VLC
-* Adium
-* iTerm2 nightly
-* Total Terminal
-* virtualbox
-* Vagrant
-* Tunelblick
-
-## Proprietary applications (all via brew cask)
-* DropBox
-* The Unarchiver
-* Skype
-* Alfred
-* Transmit
-* Tower Git
-* Sublime Text
-* Codekit
-* Parallels
-
-## Pre-install setup
-Install Command Line Tools for XCode after install XCode via App Store.
-
-Switch to ZSH
 ```shell
 $ zsh
 ```
 
-Install Command Line Tools
-```shell
-$ xcode-select --install
-```
+This is how zsh can be set as default shell on OS other than NixOS (Mac for instance)
 
-## Install Dotfiles
-
-Clone git with submodules
-```shell
-$ git clone --recursive https://github.com/turboMaCk/Dotfiles "${ZDOTDIR:-$HOME}/Dotfiles"
-```
-
-Clone Prezto fork
-```shell
-$ git clone --recursive git@github.com:turboMaCk/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-```
-
-Create a new Zsh configuration by copying the Zsh configuration files from Prezto
-```shell
-$ setopt EXTENDED_GLOB
-for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
-  ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
-done
-```
-
-Set Zsh as your default shell
 ```shell
 $ chsh -s /bin/zsh
 ```
 
-Install Shell Theme
-```shell
-$ sh ~/Dotfiles/prezto-Prague-Shell/bin/install.sh
-```
+This installation is broken:
 
-Install Dotfiles itself
+>   Install Shell Theme
+>
+>   ```shell
+>   $ sh ~/Dotfiles/prezto-Prague-Shell/bin/install.sh
+>   ```
+
+To install dotfiles themselves you can run the script that cerates symlink in home directlory
+
 ```shell
 $ sh ~/Dotfiles/bin/dotfiles.sh
-```
-
-### Install Homebrew + Vundle
-This script will install Homebrew, Vundle and ssh-copy-id script and setup directories for vim settings.
-
-```shell
-$ sh ~/Dotfiles/bin/install.sh
-```
-
-### setup OSX
-This is experimental script and might be broken on some machines.
-
-```shell
-$ sh ~/Dotfiles/bin/osx.sh
 ```

@@ -42,12 +42,9 @@ function _wttr() {
 }
 
 # NVM
-export NVM_DIR=~/.nvm
 if which brew > /dev/null; then
   export NVM_DIR=~/.nvm
   source "$(brew --prefix nvm)/nvm.sh";
-else
-  source /usr/share/nvm/nvm.sh
 fi
 
 # OPAM (OCaml) configuration

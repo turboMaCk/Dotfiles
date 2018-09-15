@@ -45,8 +45,8 @@ zstyle ':prezto:load' pmodule \
   'git' \
   'node' \
   'python' \
-  'homebrew' \
-  'osx' \
+#  'homebrew' \
+#  'osx' \
   'rails' \
   'ruby' \
   'rails' \
