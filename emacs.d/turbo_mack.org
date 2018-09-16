@@ -1349,6 +1349,3 @@ On linux magit needs to know pid of SSH agent otherwise it prompts for passphras
     (exec-path-from-shell-copy-env "SSH_AGENT_PID")
     (exec-path-from-shell-copy-env "SSH_AUTH_SOCK"))
 #+END_SRC
-
-#+RESULTS:
-: /var/folders/kb/fr3g61gs64b1xkqg5n9sbxy40000gn/T//ssh-agent.sock.501
