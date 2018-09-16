@@ -19,9 +19,6 @@ For instaraction how to install different parts please fallow specific directory
 - Emacs installation [link](/emacs.d)
 - XMonad installation in X11 systems [link](xmonad)
 
-## Shell
-
-I'm ZSH and Prezto user. I also use my [custom theme](https://github.com/turboMaCk/prezto-Prague-Shell).
 
 ## Install Dotfiles
 
@@ -42,6 +39,10 @@ At the time clone I usually don't have ssh setuped yet!**
 ```shell
 git clone --recursive https://github.com/turboMaCK/Dotfiles.git "$HOME/Dotfiles"
 ```
+
+## Shell
+
+I'm ZSH and Prezto user. I also use my [custom theme](https://github.com/turboMaCk/prezto-Prague-Shell).
 
 Switch to ZSH (don't forget to install it first on the OS!)
 
