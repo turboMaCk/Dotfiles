@@ -1,32 +1,49 @@
-My Dotfiles
-===========
-This repository contains my dotfiles and setup **macOS/NixOS** development machine.
+# My Dotfiles
+
+This repository contains my dotfiles and setup **MacOS/NixOS** development machine.
 
 **Purpose of this repository is to archive my configuration as it evolves and share
 usefull parts of my config with other. That's being say you're free to use and modify
 any part of this config to suit your own needs however, this repository evolves a lot
-and from time to time can be contain outdated information or messy workarounds.**
+and from time to time can be contain outdated information, messy workarounds
+or even be broken.**
+
+Usually when I'm setting up new box I spent quite some tome just in terminal setting up bouch of things.
+To make this more pleasant experience I like to install my shell (ZSH) and configuration and vim config.
+Once the shell is settuped I continue by configuration of other essetial tools which in my case is
+Emacs and XMonad on X11 based system.
+
+Shell and Vim instruction are part of this README.
+For instaraction how to install different parts please fallow specific directory:
+
+- Emacs installation [link](/emacs.d)
+- XMonad installation in X11 systems [link](xmonad)
 
 ## Shell
-I'm ZSH and prezto user. I also use my [custom theme](https://github.com/turboMaCk/prezto-Prague-Shell).
+
+I'm ZSH and Prezto user. I also use my [custom theme](https://github.com/turboMaCk/prezto-Prague-Shell).
 
 ## Install Dotfiles
 
-I'm using only git for instalation. I always clone this repository to Home.
+I'm using just git for instalation so it has to be installed and the begining of installation procees
+depending on OS.
 
-On Mac command line tools are required:
+On Mac command line tools are required.
 
 ```shell
 $ xcode-select --install # mac only
 ```
 
-**Note that this clone is using HTTPS and not SSH. At the time clone I usually don't have ssh setuped yet!**
+I always clone this repository to Home of a user.
+
+**Note that this clone is using HTTPS and not SSH.
+At the time clone I usually don't have ssh setuped yet!**
 
 ```shell
 git clone --recursive https://github.com/turboMaCK/Dotfiles.git "$HOME/Dotfiles"
 ```
 
-Switch to ZSH (don't forget to install it!)
+Switch to ZSH (don't forget to install it first on the OS!)
 
 ```shell
 $ zsh
@@ -46,7 +63,7 @@ This installation is broken:
 >   $ sh ~/Dotfiles/prezto-Prague-Shell/bin/install.sh
 >   ```
 
-To install dotfiles themselves you can run the script that cerates symlink in home directlory
+To install Dotfiles themselves you can run the script that cerates symlink in home directlory.
 
 ```shell
 $ sh ~/Dotfiles/bin/dotfiles.sh
