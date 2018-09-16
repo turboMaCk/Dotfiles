@@ -382,12 +382,15 @@ Which Key helps me with key bindings
   (setq ispell-program-name "aspell")
 #+END_SRC
 
-* COMMENT Makdown
+* Makdown
+
 Specify pandoc location
+
 #+BEGIN_SRC emacs-lisp :results none
   (custom-set-variables
    '(markdown-command "/usr/bin/pandoc"))
 #+END_SRC
+
 * Indentation Settings
 
 Honestly this is one of the most annoying things in Emacs.
@@ -930,7 +933,7 @@ Perspective is package for managing workspaces within Emacs.
   (persp-mode t)
 #+END_SRC
 
-* COMMENT Org Mode
+* Org Mode
 
 Org mode is super fantastic. As I'm more fascinated with application of literate programming and reproducible research.
 I really fall in love with org-mode which is my tool of choice when it comes to exploring field as well as organizing stuff.
@@ -1324,7 +1327,9 @@ Attempting to enable this mode an a non-OS-X system or in a graphical Emacs will
 so it should be safe to enable it unconditionally even if you share your configuration between multiple machines.
 
 #+BEGIN_SRC emacs-lisp
+(exec-path-from-shell-initialize)
   (when (fboundp 'osx-clip-board-mode)
+            (set-face-attribute 'default nil :height 120)
             (osx-clip-board-mode t)
             (exec-path-from-shell-initialize))
 #+END_SRC
