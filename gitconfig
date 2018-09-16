@@ -83,3 +83,5 @@
   keepBackup = false
 [mergetool "fugitive"]
   cmd = vim -f -c \"Gdiff\" \"$MERGED\"
+[diff "sopsdiffer"]
+	textconv = sops -d
