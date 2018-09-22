@@ -91,7 +91,7 @@ manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
 
 scratchpads = [ NS "htop" "urxvt -e htop" (title =? "htop") defaultFloating
               , NS "caprine" "caprine" (title =? "Caprine") defaultFloating
-              , NS "wire" "wire" (title =? "Wire") defaultFloating
+              -- , NS "wire" "wire" (title =? "Wire") defaultFloating
               , NS "obs" "obs" (className =? "obs") defaultFloating
               ] where role = stringProperty "WM_WINDOW_ROLE"
 
@@ -208,7 +208,7 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
 
     -- Sratchpads
     , ((modMasq .|. shiftMask, xK_f     ), namedScratchpadAction scratchpads "caprine")
-    , ((modMasq .|. shiftMask, xK_d     ), namedScratchpadAction scratchpads "wire")
+    -- , ((modMasq .|. shiftMask, xK_d     ), namedScratchpadAction scratchpads "wire")
     , ((modMasq .|. shiftMask, xK_g     ), namedScratchpadAction scratchpads "obs")
 
     -- Restart xmonad
@@ -251,7 +251,7 @@ myStartupHook = do
 myManageHook :: Query (Endo WindowSet)
 myManageHook = composeAll
     [ className =? "stalonetray"  --> doIgnore
-    , className =? "Wire"         --> doFloat
+    -- , className =? "Wire"         --> doFloat
     , className =? "Caprine"      --> doFloat
     , className =? "obs"          --> doFloat
     , Docks.manageDocks
