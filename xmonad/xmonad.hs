@@ -16,7 +16,6 @@ import XMonad.Hooks.DynamicLog            (PP, ppVisible, ppCurrent, ppTitle, pp
 import XMonad.Actions.CopyWindow          (copyToAll)
 import XMonad.Layout.NoBorders            (smartBorders)
 import XMonad.Layout.Fullscreen           (fullscreenFull)
-import XMonad.Layout.Accordion            (Accordion(Accordion))
 import XMonad.Layout.Spacing              (smartSpacing)
 import XMonad.Layout.WorkspaceDir         (workspaceDir, changeDir)
 import XMonad.Layout.Tabbed               (simpleTabbedBottom)
@@ -264,10 +263,10 @@ myManageHook = composeAll
 -- layouts
 -------------------------------
 
-myLayoutHook =  Docks.avoidStruts $ workspaceDir "~" tall ||| fullscreenFull Full ||| Accordion ||| simpleTabbedBottom
+myLayoutHook =  Docks.avoidStruts $ workspaceDir "~" tall ||| wide ||| fullscreenFull Full ||| simpleTabbedBottom
   where
     tall = smartSpacing 5 $ Tall 1 (3/100) (2/3)
-    half = Tall 1 (3/100) (1/2)
+    wide = Mirror tall
 
 -- Local Variables:
 -- flycheck-ghc-args: ("-Wno-missing-signatures")
