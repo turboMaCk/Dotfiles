@@ -29,10 +29,7 @@ in {
         emacs
         wire-desktop
         ranger
-
-        # work
-        nodejs-8_x
-        yarn
+        ag
     ];
   };
 
