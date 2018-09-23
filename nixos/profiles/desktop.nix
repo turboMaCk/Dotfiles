@@ -9,10 +9,10 @@
     firefox
     transmission-gtk
     vlc
+    dunst # notifications
   ];
 
-  # packages
-
+  # Packages
   nixpkgs.config = {
     allowUnfree = true; # :'(
 
@@ -73,7 +73,6 @@
     shadow          = true;
     fadeDelta       = 4;
   };
-
 
   # Fonts
   fonts = {
