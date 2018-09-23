@@ -266,7 +266,7 @@ myManageHook = composeAll
 myLayoutHook =  Docks.avoidStruts $ workspaceDir "~" tall ||| wide ||| fullscreenFull Full ||| simpleTabbedBottom
   where
     tall = smartSpacing 5 $ Tall 1 (3/100) (2/3)
-    wide = Mirror tall
+    wide = Mirror $ Tall 1 (2/100) (5/6)
 
 -- Local Variables:
 -- flycheck-ghc-args: ("-Wno-missing-signatures")
