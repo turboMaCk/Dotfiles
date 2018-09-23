@@ -540,8 +540,6 @@ npm install -g elm
 
 ** Haskell
 
-
-
 [[https://github.com/serras/emacs-haskell-tutorial/blob/master/tutorial.md][There]] is a great article about setting up Emacs for Haskell development by Serras.
 
 This configuration is using several packages which requires installed binaries:
@@ -726,6 +724,18 @@ brew install rbenv
 
 *** TODO Improve integration
     Especially I would like to make sure integration with fly check works as expected.
+
+** Nix
+
+I'm using nix-mode to get support for nix expression files.
+However mode is not enabled for ~*.nix~ files by default.
+
+#+BEGIN_SRC emacs-lisp
+  (require 'nix-mode)
+  (add-to-list 'auto-mode-alist
+               '("\\.nix\\'" . (lambda ()
+                                 (nix-mode))))
+#+END_SRC
 
 * Other Tools
   This is collection of other Emacs based tools I'm using.
@@ -915,7 +925,7 @@ folder. Together Helm & Projectile are the main ways to file management and proj
   (require 'helm-ag)
 #+END_SRC
 
- ** Magit
+** Magit
 
 Magit is my favorite GIT interface of all time. This will setup Magit itself as well as its integration to evil.
 

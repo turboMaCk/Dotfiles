@@ -19,6 +19,7 @@ import XMonad.Layout.Fullscreen           (fullscreenFull)
 import XMonad.Layout.Accordion            (Accordion(Accordion))
 import XMonad.Layout.Spacing              (smartSpacing)
 import XMonad.Layout.WorkspaceDir         (workspaceDir, changeDir)
+import XMonad.Layout.Tabbed               (simpleTabbedBottom)
 import XMonad.Prompt
 import qualified XMonad.Hooks.ManageDocks as Docks
 import qualified XMonad.StackSet          as W
@@ -73,10 +74,10 @@ myConfig = def { modMask            = mod4Mask
                , workspaces         = myWorkspaces
                , keys               = myKeys
                , layoutHook         = smartBorders $ myLayoutHook
-               , focusedBorderColor = "#808080"
+               , focusedBorderColor = "#2E9AFE"
                , normalBorderColor  = "#000000"
                , manageHook         = myManageHook <+> manageHook def <+> manageScratchPad
-               , borderWidth        = 1
+               , borderWidth        = 4
                , startupHook        = myStartupHook
                }
 
@@ -91,7 +92,7 @@ manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
 
 scratchpads = [ NS "htop" "urxvt -e htop" (title =? "htop") defaultFloating
               , NS "caprine" "caprine" (title =? "Caprine") defaultFloating
-              , NS "wire" "wire" (title =? "Wire") defaultFloating
+              -- , NS "wire" "wire" (title =? "Wire") defaultFloating
               , NS "obs" "obs" (className =? "obs") defaultFloating
               ] where role = stringProperty "WM_WINDOW_ROLE"
 
@@ -208,7 +209,7 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
 
     -- Sratchpads
     , ((modMasq .|. shiftMask, xK_f     ), namedScratchpadAction scratchpads "caprine")
-    , ((modMasq .|. shiftMask, xK_d     ), namedScratchpadAction scratchpads "wire")
+    -- , ((modMasq .|. shiftMask, xK_d     ), namedScratchpadAction scratchpads "wire")
     , ((modMasq .|. shiftMask, xK_g     ), namedScratchpadAction scratchpads "obs")
 
     -- Restart xmonad
@@ -251,7 +252,7 @@ myStartupHook = do
 myManageHook :: Query (Endo WindowSet)
 myManageHook = composeAll
     [ className =? "stalonetray"  --> doIgnore
-    , className =? "Wire"         --> doFloat
+    -- , className =? "Wire"         --> doFloat
     , className =? "Caprine"      --> doFloat
     , className =? "obs"          --> doFloat
     , Docks.manageDocks
@@ -263,7 +264,7 @@ myManageHook = composeAll
 -- layouts
 -------------------------------
 
-myLayoutHook =  Docks.avoidStruts $ workspaceDir "~" tall ||| fullscreenFull Full ||| Accordion
+myLayoutHook =  Docks.avoidStruts $ workspaceDir "~" tall ||| fullscreenFull Full ||| Accordion ||| simpleTabbedBottom
   where
     tall = smartSpacing 5 $ Tall 1 (3/100) (2/3)
     half = Tall 1 (3/100) (1/2)

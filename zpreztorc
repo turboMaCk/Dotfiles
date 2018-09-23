@@ -47,11 +47,10 @@ zstyle ':prezto:load' pmodule \
   'python' \
 #  'homebrew' \
 #  'osx' \
-  'rails' \
-  'ruby' \
-  'rails' \
-  'ssh' \
-  'tmux'
+#  'ruby' \
+#  'rails' \
+#  'ssh' \
+#  'tmux'
 
 
 #
@@ -123,7 +122,7 @@ zstyle ':prezto:module:prompt' theme 'prague_shell'
 #
 
 # Set the SSH identities to load into the agent.
-zstyle ':prezto:module:ssh:load' identities 'id_rsa' 'id_rsa_madeo'
+zstyle ':prezto:module:ssh:load' identities 'id_rsa'
 
 #
 # Syntax Highlighting

@@ -1,6 +1,7 @@
 backup
-/emacs.d/request
-/emacs.d/secrets.el
+emacs.d/request
+emacs.d/secrets.el
 emacs.d/emojis/
 emacs.d/url/
-/emacs.d/bookmakrs
+emacs.d/bookmakrs
+emacs.d/session.*

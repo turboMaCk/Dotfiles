@@ -59,8 +59,6 @@ fi
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
-screenfetch
-
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/marek/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/marek/google-cloud-sdk/path.zsh.inc'; fi
 
