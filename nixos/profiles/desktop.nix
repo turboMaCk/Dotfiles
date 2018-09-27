@@ -9,6 +9,7 @@
     firefox
     transmission-gtk
     vlc
+    spectacle # screeshots
     dunst # notifications
   ];
 
