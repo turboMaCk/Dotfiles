@@ -1,6 +1,6 @@
 Xft.antialias: 1
 
-URxvt.font: xft:monospace:size=9
+URxvt.font: xft:monospace:size=10
 URxvt.scrollBar: false
 
 URxvt*foreground: #f2f2f2
@@ -30,4 +30,4 @@ URxvt*color14:    #9cf0f1
 URxvt*color15:    #e2e2e2
 
 ! Plugins
-URxvt.perl-ext-common: resize-font
+! URxvt.perl-ext-common: resize-font

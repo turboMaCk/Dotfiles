@@ -6,9 +6,8 @@
 
 {
   environment.systemPackages = with pkgs.haskellPackages; [
+    pkgs.cabal-install
+    pkgs.cabal2nix
     ghc
-    # cabal # cabal is marked as broken
-    cabal2nix
-    stack
   ];
 }
