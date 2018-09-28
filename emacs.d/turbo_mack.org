@@ -296,7 +296,7 @@ This loads my customized version of twilight theme.
 
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-  (load-theme 'fogus t)
+  (load-theme 'adwaita t)
 #+END_SRC
 
 Making sense of love to all the sweet things on internet.
@@ -335,18 +335,19 @@ Theme agnostic UI settings
 Setup comments style to be more visible
 
 #+BEGIN_SRC emacs-lisp :results none
-  ;; pink comments
-  (set-face-foreground 'font-lock-comment-face "light pink")
+  ;; grey comments
+  (set-face-foreground 'font-lock-comment-face "#666666")
 
-  ;; black bg behind current line
-  (set-face-background 'hl-line "#000000")
+  ;; white bg behind current line
+  (set-face-background 'hl-line "#ffffff")
+  (set-face-foreground 'hl-line "#000000")
 #+END_SRC
 
 Make window transparent (requires compositor):
 
 #+BEGIN_SRC emacs-lisp
-  (set-frame-parameter (selected-frame) 'alpha '(95 80))
-  (add-to-list 'default-frame-alist '(alpha 95 80))
+  ;; (set-frame-parameter (selected-frame) 'alpha '(95 80))
+  ;; (add-to-list 'default-frame-alist '(alpha 95 80))
 #+END_SRC
 
 * Which key
@@ -557,19 +558,20 @@ cabal install -g stylish-haskell
 #+BEGIN_SRC emacs-lisp
   (require 'haskell-mode)
   (require 'hindent)
+  (require 'flycheck-haskell)
   (add-hook 'haskell-mode-hook #'hindent-mode)
 
-  (eval-after-load 'haskell-mode
-    '(define-key haskell-mode-map [f8] 'haskell-navigate-imports))
+  ;; (eval-after-load 'haskell-mode
+  ;;   '(define-key haskell-mode-map [f8] 'haskell-navigate-imports))
 
-  (let ((my-cabal-path (expand-file-name "~/.cabal/bin")))
-    (setenv "PATH" (concat my-cabal-path path-separator (getenv "PATH")))
-    (add-to-list 'exec-path my-cabal-path))
+  ;; (let ((my-cabal-path (expand-file-name "~/.cabal/bin")))
+  ;;   (setenv "PATH" (concat my-cabal-path path-separator (getenv "PATH")))
+  ;;   (add-to-list 'exec-path my-cabal-path))
 
   (custom-set-variables '(haskell-tags-on-save t))
 
   ;; use stack instead of plain ghci
-  (custom-set-variables '(haskell-process-type 'stack-ghci))
+  ;(custom-set-variables '(haskell-process-type 'stack-ghci))
 
   (custom-set-variables
    '(haskell-process-suggest-remove-import-lines t)
