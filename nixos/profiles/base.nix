@@ -3,7 +3,6 @@
 {
   environment.systemPackages = with pkgs; [
     nix-prefetch-scripts
-    nix-repl
     python
     python3
     (vim_configurable.override { python3 = true; })

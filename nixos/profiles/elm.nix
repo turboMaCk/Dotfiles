@@ -9,6 +9,7 @@ in {
     environment.systemPackages = with pkgs.elmPackages; [
         elm
         elm-format
+        pkgs.nodePackages.node2nix
         # verify-examples
     ];
 }

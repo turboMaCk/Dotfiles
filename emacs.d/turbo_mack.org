@@ -339,8 +339,8 @@ Setup comments style to be more visible
   (set-face-foreground 'font-lock-comment-face "#666666")
 
   ;; white bg behind current line
-  (set-face-background 'hl-line "#ffffff")
-  (set-face-foreground 'hl-line "#000000")
+  ;;(set-face-background 'hl-line "#ffffff")
+  ;;(set-face-foreground 'hl-line "#000000")
 #+END_SRC
 
 Make window transparent (requires compositor):
