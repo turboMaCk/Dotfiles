@@ -8,6 +8,7 @@
   environment.systemPackages = with pkgs.haskellPackages; [
     pkgs.cabal-install
     pkgs.cabal2nix
+    ghcid
     ghc
   ];
 }

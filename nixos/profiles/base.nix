@@ -14,6 +14,7 @@
     gcc
     gnumake
     htop
+    cloc
   ];
 
   # Select internationalisation properties.
