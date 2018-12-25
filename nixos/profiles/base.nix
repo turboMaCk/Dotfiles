@@ -2,9 +2,11 @@
 
 {
   environment.systemPackages = with pkgs; [
+    nix-prefetch-scripts
     python
     python3
     (vim_configurable.override { python3 = true; })
+    lsof
     wget
     git
     pass
@@ -12,7 +14,7 @@
     gcc
     gnumake
     htop
-    nix-prefetch-scripts
+    cloc
   ];
 
   # Select internationalisation properties.

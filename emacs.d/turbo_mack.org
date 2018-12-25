@@ -337,7 +337,6 @@ Setup comments style to be more visible
 #+BEGIN_SRC emacs-lisp :results none
   ;; pink comments
   (set-face-foreground 'font-lock-comment-face "light pink")
-
   ;; black bg behind current line
   (set-face-background 'hl-line "#000000")
 #+END_SRC
@@ -345,8 +344,8 @@ Setup comments style to be more visible
 Make window transparent (requires compositor):
 
 #+BEGIN_SRC emacs-lisp
-  (set-frame-parameter (selected-frame) 'alpha '(95 80))
-  (add-to-list 'default-frame-alist '(alpha 95 80))
+  ;; (set-frame-parameter (selected-frame) 'alpha '(95 80))
+  ;; (add-to-list 'default-frame-alist '(alpha 95 80))
 #+END_SRC
 
 * Which key
@@ -554,22 +553,23 @@ cabal install -g hasktags
 cabal install -g stylish-haskell
 #+END_SRC
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :results none
   (require 'haskell-mode)
   (require 'hindent)
+  (require 'flycheck-haskell)
   (add-hook 'haskell-mode-hook #'hindent-mode)
 
   (eval-after-load 'haskell-mode
     '(define-key haskell-mode-map [f8] 'haskell-navigate-imports))
 
-  (let ((my-cabal-path (expand-file-name "~/.cabal/bin")))
-    (setenv "PATH" (concat my-cabal-path path-separator (getenv "PATH")))
-    (add-to-list 'exec-path my-cabal-path))
+  ;; (let ((my-cabal-path (expand-file-name "~/.cabal/bin")))
+  ;;   (setenv "PATH" (concat my-cabal-path path-separator (getenv "PATH")))
+  ;;   (add-to-list 'exec-path my-cabal-path))
 
   (custom-set-variables '(haskell-tags-on-save t))
 
   ;; use stack instead of plain ghci
-  (custom-set-variables '(haskell-process-type 'stack-ghci))
+  ;(custom-set-variables '(haskell-process-type 'stack-ghci))
 
   (custom-set-variables
    '(haskell-process-suggest-remove-import-lines t)
@@ -588,9 +588,6 @@ cabal install -g stylish-haskell
                                      (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
                                      (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
 #+END_SRC
-
-#+RESULTS:
-: haskell-process-cabal
 
 *** TODO Improve performance of auto complete
     I experienced some performance issues with ~haskell-mode~. Possibly this problem with ~fly-check~.

@@ -26,13 +26,10 @@ in {
         obs-studio
         slack
         spotify
-        emacs
+        emacs25
         wire-desktop
         ranger
-
-        # work
-        nodejs-8_x
-        yarn
+        ag
     ];
   };
 

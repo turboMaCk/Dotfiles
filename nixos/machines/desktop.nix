@@ -75,6 +75,14 @@
     opengl.driSupport32Bit = true;
   };
 
+  # HOSTS
+  # networking.hosts = {
+    # "35.233.47.118" = [ "pro-next.globalwebindex.net" ];
+  # };
+
+  # Set hosts
+  # networking.hosts."127.0.0.1" = [ "local.dev" ];
+
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
   # servers. You should change this only after NixOS release notes say you

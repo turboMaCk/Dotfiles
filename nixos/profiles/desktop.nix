@@ -9,10 +9,11 @@
     firefox
     transmission-gtk
     vlc
+    spectacle # screeshots
+    dunst # notifications
   ];
 
-  # packages
-
+  # Packages
   nixpkgs.config = {
     allowUnfree = true; # :'(
 
@@ -74,6 +75,13 @@
     fadeDelta       = 4;
   };
 
+  # Redshift
+  services.redshift = {
+    enable = true;
+    latitude = "49.1165";
+    longitude = "16.594";
+    temperature.night = 2500;
+  };
 
   # Fonts
   fonts = {
