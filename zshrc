@@ -16,7 +16,7 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Vi as editor
-export EDITOR="vi"
+export EDITOR="emacs-client -n -c"
 
 # Emacs as visual editor
 export VISUAL="emacs-client -n -c"

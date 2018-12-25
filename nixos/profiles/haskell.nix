@@ -8,7 +8,14 @@
   environment.systemPackages = with pkgs.haskellPackages; [
     pkgs.cabal-install
     pkgs.cabal2nix
+    hindent
+    stylish-haskell
+    hasktags
     ghcid
     ghc
   ];
+
+  # Enable GHC.js binary cache
+  nix.binaryCaches = [ "https://cache.nixos.org/" "https://nixcache.reflex-frp.org" ];
+  nix.binaryCachePublicKeys = [ "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI=" ];
 }
