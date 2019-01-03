@@ -15,6 +15,8 @@
      ../profiles/nodejs.nix
      ../profiles/elm.nix
      ../profiles/haskell.nix
+     ../profiles/heroku.nix
+     ../profiles/gcloud.nix
    ];
 
   # Use the systemd-boot EFI boot loader.
