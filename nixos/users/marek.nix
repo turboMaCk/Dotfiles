@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 
-let wire-desktop = pkgs.callPackage ../pkgs/wire-desktop.nix {};
-in {
+{
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.marek = {
     description = "Marek Fajkus (@turbo_MaCk)";
@@ -23,13 +22,15 @@ in {
         steam
         browserpass
         dropbox
-        obs-studio
+        obs-sudio
         slack
         spotify
         emacs25
         wire-desktop
         ranger
         ag
+        vlc
+        gource
     ];
   };
 

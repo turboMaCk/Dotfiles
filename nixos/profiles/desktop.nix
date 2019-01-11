@@ -8,7 +8,7 @@
     chromium
     firefox
     transmission-gtk
-    vlc
+    openssl
     spectacle # screeshots
     dunst # notifications
   ];
