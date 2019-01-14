@@ -22,7 +22,7 @@
         steam
         browserpass
         dropbox
-        obs-sudio
+        obs-studio
         slack
         spotify
         emacs25
@@ -31,6 +31,7 @@
         ag
         vlc
         gource
+        weechat
     ];
   };
 
