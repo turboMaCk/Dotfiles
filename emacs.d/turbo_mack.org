@@ -449,7 +449,7 @@ I do admire its philosophy and values.
   (require 'scss-mode)
 #+END_SRC
 
-** JavaScript
+** COMMENT JavaScript
 
 Still writing a lot of JS daily for good and bad.
 
@@ -471,6 +471,10 @@ Still writing a lot of JS daily for good and bad.
     (local-set-key (kbd "C-x C-e") 'nodejs-repl-send-last-sexp))
 
   (add-hook 'js-mode 'turbo_mack/init-js-bindings)
+
+  ;; JSX support (REACT.js)
+  (add-to-list 'auto-mode-alist '("\\.jsx\\'" . jsx-mode))
+  (autoload 'jsx-mode "jsx-mode" "JSX mode" t)
 #+END_SRC
 
 ** Typescript
