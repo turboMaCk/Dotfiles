@@ -20,7 +20,6 @@ dotfiles=('agrc'
           'profile'
           'zshrc'
           'aliases'
-          'irssirc'
           'ghci'
           'Xresources'
           'Xmodmap'
@@ -71,8 +70,6 @@ done
 # symlink neovim
 # ln -fs ~/.vim ~/.nvim
 
-# symlink irc config
-#if ls ~/.irssi/config > /dev/null; then ln -fs ~/.irssirc ~/.irssi/config/.irssirc; fi
 
 # CD back
 cd $pwd
