@@ -453,13 +453,14 @@ I do admire its philosophy and values.
 
 Still writing a lot of JS daily for good and bad.
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp :results none
   (require 'nvm)
   (require 'npm-mode)
   (require 'nodejs-repl)
   (require 'skewer-mode)
   (require 'ember-mode)
   (require 'handlebars-mode)
+  (require 'jsx-mode)
 
   ;; enable flycheck
   (add-hook 'js-mode-hook
@@ -473,8 +474,7 @@ Still writing a lot of JS daily for good and bad.
   (add-hook 'js-mode 'turbo_mack/init-js-bindings)
 
   ;; JSX support (REACT.js)
-  (add-to-list 'auto-mode-alist '("\\.jsx\\'" . jsx-mode))
-  (autoload 'jsx-mode "jsx-mode" "JSX mode" t)
+  (add-to-list 'auto-mode-alist '("\\.jsx\\'" . js-jsx-mode))
 #+END_SRC
 
 ** Typescript
@@ -514,7 +514,7 @@ npm install -g tide
 ~elm-mode~ is great even with default settings.
 Please make sure you have [[https://github.com/avh4/elm-format][elm-format]] installed.
 
-#+BEGIN_SRC shell :exports none :resuts non
+#+BEGIN_SRC shell :exports none :resuts none
 npm install -g elm
 #+END_SRC
 
