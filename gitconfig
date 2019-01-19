@@ -79,9 +79,19 @@
   tree = log --graph --decorate --pretty=oneline --abbrev-commit
   ############
   pu = !"git fetch origin -v; git fetch upstream -v; git merge upstream/master"
+  #####################################################
+  # prune local branches that doesn't exist in origin #
+  #####################################################
+  prune-branches = !git remote prune origin && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -D
+
 [mergetool]
   keepBackup = false
+
 [mergetool "fugitive"]
   cmd = vim -f -c \"Gdiff\" \"$MERGED\"
+
 [diff "sopsdiffer"]
 	textconv = sops -d
+
+[fetch]
+	prune = true
