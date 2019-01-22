@@ -10,6 +10,7 @@ in {
         elm
         elm-format
         pkgs.nodePackages.node2nix
+        pkgs.elm2nix
         # verify-examples
     ];
 }

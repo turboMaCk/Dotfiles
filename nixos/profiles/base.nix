@@ -16,6 +16,7 @@
     htop
     cloc
     tree
+    unzip
   ];
 
   # Select internationalisation properties.

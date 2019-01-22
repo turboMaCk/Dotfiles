@@ -4,6 +4,7 @@
     dmenu
     xterm
     haskellPackages.xmobar
+    taffybar
     feh
     chromium
     firefox
@@ -11,6 +12,7 @@
     openssl
     spectacle # screeshots
     dunst # notifications
+    gnome3.adwaita-icon-theme # testing taffy bar
   ];
 
   # Packages
@@ -21,9 +23,9 @@
       jre = false;
       enableGoogleTalkPlugin = true;
       enableAdobeFlash = false;
-      enablePepperFlash = false;
+      enablePepperFlash = true;
       enablePepperPDF = true;
-      enableWideVine = false; # DRM shit
+      # enableWideVine = true;
     };
 
     firefox = {
@@ -49,7 +51,7 @@
 
     desktopManager = {
       plasma5.enable = true;
-      gnome3.enable = false;
+      gnome3.enable = true;
       xfce.enable = false;
       default = "plasma5";
    };

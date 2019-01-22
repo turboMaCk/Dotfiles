@@ -449,21 +449,23 @@ I do admire its philosophy and values.
   (require 'scss-mode)
 #+END_SRC
 
-** COMMENT JavaScript
+** JavaScript
 
 Still writing a lot of JS daily for good and bad.
 
 #+BEGIN_SRC emacs-lisp :results none
+  (require 'js2-mode)
   (require 'nvm)
   (require 'npm-mode)
   (require 'nodejs-repl)
   (require 'skewer-mode)
   (require 'ember-mode)
   (require 'handlebars-mode)
-  (require 'jsx-mode)
+  (require 'flow-minor-mode)
+  (require 'flycheck-flow)
 
   ;; enable flycheck
-  (add-hook 'js-mode-hook
+  (add-hook 'js2-mode-hook
           (lambda () (flycheck-mode t)))
 
   (defun turbo_mack/init-js-bindings ()
@@ -471,10 +473,14 @@ Still writing a lot of JS daily for good and bad.
     (interactive)
     (local-set-key (kbd "C-x C-e") 'nodejs-repl-send-last-sexp))
 
-  (add-hook 'js-mode 'turbo_mack/init-js-bindings)
+  (add-hook 'js2-mode 'turbo_mack/init-js-bindings)
 
   ;; JSX support (REACT.js)
-  (add-to-list 'auto-mode-alist '("\\.jsx\\'" . js-jsx-mode))
+  (add-to-list 'auto-mode-alist '("\\.jsx\\'" . js2-jsx-mode))
+  (add-hook 'js2-mode-hook 'flow-minor-enable-automatically)
+  (with-eval-after-load 'flycheck
+    (flycheck-add-mode 'javascript-flow 'flow-minor-mode)
+    (flycheck-add-next-checker 'javascript-flow 'javascript-eslint))
 #+END_SRC
 
 ** Typescript

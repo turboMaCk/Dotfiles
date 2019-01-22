@@ -266,7 +266,7 @@ myManageHook = composeAll
 -- layouts
 -------------------------------
 
-myLayoutHook =  Docks.avoidStruts $ workspaceDir "~" tall ||| wide ||| fullscreenFull Full ||| simpleTabbedBottom
+myLayoutHook =  Docks.avoidStruts $ workspaceDir "~" tall ||| wide ||| simpleTabbedBottom
   where
     tall = smartSpacing 5 $ Tall 1 (3/100) (2/3)
     wide = Mirror $ Tall 1 (2/100) (5/6)

@@ -10,9 +10,12 @@
     pkgs.cabal2nix
     hindent
     stylish-haskell
+    stack
     hasktags
     ghcid
     ghc
+    zlib
+    stack2nix
   ];
 
   # Enable GHC.js binary cache

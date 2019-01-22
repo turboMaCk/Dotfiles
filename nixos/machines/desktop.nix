@@ -15,6 +15,7 @@
      ../profiles/nodejs.nix
      ../profiles/elm.nix
      ../profiles/haskell.nix
+     ../profiles/rust.nix
      ../profiles/heroku.nix
      ../profiles/gcloud.nix
    ];
