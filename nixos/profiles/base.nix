@@ -35,9 +35,11 @@
     enableSSHSupport = true;
   };
   services.pcscd.enable = true;
+
   environment.shellInit = ''
     gpg-connect-agent /bye
     export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
   '';
 
+  nix.useSandbox = false;
 }
