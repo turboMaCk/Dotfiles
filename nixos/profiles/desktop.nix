@@ -12,7 +12,14 @@
     openssl
     spectacle # screeshots
     dunst # notifications
+
     gnome3.adwaita-icon-theme # testing taffy bar
+
+    # Themes
+    adapta-gtk-theme
+    gnome3.adwaita-icon-theme
+    xorg.xcursorthemes
+    lxappearance
   ];
 
   # Packages
@@ -51,7 +58,7 @@
 
     desktopManager = {
       plasma5.enable = true;
-      gnome3.enable = true;
+      gnome3.enable = false;
       xfce.enable = false;
       default = "plasma5";
    };
@@ -72,9 +79,15 @@
   services.compton = {
     enable          = true;
     fade            = true;
-    inactiveOpacity = "1.0";
     shadow          = true;
     fadeDelta       = 4;
+    shadowOpacity   = "0.5";
+
+    # opacity
+    activeOpacity   = "1";
+    inactiveOpacity = "0.9";
+    menuOpacity     = "0.9";
+    backend         = "glx";
   };
 
   # Redshift

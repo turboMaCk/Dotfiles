@@ -7,7 +7,7 @@ URxvt*foreground: #f2f2f2
 
 ! Transparency
 URxvt*depth: 32
-URxvt*background: rgba:0000/0000/0200/c800
+URxvt*background: rgba:0000/0000/0200/c600
 
 
 ! Light
