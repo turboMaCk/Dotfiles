@@ -380,7 +380,7 @@ Which Key helps me with key bindings
   (setq ispell-program-name "aspell")
 #+END_SRC
 
-* Makdown
+* Markdown
 
 Specify pandoc location
 
