@@ -327,7 +327,6 @@ Theme agnostic UI settings
   (setq-default right-fringe-width  2)
 
   (setq linum-format " %d ")
-  (frame-parameter (make-frame '((border-width . 5))) 'border-width)
 
   (set-frame-parameter (selected-frame) 'internal-border-width 0)
 #+END_SRC
