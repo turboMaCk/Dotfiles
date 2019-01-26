@@ -2,7 +2,11 @@
 
 {
   environment.systemPackages = with pkgs; [
+    # gcloud + k8
     google-cloud-sdk
     kubectl
+
+    # NixOps
+    nixops
   ];
 }

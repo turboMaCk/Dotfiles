@@ -1,6 +1,10 @@
 { config, pkgs, ... }:
 
 {
+  imports =
+    [ ../profiles/devops.nix
+    ];
+
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.extraUsers.marek = {
     description = "Marek Fajkus (@turbo_MaCk)";
