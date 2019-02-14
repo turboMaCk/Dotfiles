@@ -3,6 +3,9 @@
 {
   imports =
     [ ../profiles/devops.nix
+      ../profiles/graphics.nix
+      ../profiles/cpp.nix
+      ../profiles/rust.nix
     ];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.

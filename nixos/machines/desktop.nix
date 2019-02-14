@@ -15,9 +15,7 @@
      ../profiles/nodejs.nix
      ../profiles/elm.nix
      ../profiles/haskell.nix
-     ../profiles/rust.nix
      ../profiles/heroku.nix
-     ../profiles/gcloud.nix
    ];
 
   # Use the systemd-boot EFI boot loader.
@@ -84,7 +82,7 @@
   # };
 
   # Set hosts
-  # networking.hosts."127.0.0.1" = [ "local.dev" ];
+  # networking.hosts."128.199.58.247" = [ "planning-game.com" ];
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database

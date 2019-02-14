@@ -1,4 +1,6 @@
 { config, pkgs, ... }:
+let agilePoker = import /home/marek/Projects/agile-poker/default.nix;
+in
 {
   environment.systemPackages = with pkgs; [
     dmenu
@@ -12,6 +14,11 @@
     openssl
     spectacle # screeshots
     dunst # notifications
+    google-fonts
+
+    # KDE
+    kdeApplications.korganizer # calednar
+    kdeApplications.akonadi-mime
 
     gnome3.adwaita-icon-theme # testing taffy bar
 
