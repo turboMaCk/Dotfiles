@@ -11,7 +11,7 @@
     docker.enable = true;
 
     virtualbox = {
-      host.enable = true;
+      # host.enable = true;
     };
   };
 }

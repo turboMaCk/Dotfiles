@@ -53,3 +53,7 @@ alias hidedots="defaults write com.apple.finder AppleShowAllFiles FALSE & killal
 # functions
 alias line-ends="sanitizeFileEnds"
 alias wttr="_wttr"
+
+# elm (0.19 breaking changes fallback)
+alias elm-make "elm make"
+alias elm-repl "elm repl"
