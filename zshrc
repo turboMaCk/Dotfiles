@@ -58,9 +58,13 @@ fi
 # GO FUCK YOURSELF
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
+export PATH=$PATH:/$HOME/.local/bin
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/marek/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/marek/google-cloud-sdk/path.zsh.inc'; fi
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/marek/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/marek/google-cloud-sdk/completion.zsh.inc'; fi
+
+
+. /Users/marek/.nix-profile/etc/profile.d/nix.sh

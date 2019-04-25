@@ -97,7 +97,7 @@ Setup fringes (spaces around windows).
 
   (setq-default truncate-lines t)
   (setq line-spacing 3)
-  (set-face-attribute 'default nil :height 100)
+  (set-face-attribute 'default nil :height 110)
 #+END_SRC
 
 #+RESULTS:
@@ -296,7 +296,7 @@ This loads my customized version of twilight theme.
 
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-  (load-theme 'fogus t)
+  (load-theme 'ritchie t)
 #+END_SRC
 
 Making sense of love to all the sweet things on internet.
@@ -335,9 +335,9 @@ Setup comments style to be more visible
 
 #+BEGIN_SRC emacs-lisp :results none
   ;; pink comments
-  (set-face-foreground 'font-lock-comment-face "light pink")
+  ;;(set-face-foreground 'font-lock-comment-face "light pink") -- not with light theme
   ;; black bg behind current line
-  (set-face-background 'hl-line "#000000")
+  ;;(set-face-background 'hl-line "#000000") not with white theme!
 #+END_SRC
 
 Make window transparent (requires compositor):
@@ -1019,35 +1019,35 @@ Better evil key binding for org-mode
 
 Setup languages support for literate programming capabilities.
 
-#+BEGIN_SRC emacs-lisp
-  (require 'ob-sh)
-  (require 'ob-shell)
-  (require 'ob-emacs-lisp)
-  (require 'ob-ruby)
-  (require 'ob-js)
-  (require 'ob-typescript)
-  ;; ob-elm.el is part of this repository
-  (require 'ob-elm)
-  (require 'ob-haskell)
-  (require 'ob-C)
-  (require 'ob-restclient)
+# #+BEGIN_SRC emacs-lisp :eval never
+#   (require 'ob-sh)
+#   (require 'ob-shell)
+#   (require 'ob-emacs-lisp)
+#   (require 'ob-ruby)
+#   (require 'ob-js)
+#   (require 'ob-typescript)
+#   ;; ob-elm.el is part of this repository
+#   (require 'ob-elm)
+#   (require 'ob-haskell)
+#   (require 'ob-C)
+#   (require 'ob-restclient)
 
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((sh . t)
-     (shell .t)
-     (emacs-lisp . t)
-     (ruby . t)
-     (js . t)
-     (typescript . t)
-     (elm . t)
-     (haskell . t)
-     (C . t)
-     (restclient . t)))
+#   (org-babel-do-load-languages
+#    'org-babel-load-languages
+#    '((sh . t)
+#      (shell .t)
+#      (emacs-lisp . t)
+#      (ruby . t)
+#      (js . t)
+#      (typescript . t)
+#      (elm . t)
+#      (haskell . t)
+#      (C . t)
+#      (restclient . t)))
 
-  ;; disable confirmation of evaluation
-  (setq org-confirm-babel-evaluate nil)
-#+END_SRC
+#   ;; disable confirmation of evaluation
+#   (setq org-confirm-babel-evaluate nil)
+# #+END_SRC
 
 ** ORG-JIRA
 
