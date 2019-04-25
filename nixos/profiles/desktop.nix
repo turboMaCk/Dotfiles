@@ -36,9 +36,9 @@ in
     chromium = {
       jre = false;
       enableGoogleTalkPlugin = true;
-      enableAdobeFlash = false;
-      enablePepperFlash = true;
-      enablePepperPDF = true;
+      enableAdobeFlash = true;
+      # enablePepperFlash = true;
+      # enablePepperPDF = true;
       # enableWideVine = true;
     };
 
