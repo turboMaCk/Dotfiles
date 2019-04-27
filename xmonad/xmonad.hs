@@ -10,29 +10,33 @@
 -- Marek Fajkus <marek.faj@gmail.com> @turbo_MaCk                        --
 -- https://github.com/turboMaCk                                          --
 ---------------------------------------------------------------------------
-import XMonad
-import XMonad.Hooks.ManageHelpers         (isFullscreen, doFullFloat)
-import XMonad.Hooks.DynamicLog            (PP, ppVisible, ppCurrent, ppTitle, ppLayout, ppUrgent, statusBar, xmobarColor, xmobarPP, wrap, ppOutput, dynamicLogWithPP)
-import XMonad.Actions.CopyWindow          (copyToAll)
-import XMonad.Layout.NoBorders            (smartBorders)
-import XMonad.Layout.Fullscreen           (fullscreenFull)
-import XMonad.Layout.Spacing              (smartSpacing)
-import XMonad.Layout.WorkspaceDir         (workspaceDir, changeDir)
-import XMonad.Layout.Tabbed               (simpleTabbedBottom)
-import XMonad.Prompt
-import qualified XMonad.Hooks.ManageDocks as Docks
-import qualified XMonad.StackSet          as W
-import XMonad.Util.Scratchpad             (scratchpadManageHook, scratchpadSpawnActionTerminal)
-import XMonad.Util.NamedScratchpad
+import           XMonad
+import           XMonad.Actions.CopyWindow   (copyToAll)
+import           XMonad.Hooks.DynamicLog     (PP, dynamicLogWithPP, ppCurrent,
+                                              ppLayout, ppOutput, ppTitle,
+                                              ppUrgent, ppVisible, statusBar,
+                                              wrap, xmobarColor, xmobarPP)
+import qualified XMonad.Hooks.ManageDocks    as Docks
+import           XMonad.Hooks.ManageHelpers  (doFullFloat, isFullscreen)
+import           XMonad.Layout.Fullscreen    (fullscreenFull)
+import           XMonad.Layout.NoBorders     (smartBorders)
+import           XMonad.Layout.Spacing       (smartSpacing)
+import           XMonad.Layout.Tabbed        (simpleTabbedBottom)
+import           XMonad.Layout.WorkspaceDir  (changeDir, workspaceDir)
+import           XMonad.Prompt
+import qualified XMonad.StackSet             as W
+import           XMonad.Util.NamedScratchpad
+import           XMonad.Util.Scratchpad      (scratchpadManageHook,
+                                              scratchpadSpawnActionTerminal)
 -- import XMonad.Hooks.EwmhDesktops (ewmh, fullscreenEventHook)
 
-import qualified DBus as D
-import qualified DBus.Client as D
-import qualified Codec.Binary.UTF8.String as UTF8
+import qualified Codec.Binary.UTF8.String    as UTF8
+import qualified DBus                        as D
+import qualified DBus.Client                 as D
 
-import System.Exit                        (ExitCode(ExitSuccess), exitWith)
-import Data.Monoid                        (Endo)
-import qualified Data.Map                 as M
+import qualified Data.Map                    as M
+import           Data.Monoid                 (Endo)
+import           System.Exit                 (ExitCode (ExitSuccess), exitWith)
 
 -------------------------------------
 -- Main
