@@ -84,6 +84,7 @@
 
   # Set hosts
   # networking.hosts."128.199.58.247" = [ "planning-game.com" ];
+  networking.hosts."35.244.244.204" = ["app.globalwebindex.com"];
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database

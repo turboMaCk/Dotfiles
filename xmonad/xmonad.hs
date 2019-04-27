@@ -12,7 +12,7 @@
 ---------------------------------------------------------------------------
 import XMonad
 import XMonad.Hooks.ManageHelpers         (isFullscreen, doFullFloat)
-import XMonad.Hooks.DynamicLog            (PP, ppVisible, ppCurrent, ppTitle, ppLayout, ppUrgent, statusBar, xmobarColor, xmobarPP, wrap)
+import XMonad.Hooks.DynamicLog            (PP, ppVisible, ppCurrent, ppTitle, ppLayout, ppUrgent, statusBar, xmobarColor, xmobarPP, wrap, ppOutput, dynamicLogWithPP)
 import XMonad.Actions.CopyWindow          (copyToAll)
 import XMonad.Layout.NoBorders            (smartBorders)
 import XMonad.Layout.Fullscreen           (fullscreenFull)
@@ -26,6 +26,9 @@ import XMonad.Util.Scratchpad             (scratchpadManageHook, scratchpadSpawn
 import XMonad.Util.NamedScratchpad
 -- import XMonad.Hooks.EwmhDesktops (ewmh, fullscreenEventHook)
 
+import qualified DBus as D
+import qualified DBus.Client as D
+import qualified Codec.Binary.UTF8.String as UTF8
 
 import System.Exit                        (ExitCode(ExitSuccess), exitWith)
 import Data.Monoid                        (Endo)
@@ -36,8 +39,33 @@ import qualified Data.Map                 as M
 -------------------------------------
 
 main :: IO ()
-main = xmonad =<< statusBar myBar myPP toggleStrutsKey myConfig
+main = do
+  dbus <- D.connectSession
+  -- Request access to DBus name
+  D.requestName dbus (D.busName_ "org.xmonad.Log")
+    [ D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue ]
 
+  -- xmonad $ def { logHook = dynamicLogWithPP (myLogHook dbus)}
+  xmonad =<< statusBar myBar myPP toggleStrutsKey (myConfig dbus)
+
+
+-- Override the PP values as you would otherwise, adding colors etc depending
+-- on  the statusbar used
+myLogHook :: D.Client -> PP
+myLogHook dbus = def { ppOutput = dbusOutput dbus }
+
+
+-- Emit a DBus signal on log updates
+dbusOutput :: D.Client -> String -> IO ()
+dbusOutput dbus str = do
+    let signal = (D.signal objectPath interfaceName memberName) {
+            D.signalBody = [D.toVariant $ UTF8.decodeString str]
+        }
+    D.emit dbus signal
+  where
+    objectPath = D.objectPath_ "/org/xmonad/Log"
+    interfaceName = D.interfaceName_ "org.xmonad.Log"
+    memberName = D.memberName_ "Update"
 
 -------------------------------------
 -- Config
@@ -46,7 +74,7 @@ main = xmonad =<< statusBar myBar myPP toggleStrutsKey myConfig
 
 -- Command to launch the bar.
 myBar :: String
-myBar = "xmobar"
+myBar = "polybar example"
 
 myTerminal :: String
 myTerminal = "urxvt"
@@ -68,7 +96,7 @@ toggleStrutsKey XConfig { XMonad.modMask = modM } = ( modM, xK_b )
 
 
 -- Main configuration, override the defaults to your liking.
-myConfig = def { modMask            = mod4Mask
+myConfig dbus = def { modMask            = mod4Mask
                , terminal           = myTerminal
                , workspaces         = myWorkspaces
                , keys               = myKeys
@@ -78,6 +106,7 @@ myConfig = def { modMask            = mod4Mask
                , manageHook         = myManageHook <+> manageHook def <+> manageScratchPad
                , borderWidth        = 4
                , startupHook        = myStartupHook
+               , logHook            = dynamicLogWithPP (myLogHook dbus)
                }
 
 -- then define your scratchpad management separately:

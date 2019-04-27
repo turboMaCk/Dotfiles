@@ -1,6 +1,4 @@
 { config, pkgs, ... }:
-let agilePoker = import /home/marek/Projects/agile-poker/default.nix;
-in
 {
   environment.systemPackages = with pkgs; [
     dmenu
@@ -27,6 +25,7 @@ in
     gnome3.adwaita-icon-theme
     xorg.xcursorthemes
     lxappearance
+    xmonad-log
   ];
 
   # Packages
@@ -78,6 +77,8 @@ in
          haskellPackages.xmonad-contrib
          haskellPackages.xmonad-extras
          haskellPackages.xmonad
+         haskellPackages.dbus
+         haskellPackages.utf8-string
       ];
     };
  };
