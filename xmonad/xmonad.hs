@@ -281,6 +281,7 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
 myStartupHook :: X ()
 myStartupHook = do
   spawn "sh $HOME/.config/polybar/launch.sh"
+  spawn "feh --bg-center ~/Dotfiles/images/wallpaper.jpg"
   -- spawn "$HOME/.xmonad/startup.sh"
 
 myManageHook :: Query (Endo WindowSet)
