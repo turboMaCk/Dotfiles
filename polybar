@@ -27,10 +27,6 @@ foreground-alt = #555
 primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
-
-[colors]
-bg = #222D32
-fg = #CFD8DC
 adapta-cyan = #00BCD4
 adapta-red = #FF5252
 ;adapta-yellow = #FFB224
@@ -57,7 +53,7 @@ background = ${colors.background}
 foreground = ${colors.foreground}
 
 line-size = 2
-line-color = #f00
+ldine-color = #f00
 
 border-size = 4
 border-color = #00000000
@@ -73,7 +69,7 @@ font-1 = unifont:fontformat=truetype:size=10:antialias=false;0
 font-2 = siji:pixelsize=10;1
 
 modules-center =
-modules-right = filesystem xbacklight alsa xkeyboard memory  wlan eth battery temperature date powermenu  cpu-graph
+modules-right = cpu-graph filesystem xbacklight alsa xkeyboard memory  wlan eth battery temperature date powermenu
 
 tray-position = right
 tray-padding = 2
@@ -445,12 +441,12 @@ margin-bottom = 5
 [module/cpu-graph]
 type = internal/cpu
 interval = 0.08
-format = " <ramp-coreload>"
-format-underline = ${colors.adapta-cyan}
+format = "<ramp-coreload>"
+format-underline = #111
 format-margin = ${margin.for-modules}
 format-padding = 1
 ramp-coreload-0 = ▁
-ramp-coreload-0-foreground = ${colors.adapta-cyan}
+ramp-coreload-0-foreground = #0a6cf5
 ramp-coreload-1 = ▂
 ramp-coreload-1-foreground = ${colors.adapta-green}
 ramp-coreload-2 = ▃
@@ -465,6 +461,6 @@ ramp-coreload-6 = ▇
 ramp-coreload-6-foreground = ${colors.adapta-red}
 ramp-coreload-7 = █
 ramp-coreload-7-foreground = ${colors.adapta-red}
-ramp-coreload-font = 3
+ramp-coreload-font = 2
 
 ; vim:ft=dosini
