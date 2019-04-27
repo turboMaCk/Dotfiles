@@ -70,6 +70,5 @@ done
 # symlink neovim
 # ln -fs ~/.vim ~/.nvim
 
-
 # CD back
 cd $pwd

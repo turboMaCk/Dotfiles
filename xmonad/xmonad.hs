@@ -10,34 +10,65 @@
 -- Marek Fajkus <marek.faj@gmail.com> @turbo_MaCk                        --
 -- https://github.com/turboMaCk                                          --
 ---------------------------------------------------------------------------
-import XMonad
-import XMonad.Hooks.ManageHelpers         (isFullscreen, doFullFloat)
-import XMonad.Hooks.DynamicLog            (PP, ppVisible, ppCurrent, ppTitle, ppLayout, ppUrgent, statusBar, xmobarColor, xmobarPP, wrap)
-import XMonad.Actions.CopyWindow          (copyToAll)
-import XMonad.Layout.NoBorders            (smartBorders)
-import XMonad.Layout.Fullscreen           (fullscreenFull)
-import XMonad.Layout.Spacing              (smartSpacing)
-import XMonad.Layout.WorkspaceDir         (workspaceDir, changeDir)
-import XMonad.Layout.Tabbed               (simpleTabbedBottom)
-import XMonad.Prompt
-import qualified XMonad.Hooks.ManageDocks as Docks
-import qualified XMonad.StackSet          as W
-import XMonad.Util.Scratchpad             (scratchpadManageHook, scratchpadSpawnActionTerminal)
-import XMonad.Util.NamedScratchpad
+import           XMonad
+import           XMonad.Actions.CopyWindow   (copyToAll)
+import           XMonad.Hooks.DynamicLog     (PP, dynamicLogWithPP, ppCurrent,
+                                              ppLayout, ppOutput, ppTitle,
+                                              ppUrgent, ppVisible, statusBar,
+                                              wrap, xmobarColor, xmobarPP)
+import qualified XMonad.Hooks.ManageDocks    as Docks
+import           XMonad.Hooks.ManageHelpers  (doFullFloat, isFullscreen)
+import           XMonad.Layout.Fullscreen    (fullscreenFull)
+import           XMonad.Layout.NoBorders     (smartBorders)
+import           XMonad.Layout.Spacing       (smartSpacing)
+import           XMonad.Layout.Tabbed        (simpleTabbedBottom)
+import           XMonad.Layout.WorkspaceDir  (changeDir, workspaceDir)
+import           XMonad.Prompt
+import qualified XMonad.StackSet             as W
+import           XMonad.Util.NamedScratchpad
+import           XMonad.Util.Scratchpad      (scratchpadManageHook,
+                                              scratchpadSpawnActionTerminal)
 -- import XMonad.Hooks.EwmhDesktops (ewmh, fullscreenEventHook)
 
+import qualified Codec.Binary.UTF8.String    as UTF8
+import qualified DBus                        as D
+import qualified DBus.Client                 as D
 
-import System.Exit                        (ExitCode(ExitSuccess), exitWith)
-import Data.Monoid                        (Endo)
-import qualified Data.Map                 as M
+import qualified Data.Map                    as M
+import           Data.Monoid                 (Endo)
+import           System.Exit                 (ExitCode (ExitSuccess), exitWith)
 
 -------------------------------------
 -- Main
 -------------------------------------
 
 main :: IO ()
-main = xmonad =<< statusBar myBar myPP toggleStrutsKey myConfig
+main = do
+  dbus <- D.connectSession
+  -- Request access to DBus name
+  D.requestName dbus (D.busName_ "org.xmonad.Log")
+    [ D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue ]
 
+  xmonad =<< statusBar myBar myPP toggleStrutsKey (myConfig { logHook = dynamicLogWithPP (myLogHook dbus)})
+
+
+-- Override the PP values as you would otherwise, adding colors etc depending
+-- on  the statusbar used
+myLogHook :: D.Client -> PP
+myLogHook dbus = def { ppOutput = dbusOutput dbus }
+
+
+-- Emit a DBus signal on log updates
+dbusOutput :: D.Client -> String -> IO ()
+dbusOutput dbus str = do
+    let signal = (D.signal objectPath interfaceName memberName) {
+            D.signalBody = [D.toVariant $ UTF8.decodeString str]
+        }
+    D.emit dbus signal
+  where
+    objectPath = D.objectPath_ "/org/xmonad/Log"
+    interfaceName = D.interfaceName_ "org.xmonad.Log"
+    memberName = D.memberName_ "Update"
 
 -------------------------------------
 -- Config
@@ -46,7 +77,7 @@ main = xmonad =<< statusBar myBar myPP toggleStrutsKey myConfig
 
 -- Command to launch the bar.
 myBar :: String
-myBar = "xmobar"
+myBar = "polybar example"
 
 myTerminal :: String
 myTerminal = "urxvt"
@@ -121,7 +152,7 @@ myWorkspaces = clickable . (map xmobarEscape) $
   , musicW
   , virtualW ]
   where
-    clickable l = [ " <action=xdotool key alt+" ++ show n ++ ">" ++ ws ++ "</action> " |
+    clickable l = [ ws |
                     (i , ws) <- zip [1..10] l,
                     let n = i ]
 
@@ -249,7 +280,7 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
 
 myStartupHook :: X ()
 myStartupHook = do
-  spawn "$HOME/.xmonad/startup.sh"
+  spawn "feh --bg-center ~/Dotfiles/images/wallpaper.jpg"
 
 myManageHook :: Query (Endo WindowSet)
 myManageHook = composeAll
