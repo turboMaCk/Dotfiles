@@ -16,9 +16,10 @@
 ;
 ;==========================================================
 
+;====General Settings======================================
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #222
+background = #111
 background-alt = #444
 ;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
@@ -27,37 +28,52 @@ primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 
+[colors]
+bg = #222D32
+fg = #CFD8DC
+adapta-cyan = #00BCD4
+adapta-red = #FF5252
+;adapta-yellow = #FFB224
+adapta-yellow = #C9BC0E
+adapta-lightgreen = #4DB6AC
+adapta-green = #009688
+adapta-grey = #475359
+
+[margin]
+for-modules = 1
+;==========================================================
+
 [bar/example]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
 height = 30
 ;offset-x = 1%
 ;offset-y = 1%
-radius = 6.0
+radius = 0
 fixed-center = false
 modules-left = xmonad
 
 background = ${colors.background}
 foreground = ${colors.foreground}
 
-line-size = 3
+line-size = 2
 line-color = #f00
 
 border-size = 4
 border-color = #00000000
 
-padding-left = 0
+padding-left = 2
 padding-right = 2
 
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = fixed:pixelsize=13;1
-font-1 = unifont:fontformat=truetype:size=8:antialias=false;0
+font-0 = fixed:pixelsize=16;1
+font-1 = unifont:fontformat=truetype:size=10:antialias=false;0
 font-2 = siji:pixelsize=10;1
 
 modules-center =
-modules-right = filesystem xbacklight alsa xkeyboard memory cpu wlan eth battery temperature date powermenu
+modules-right = filesystem xbacklight alsa xkeyboard memory  wlan eth battery temperature date powermenu  cpu-graph
 
 tray-position = right
 tray-padding = 2
@@ -76,6 +92,12 @@ tray-padding = 2
 
 cursor-click = pointer
 cursor-scroll = ns-resize
+
+[module/xmonad]
+type = custom/script
+exec = xmonad-log
+tail = true
+interval = 1
 
 [module/xwindow]
 type = internal/xwindow
@@ -420,10 +442,29 @@ screenchange-reload = true
 margin-top = 5
 margin-bottom = 5
 
-[module/xmonad]
-type = custom/script
-exec = xmonad-log
-tail = true
-interval = 1
+[module/cpu-graph]
+type = internal/cpu
+interval = 0.08
+format = " <ramp-coreload>"
+format-underline = ${colors.adapta-cyan}
+format-margin = ${margin.for-modules}
+format-padding = 1
+ramp-coreload-0 = ▁
+ramp-coreload-0-foreground = ${colors.adapta-cyan}
+ramp-coreload-1 = ▂
+ramp-coreload-1-foreground = ${colors.adapta-green}
+ramp-coreload-2 = ▃
+ramp-coreload-2-foreground = ${colors.adapta-lightgreen}
+ramp-coreload-3 = ▄
+ramp-coreload-3-foreground = ${colors.adapta-lightgreen}
+ramp-coreload-4 = ▅
+ramp-coreload-4-foreground = ${colors.adapta-yellow}
+ramp-coreload-5 = ▆
+ramp-coreload-5-foreground = ${colors.adapta-yellow}
+ramp-coreload-6 = ▇
+ramp-coreload-6-foreground = ${colors.adapta-red}
+ramp-coreload-7 = █
+ramp-coreload-7-foreground = ${colors.adapta-red}
+ramp-coreload-font = 3
 
 ; vim:ft=dosini
