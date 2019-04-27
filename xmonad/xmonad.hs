@@ -152,7 +152,7 @@ myWorkspaces = clickable . (map xmobarEscape) $
   , musicW
   , virtualW ]
   where
-    clickable l = [ " <action=xdotool key alt+" ++ show n ++ ">" ++ ws ++ "</action> " |
+    clickable l = [ ws |
                     (i , ws) <- zip [1..10] l,
                     let n = i ]
 
@@ -280,7 +280,8 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
 
 myStartupHook :: X ()
 myStartupHook = do
-  spawn "$HOME/.xmonad/startup.sh"
+  spawn "sh $HOME/.config/polybar/launch.sh"
+  -- spawn "$HOME/.xmonad/startup.sh"
 
 myManageHook :: Query (Endo WindowSet)
 myManageHook = composeAll
