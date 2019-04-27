@@ -45,8 +45,7 @@ main = do
   D.requestName dbus (D.busName_ "org.xmonad.Log")
     [ D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue ]
 
-  -- xmonad $ def { logHook = dynamicLogWithPP (myLogHook dbus)}
-  xmonad =<< statusBar myBar myPP toggleStrutsKey (myConfig dbus)
+  xmonad =<< statusBar myBar myPP toggleStrutsKey (myConfig { logHook = dynamicLogWithPP (myLogHook dbus)})
 
 
 -- Override the PP values as you would otherwise, adding colors etc depending
@@ -96,7 +95,7 @@ toggleStrutsKey XConfig { XMonad.modMask = modM } = ( modM, xK_b )
 
 
 -- Main configuration, override the defaults to your liking.
-myConfig dbus = def { modMask            = mod4Mask
+myConfig = def { modMask            = mod4Mask
                , terminal           = myTerminal
                , workspaces         = myWorkspaces
                , keys               = myKeys
@@ -106,7 +105,6 @@ myConfig dbus = def { modMask            = mod4Mask
                , manageHook         = myManageHook <+> manageHook def <+> manageScratchPad
                , borderWidth        = 4
                , startupHook        = myStartupHook
-               , logHook            = dynamicLogWithPP (myLogHook dbus)
                }
 
 -- then define your scratchpad management separately:
