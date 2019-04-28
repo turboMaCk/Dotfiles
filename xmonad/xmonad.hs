@@ -12,13 +12,11 @@
 ---------------------------------------------------------------------------
 import           XMonad
 import           XMonad.Actions.CopyWindow   (copyToAll)
-import           XMonad.Hooks.DynamicLog     (PP, dynamicLogWithPP, ppCurrent,
-                                              ppLayout, ppOutput, ppTitle,
-                                              ppUrgent, ppVisible, statusBar,
-                                              wrap, xmobarColor, xmobarPP)
+import           XMonad.Hooks.DynamicLog
 import qualified XMonad.Hooks.ManageDocks    as Docks
 import           XMonad.Hooks.ManageHelpers  (doFullFloat, isFullscreen)
 import           XMonad.Layout.Fullscreen    (fullscreenFull)
+import           XMonad.Layout.Simplest      (Simplest(..))
 import           XMonad.Layout.NoBorders     (smartBorders)
 import           XMonad.Layout.Spacing       (smartSpacing)
 import           XMonad.Layout.Tabbed        (simpleTabbedBottom)
@@ -49,13 +47,26 @@ main = do
   D.requestName dbus (D.busName_ "org.xmonad.Log")
     [ D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue ]
 
-  xmonad =<< statusBar myBar myPP toggleStrutsKey (myConfig { logHook = dynamicLogWithPP (myLogHook dbus)})
+  xmonad $ myConfig { logHook = dynamicLogWithPP (myLogHook dbus) }
 
 
 -- Override the PP values as you would otherwise, adding colors etc depending
 -- on  the statusbar used
 myLogHook :: D.Client -> PP
-myLogHook dbus = def { ppOutput = dbusOutput dbus }
+myLogHook dbus = def
+    { ppOutput = dbusOutput dbus
+    , ppCurrent = wrap ("%{B" ++ bg2 ++ "} ") " %{B-}"
+    , ppVisible = wrap ("%{B" ++ bg1 ++ "} ") " %{B-}"
+    , ppUrgent = wrap ("%{F" ++ red ++ "} ") " %{F-}"
+    , ppHidden = wrap " " " "
+    , ppWsSep = ""
+    , ppSep = " : "
+    , ppTitle = shorten 40
+    }
+  where
+    red       = "#fb4934"
+    bg1       = "#3c3836"
+    bg2       = "#504945"
 
 
 -- Emit a DBus signal on log updates
@@ -70,46 +81,33 @@ dbusOutput dbus str = do
     interfaceName = D.interfaceName_ "org.xmonad.Log"
     memberName = D.memberName_ "Update"
 
+
 -------------------------------------
 -- Config
 -------------------------------------
 
 
--- Command to launch the bar.
-myBar :: String
-myBar = "polybar example"
-
 myTerminal :: String
 myTerminal = "urxvt"
 
 
--- Custom PP, configure it as you like. It determines what is being written to the bar.
-myPP :: PP
-myPP = xmobarPP { ppVisible = xmobarColor "#808080" ""
-                , ppCurrent = xmobarColor "#2E9AFE" ""
-                , ppTitle   = xmobarColor "#808080" ""
-                , ppLayout  = xmobarColor "#444444" ""
-                , ppUrgent  = xmobarColor "#900000" "" . wrap "[" "]"
-                }
-
-
-
-toggleStrutsKey :: XConfig a -> ( KeyMask, KeySym)
-toggleStrutsKey XConfig { XMonad.modMask = modM } = ( modM, xK_b )
-
-
 -- Main configuration, override the defaults to your liking.
-myConfig = def { modMask            = mod4Mask
-               , terminal           = myTerminal
-               , workspaces         = myWorkspaces
-               , keys               = myKeys
-               , layoutHook         = smartBorders $ myLayoutHook
-               , focusedBorderColor = "#2E9AFE"
-               , normalBorderColor  = "#000000"
-               , manageHook         = myManageHook <+> manageHook def <+> manageScratchPad
-               , borderWidth        = 4
-               , startupHook        = myStartupHook
-               }
+myConfig = def
+  { modMask            = mod4Mask
+  , terminal           = myTerminal
+  , workspaces         = myWorkspaces
+  , keys               = myKeys
+  , layoutHook         = smartBorders $ myLayoutHook
+  , focusedBorderColor = "#2E9AFE"
+  , normalBorderColor  = "#000000"
+  , manageHook         = myManageHook
+                          <+> manageHook def
+                          <+> Docks.manageDocks
+                          <+> manageScratchPad
+  , handleEventHook = Docks.docksEventHook
+  , borderWidth        = 4
+  , startupHook        = myStartupHook
+  }
 
 -- then define your scratchpad management separately:
 manageScratchPad :: ManageHook
@@ -120,11 +118,13 @@ manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
     t = 1 - h   -- distance from top edge, 90%
     l = 1 - w   -- distance from left edge, 0%
 
+
 scratchpads = [ NS "htop" "urxvt -e htop" (title =? "htop") defaultFloating
               , NS "caprine" "caprine" (title =? "Caprine") defaultFloating
               -- , NS "wire" "wire" (title =? "Wire") defaultFloating
               , NS "obs" "obs" (className =? "obs") defaultFloating
               ] where role = stringProperty "WM_WINDOW_ROLE"
+
 
 xmobarEscape :: String -> String
 xmobarEscape = concatMap doubleLts
@@ -245,6 +245,9 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
     -- , ((modMasq .|. shiftMask, xK_d     ), namedScratchpadAction scratchpads "wire")
     , ((modMasq .|. shiftMask, xK_g     ), namedScratchpadAction scratchpads "obs")
 
+    -- Struts...
+    , ((modMasq, xK_b), sendMessage $ Docks.ToggleStrut Docks.U)
+
     -- Restart xmonad
     , ((modMasq .|. shiftMask, xK_q     ), spawn "xmonad --recompile; ~/.xmonad/kill.sh; notify-send \"XMonad\" \"Reloaded!\"; xmonad --restart")
     ]
@@ -281,6 +284,8 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
 myStartupHook :: X ()
 myStartupHook = do
   spawn "feh --bg-center ~/Dotfiles/images/wallpaper.jpg"
+  spawn "polybar example"
+
 
 myManageHook :: Query (Endo WindowSet)
 myManageHook = composeAll
@@ -290,6 +295,8 @@ myManageHook = composeAll
     , className =? "obs"          --> doFloat
     , Docks.manageDocks
     , isFullscreen                --> doF W.focusDown <+> doFullFloat
+    -- Used by Chromium developer tools, maybe other apps as well
+    --, role =? "pop-up"                --> doFloat
     ]
 
 
@@ -297,7 +304,11 @@ myManageHook = composeAll
 -- layouts
 -------------------------------
 
-myLayoutHook =  Docks.avoidStruts $ workspaceDir "~" tall ||| wide ||| simpleTabbedBottom
+myLayoutHook =  Docks.avoidStruts $ workspaceDir "~" tall
+  ||| wide
+  ||| simpleTabbedBottom
+  ||| Simplest
+  -- ||| fullscreenFull Full
   where
     tall = smartSpacing 5 $ Tall 1 (3/100) (2/3)
     wide = Mirror $ Tall 1 (2/100) (5/6)
