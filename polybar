@@ -68,8 +68,9 @@ font-0 = fixed:pixelsize=16;1
 font-1 = unifont:fontformat=truetype:size=10:antialias=false;0
 font-2 = siji:pixelsize=10;1
 
+
 modules-center = cpu-graph
-modules-right = filesystem xbacklight alsa xkeyboard memory wlan eth battery temperature date powermenu
+modules-right = filesystem xbacklight alsa xkeyboard memory wlan eth battery temperature date
 
 tray-position = right
 tray-padding = 2
@@ -223,7 +224,7 @@ card = intel_backlight
 [module/cpu]
 type = internal/cpu
 interval = 2
-format-prefix = ""
+format-prefix =
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #f90000
 label = %percentage:2%%
