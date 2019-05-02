@@ -329,6 +329,7 @@ myLayoutHook = Docks.avoidStruts $ smartBorders $ workspaceDir "~"
   where
     tall = Tabbed.addTabs shrinkText Tabbed.defaultTheme
       $ smartSpacing 5
+      $ windowNavigation
       $ subLayout [] Simplest
       $ boringWindows
       $ ResizableTall 1 (3/100) (2/3) []
