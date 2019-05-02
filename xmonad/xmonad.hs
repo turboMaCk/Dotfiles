@@ -40,6 +40,7 @@ import           System.Exit                      (ExitCode (ExitSuccess),
 import           XMonad.Layout.BoringWindows
 import           XMonad.Layout.Decoration         (shrinkText)
 import           XMonad.Layout.MouseResizableTile (mouseResizableTile)
+import           XMonad.Layout.ResizableTile
 import           XMonad.Layout.SubLayouts
 import           XMonad.Layout.WindowNavigation
 
@@ -260,14 +261,16 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
 
 
     -- TODO: review
-    , ((modMasq .|. controlMask, xK_h), sendMessage $ pullWindow L)
-    , ((modMasq .|. controlMask, xK_l), sendMessage $ pullWindow R)
-    , ((modMasq .|. controlMask, xK_k), sendMessage $ pullWindow U)
-    , ((modMasq .|. controlMask, xK_j), sendMessage $ pullWindow D)
+    , ((modMasq .|. controlMask, xK_h), sendMessage $ pullGroup L)
+    , ((modMasq .|. controlMask, xK_l), sendMessage $ pullGroup R)
+    , ((modMasq .|. controlMask, xK_k), sendMessage $ pullGroup U)
+    , ((modMasq .|. controlMask, xK_j), sendMessage $ pullGroup D)
     , ((modMasq .|. controlMask, xK_m), withFocused (sendMessage . MergeAll))
     , ((modMasq .|. controlMask, xK_u), withFocused (sendMessage . UnMerge))
     , ((modMasq .|. controlMask, xK_period), onGroup W.focusUp')
     , ((modMasq .|. controlMask, xK_comma), onGroup W.focusDown')
+    , ((modMasq,               xK_s), sendMessage MirrorShrink)
+    , ((modMasq,               xK_z), sendMessage MirrorExpand)
     ]
     ++
 
@@ -319,18 +322,18 @@ myManageHook = composeAll
 -- layouts
 -------------------------------
 
-myLayoutHook = Docks.avoidStruts $ smartBorders $ workspaceDir "~"
+myLayoutHook = Docks.avoidStruts $ smartBorders $ boringAuto $ workspaceDir "~"
   tall
   ||| wide
   ||| Simplest
   where
     tall = Tabbed.addTabs shrinkText Tabbed.defaultTheme
       $ smartSpacing 5
-      $ subLayout [1,2,3] Simplest
+      $ subLayout [] Simplest
       $ boringWindows
-      $ Tall 1 (3/100) (2/3)
+      $ ResizableTall 1 (3/100) (2/3) []
     wide = smartSpacing 5
-      $ Mirror $ Tall 1 (2/100) (5/6)
+      $ Mirror $ ResizableTall 1 (2/100) (5/6) []
 
 -- Local Variables:
 -- flycheck-ghc-args: ("-Wno-missing-signatures")
