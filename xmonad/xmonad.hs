@@ -11,30 +11,37 @@
 -- https://github.com/turboMaCk                                          --
 ---------------------------------------------------------------------------
 import           XMonad
-import           XMonad.Actions.CopyWindow   (copyToAll)
+import           XMonad.Actions.CopyWindow        (copyToAll)
 import           XMonad.Hooks.DynamicLog
-import qualified XMonad.Hooks.ManageDocks    as Docks
-import           XMonad.Hooks.ManageHelpers  (doFullFloat, isFullscreen)
-import           XMonad.Layout.Fullscreen    (fullscreenFull)
-import           XMonad.Layout.Simplest      (Simplest(..))
-import           XMonad.Layout.NoBorders     (smartBorders)
-import           XMonad.Layout.Spacing       (smartSpacing)
-import           XMonad.Layout.Tabbed        (simpleTabbedBottom)
-import           XMonad.Layout.WorkspaceDir  (changeDir, workspaceDir)
+import qualified XMonad.Hooks.ManageDocks         as Docks
+import           XMonad.Hooks.ManageHelpers       (doFullFloat, isFullscreen)
+import           XMonad.Layout.NoBorders          (smartBorders)
+import           XMonad.Layout.Simplest           (Simplest (..))
+import           XMonad.Layout.Spacing            (smartSpacing)
+import qualified XMonad.Layout.Tabbed             as Tabbed
+import           XMonad.Layout.WorkspaceDir       (changeDir, workspaceDir)
 import           XMonad.Prompt
-import qualified XMonad.StackSet             as W
+import qualified XMonad.StackSet                  as W
 import           XMonad.Util.NamedScratchpad
-import           XMonad.Util.Scratchpad      (scratchpadManageHook,
-                                              scratchpadSpawnActionTerminal)
--- import XMonad.Hooks.EwmhDesktops (ewmh, fullscreenEventHook)
+import           XMonad.Util.Scratchpad           (scratchpadManageHook,
+                                                   scratchpadSpawnActionTerminal)
+import           XMonad.Util.SpawnOnce            (spawnOnce)
 
-import qualified Codec.Binary.UTF8.String    as UTF8
-import qualified DBus                        as D
-import qualified DBus.Client                 as D
+import qualified Codec.Binary.UTF8.String         as UTF8
+import qualified DBus                             as D
+import qualified DBus.Client                      as D
 
-import qualified Data.Map                    as M
-import           Data.Monoid                 (Endo)
-import           System.Exit                 (ExitCode (ExitSuccess), exitWith)
+import qualified Data.Map                         as M
+import           Data.Monoid                      (Endo)
+import           System.Exit                      (ExitCode (ExitSuccess),
+                                                   exitWith)
+
+-- EXPERIEMNTAL:
+import           XMonad.Layout.BoringWindows
+import           XMonad.Layout.Decoration         (shrinkText)
+import           XMonad.Layout.MouseResizableTile (mouseResizableTile)
+import           XMonad.Layout.SubLayouts
+import           XMonad.Layout.WindowNavigation
 
 -------------------------------------
 -- Main
@@ -97,7 +104,7 @@ myConfig = def
   , terminal           = myTerminal
   , workspaces         = myWorkspaces
   , keys               = myKeys
-  , layoutHook         = smartBorders $ myLayoutHook
+  , layoutHook         = myLayoutHook
   , focusedBorderColor = "#2E9AFE"
   , normalBorderColor  = "#000000"
   , manageHook         = myManageHook
@@ -200,13 +207,13 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
 
     -- Move focus to the next window
     -- , ((modMasq,               xK_Tab   ), windows $ W.swapMaster . W.focusDown . W.focusMaster)
-    , ((modMasq,               xK_Tab     ), windows W.focusDown)
+    , ((modMasq,               xK_Tab     ), focusDown)
 
     -- Move focus to the next window
-    , ((modMasq,               xK_j     ), windows W.focusDown)
+    , ((modMasq,               xK_j     ), focusDown)
 
     -- Move focus to the previous window
-    , ((modMasq,               xK_k     ), windows W.focusUp)
+    , ((modMasq,               xK_k     ), focusUp)
 
     -- Move focus to the master window
     , ((modMasq,               xK_m     ), windows W.focusMaster)
@@ -250,6 +257,17 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
 
     -- Restart xmonad
     , ((modMasq .|. shiftMask, xK_q     ), spawn "xmonad --recompile; ~/.xmonad/kill.sh; notify-send \"XMonad\" \"Reloaded!\"; xmonad --restart")
+
+
+    -- TODO: review
+    , ((modMasq .|. controlMask, xK_h), sendMessage $ pullWindow L)
+    , ((modMasq .|. controlMask, xK_l), sendMessage $ pullWindow R)
+    , ((modMasq .|. controlMask, xK_k), sendMessage $ pullWindow U)
+    , ((modMasq .|. controlMask, xK_j), sendMessage $ pullWindow D)
+    , ((modMasq .|. controlMask, xK_m), withFocused (sendMessage . MergeAll))
+    , ((modMasq .|. controlMask, xK_u), withFocused (sendMessage . UnMerge))
+    , ((modMasq .|. controlMask, xK_period), onGroup W.focusUp')
+    , ((modMasq .|. controlMask, xK_comma), onGroup W.focusDown')
     ]
     ++
 
@@ -290,13 +308,10 @@ myStartupHook = do
 myManageHook :: Query (Endo WindowSet)
 myManageHook = composeAll
     [ className =? "stalonetray"  --> doIgnore
-    -- , className =? "Wire"         --> doFloat
     , className =? "Caprine"      --> doFloat
     , className =? "obs"          --> doFloat
     , Docks.manageDocks
     , isFullscreen                --> doF W.focusDown <+> doFullFloat
-    -- Used by Chromium developer tools, maybe other apps as well
-    --, role =? "pop-up"                --> doFloat
     ]
 
 
@@ -304,14 +319,18 @@ myManageHook = composeAll
 -- layouts
 -------------------------------
 
-myLayoutHook =  Docks.avoidStruts $ workspaceDir "~" tall
+myLayoutHook = Docks.avoidStruts $ smartBorders $ workspaceDir "~"
+  tall
   ||| wide
-  ||| simpleTabbedBottom
   ||| Simplest
-  -- ||| fullscreenFull Full
   where
-    tall = smartSpacing 5 $ Tall 1 (3/100) (2/3)
-    wide = Mirror $ Tall 1 (2/100) (5/6)
+    tall = Tabbed.addTabs shrinkText Tabbed.defaultTheme
+      $ smartSpacing 5
+      $ subLayout [1,2,3] Simplest
+      $ boringWindows
+      $ Tall 1 (3/100) (2/3)
+    wide = smartSpacing 5
+      $ Mirror $ Tall 1 (2/100) (5/6)
 
 -- Local Variables:
 -- flycheck-ghc-args: ("-Wno-missing-signatures")
