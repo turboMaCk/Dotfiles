@@ -269,8 +269,8 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
     , ((modMasq .|. controlMask, xK_u), withFocused (sendMessage . UnMerge))
     , ((modMasq .|. controlMask, xK_period), onGroup W.focusUp')
     , ((modMasq .|. controlMask, xK_comma), onGroup W.focusDown')
-    , ((modMasq,               xK_s), sendMessage MirrorShrink)
-    , ((modMasq,               xK_z), sendMessage MirrorExpand)
+    , ((modMasq,               xK_z), sendMessage MirrorShrink)
+    , ((modMasq,               xK_s), sendMessage MirrorExpand)
     ]
     ++
 
@@ -322,10 +322,10 @@ myManageHook = composeAll
 -- layouts
 -------------------------------
 
-myLayoutHook = Docks.avoidStruts $ smartBorders $ boringAuto $ workspaceDir "~"
+myLayoutHook = Docks.avoidStruts $ smartBorders $ workspaceDir "~"
   tall
-  ||| wide
-  ||| Simplest
+  ||| (boringAuto wide)
+  ||| (boringAuto Simplest)
   where
     tall = Tabbed.addTabs shrinkText Tabbed.defaultTheme
       $ smartSpacing 5
