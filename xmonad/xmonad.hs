@@ -324,16 +324,16 @@ myManageHook = composeAll
 
 myLayoutHook = Docks.avoidStruts $ smartBorders $ workspaceDir "~"
   tall
-  ||| (boringAuto wide)
+  ||| wide
   ||| (boringAuto Simplest)
   where
     tall = Tabbed.addTabs shrinkText Tabbed.defaultTheme
-      $ smartSpacing 5
       $ windowNavigation
+      $ smartSpacing 5
       $ subLayout [] Simplest
       $ boringWindows
       $ ResizableTall 1 (3/100) (2/3) []
-    wide = smartSpacing 5
+    wide = boringAuto $ smartSpacing 5
       $ Mirror $ ResizableTall 1 (2/100) (5/6) []
 
 -- Local Variables:
