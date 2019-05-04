@@ -11,32 +11,37 @@
 -- https://github.com/turboMaCk                                          --
 ---------------------------------------------------------------------------
 import           XMonad
-import           XMonad.Actions.CopyWindow   (copyToAll)
-import           XMonad.Hooks.DynamicLog     (PP, dynamicLogWithPP, ppCurrent,
-                                              ppLayout, ppOutput, ppTitle,
-                                              ppUrgent, ppVisible, statusBar,
-                                              wrap, xmobarColor, xmobarPP)
-import qualified XMonad.Hooks.ManageDocks    as Docks
-import           XMonad.Hooks.ManageHelpers  (doFullFloat, isFullscreen)
-import           XMonad.Layout.Fullscreen    (fullscreenFull)
-import           XMonad.Layout.NoBorders     (smartBorders)
-import           XMonad.Layout.Spacing       (smartSpacing)
-import           XMonad.Layout.Tabbed        (simpleTabbedBottom)
-import           XMonad.Layout.WorkspaceDir  (changeDir, workspaceDir)
+import           XMonad.Actions.CopyWindow        (copyToAll)
+import qualified XMonad.Hooks.ManageDocks         as Docks
+import           XMonad.Hooks.ManageHelpers       (doFullFloat, isFullscreen)
+import           XMonad.Layout.NoBorders          (smartBorders)
+import           XMonad.Layout.Simplest           (Simplest (..))
+import           XMonad.Layout.Spacing            (smartSpacing)
+import qualified XMonad.Layout.Tabbed             as Tabbed
+import           XMonad.Layout.WorkspaceDir       (changeDir, workspaceDir)
 import           XMonad.Prompt
-import qualified XMonad.StackSet             as W
+import qualified XMonad.StackSet                  as W
 import           XMonad.Util.NamedScratchpad
-import           XMonad.Util.Scratchpad      (scratchpadManageHook,
-                                              scratchpadSpawnActionTerminal)
--- import XMonad.Hooks.EwmhDesktops (ewmh, fullscreenEventHook)
+import           XMonad.Util.Scratchpad           (scratchpadManageHook,
+                                                   scratchpadSpawnActionTerminal)
+import           XMonad.Util.SpawnOnce            (spawnOnce)
 
-import qualified Codec.Binary.UTF8.String    as UTF8
-import qualified DBus                        as D
-import qualified DBus.Client                 as D
+import qualified Codec.Binary.UTF8.String         as UTF8
+import qualified DBus                             as D
+import qualified DBus.Client                      as D
 
-import qualified Data.Map                    as M
-import           Data.Monoid                 (Endo)
-import           System.Exit                 (ExitCode (ExitSuccess), exitWith)
+import qualified Data.Map                         as M
+import           Data.Monoid                      (Endo)
+import           System.Exit                      (ExitCode (ExitSuccess),
+                                                   exitWith)
+
+-- EXPERIEMNTAL:
+import           XMonad.Layout.BoringWindows
+import           XMonad.Layout.Decoration         (shrinkText)
+import           XMonad.Layout.MouseResizableTile (mouseResizableTile)
+import           XMonad.Layout.ResizableTile
+import           XMonad.Layout.SubLayouts
+import           XMonad.Layout.WindowNavigation
 
 -------------------------------------
 -- Main
@@ -49,13 +54,34 @@ main = do
   D.requestName dbus (D.busName_ "org.xmonad.Log")
     [ D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue ]
 
-  xmonad =<< statusBar myBar myPP toggleStrutsKey (myConfig { logHook = dynamicLogWithPP (myLogHook dbus)})
+  xmonad $ myConfig { logHook = dynamicLogWithPP (myLogHook dbus) }
 
+-------------------------------------
+-- Config
+-------------------------------------
+
+myTerminal :: String
+myTerminal = "urxvt"
+
+red  = "#fb4934"
+bg1  = "#3c3836"
+bg2  = "#504945"
+blue = "#2E9AFE"
 
 -- Override the PP values as you would otherwise, adding colors etc depending
 -- on  the statusbar used
+
 myLogHook :: D.Client -> PP
-myLogHook dbus = def { ppOutput = dbusOutput dbus }
+myLogHook dbus = def
+    { ppOutput  = dbusOutput dbus
+    , ppCurrent = wrap ("%{B" ++ bg2 ++ "} ") " %{B-}"
+    , ppVisible = wrap ("%{B" ++ bg1 ++ "} ") " %{B-}"
+    , ppUrgent  = wrap ("%{F" ++ red ++ "} ") " %{F-}"
+    , ppHidden  = wrap " " " "
+    , ppWsSep   = ""
+    , ppSep     = " : "
+    , ppTitle   = shorten 40
+    }
 
 
 -- Emit a DBus signal on log updates
@@ -66,50 +92,29 @@ dbusOutput dbus str = do
         }
     D.emit dbus signal
   where
-    objectPath = D.objectPath_ "/org/xmonad/Log"
+    objectPath    = D.objectPath_ "/org/xmonad/Log"
     interfaceName = D.interfaceName_ "org.xmonad.Log"
-    memberName = D.memberName_ "Update"
+    memberName    = D.memberName_ "Update"
 
--------------------------------------
--- Config
--------------------------------------
-
-
--- Command to launch the bar.
-myBar :: String
-myBar = "polybar example"
-
-myTerminal :: String
-myTerminal = "urxvt"
-
-
--- Custom PP, configure it as you like. It determines what is being written to the bar.
-myPP :: PP
-myPP = xmobarPP { ppVisible = xmobarColor "#808080" ""
-                , ppCurrent = xmobarColor "#2E9AFE" ""
-                , ppTitle   = xmobarColor "#808080" ""
-                , ppLayout  = xmobarColor "#444444" ""
-                , ppUrgent  = xmobarColor "#900000" "" . wrap "[" "]"
-                }
-
-
-
-toggleStrutsKey :: XConfig a -> ( KeyMask, KeySym)
-toggleStrutsKey XConfig { XMonad.modMask = modM } = ( modM, xK_b )
 
 
 -- Main configuration, override the defaults to your liking.
-myConfig = def { modMask            = mod4Mask
-               , terminal           = myTerminal
-               , workspaces         = myWorkspaces
-               , keys               = myKeys
-               , layoutHook         = smartBorders $ myLayoutHook
-               , focusedBorderColor = "#2E9AFE"
-               , normalBorderColor  = "#000000"
-               , manageHook         = myManageHook <+> manageHook def <+> manageScratchPad
-               , borderWidth        = 4
-               , startupHook        = myStartupHook
-               }
+myConfig = def
+  { modMask            = mod4Mask
+  , terminal           = myTerminal
+  , workspaces         = myWorkspaces
+  , keys               = myKeys
+  , layoutHook         = myLayoutHook
+  , focusedBorderColor = blue
+  , normalBorderColor  = black
+  , manageHook         = myManageHook
+                          <+> manageHook def
+                          <+> Docks.manageDocks
+                          <+> manageScratchPad
+  , handleEventHook    = Docks.docksEventHook
+  , borderWidth        = 4
+  , startupHook        = myStartupHook
+  }
 
 -- then define your scratchpad management separately:
 manageScratchPad :: ManageHook
@@ -120,11 +125,13 @@ manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
     t = 1 - h   -- distance from top edge, 90%
     l = 1 - w   -- distance from left edge, 0%
 
+
 scratchpads = [ NS "htop" "urxvt -e htop" (title =? "htop") defaultFloating
               , NS "caprine" "caprine" (title =? "Caprine") defaultFloating
               -- , NS "wire" "wire" (title =? "Wire") defaultFloating
               , NS "obs" "obs" (className =? "obs") defaultFloating
               ] where role = stringProperty "WM_WINDOW_ROLE"
+
 
 xmobarEscape :: String -> String
 xmobarEscape = concatMap doubleLts
@@ -152,9 +159,11 @@ myWorkspaces = clickable . (map xmobarEscape) $
   , musicW
   , virtualW ]
   where
-    clickable l = [ ws |
-                    (i , ws) <- zip [1..10] l,
-                    let n = i ]
+    clickable l =
+      [ ws |
+        (i , ws) <- zip [1..10] l,
+        let n = i
+      ]
 
 
 -------------------------------------
@@ -200,13 +209,13 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
 
     -- Move focus to the next window
     -- , ((modMasq,               xK_Tab   ), windows $ W.swapMaster . W.focusDown . W.focusMaster)
-    , ((modMasq,               xK_Tab     ), windows W.focusDown)
+    , ((modMasq,               xK_Tab   ), focusDown)
 
     -- Move focus to the next window
-    , ((modMasq,               xK_j     ), windows W.focusDown)
+    , ((modMasq,               xK_j     ), focusDown)
 
     -- Move focus to the previous window
-    , ((modMasq,               xK_k     ), windows W.focusUp)
+    , ((modMasq,               xK_k     ), focusUp)
 
     -- Move focus to the master window
     , ((modMasq,               xK_m     ), windows W.focusMaster)
@@ -245,8 +254,24 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
     -- , ((modMasq .|. shiftMask, xK_d     ), namedScratchpadAction scratchpads "wire")
     , ((modMasq .|. shiftMask, xK_g     ), namedScratchpadAction scratchpads "obs")
 
+    -- Struts...
+    , ((modMasq, xK_b                   ), sendMessage $ Docks.ToggleStrut Docks.U)
+
     -- Restart xmonad
     , ((modMasq .|. shiftMask, xK_q     ), spawn "xmonad --recompile; ~/.xmonad/kill.sh; notify-send \"XMonad\" \"Reloaded!\"; xmonad --restart")
+
+
+    -- TODO: review
+    , ((modMasq .|. controlMask, xK_h   ), sendMessage $ pullGroup L)
+    , ((modMasq .|. controlMask, xK_l   ), sendMessage $ pullGroup R)
+    , ((modMasq .|. controlMask, xK_k   ), sendMessage $ pullGroup U)
+    , ((modMasq .|. controlMask, xK_j   ), sendMessage $ pullGroup D)
+    , ((modMasq .|. controlMask, xK_m   ), withFocused (sendMessage . MergeAll))
+    , ((modMasq .|. controlMask, xK_u   ), withFocused (sendMessage . UnMerge))
+    , ((modMasq .|. shiftMask, xK_comma ), onGroup W.focusUp')
+    , ((modMasq .|. shiftMask, xK_period), onGroup W.focusDown')
+    , ((modMasq,               xK_z     ), sendMessage MirrorShrink)
+    , ((modMasq,               xK_s     ), sendMessage MirrorExpand)
     ]
     ++
 
@@ -281,11 +306,12 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
 myStartupHook :: X ()
 myStartupHook = do
   spawn "feh --bg-center ~/Dotfiles/images/wallpaper.jpg"
+  spawn "polybar example"
+
 
 myManageHook :: Query (Endo WindowSet)
 myManageHook = composeAll
     [ className =? "stalonetray"  --> doIgnore
-    -- , className =? "Wire"         --> doFloat
     , className =? "Caprine"      --> doFloat
     , className =? "obs"          --> doFloat
     , Docks.manageDocks
@@ -297,10 +323,19 @@ myManageHook = composeAll
 -- layouts
 -------------------------------
 
-myLayoutHook =  Docks.avoidStruts $ workspaceDir "~" tall ||| wide ||| simpleTabbedBottom
+myLayoutHook = Docks.avoidStruts $ smartBorders $ workspaceDir "~"
+  tall
+  ||| wide
+  ||| (boringAuto Simplest)
   where
-    tall = smartSpacing 5 $ Tall 1 (3/100) (2/3)
-    wide = Mirror $ Tall 1 (2/100) (5/6)
+    tall = Tabbed.addTabs shrinkText Tabbed.defaultTheme
+      $ windowNavigation
+      $ smartSpacing 5
+      $ subLayout [] Simplest
+      $ boringWindows
+      $ ResizableTall 1 (3/100) (2/3) []
+    wide = boringAuto $ smartSpacing 5
+      $ Mirror $ ResizableTall 1 (2/100) (5/6) []
 
 -- Local Variables:
 -- flycheck-ghc-args: ("-Wno-missing-signatures")
