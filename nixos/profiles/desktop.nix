@@ -93,8 +93,8 @@
 
     # opacity
     activeOpacity   = "1";
-    # inactiveOpacity = "0.9";
-    # menuOpacity     = "0.9";
+    inactiveOpacity = "1";
+    menuOpacity     = "1";
     backend         = "glx";
   };
 
