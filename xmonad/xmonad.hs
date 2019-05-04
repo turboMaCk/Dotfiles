@@ -12,6 +12,7 @@
 ---------------------------------------------------------------------------
 import           XMonad
 import           XMonad.Actions.CopyWindow        (copyToAll)
+import           XMonad.Hooks.DynamicLog
 import qualified XMonad.Hooks.ManageDocks         as Docks
 import           XMonad.Hooks.ManageHelpers       (doFullFloat, isFullscreen)
 import           XMonad.Layout.NoBorders          (smartBorders)
@@ -63,10 +64,11 @@ main = do
 myTerminal :: String
 myTerminal = "urxvt"
 
-red  = "#fb4934"
-bg1  = "#3c3836"
-bg2  = "#504945"
-blue = "#2E9AFE"
+red   = "#fb4934"
+bg1   = "#3c3836"
+bg2   = "#504945"
+blue  = "#2E9AFE"
+black = "#000000"
 
 -- Override the PP values as you would otherwise, adding colors etc depending
 -- on  the statusbar used
@@ -323,12 +325,19 @@ myManageHook = composeAll
 -- layouts
 -------------------------------
 
+tabbedConf :: Tabbed.Theme
+tabbedConf =
+  Tabbed.defaultTheme
+  { Tabbed.activeColor = bg2
+  , Tabbed.inactiveColor = bg1
+  }
+
 myLayoutHook = Docks.avoidStruts $ smartBorders $ workspaceDir "~"
   tall
   ||| wide
   ||| (boringAuto Simplest)
   where
-    tall = Tabbed.addTabs shrinkText Tabbed.defaultTheme
+    tall = Tabbed.addTabs shrinkText tabbedConf
       $ windowNavigation
       $ smartSpacing 5
       $ subLayout [] Simplest
