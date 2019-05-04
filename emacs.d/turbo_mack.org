@@ -936,9 +936,16 @@ folder. Together Helm & Projectile are the main ways to file management and proj
 Magit is my favorite GIT interface of all time. This will setup Magit itself as well as its integration to evil.
 
 #+BEGIN_SRC emacs-lisp
-  (require 'magit)
-  (require 'evil-magit)
+  ;;(require 'magit)
+  ;;(require 'evil-magit)
 #+END_SRC
+
+Bind to C-g
+
+#+BEGIN_SRC emacs-lisp
+  ;;(define-key evil-normal-state-map (kbd "C-g") 'magit-status)
+#+END_SRC
+
 
 * Perspective
 
@@ -1290,12 +1297,6 @@ This is nice sugar for quickly moving to normal mode.
     '(progn
       (define-key company-active-map (kbd "C-j") 'company-select-next)
       (define-key company-active-map (kbd "C-k") 'company-select-previous)))
-#+END_SRC
-
-** Magit
-
-#+BEGIN_SRC emacs-lisp
-  (define-key evil-normal-state-map (kbd "C-g") 'magit-status)
 #+END_SRC
 
 ** Multiple Cursors
