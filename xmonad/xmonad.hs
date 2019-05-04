@@ -12,7 +12,6 @@
 ---------------------------------------------------------------------------
 import           XMonad
 import           XMonad.Actions.CopyWindow        (copyToAll)
-import           XMonad.Hooks.DynamicLog
 import qualified XMonad.Hooks.ManageDocks         as Docks
 import           XMonad.Hooks.ManageHelpers       (doFullFloat, isFullscreen)
 import           XMonad.Layout.NoBorders          (smartBorders)
@@ -62,14 +61,14 @@ main = do
 -- on  the statusbar used
 myLogHook :: D.Client -> PP
 myLogHook dbus = def
-    { ppOutput = dbusOutput dbus
+    { ppOutput  = dbusOutput dbus
     , ppCurrent = wrap ("%{B" ++ bg2 ++ "} ") " %{B-}"
     , ppVisible = wrap ("%{B" ++ bg1 ++ "} ") " %{B-}"
-    , ppUrgent = wrap ("%{F" ++ red ++ "} ") " %{F-}"
-    , ppHidden = wrap " " " "
-    , ppWsSep = ""
-    , ppSep = " : "
-    , ppTitle = shorten 40
+    , ppUrgent  = wrap ("%{F" ++ red ++ "} ") " %{F-}"
+    , ppHidden  = wrap " " " "
+    , ppWsSep   = ""
+    , ppSep     = " : "
+    , ppTitle   = shorten 40
     }
   where
     red       = "#fb4934"
@@ -85,15 +84,16 @@ dbusOutput dbus str = do
         }
     D.emit dbus signal
   where
-    objectPath = D.objectPath_ "/org/xmonad/Log"
+    objectPath    = D.objectPath_ "/org/xmonad/Log"
     interfaceName = D.interfaceName_ "org.xmonad.Log"
-    memberName = D.memberName_ "Update"
+    memberName    = D.memberName_ "Update"
 
 
 -------------------------------------
 -- Config
 -------------------------------------
 
+highlightedColor = "#2E9AFE"
 
 myTerminal :: String
 myTerminal = "urxvt"
@@ -106,13 +106,13 @@ myConfig = def
   , workspaces         = myWorkspaces
   , keys               = myKeys
   , layoutHook         = myLayoutHook
-  , focusedBorderColor = "#2E9AFE"
+  , focusedBorderColor = highlightedColor
   , normalBorderColor  = "#000000"
   , manageHook         = myManageHook
                           <+> manageHook def
                           <+> Docks.manageDocks
                           <+> manageScratchPad
-  , handleEventHook = Docks.docksEventHook
+  , handleEventHook    = Docks.docksEventHook
   , borderWidth        = 4
   , startupHook        = myStartupHook
   }
@@ -160,9 +160,11 @@ myWorkspaces = clickable . (map xmobarEscape) $
   , musicW
   , virtualW ]
   where
-    clickable l = [ ws |
-                    (i , ws) <- zip [1..10] l,
-                    let n = i ]
+    clickable l =
+      [ ws |
+        (i , ws) <- zip [1..10] l,
+        let n = i
+      ]
 
 
 -------------------------------------
@@ -208,7 +210,7 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
 
     -- Move focus to the next window
     -- , ((modMasq,               xK_Tab   ), windows $ W.swapMaster . W.focusDown . W.focusMaster)
-    , ((modMasq,               xK_Tab     ), focusDown)
+    , ((modMasq,               xK_Tab   ), focusDown)
 
     -- Move focus to the next window
     , ((modMasq,               xK_j     ), focusDown)
@@ -261,16 +263,16 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
 
 
     -- TODO: review
-    , ((modMasq .|. controlMask, xK_h), sendMessage $ pullGroup L)
-    , ((modMasq .|. controlMask, xK_l), sendMessage $ pullGroup R)
-    , ((modMasq .|. controlMask, xK_k), sendMessage $ pullGroup U)
-    , ((modMasq .|. controlMask, xK_j), sendMessage $ pullGroup D)
-    , ((modMasq .|. controlMask, xK_m), withFocused (sendMessage . MergeAll))
-    , ((modMasq .|. controlMask, xK_u), withFocused (sendMessage . UnMerge))
-    , ((modMasq .|. controlMask, xK_period), onGroup W.focusUp')
-    , ((modMasq .|. controlMask, xK_comma), onGroup W.focusDown')
-    , ((modMasq,               xK_z), sendMessage MirrorShrink)
-    , ((modMasq,               xK_s), sendMessage MirrorExpand)
+    , ((modMasq .|. controlMask, xK_h   ), sendMessage $ pullGroup L)
+    , ((modMasq .|. controlMask, xK_l   ), sendMessage $ pullGroup R)
+    , ((modMasq .|. controlMask, xK_k   ), sendMessage $ pullGroup U)
+    , ((modMasq .|. controlMask, xK_j   ), sendMessage $ pullGroup D)
+    , ((modMasq .|. controlMask, xK_m   ), withFocused (sendMessage . MergeAll))
+    , ((modMasq .|. controlMask, xK_u   ), withFocused (sendMessage . UnMerge))
+    , ((modMasq .|. shiftMask, xK_comma ), onGroup W.focusUp')
+    , ((modMasq .|. shiftMask, xK_period), onGroup W.focusDown')
+    , ((modMasq,               xK_z     ), sendMessage MirrorShrink)
+    , ((modMasq,               xK_s     ), sendMessage MirrorExpand)
     ]
     ++
 
