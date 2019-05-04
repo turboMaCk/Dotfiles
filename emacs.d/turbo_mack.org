@@ -598,6 +598,13 @@ cabal install -g stylish-haskell
                                      (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
 #+END_SRC
 
+Haskell sandbox wrapper
+
+#+BEGIN_SRC emacs-lisp
+(setq haskell-process-wrapper-function
+        (lambda (args) (apply 'nix-shell-command (nix-current-sandbox) args)))
+#+END_SRC
+
 *** TODO Improve performance of auto complete
     I experienced some performance issues with ~haskell-mode~. Possibly this problem with ~fly-check~.
     configuration.
@@ -945,7 +952,6 @@ Bind to C-g
 #+BEGIN_SRC emacs-lisp
   ;;(define-key evil-normal-state-map (kbd "C-g") 'magit-status)
 #+END_SRC
-
 
 * Perspective
 
