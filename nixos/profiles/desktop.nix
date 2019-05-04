@@ -3,8 +3,7 @@
   environment.systemPackages = with pkgs; [
     dmenu
     xterm
-    haskellPackages.xmobar
-    taffybar
+    polybar
     feh
     chromium
     firefox
@@ -17,8 +16,6 @@
     # KDE
     kdeApplications.korganizer # calednar
     kdeApplications.akonadi-mime
-
-    gnome3.adwaita-icon-theme # testing taffy bar
 
     # Themes
     adapta-gtk-theme
