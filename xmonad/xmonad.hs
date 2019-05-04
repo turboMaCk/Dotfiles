@@ -256,7 +256,7 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
     , ((modMasq .|. shiftMask, xK_g     ), namedScratchpadAction scratchpads "obs")
 
     -- Struts...
-    , ((modMasq, xK_b), sendMessage $ Docks.ToggleStrut Docks.U)
+    , ((modMasq, xK_b                   ), sendMessage $ Docks.ToggleStrut Docks.U)
 
     -- Restart xmonad
     , ((modMasq .|. shiftMask, xK_q     ), spawn "xmonad --recompile; ~/.xmonad/kill.sh; notify-send \"XMonad\" \"Reloaded!\"; xmonad --restart")
