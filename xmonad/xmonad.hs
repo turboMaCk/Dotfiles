@@ -56,9 +56,21 @@ main = do
 
   xmonad $ myConfig { logHook = dynamicLogWithPP (myLogHook dbus) }
 
+-------------------------------------
+-- Config
+-------------------------------------
+
+myTerminal :: String
+myTerminal = "urxvt"
+
+red  = "#fb4934"
+bg1  = "#3c3836"
+bg2  = "#504945"
+blue = "#2E9AFE"
 
 -- Override the PP values as you would otherwise, adding colors etc depending
 -- on  the statusbar used
+
 myLogHook :: D.Client -> PP
 myLogHook dbus = def
     { ppOutput  = dbusOutput dbus
@@ -70,10 +82,6 @@ myLogHook dbus = def
     , ppSep     = " : "
     , ppTitle   = shorten 40
     }
-  where
-    red       = "#fb4934"
-    bg1       = "#3c3836"
-    bg2       = "#504945"
 
 
 -- Emit a DBus signal on log updates
@@ -89,15 +97,6 @@ dbusOutput dbus str = do
     memberName    = D.memberName_ "Update"
 
 
--------------------------------------
--- Config
--------------------------------------
-
-highlightedColor = "#2E9AFE"
-
-myTerminal :: String
-myTerminal = "urxvt"
-
 
 -- Main configuration, override the defaults to your liking.
 myConfig = def
@@ -106,8 +105,8 @@ myConfig = def
   , workspaces         = myWorkspaces
   , keys               = myKeys
   , layoutHook         = myLayoutHook
-  , focusedBorderColor = highlightedColor
-  , normalBorderColor  = "#000000"
+  , focusedBorderColor = blue
+  , normalBorderColor  = black
   , manageHook         = myManageHook
                           <+> manageHook def
                           <+> Docks.manageDocks
