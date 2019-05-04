@@ -6,7 +6,7 @@
 ;; Added by Package.el.  This must come before configurations of
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
+
 
 ;;; Code:
 (package-initialize)
@@ -26,6 +26,10 @@
 (require 'org)
 (require 'org-install)
 (require 'ob-tangle)
+
+;; Magit hack
+;; see https://stackoverflow.com/questions/55986401/emacs-magit-requred-feature-isearch-was-not-provided
+(provide 'isearch)
 
 ;; Load Config from Org file
 (defun turbo_mack/load-config ()
