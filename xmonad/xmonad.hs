@@ -328,7 +328,7 @@ myManageHook = composeAll
 tabbedConf :: Tabbed.Theme
 tabbedConf =
   Tabbed.defaultTheme
-  { Tabbed.activeColor = bg2
+  { Tabbed.activeColor = blue
   , Tabbed.inactiveColor = bg1
   }
 

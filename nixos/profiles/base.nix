@@ -17,6 +17,7 @@
     cloc
     tree
     unzip
+    busybox
   ];
 
   # Cachix

@@ -4,5 +4,6 @@ emacs.d/secrets.el
 emacs.d/emojis/
 emacs.d/url/
 emacs.d/bookmakrs
+emacs.d/transient
 emacs.d/session.*
 /xmonad/prompt-history
