@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       #./hardware-configuration.nix
      ../profiles/base.nix
+     ../profiles/desktop.nix
      ../users/marek.nix
     ];
 
@@ -49,7 +50,6 @@
   environment.systemPackages = with pkgs; [
     vim
     git
-    chromium
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
