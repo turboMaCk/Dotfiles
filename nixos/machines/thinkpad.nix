@@ -8,9 +8,12 @@
   imports =
     [ # Include the results of the hardware scan.
       #./hardware-configuration.nix
-     ../profiles/base.nix
-     ../profiles/desktop.nix
-     ../users/marek.nix
+      ../profiles/base.nix
+      ../profiles/desktop.nix
+      ../profiles/elm.nix
+      ../profiles/nodejs.nix
+      ../users/marek.nix
+      <nixos-hardware/lenovo/thinkpad/t460s>
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -28,7 +31,7 @@
   networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
-  
+
   nixpkgs.config.allowUnfree = true;
 
   # Configure network proxy if necessary
