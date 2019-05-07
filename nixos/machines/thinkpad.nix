@@ -9,6 +9,7 @@
     [ # Include the results of the hardware scan.
       #./hardware-configuration.nix
      ../profiles/base.nix
+     ../users/marek.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -26,6 +27,8 @@
   networking.hostName = "nixos"; # Define your hostname.
   networking.networkmanager.enable = true;
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  
+  nixpkgs.config.allowUnfree = true;
 
   # Configure network proxy if necessary
   # networking.proxy.default = "http://user:password@proxy:port/";
@@ -78,26 +81,25 @@
   services.xserver.xkbOptions = "ctrl:nocaps,caps:none,shift:both_capslock,lv3:rwin_switch,grp:alt_space_toggle";
 
   # Enable touchpad support.
-  # services.xserver.libinput.enable = true;
+  services.xserver.libinput = {
+    enable = true;
+    scrollMethod = "twofinger";
+    naturalScrolling = true;
+    disableWhileTyping = true;
+    clickMethod = "clickfinger";
+  };
+
+  # Trackpoint settings
+  hardware.trackpoint = {
+    enable = true;
+    emulateWheel = true;
+    sensitivity = 140; # default kernel value is 128
+    speed = 110; # default kernel value is 97
+  };
 
   # Enable the KDE Desktop Environment.
   services.xserver.displayManager.sddm.enable = true;
   services.xserver.desktopManager.plasma5.enable = true;
-  services.xserver.synaptics.enable = true;
-
-  # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.marek = {
-    name = "marek";
-    group = "users";
-    extraGroups = [
-      "wheel" "disk" "audio" "video"
-      "networkmanager" "systemd-jurnal"
-    ];
-    createHome = true;
-    uid = 1000;
-    home = "/home/marek";
-    shell = "/run/current-system/sw/bin/bash";
-  };
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
