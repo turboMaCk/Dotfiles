@@ -5,9 +5,6 @@ export LANG=en_US.UTF-8
 # Preferred editor for local and remote sessions
 export EDITOR='vim'
 
-# Compilation flags
-export ARCHFLAGS="-arch x86_64"
-
 # ssh
 export SSH_KEY_PATH="~/.ssh/"
 

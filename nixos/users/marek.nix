@@ -13,12 +13,18 @@
     description = "Marek Fajkus (@turbo_MaCk)";
     isNormalUser = true;
     uid = 1000;
+    createHome = true;
+    home = "/home/marek";
 
     extraGroups = [
       "wheel"
+      "disk"
+      "audio"
+      "video"
       "networkmanager"
       "vboxusers"
       "docker"
+      "systemd-jurnal"
     ];
 
     # Shell

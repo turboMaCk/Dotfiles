@@ -1,11 +1,15 @@
 { config, pkgs, ... }:
 
+let
+  my_vim =
+    pkgs.vim_configurable.override { python3 = true; };
+in
 {
   environment.systemPackages = with pkgs; [
     nix-prefetch-scripts
     python
     python3
-    (vim_configurable.override { python3 = true; })
+    my_vim
     lsof
     wget
     git
@@ -17,7 +21,6 @@
     cloc
     tree
     unzip
-    busybox
   ];
 
   # Cachix
@@ -37,6 +40,7 @@
     consoleFont = "Lat2-Terminus16";
     consoleKeyMap = "us";
     defaultLocale = "en_US.UTF-8";
+    #consoleUseXkbConfig = true;
   };
 
   # ZSH

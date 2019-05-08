@@ -30,9 +30,8 @@
     allowUnfree = true; # :'(
 
     chromium = {
-      jre = false;
-      enableGoogleTalkPlugin = true;
-      enableAdobeFlash = true;
+      # enableGoogleTalkPlugin = true;
+      # enableAdobeFlash = true;
       # enablePepperFlash = true;
       # enablePepperPDF = true;
       # enableWideVine = true;
@@ -49,9 +48,6 @@
   # X11 settings
   services.xserver = {
     enable = true;
-    layout = "us";
-    xkbOptions = "eurosign:e";
-    dpi = 130;
 
     # Display Manager
     displayManager = {
@@ -111,7 +107,7 @@
       anonymousPro
       corefonts
       dejavu_fonts
-      font-droid
+      noto-fonts
       freefont_ttf
       google-fonts
       inconsolata
@@ -121,6 +117,7 @@
       terminus_font
       ttf_bitstream_vera
       ubuntu_font_family
+      emojione
     ];
   };
 }

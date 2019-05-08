@@ -77,6 +77,9 @@
     opengl.driSupport32Bit = true;
   };
 
+  services.xserver.layout = "us";
+  services.xserver.dpi = 130;
+
   # HOSTS
   # networking.hosts = {
     # "35.233.47.118" = [ "pro-next.globalwebindex.net" ];
