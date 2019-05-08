@@ -21,6 +21,7 @@ in
     cloc
     tree
     unzip
+    killall
   ];
 
   # Cachix

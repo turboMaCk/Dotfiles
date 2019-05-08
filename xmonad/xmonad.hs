@@ -37,12 +37,16 @@ import           System.Exit                      (ExitCode (ExitSuccess),
                                                    exitWith)
 
 -- EXPERIEMNTAL:
+import           Graphics.X11.ExtraTypes.XF86
+import qualified XMonad.Actions.Volume            as Volume
 import           XMonad.Layout.BoringWindows
 import           XMonad.Layout.Decoration         (shrinkText)
 import           XMonad.Layout.MouseResizableTile (mouseResizableTile)
 import           XMonad.Layout.ResizableTile
 import           XMonad.Layout.SubLayouts
 import           XMonad.Layout.WindowNavigation
+import qualified XMonad.Util.Brightness           as Brightness
+
 
 -------------------------------------
 -- Main
@@ -130,7 +134,6 @@ manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
 
 scratchpads = [ NS "htop" "urxvt -e htop" (title =? "htop") defaultFloating
               , NS "caprine" "caprine" (title =? "Caprine") defaultFloating
-              -- , NS "wire" "wire" (title =? "Wire") defaultFloating
               , NS "obs" "obs" (className =? "obs") defaultFloating
               ] where role = stringProperty "WM_WINDOW_ROLE"
 
@@ -274,6 +277,18 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
     , ((modMasq .|. shiftMask, xK_period), onGroup W.focusDown')
     , ((modMasq,               xK_z     ), sendMessage MirrorShrink)
     , ((modMasq,               xK_s     ), sendMessage MirrorExpand)
+
+    -- TODO: review
+    -- Media
+
+    -- VOLUME
+    , ((0, xF86XK_AudioMute             ), Volume.toggleMute >> pure ())
+    , ((0, xF86XK_AudioLowerVolume      ), Volume.lowerVolume 10 >> pure ())
+    , ((0, xF86XK_AudioRaiseVolume      ), Volume.raiseVolume 10 >> pure ())
+
+    -- Brightness
+    , ((0, xF86XK_MonBrightnessUp       ), Brightness.increase)
+    , ((0, xF86XK_MonBrightnessDown     ), Brightness.decrease)
     ]
     ++
 
