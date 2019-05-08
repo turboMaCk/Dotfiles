@@ -13,8 +13,8 @@
       ../users/marek.nix
       ../profiles/direnv.nix
       ../profiles/virtualization.nix
-      ../profiles/nodejs.nix
       ../profiles/elm.nix
+      ../profiles/nodejs.nix
       ../profiles/haskell.nix
       ../profiles/heroku.nix
     ];

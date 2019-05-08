@@ -12,6 +12,7 @@
       ../profiles/base.nix
       ../profiles/desktop.nix
       ../users/marek.nix
+      ../profiles/virtualization.nix
       ../profiles/elm.nix
       ../profiles/nodejs.nix
       ../profiles/haskell.nix
@@ -48,9 +49,7 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
-    pavucontrol
-  ];
+  environment.systemPackages = with pkgs; [];
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
