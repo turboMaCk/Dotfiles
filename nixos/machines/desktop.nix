@@ -50,7 +50,6 @@
   # List services that you want to enable:
 
   # Enable the OpenSSH daemon.
-  # ? I'm using GPG for ssh instead ?
 
   # services.openssh.enable = true;
   # programs.ssh.startAgent = true;

@@ -43,29 +43,14 @@
   # networking.proxy.default = "http://user:password@proxy:port/";
   # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
 
-  # Select internationalisation properties.
-  #i18n = {
-    #consoleFont = "Lat2-Terminus16";
-    #consoleKeyMap = "us";
-    #defaultLocale = "en_US.UTF-8";
-  #};
-
   # Set your time zone.
   time.timeZone = "Europe/Prague";
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [];
-
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = { enable = true; enableSSHSupport = true; };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
+  environment.systemPackages = with pkgs; [
+    pavucontrol
+  ];
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -74,16 +59,26 @@
   # networking.firewall.enable = false;
 
   # Enable CUPS to print documents.
-  # services.printing.enable = true;
+  services.printing.enable = true;
 
   # Enable sound.
   sound.enable = true;
-  hardware.pulseaudio.enable = true;
 
-  # Enable the X11 windowing system.
-  #services.xserver.enable = true;
-  #services.xserver.layout = "us";
-  services.xserver.xkbOptions = "ctrl:nocaps,caps:none,shift:both_capslock,lv3:rwin_switch,grp:alt_space_toggle";
+  hardware.pulseaudio = {
+    enable = true;
+    # required for bluetooth package
+    package = pkgs.pulseaudioFull;
+    extraModules = [ pkgs.pulseaudio-modules-bt ];
+
+    # TODO: This breaks login
+    #configFile = pkgs.writeText "default.pa" ''
+      #load-module module-switch-on-connect
+    #'';
+  };
+
+  # X11 XKB key map
+  # Mainly Caps -> Ctrl
+  services.xserver.xkbOptions = "ctrl:nocaps,caps:none,shift:both_capslock,lv3:rwin_switch,grp:alt_space_toggle,altwin:swap_alt_win";
 
   # Enable touchpad support.
   services.xserver.libinput = {
@@ -102,10 +97,18 @@
     speed = 110; # default kernel value is 97
   };
 
-  # Enable the KDE Desktop Environment.
-  #services.xserver.displayManager.sddm.enable = true;
-  #services.xserver.desktopManager.plasma5.enable = true;
-  #
+  # Bluetooth
+  hardware.bluetooth = {
+    enable = true;
+
+    # Modern headsets will generally try to connect
+    # using the A2DP profile
+    #extraConfig = "
+      #[General]
+      #Enable=Source,Sink,Media,Socket
+    #";
+  };
+
   # Set hosts
   # networking.hosts."128.199.58.247" = [ "planning-game.com" ];
   networking.hosts."35.244.244.204" = ["app.globalwebindex.com"];
