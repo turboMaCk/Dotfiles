@@ -285,7 +285,7 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
     , ((0, xF86XK_AudioMute             ), Volume.toggleMute >> pure ())
     , ((0, xF86XK_AudioLowerVolume      ), Volume.lowerVolume 10 >> pure ())
     , ((0, xF86XK_AudioRaiseVolume      ), Volume.raiseVolume 10 >> pure ())
-      , ((0, xF86XK_AudioMicMute        ), spawn micMuteToggleScript)
+    , ((0, xF86XK_AudioMicMute          ), spawn micMuteToggleScript)
 
     -- Brightness
     , ((0, xF86XK_MonBrightnessUp       ), Brightness.increase)
