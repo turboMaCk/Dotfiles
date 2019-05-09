@@ -49,7 +49,7 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [];
+  environment.systemPackages = with pkgs; [ xlockmore ];
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -68,16 +68,28 @@
     # required for bluetooth package
     package = pkgs.pulseaudioFull;
     extraModules = [ pkgs.pulseaudio-modules-bt ];
-
-    # TODO: This breaks login
-    #configFile = pkgs.writeText "default.pa" ''
-      #load-module module-switch-on-connect
-    #'';
   };
 
   # X11 XKB key map
   # Mainly Caps -> Ctrl
   services.xserver.xkbOptions = "ctrl:nocaps,caps:none,shift:both_capslock,lv3:rwin_switch,grp:alt_space_toggle,altwin:swap_alt_win";
+
+  # screen locking
+  services.xserver.xautolock = {
+    enable = true;
+    locker = "${pkgs.xlockmore}/bin/xlock -mode ant3d";
+    extraOptions = [ "-detectsleep" ];
+    killer = "${pkgs.systemd}/bin/systemctl suspend";
+    killtime = 10; # 10 is minimal value
+    time = 1;
+  };
+  services.logind.lidSwitch = "suspend";
+
+  # xss-lock subscribes to the systemd-events suspend, hibernate, lock-session,
+  # and unlock-session with appropriate actions (run locker and wait for user to unlock or kill locker).
+  # xss-lock also reacts to DPMS events and runs or kills the locker in response.
+  programs.xss-lock.enable = true;
+  programs.xss-lock.lockerCommand = "-- ${pkgs.xlockmore}/bin/xlock -mode ant3d";
 
   # Enable touchpad support.
   services.xserver.libinput = {
@@ -99,13 +111,6 @@
   # Bluetooth
   hardware.bluetooth = {
     enable = true;
-
-    # Modern headsets will generally try to connect
-    # using the A2DP profile
-    #extraConfig = "
-      #[General]
-      #Enable=Source,Sink,Media,Socket
-    #";
   };
 
   # Set hosts
