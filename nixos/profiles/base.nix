@@ -22,6 +22,7 @@ in
     tree
     unzip
     killall
+    libnotify
   ];
 
   # Cachix

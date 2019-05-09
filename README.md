@@ -69,3 +69,13 @@ To install Dotfiles themselves you can run the script that cerates symlink in ho
 ```shell
 $ sh ~/Dotfiles/bin/dotfiles.sh
 ```
+
+## Git SSH
+
+Don't forget to
+
+```
+$ ssh-add ~/.ssh/id_rsa # or better than rsa
+```
+
+so git is not asking for passphrase on every remote action.
