@@ -77,7 +77,7 @@
   # screen locking
   services.xserver.xautolock = {
     enable = true;
-    locker = "${pkgs.xlockmore}/bin/xlock -mode ant3d";
+    locker = "${pkgs.xlockmore}/bin/xlock -mode ant";
     extraOptions = [ "-detectsleep" ];
     killer = "${pkgs.systemd}/bin/systemctl suspend";
     killtime = 10; # 10 is minimal value
@@ -89,7 +89,7 @@
   # and unlock-session with appropriate actions (run locker and wait for user to unlock or kill locker).
   # xss-lock also reacts to DPMS events and runs or kills the locker in response.
   programs.xss-lock.enable = true;
-  programs.xss-lock.lockerCommand = "-- ${pkgs.xlockmore}/bin/xlock -mode ant3d";
+  programs.xss-lock.lockerCommand = "-- ${pkgs.xlockmore}/bin/xlock -mode ant";
 
   # Enable touchpad support.
   services.xserver.libinput = {
