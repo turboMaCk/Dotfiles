@@ -15,6 +15,7 @@ import           XMonad.Actions.CopyWindow        (copyToAll)
 import           XMonad.Hooks.DynamicLog
 import qualified XMonad.Hooks.ManageDocks         as Docks
 import           XMonad.Hooks.ManageHelpers       (doFullFloat, isFullscreen)
+import           XMonad.Hooks.EwmhDesktops        (fullscreenEventHook)
 import           XMonad.Layout.NoBorders          (smartBorders)
 import           XMonad.Layout.Simplest           (Simplest (..))
 import           XMonad.Layout.Spacing            (smartSpacing)
@@ -118,6 +119,7 @@ myConfig = def
                           <+> Docks.manageDocks
                           <+> manageScratchPad
   , handleEventHook    = Docks.docksEventHook
+                          <+> fullscreenEventHook
   , borderWidth        = 4
   , startupHook        = myStartupHook
   }
