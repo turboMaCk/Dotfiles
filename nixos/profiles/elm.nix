@@ -8,8 +8,8 @@ let
   elmTools = import (pkgs.fetchFromGitHub {
     owner = "turboMaCk";
     repo = "nix-elm-tools";
-    rev = "e2014925d60867c1e8f07e4bd5cbaeec3a484fff";
-    sha256 = "10v3h3mmxx20dn93nwsm86grd3qqzllsyf46m6bj6d8grxfil3x8";
+    rev = "49b79886a43f816f53f3325dba05c40f28b5233d";
+    sha256 = "03j352q3s8d4x79570vgiwc4sjlyj5vi0nnvi15z4x0haga3410r";
   }) { inherit pkgs; };
 in {
     environment.systemPackages = with pkgs.elmPackages; [
