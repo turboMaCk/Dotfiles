@@ -2,7 +2,7 @@
 # this is hard to enforce so let's provide sane globals
 # So work can be done
 
-{ config, pkgs, ... }:
+{ pkgs, ... }:
 
 {
     environment.systemPackages = with pkgs; [

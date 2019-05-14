@@ -9,7 +9,7 @@
     firefox
     transmission-gtk
     openssl
-    spectacle # screeshots
+    flameshot # screeshots
     dunst # notifications
     google-fonts
 

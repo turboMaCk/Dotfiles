@@ -193,7 +193,7 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
     , ((modMasq .|. shiftMask, xK_o    ), spawn "emacsclient -n -c")
 
     -- screenshot
-    , ((modMasq .|. shiftMask, xK_p    ), spawn "spectacle")
+    , ((modMasq .|. shiftMask, xK_p    ), spawn "flameshot gui")
 
     -- launch dmenu
     , ((modMasq,               xK_p     ), spawn "exe=`dmenu_path | dmenu` && eval \"exec $exe\"")

@@ -16,6 +16,7 @@
       ../profiles/elm.nix
       ../profiles/nodejs.nix
       ../profiles/haskell.nix
+      ../profiles/purescript.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -49,7 +50,9 @@
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [ xlockmore ];
+  environment.systemPackages = with pkgs; [
+    xlockmore
+  ];
 
   # Open ports in the firewall.
   # networking.firewall.allowedTCPPorts = [ ... ];
@@ -81,7 +84,7 @@
     extraOptions = [ "-detectsleep" ];
     killer = "${pkgs.systemd}/bin/systemctl suspend";
     killtime = 10; # 10 is minimal value
-    time = 1;
+    time = 5;
   };
   services.logind.lidSwitch = "suspend";
 
@@ -111,6 +114,19 @@
   # Bluetooth
   hardware.bluetooth = {
     enable = true;
+  };
+
+  # Brightness service
+  systemd.services.brightness = {
+    description = "Set brightness writable to everybody";
+    wantedBy = [ "multi-user.target" ];
+    serviceConfig = {
+      Type = "oneshot";
+      User = "root";
+      ExecStart = ''
+        ${pkgs.bash}/bin/bash -c "chgrp -R -H video /sys/class/backlight/intel_backlight && chmod g+w /sys/class/backlight/intel_backlight/brightness";
+      '';
+    };
   };
 
   # Set hosts

@@ -8,7 +8,13 @@
   ];
 
   virtualisation = {
-    docker.enable = true;
+    docker = {
+      enable = true;
+      autoPrune = {
+        enable = true;
+        flags = [ "--all"  "--volumes" ];
+      };
+    };
 
     virtualbox = {
       host.enable = true;

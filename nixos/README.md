@@ -2,11 +2,11 @@
 
 Warning! This part of my dotfiles is still higly experimental, please don't rely on anything you see there!
 
-My NixOS configuration per [machine](machine).
+My NixOS configuration per [machines](machines).
 
 ## Installation
 
-Install nix os default config as usual. Then edit `/etc/nixos/configuration.nix` to import machine settings of your choice.
+Install NixOS default config as usual. Then edit `/etc/nixos/configuration.nix` to import machine settings from dotfiles repository.
 
 Example:
 
