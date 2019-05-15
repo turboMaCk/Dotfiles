@@ -6,8 +6,7 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
-      # ./hardware-configuration.nix
+    [ <nixos-hardware/common/pc/ssd>
       ../profiles/base.nix
       ../profiles/desktop.nix
       ../users/marek.nix

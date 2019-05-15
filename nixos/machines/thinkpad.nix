@@ -6,9 +6,7 @@
 
 {
   imports =
-    [ # Include the results of the hardware scan.
-      #./hardware-configuration.nix
-      <nixos-hardware/lenovo/thinkpad/t460s>
+    [ <nixos-hardware/lenovo/thinkpad/t460s>
       ../profiles/base.nix
       ../profiles/desktop.nix
       ../users/marek.nix
