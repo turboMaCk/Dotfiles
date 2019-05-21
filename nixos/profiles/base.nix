@@ -25,6 +25,9 @@ in
     libnotify
   ];
 
+  # Allow unfree packages :'(
+  nixpkgs.config.allowUnfree = true;
+
   # Cachix
   nix = {
     binaryCaches = [
@@ -36,6 +39,8 @@ in
     ];
     trustedUsers = [ "root" "marek" ];
   };
+
+  services.xserver.layout = "us";
 
   # Select internationalisation properties.
   i18n = {

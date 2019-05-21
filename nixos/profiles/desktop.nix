@@ -23,8 +23,6 @@
 
   # Packages
   nixpkgs.config = {
-    allowUnfree = true; # :'(
-
     chromium = {
       # enableGoogleTalkPlugin = true;
       # enableAdobeFlash = true;

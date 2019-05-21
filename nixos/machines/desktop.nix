@@ -66,22 +66,13 @@
   sound.enable = true;
 
   # HW support
-  hardware = {
+  hardware.pulseaudio = {
     # Sound config
-    pulseaudio.enable = true;
-    pulseaudio.support32Bit = true;
-
-    # OpenGL
-    opengl.driSupport32Bit = true;
+    enable = true;
+    support32Bit = true;
   };
 
-  services.xserver.layout = "us";
   services.xserver.dpi = 130;
-
-  # HOSTS
-  # networking.hosts = {
-    # "35.233.47.118" = [ "pro-next.globalwebindex.net" ];
-  # };
 
   # Set hosts
   # networking.hosts."128.199.58.247" = [ "planning-game.com" ];
