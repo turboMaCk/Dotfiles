@@ -1327,10 +1327,12 @@ My custom function to quick access to terminal. Currently its using term mode bu
     (interactive)
     (split-window-below)
     (windmove-down)
-    (term "/bin/zsh"))
+    (term "/usr/bin/zsh"))
 
   (define-key evil-normal-state-map (kbd "C-t") 'turbo_mack/toggle-term)
 #+END_SRC
+
+*** TODO Make this compatible with NixOS
 
 ** Slack
 #+BEGIN_SRC emacs-lisp :results none

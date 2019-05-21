@@ -13,10 +13,6 @@
     dunst # notifications
     google-fonts
 
-    # KDE
-    kdeApplications.korganizer # calednar
-    kdeApplications.akonadi-mime
-
     # Themes
     adapta-gtk-theme
     gnome3.adwaita-icon-theme
@@ -56,10 +52,10 @@
     };
 
     desktopManager = {
-      plasma5.enable = true;
+      plasma5.enable = false;
       gnome3.enable = false;
       xfce.enable = false;
-      default = "plasma5";
+      default = "none";
    };
 
     # Xmonad
