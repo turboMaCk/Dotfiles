@@ -1,3 +1,5 @@
+{-# LANGUAGE QuasiQuotes #-}
+
 ---------------------------------------------------------------------------
 --                                                                       --
 --     _|      _|  _|      _|                                      _|    --
@@ -13,9 +15,9 @@
 import           XMonad
 import           XMonad.Actions.CopyWindow        (copyToAll)
 import           XMonad.Hooks.DynamicLog
+import           XMonad.Hooks.EwmhDesktops        (fullscreenEventHook)
 import qualified XMonad.Hooks.ManageDocks         as Docks
 import           XMonad.Hooks.ManageHelpers       (doFullFloat, isFullscreen)
-import           XMonad.Hooks.EwmhDesktops        (fullscreenEventHook)
 import           XMonad.Layout.NoBorders          (smartBorders)
 import           XMonad.Layout.Simplest           (Simplest (..))
 import           XMonad.Layout.Spacing            (smartSpacing)
@@ -36,8 +38,9 @@ import qualified Data.Map                         as M
 import           Data.Monoid                      (Endo)
 import           System.Exit                      (ExitCode (ExitSuccess),
                                                    exitWith)
+import           Text.RawString.QQ
 
--- EXPERIEMNTAL:
+
 import           Graphics.X11.ExtraTypes.XF86
 import qualified XMonad.Actions.Volume            as Volume
 import           XMonad.Layout.BoringWindows
@@ -177,6 +180,16 @@ myWorkspaces = clickable . (map xmobarEscape) $
 -- Keys
 -------------------------------------
 
+rofi :: String
+rofi = [r|
+  rofi -show run -modi run -locat4on 1 -width 50 \
+                 -lines 5 -line-margin 3 -line-padding 1 \
+                 -font "mono 10" -columns 1 -bw 0 \
+                 -color-window "#222222, #222222, #b1b4b3" \
+                 -color-normal "#222222, #b1b4b3, #222222, #005577, #b1b4b3" \
+                 -color-active "#222222, #b1b4b3, #222222, #007763, #b1b4b3" \
+                 -color-urgent "#222222, #b1b4b3, #222222, #77003d, #b1b4b3" \
+                 -kb-row-select "Tab" -kb-row-tab ""|]
 
 myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
 
@@ -195,8 +208,8 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
     -- screenshot
     , ((modMasq .|. shiftMask, xK_p    ), spawn "flameshot gui")
 
-    -- launch dmenu
-    , ((modMasq,               xK_p     ), spawn "exe=`dmenu_path | dmenu` && eval \"exec $exe\"")
+    -- launch rofi
+    , ((modMasq,               xK_p     ), spawn rofi)
 
     -- launch ranger
     , ((modMasq .|. shiftMask, xK_m     ), spawn $ myTerminal ++ " -e ranger")

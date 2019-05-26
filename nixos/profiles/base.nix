@@ -23,6 +23,7 @@ in
     unzip
     killall
     libnotify
+    cachix
   ];
 
   # Allow unfree packages :'(

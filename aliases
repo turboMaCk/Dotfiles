@@ -6,9 +6,6 @@ alias s="subl"
 alias vi="vim"
 alias v="vim"
 
-# emacs
-alias e="emacsclient -t"
-
 # docker
 alias dm="docker-machine"
 alias dco="docker-compose"

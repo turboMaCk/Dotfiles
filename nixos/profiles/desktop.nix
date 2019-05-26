@@ -19,6 +19,7 @@
     xorg.xcursorthemes
     lxappearance
     xmonad-log
+    rofi
   ];
 
   # Packages
@@ -66,6 +67,7 @@
          haskellPackages.xmonad
          haskellPackages.dbus
          haskellPackages.utf8-string
+         haskellPackages.raw-strings-qq
       ];
     };
  };

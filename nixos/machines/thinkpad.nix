@@ -88,7 +88,7 @@
   # and unlock-session with appropriate actions (run locker and wait for user to unlock or kill locker).
   # xss-lock also reacts to DPMS events and runs or kills the locker in response.
   programs.xss-lock.enable = true;
-  programs.xss-lock.lockerCommand = "-- ${pkgs.xlockmore}/bin/xlock -mode ant";
+  programs.xss-lock.lockerCommand = "${pkgs.xlockmore}/bin/xlock -mode ant";
 
   # Enable touchpad support.
   services.xserver.libinput = {

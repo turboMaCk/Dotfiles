@@ -51,6 +51,7 @@
         aspellDicts.en-computers
         aspellDicts.en-science
         aspellDicts.cs
+        zeal
     ];
   };
 
