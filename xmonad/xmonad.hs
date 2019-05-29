@@ -183,7 +183,7 @@ myWorkspaces = clickable . (map xmobarEscape) $
 rofi :: String
 rofi = [r|
   rofi -show run -modi run -locat4on 1 -width 50 \
-                 -lines 5 -line-margin 3 -line-padding 1 \
+                 -lines 10 -line-margin 3 -line-padding 1 \
                  -font "mono 10" -columns 1 -bw 0 \
                  -color-window "#222222, #222222, #b1b4b3" \
                  -color-normal "#222222, #b1b4b3, #222222, #005577, #b1b4b3" \
@@ -210,6 +210,9 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
 
     -- launch rofi
     , ((modMasq,               xK_p     ), spawn rofi)
+
+    -- launch fori-pass
+    , ((modMasq,               xK_o     ), spawn "rofi-pass")
 
     -- launch ranger
     , ((modMasq .|. shiftMask, xK_m     ), spawn $ myTerminal ++ " -e ranger")

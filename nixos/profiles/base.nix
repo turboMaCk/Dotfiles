@@ -16,6 +16,7 @@ in
     pass
     gnupg
     gcc
+    clang
     gnumake
     htop
     cloc

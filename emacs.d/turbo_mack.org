@@ -370,7 +370,8 @@ Which Key helps me with key bindings
   (diminish 'color-identifiers-mode)
 
   ;; autocomplete
-  (add-hook 'after-init-hook 'global-company-mode)
+  ;; commented out as it beats with other autocomplete
+  ;;(add-hook 'after-init-hook 'global-company-mode)
 #+END_SRC
 
 * Spell Check

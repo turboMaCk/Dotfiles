@@ -103,7 +103,7 @@
   hardware.trackpoint = {
     enable = true;
     emulateWheel = true;
-    sensitivity = 140; # default kernel value is 128
+    sensitivity = 128; # default kernel value is 128
     speed = 110; # default kernel value is 97
   };
 

@@ -20,6 +20,7 @@
     lxappearance
     xmonad-log
     rofi
+    rofi-pass
   ];
 
   # Packages
