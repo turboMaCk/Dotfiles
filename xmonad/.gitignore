@@ -2,3 +2,5 @@
 /xmonad.errors
 /xmonad.hi
 /xmonad.state
+/xmonad.dyn_hi
+/xmonad.dyn_o
