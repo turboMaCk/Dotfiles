@@ -88,7 +88,7 @@
   # and unlock-session with appropriate actions (run locker and wait for user to unlock or kill locker).
   # xss-lock also reacts to DPMS events and runs or kills the locker in response.
   programs.xss-lock.enable = true;
-  programs.xss-lock.lockerCommand = "${pkgs.xlockmore}/bin/xlock -mode ant";
+  programs.xss-lock.lockerCommand = "-- ${pkgs.xlockmore}/bin/xlock -mode ant";
 
   # Enable touchpad support.
   services.xserver.libinput = {
@@ -104,12 +104,19 @@
     enable = true;
     emulateWheel = true;
     sensitivity = 128; # default kernel value is 128
-    speed = 110; # default kernel value is 97
+    speed = 97; # default kernel value is 97
   };
 
   # Bluetooth
   hardware.bluetooth = {
     enable = true;
+
+    # Modern headsets will generally try to connect
+    # using the A2DP profile
+    #extraConfig = "
+      #[General]
+      #Enable=Source,Sink,Media,Socket
+    #";
   };
 
   # Brightness service
@@ -127,7 +134,8 @@
 
   # Set hosts
   # networking.hosts."128.199.58.247" = [ "planning-game.com" ];
-  networking.hosts."35.244.244.204" = ["app.globalwebindex.com"];
+  #networking.hosts."35.244.244.204" = ["app.globalwebindex.com"];
+  networking.nameservers = ["1.1.1.1" "1.0.0.1"];
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database

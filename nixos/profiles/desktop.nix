@@ -12,6 +12,7 @@
     flameshot # screeshots
     dunst # notifications
     google-fonts
+    xclip
 
     # Themes
     adapta-gtk-theme

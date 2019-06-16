@@ -371,7 +371,10 @@ tabbedConf :: Tabbed.Theme
 tabbedConf =
   Tabbed.defaultTheme
   { Tabbed.activeColor = blue
+  , Tabbed.activeBorderColor = blue
   , Tabbed.inactiveColor = bg1
+  , Tabbed.inactiveBorderColor = bg1
+  , Tabbed.activeTextColor = black
   }
 
 myLayoutHook = Docks.avoidStruts $ smartBorders $ workspaceDir "~"

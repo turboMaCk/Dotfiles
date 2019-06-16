@@ -66,5 +66,5 @@ in
     export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
   '';
 
-  nix.useSandbox = false;
+  nix.useSandbox = true;
 }

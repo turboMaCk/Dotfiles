@@ -8,5 +8,6 @@
     environment.systemPackages = with pkgs; [
         nodejs-8_x
         yarn
+        nodePackages.node2nix
     ];
 }
