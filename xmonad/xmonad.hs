@@ -377,7 +377,7 @@ tabbedConf =
   , Tabbed.activeTextColor = black
   }
 
-myLayoutHook = Docks.avoidStruts $ smartBorders $ workspaceDir "~"
+myLayoutHook = Docks.avoidStruts $ smartBorders $ workspaceDir "/home/marek"
   tall
   ||| wide
   ||| (boringAuto Simplest)

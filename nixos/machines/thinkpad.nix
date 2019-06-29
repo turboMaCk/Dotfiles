@@ -56,6 +56,8 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     xlockmore
+    xl2tpd
+    strongswan
   ];
 
   # Open ports in the firewall.
@@ -143,7 +145,7 @@
   # Set hosts
   # networking.hosts."128.199.58.247" = [ "planning-game.com" ];
   #networking.hosts."35.244.244.204" = ["app.globalwebindex.com"];
-  networking.nameservers = ["1.1.1.1" "1.0.0.1"];
+  # networking.nameservers = ["1.1.1.1" "1.0.0.1"];
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
