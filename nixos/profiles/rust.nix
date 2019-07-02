@@ -8,5 +8,6 @@
     gnumake
     openssl
     pkgconfig
+    binutils
   ];
 }

@@ -12,6 +12,7 @@
 (depends-on "color-identifiers-mode")
 (depends-on "company-flow")
 (depends-on "diminish")
+(depends-on "direnv")
 (depends-on "editorconfig")
 (depends-on "elixir-mode")
 (depends-on "elm-mode")

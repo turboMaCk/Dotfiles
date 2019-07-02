@@ -15,6 +15,8 @@
       ../profiles/nodejs.nix
       ../profiles/haskell.nix
       ../profiles/purescript.nix
+      ../profiles/rust.nix
+      ../profiles/direnv.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
