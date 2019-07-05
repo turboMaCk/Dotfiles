@@ -15,7 +15,6 @@
     ghcid
     ghc
     zlib
-    stack2nix
   ];
 
   # Enable GHC.js binary cache
