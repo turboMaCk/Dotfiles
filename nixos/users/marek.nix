@@ -37,7 +37,7 @@
         obs-studio
         slack
         spotify
-        emacs25
+        emacs26
         wire-desktop
         ranger
         ag

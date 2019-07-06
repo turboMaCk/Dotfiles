@@ -1,8 +1,7 @@
 { config, pkgs, ... }:
 
 { environment.systemPackages = with pkgs; [
-    rustc
-    cargo
+    rustup
     cargo
     gcc
     gnumake

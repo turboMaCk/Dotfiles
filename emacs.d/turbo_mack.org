@@ -1034,33 +1034,33 @@ Better evil key binding for org-mode
 Setup languages support for literate programming capabilities.
 
 #+BEGIN_SRC emacs-lisp
-  (require 'ob-sh)
-  (require 'ob-shell)
-  (require 'ob-emacs-lisp)
-  (require 'ob-ruby)
-  (require 'ob-js)
-  (require 'ob-typescript)
-  ;; ob-elm.el is part of this repository
-  (require 'ob-elm)
-  (require 'ob-haskell)
-  (require 'ob-C)
-  (require 'ob-restclient)
+  ;;(require 'ob-sh)
+  ;;(require 'ob-shell)
+  ;;(require 'ob-emacs-lisp)
+  ;;(require 'ob-ruby)
+  ;;(require 'ob-js)
+  ;;(require 'ob-typescript)
+  ;;;; ob-elm.el is part of this repository
+  ;;(require 'ob-elm)
+  ;;(require 'ob-haskell)
+  ;;(require 'ob-C)
+  ;;(require 'ob-restclient)
 
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '((sh . t)
-     (shell .t)
-     (emacs-lisp . t)
-     (ruby . t)
-     (js . t)
-     (typescript . t)
-     (elm . t)
-     (haskell . t)
-     (C . t)
-     (restclient . t)))
+  ;;(org-babel-do-load-languages
+  ;; 'org-babel-load-languages
+  ;; '((sh . t)
+  ;;   (shell .t)
+  ;;   (emacs-lisp . t)
+  ;;   (ruby . t)
+  ;;   (js . t)
+  ;;   (typescript . t)
+  ;;   (elm . t)
+  ;;   (haskell . t)
+  ;;   (C . t)
+  ;;   (restclient . t)))
 
-  ;; disable confirmation of evaluation
-  (setq org-confirm-babel-evaluate nil)
+  ;;;; disable confirmation of evaluation
+  ;;(setq org-confirm-babel-evaluate nil)
 #+END_SRC
 
 ** ORG-JIRA
