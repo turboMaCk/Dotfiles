@@ -29,7 +29,11 @@
   networking = {
     hostName = "nixos-mainframe"; # Define your hostname.
     networkmanager.enable = true;
-    wireless.enable = false;  # Enables wireless support via wpa_supplicant.
+    # wireless.enable = false;  # Enables wireless support via wpa_supplicant.
+    networkmanager.extraConfig = ''
+     [main]
+     rc-manager=resolvconf
+    '';
   };
 
   # Set your time zone.
@@ -76,7 +80,7 @@
 
   # Set hosts
   # networking.hosts."128.199.58.247" = [ "planning-game.com" ];
-  networking.hosts."35.244.244.204" = ["app.globalwebindex.com"];
+  # networking.hosts."35.244.244.204" = ["app.globalwebindex.com"];
 
   # This value determines the NixOS release with which your system is to be
   # compatible, in order to avoid breaking some software such as database
