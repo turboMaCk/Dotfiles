@@ -10,7 +10,6 @@
     pkgs.cabal2nix
     hindent
     stylish-haskell
-    stack
     hasktags
     ghcid
     ghc
