@@ -6,7 +6,7 @@
 
 {
     environment.systemPackages = with pkgs; [
-        nodejs-8_x
+        nodejs-10_x
         yarn
         nodePackages.node2nix
     ];
