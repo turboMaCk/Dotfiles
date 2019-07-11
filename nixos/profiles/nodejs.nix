@@ -9,5 +9,7 @@
         nodejs-10_x
         yarn
         nodePackages.node2nix
+        # webpack-imagemin-plugin
+        pkgconfig autoconf automake libtool nasm autogen zlib libpng
     ];
 }
