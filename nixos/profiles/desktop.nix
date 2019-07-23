@@ -16,6 +16,7 @@
     # Themes
     adapta-gtk-theme
     gnome3.adwaita-icon-theme
+    empathy
     xorg.xcursorthemes
     lxappearance
     xmonad-log
