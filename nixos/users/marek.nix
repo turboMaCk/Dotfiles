@@ -37,7 +37,6 @@
         obs-studio
         slack
         spotify
-        emacs26
         wire-desktop
         ranger
         ag
@@ -51,11 +50,13 @@
         aspellDicts.en-science
         aspellDicts.cs
         zeal
+        emacs26
     ];
   };
 
   ## Systemd Services
 
+  # urxvtd
   systemd.user.services."urxvtd" = {
     enable = true;
     description = "rxvt unicode daemon";
@@ -64,5 +65,11 @@
     serviceConfig.Restart = "always";
     serviceConfig.RestartSec = 2;
     serviceConfig.ExecStart = "${pkgs.rxvt_unicode}/bin/urxvtd -q -o";
+  };
+
+  # Emacs
+  services.emacs = {
+    enable = true;
+    package = pkgs.emacs26;
   };
 }
