@@ -83,9 +83,9 @@
     shadowOpacity   = "0.5";
 
     # opacity
-    activeOpacity   = "1";
-    inactiveOpacity = "1";
-    menuOpacity     = "1";
+    activeOpacity   = "1.0";
+    inactiveOpacity = "1.0";
+    menuOpacity     = "1.0";
     backend         = "glx";
   };
 
