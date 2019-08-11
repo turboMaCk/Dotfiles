@@ -71,6 +71,34 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
+  services.thinkfan.enable = true;
+  # ACPID power saving
+  services.acpid = {
+    enable = true;
+    handlers = {
+        ac-power =
+          {
+            action =
+              ''
+                vals=($1)  # space separated string to array of multiple values
+                case ''${vals[3]} in
+                    00000000)
+                        echo unplugged >> /tmp/acpi.log
+                        ;;
+                    00000001)
+                        echo plugged in >> /tmp/acpi.log
+                        ;;
+                    *)
+                        echo unknown ''${vals[3]} >> /tmp/acpi.log
+                        ;;
+                esac
+
+              '';
+            event = "ac_adapter/*";
+          };
+    };
+  };
+
   # Enable sound.
   sound.enable = true;
 
@@ -148,7 +176,7 @@
 
   # Set hosts
   # networking.hosts."128.199.58.247" = [ "planning-game.com" ];
-  #networking.hosts."35.244.244.204" = ["app.globalwebindex.com"];
+  # networking.hosts."35.244.244.204" = ["app.globalwebindex.com"];
   # networking.nameservers = ["1.1.1.1" "1.0.0.1"];
 
   # This value determines the NixOS release with which your system is to be

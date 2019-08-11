@@ -20,7 +20,6 @@ import qualified XMonad.Hooks.ManageDocks         as Docks
 import           XMonad.Hooks.ManageHelpers       (doFullFloat, isFullscreen)
 import           XMonad.Layout.NoBorders          (smartBorders)
 import           XMonad.Layout.Simplest           (Simplest (..))
-import           XMonad.Layout.Spacing            (smartSpacing)
 import qualified XMonad.Layout.Tabbed             as Tabbed
 import           XMonad.Layout.WorkspaceDir       (changeDir, workspaceDir)
 import           XMonad.Prompt
@@ -384,11 +383,10 @@ myLayoutHook = Docks.avoidStruts $ smartBorders $ workspaceDir "/home/marek"
   where
     tall = Tabbed.addTabs shrinkText tabbedConf
       $ windowNavigation
-      $ smartSpacing 5
       $ subLayout [] Simplest
       $ boringWindows
       $ ResizableTall 1 (3/100) (2/3) []
-    wide = boringAuto $ smartSpacing 5
+    wide = boringAuto
       $ Mirror $ ResizableTall 1 (2/100) (5/6) []
 
 -- Local Variables:
