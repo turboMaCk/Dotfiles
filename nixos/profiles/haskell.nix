@@ -14,6 +14,7 @@
     ghcid
     ghc
     zlib
+    stack
   ];
 
   # Enable GHC.js binary cache

@@ -74,6 +74,9 @@
     };
  };
 
+  # autorandr
+  services.autorandr.enable = true;
+
   # Compton
   services.compton = {
     enable          = true;

@@ -71,7 +71,7 @@
   # Enable CUPS to print documents.
   services.printing.enable = true;
 
-  services.thinkfan.enable = true;
+  #services.thinkfan.enable = true;
   # ACPID power saving
   services.acpid = {
     enable = true;
