@@ -22,6 +22,7 @@
     xmonad-log
     rofi
     rofi-pass
+    peek # screen recording to gif
   ];
 
   # Packages
