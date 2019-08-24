@@ -48,7 +48,7 @@ if which brew > /dev/null; then
 fi
 
 # OPAM (OCaml) configuration
-. /Users/marek/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+# . /home/masdrek/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 # source aliases
 if [ -f ~/.aliases ]; then

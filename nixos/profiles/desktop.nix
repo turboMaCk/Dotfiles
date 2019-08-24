@@ -96,9 +96,8 @@
   # Redshift
   services.redshift = {
     enable = true;
-    latitude = "49.1165";
-    longitude = "16.594";
     temperature.night = 2500;
+    provider = "geoclue2";
   };
 
   # Fonts
