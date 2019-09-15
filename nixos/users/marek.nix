@@ -81,6 +81,14 @@
     serviceConfig.ExecStart = "${pkgs.rxvt_unicode}/bin/urxvtd -q -o";
   };
 
+  # keybase
+  services.kbfs = {
+    enable = true;
+  };
+  services.keybase = {
+    enable = true;
+  };
+
   # Emacs
   services.emacs = {
     enable = true;

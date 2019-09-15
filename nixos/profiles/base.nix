@@ -49,6 +49,10 @@ in
   };
   services.pcscd.enable = true;
 
+  location = {
+    provider = "geoclue2";
+  };
+
   environment.shellInit = ''
     gpg-connect-agent /bye
     export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)

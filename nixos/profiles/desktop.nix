@@ -16,7 +16,8 @@
     # Themes
     adapta-gtk-theme
     gnome3.adwaita-icon-theme
-    empathy
+    gnome3.evolution
+    gnome3.evince
     xorg.xcursorthemes
     lxappearance
     xmonad-log
@@ -97,7 +98,6 @@
   services.redshift = {
     enable = true;
     temperature.night = 2500;
-    provider = "geoclue2";
   };
 
   # Fonts
