@@ -69,7 +69,7 @@
          haskellPackages.xmonad-contrib
          haskellPackages.xmonad-extras
          haskellPackages.xmonad
-         haskellPackages.dbus
+         (pkgs.haskell.lib.appendPatch haskellPackages.dbus ../patches/dbus-session-multiple.patch)
          haskellPackages.utf8-string
          haskellPackages.raw-strings-qq
       ];
