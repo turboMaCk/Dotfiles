@@ -28,6 +28,7 @@ import           XMonad.Util.NamedScratchpad
 import           XMonad.Util.Scratchpad           (scratchpadManageHook,
                                                    scratchpadSpawnActionTerminal)
 import           XMonad.Util.SpawnOnce            (spawnOnce)
+import qualified XMonad.Hooks.SetWMName           as WMName
 
 import qualified Codec.Binary.UTF8.String         as UTF8
 import qualified DBus                             as D
@@ -62,7 +63,8 @@ main = do
   D.requestName dbus (D.busName_ "org.xmonad.Log")
     [ D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue ]
 
-  xmonad $ myConfig { logHook = dynamicLogWithPP (myLogHook dbus) }
+  xmonad $ myConfig
+    { logHook = dynamicLogWithPP (myLogHook dbus) }
 
 -------------------------------------
 -- Config
@@ -352,6 +354,8 @@ myStartupHook :: X ()
 myStartupHook = do
   spawn "feh --bg-center ~/Dotfiles/images/wallpaper.jpg"
   spawn "polybar example"
+  -- Java Apps might require this
+  WMName.setWMName "LG3D"
 
 
 myManageHook :: Query (Endo WindowSet)
