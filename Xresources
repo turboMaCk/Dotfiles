@@ -10,6 +10,17 @@ URxvt*depth: 32
 URxvt*background: rgba:0000/0000/0200/c600
 
 
+! Dark
+! color0     black
+! color1     red
+! color2     green
+! color3     yellow
+! color4     blue
+! color5     purple
+! color6     cyan
+! color7     white
+URxvt*color5:    #2e9AFE
+
 ! Light
 ! color8     black
 ! color9     red
@@ -24,10 +35,30 @@ URxvt*color8:     #747474
 URxvt*color9:     #f99286
 URxvt*color10:    #c3f786
 URxvt*color11:    #fcfbcc
-URxvt*color12:    #2e9AFE
+URxvt*color12:    #75bffe
 URxvt*color13:    #fba1fb
 URxvt*color14:    #9cf0f1
 URxvt*color15:    #e2e2e2
 
 ! Plugins
-! URxvt.perl-ext-common: resize-font
+URxvt.perl-ext-common: default,matcher,font-size,url-select,keyboard-select
+URxvt.ColorUL:         #4682B4
+
+!! url-select
+URxvt.keysym.M-u:           perl:url-select:select_next
+URxvt.url-select.launcher:  /run/current-system/sw/bin/xdg-open
+URxvt.url-select.underline: true
+
+!! keyboard-select:
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+
+!! font-size
+URxvt.keysym.M-plus:  font-size:increase
+URxvt.keysym.M-minus: font-size:decrease
+URxvt.keysym.M-equal: font-size:reset
+
+URxvt.resize-font.bigger: M-k
+
+!! matcher
+Urxvt.url-launcher:   /run/current-system/sw/bin/xdg-open
+URxvt.matcher.button: 1
