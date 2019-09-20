@@ -383,13 +383,12 @@ tabbedConf =
   , Tabbed.activeTextColor = black
   }
 
-myLayoutHook = Docks.avoidStruts $ smartBorders $ workspaceDir "/home/marek"
+myLayoutHook = Docks.avoidStruts $ smartBorders $ workspaceDir "/home/marek" $ windowNavigation
   tall
   ||| wide
   ||| (boringAuto Simplest)
   where
     tall = Tabbed.addTabs shrinkText tabbedConf
-      $ windowNavigation
       $ subLayout [] Simplest
       $ boringWindows
       $ ResizableTall 1 (3/100) (2/3) []
