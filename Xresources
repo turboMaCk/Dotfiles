@@ -1,5 +1,6 @@
 Xft.antialias: 1
 
+URxvt*termName: xterm-256color
 URxvt.font: xft:monospace:size=10
 URxvt.scrollBar: false
 
