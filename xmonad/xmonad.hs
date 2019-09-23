@@ -217,7 +217,7 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
     , ((modMasq,               xK_o     ), spawn "rofi-pass")
 
     -- launch ranger
-    , ((modMasq .|. shiftMask, xK_m     ), spawn $ myTerminal ++ " -e ranger")
+    , ((modMasq .|. shiftMask, xK_m     ), spawn $ myTerminal ++ " -e lf")
 
 
     -- close focused window
@@ -355,7 +355,7 @@ myStartupHook = do
   spawn "feh --bg-center ~/Dotfiles/images/wallpaper.jpg"
   spawn "polybar example"
   -- Java Apps might require this
-  WMName.setWMName "LG3D"
+  -- WMName.setWMName "LG3D"
 
 
 myManageHook :: Query (Endo WindowSet)

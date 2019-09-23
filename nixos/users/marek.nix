@@ -38,7 +38,7 @@
         discord
         spotify
         wire-desktop
-        ranger
+        lf
         ag
         vlc
         gource
