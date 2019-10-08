@@ -58,7 +58,7 @@
  '(markdown-command "/usr/bin/pandoc")
   '(package-selected-packages
      (quote
-       (direnv nix-sandbox glsl-mode flycheck-haskell nix-mode nvm company-flow flow-minor-mode flycheck-flow rjsx-mode autumn-light-theme flymake-go gist htmlize jsx-mode go-mode go markdown-preview-mode helm-spotify twittering-mode rust-mode s scss-mode simple-httpd smartparens tide tuareg typescript-mode web-mode with-editor writegood-mode yaml-mode yasnippet wanderlust slack org-bullets org-pomodoro org-jira sublime-themes fontawesome cargo caml shm idris-mode bash-completion psc-ide psci purescript-mode helm-css-scss perspective which-key evil-org org-evil hindent robe multiple-cursors ob-restclient restclient nyan-mode)))
+       (dockerfile-mode direnv nix-sandbox glsl-mode flycheck-haskell nix-mode nvm company-flow flow-minor-mode flycheck-flow rjsx-mode autumn-light-theme flymake-go gist htmlize jsx-mode go-mode go markdown-preview-mode helm-spotify twittering-mode rust-mode s scss-mode simple-httpd smartparens tide tuareg typescript-mode web-mode with-editor writegood-mode yaml-mode yasnippet wanderlust slack org-bullets org-pomodoro org-jira sublime-themes fontawesome cargo caml shm idris-mode bash-completion psc-ide psci purescript-mode helm-css-scss perspective which-key evil-org org-evil hindent robe multiple-cursors ob-restclient restclient nyan-mode)))
  '(purescript-mode-hook (quote (turn-on-purescript-indent)) t)
  '(send-mail-function (quote mailclient-send-it)))
 (custom-set-faces
@@ -66,4 +66,4 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(default ((t (:background nil)))))

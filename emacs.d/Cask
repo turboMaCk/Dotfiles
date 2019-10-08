@@ -13,6 +13,7 @@
 (depends-on "company-flow")
 (depends-on "diminish")
 (depends-on "direnv")
+(depends-on "dockerfile-mode")
 (depends-on "editorconfig")
 (depends-on "elixir-mode")
 (depends-on "elm-mode")

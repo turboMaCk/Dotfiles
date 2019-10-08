@@ -13,6 +13,7 @@ in
     lsof
     wget
     git
+    gitAndTools.tig
     pass
     gnupg
     gcc
@@ -25,6 +26,10 @@ in
     killall
     libnotify
     #cachix
+
+    #vpn
+    networkmanager-l2tp
+    networkmanager_strongswan
   ];
 
   # Allow unfree packages :'(

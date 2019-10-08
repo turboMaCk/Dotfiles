@@ -20,7 +20,7 @@ URxvt*background: rgba:0000/0000/0200/c600
 ! color5     purple
 ! color6     cyan
 ! color7     white
-URxvt*color5:    #2e9AFE
+URxvt*color4:    #2e9AFE
 
 ! Light
 ! color8     black
