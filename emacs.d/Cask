@@ -11,6 +11,7 @@
 (depends-on "clojure-mode")
 (depends-on "color-identifiers-mode")
 (depends-on "company-flow")
+(depends-on "dhall-mode")
 (depends-on "diminish")
 (depends-on "direnv")
 (depends-on "dockerfile-mode")
