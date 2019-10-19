@@ -15,6 +15,9 @@
       ../profiles/elm.nix
       ../profiles/nodejs.nix
       ../profiles/haskell.nix
+      ../profiles/purescript.nix
+      ../profiles/rust.nix
+      # Extra
       ../profiles/heroku.nix
     ];
 
