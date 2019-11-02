@@ -55,10 +55,8 @@
     };
 
     desktopManager = {
-      plasma5.enable = false;
       gnome3.enable = true;
-      xfce.enable = false;
-      default = "none";
+      default = "gnome3";
    };
 
     # Xmonad
