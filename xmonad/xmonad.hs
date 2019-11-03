@@ -15,7 +15,7 @@
 import           XMonad
 import           XMonad.Actions.CopyWindow        (copyToAll)
 import           XMonad.Hooks.DynamicLog
-import           XMonad.Hooks.EwmhDesktops        (fullscreenEventHook)
+import           XMonad.Hooks.EwmhDesktops        (fullscreenEventHook, ewmh)
 import qualified XMonad.Hooks.ManageDocks         as Docks
 import           XMonad.Hooks.ManageHelpers       (doFullFloat, isFullscreen)
 import           XMonad.Layout.NoBorders          (smartBorders)
@@ -63,7 +63,7 @@ main = do
   D.requestName dbus (D.busName_ "org.xmonad.Log")
     [ D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue ]
 
-  xmonad $ myConfig
+  xmonad $ ewmh $ myConfig
     { logHook = dynamicLogWithPP (myLogHook dbus) }
 
 -------------------------------------
