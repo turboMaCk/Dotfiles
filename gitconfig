@@ -1,6 +1,7 @@
 [user]
   name = Marek Fajkus
   email = marek.faj@gmail.com
+	singingkey = 8725E42820286274355C00F495585219BA6FE2CC
 
 [github]
   user = turbomack
@@ -101,3 +102,5 @@
 	prune = true
 [commit]
 	gpgsign = true
+[gpg]
+	program = gpg2
