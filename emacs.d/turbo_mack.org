@@ -497,6 +497,10 @@ npm install -g tide
   (require 'typescript-mode)
   (require 'tide)
 
+  ;; Turn on typescript-mode for tsx files
+  (add-to-list 'auto-mode-alist
+               '("\\.tsx\\'" . typescript-mode) t)
+
   (defun turbo_mack/init-tide-mode ()
     "Setup tide (typescript syntax checker)."
 
