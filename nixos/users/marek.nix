@@ -33,7 +33,6 @@
         steam
         browserpass
         dropbox
-        obs-studio
         slack
         discord
         spotify

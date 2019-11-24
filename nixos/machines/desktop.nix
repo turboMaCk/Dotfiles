@@ -19,6 +19,7 @@
       ../profiles/rust.nix
       # Extra
       ../profiles/heroku.nix
+      ../profiles/stream.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
