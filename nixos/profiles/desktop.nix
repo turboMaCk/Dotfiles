@@ -24,6 +24,12 @@
     rofi
     rofi-pass
     peek # screen recording to gif
+
+    # gaming
+    (steam.override {
+      extraPkgs = pkgs: [ openldap ];
+      nativeOnly = true;
+    }).run
   ];
 
   # Packages
