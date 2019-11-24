@@ -8,8 +8,6 @@ let
 in
 {
   environment.systemPackages = with pkgs; [
-    obs-studio
-
     # webcam utilities
     v4l-utils
   ];
