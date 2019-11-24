@@ -17,6 +17,7 @@
       ../profiles/haskell.nix
       ../profiles/purescript.nix
       ../profiles/rust.nix
+      ../profiles/ocaml.nix
       # Extra
       ../profiles/heroku.nix
       ../profiles/stream.nix

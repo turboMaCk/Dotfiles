@@ -16,6 +16,7 @@
       ../profiles/haskell.nix
       ../profiles/purescript.nix
       ../profiles/rust.nix
+      ../profiles/ocaml.nix
       ../profiles/direnv.nix
     ];
 

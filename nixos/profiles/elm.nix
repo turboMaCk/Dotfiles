@@ -3,9 +3,7 @@
 # So work can be done
 
 { pkgs, ... }:
-
-let
-in {
+{
     environment.systemPackages = with pkgs.elmPackages; [
         elm
         elm-format
