@@ -374,10 +374,13 @@ Which Key helps me with key bindings
   ;;(add-hook 'after-init-hook 'global-company-mode)
 
   ;; fic-mode for highlightng TODOs, FIXMEs etc.
-  ;; TODO HACK
+  ;; TODO: add custom face
   (require 'fic-mode)
   (custom-set-variables
    '(fic-highlighted-words '("FIXME" "TODO" "BUG" "HACK")))
+
+  ;; turn on fic-mode
+  (add-hook 'prog-mode-hook 'fic-mode)
 #+END_SRC
 
 * Spell Check
