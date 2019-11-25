@@ -27,6 +27,7 @@
 (depends-on "evil-surround")
 (depends-on "evil-visualstar")
 (depends-on "exec-path-from-shell")
+(depends-on "fic-mode")
 (depends-on "flow-minor-mode")
 (depends-on "flycheck-clojure")
 (depends-on "flycheck-flow")

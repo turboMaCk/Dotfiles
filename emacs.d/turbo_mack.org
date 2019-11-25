@@ -372,6 +372,12 @@ Which Key helps me with key bindings
   ;; autocomplete
   ;; commented out as it beats with other autocomplete
   ;;(add-hook 'after-init-hook 'global-company-mode)
+
+  ;; fic-mode for highlightng TODOs, FIXMEs etc.
+  ;; TODO HACK
+  (require 'fic-mode)
+  (custom-set-variables
+   '(fic-highlighted-words '("FIXME" "TODO" "BUG" "HACK")))
 #+END_SRC
 
 * Spell Check
