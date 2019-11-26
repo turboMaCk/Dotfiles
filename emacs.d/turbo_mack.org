@@ -368,7 +368,13 @@ Which Key helps me with key bindings
 
   ;; autocomplete
   ;; commented out as it beats with other autocomplete
-  ;;(add-hook 'after-init-hook 'global-company-mode)
+  (add-hook 'after-init-hook 'global-company-mode)
+
+  ;; Setting out company idle mode
+  ;; shen set too high it migth overload a backend and make
+  ;; it effectively slower!!!
+  (setq company-idle-delay 0.02)
+
 
   ;; fic-mode for highlightng TODOs, FIXMEs etc.
   ;; TODO: add custom face
