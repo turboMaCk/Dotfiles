@@ -63,7 +63,7 @@
 
     desktopManager = {
       gnome3.enable = true;
-      default = "gnome3";
+      default = "none";
    };
 
     # Xmonad

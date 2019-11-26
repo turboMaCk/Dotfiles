@@ -312,10 +312,7 @@ Making sense of love to all the sweet things on internet.
     (nyan-start-animation)
     (nyan-toggle-wavy-trail))
 
-  (when (display-graphic-p)
-    "Nyan mode only in gui"
-
-    (turbo_mack/init-nyan-mode))
+  (turbo_mack/init-nyan-mode)
 #+END_SRC
 
 Theme agnostic UI settings
@@ -451,11 +448,16 @@ This part of configuration handles settings for specific languages and major mod
 
 ** Web
 
-Web is my hate and love. Even though I'm a big critic of some technical aspect of web and standards around it
-I do admire its philosophy and values.
+All the web craziness. I like to use SASS for writing CSS (if I really have to use something close to css)
 
 #+BEGIN_SRC emacs-lisp
   (require 'scss-mode)
+#+END_SRC
+
+Web mode is quite powerful thing. Let's turn it on for some file types:
+
+#+BEGIN_SRC emacs-lisp
+  (require 'web-mode)
 #+END_SRC
 
 ** JavaScript
