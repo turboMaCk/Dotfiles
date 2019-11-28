@@ -25,11 +25,13 @@ in
     unzip
     killall
     libnotify
-    #cachix
+    direnv
+    cachix
 
     #vpn
     networkmanager-l2tp
     networkmanager_strongswan
+
   ];
 
   # Allow unfree packages :'(
@@ -53,6 +55,9 @@ in
     enableSSHSupport = true;
   };
   services.pcscd.enable = true;
+
+  # lorri
+  services.lorri.enable = true;
 
   location = {
     provider = "geoclue2";
