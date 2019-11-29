@@ -15,9 +15,10 @@
 import           XMonad
 import           XMonad.Actions.CopyWindow        (copyToAll)
 import           XMonad.Hooks.DynamicLog
-import           XMonad.Hooks.EwmhDesktops        (fullscreenEventHook, ewmh)
+import           XMonad.Hooks.EwmhDesktops        (ewmh, fullscreenEventHook)
 import qualified XMonad.Hooks.ManageDocks         as Docks
 import           XMonad.Hooks.ManageHelpers       (doFullFloat, isFullscreen)
+import qualified XMonad.Hooks.SetWMName           as WMName
 import           XMonad.Layout.NoBorders          (smartBorders)
 import           XMonad.Layout.Simplest           (Simplest (..))
 import qualified XMonad.Layout.Tabbed             as Tabbed
@@ -28,7 +29,6 @@ import           XMonad.Util.NamedScratchpad
 import           XMonad.Util.Scratchpad           (scratchpadManageHook,
                                                    scratchpadSpawnActionTerminal)
 import           XMonad.Util.SpawnOnce            (spawnOnce)
-import qualified XMonad.Hooks.SetWMName           as WMName
 
 import qualified Codec.Binary.UTF8.String         as UTF8
 import qualified DBus                             as D
@@ -270,6 +270,10 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
 
     -- Deincrement the number of windows in the master area
     , ((modMasq              , xK_period), sendMessage (IncMasterN (-1)))
+
+    -- Marks as booring
+    , ((modMasq .|. shiftMask, xK_i     ), markBoring)
+    , ((modMasq .|. shiftMask, xK_u     ), clearBoring)
 
     -- Quit xmonad
     , ((modMasq .|. shiftMask, xK_c     ), io (exitWith ExitSuccess))
