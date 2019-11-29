@@ -89,7 +89,7 @@ Show Line numbers in programming mode.
 
 Setup fringes (spaces around windows).
 
-#+BEGIN_SRC emacs-lisp :result none
+#+BEGIN_SRC emacs-lisp :results none
   (when (display-graphic-p)
     (fringe-mode 2)
     (setq-default left-fringe-width 12)
@@ -99,8 +99,6 @@ Setup fringes (spaces around windows).
   (setq line-spacing 3)
   (set-face-attribute 'default nil :height 100)
 #+END_SRC
-
-#+RESULTS:
 
 Setup garbage collection to gain some extra performance.
 
@@ -545,7 +543,7 @@ Please make sure you have [[https://github.com/avh4/elm-format][elm-format]] ins
 npm install -g elm
 #+END_SRC
 
-#+BEGIN_SRC emacs-lisp
+#+BEGIN_SRC emacs-lisp results: none
   (require 'elm-mode)
 
 
@@ -564,9 +562,6 @@ npm install -g elm
   ;; Not worging with lastest elm-mode
   ;; (add-hook 'elm-mode-hook 'turbo_mack/init-elm)
 #+END_SRC
-
-#+RESULTS:
-: turbo_mack/init-elm
 
 ** Haskell
 
