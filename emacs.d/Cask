@@ -74,6 +74,7 @@
 (depends-on "pallet")
 (depends-on "pbcopy")
 (depends-on "perspective")
+(depends-on "presentation")
 (depends-on "projectile")
 (depends-on "projectile-rails")
 (depends-on "psc-ide")
