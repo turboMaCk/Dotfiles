@@ -1327,10 +1327,12 @@ This is nice sugar for quickly moving to normal mode.
 
 ** Auto Complete & Company
 
+***TODO: port mapping to company-mode
+
 #+BEGIN_SRC emacs-lisp
   ;; auto-complete
-  (define-key ac-mode-map (kbd "C-j") 'ac-next)
-  (define-key ac-mode-map (kbd "C-k") 'ac-previous)
+  ;;(define-key ac-mode-map (kbd "C-j") 'ac-next)
+  ;;(define-key ac-mode-map (kbd "C-k") 'ac-previous)
 
     ;; company
   (eval-after-load 'company
