@@ -450,6 +450,23 @@ Line ends sanitization.
 
 This part of configuration handles settings for specific languages and major modes in general.
 
+** C
+C works quite nicely out of the box (no surprise) so I'm adding just a few minor tweaks
+#+BEGIN_SRC emacs-lisp :results: none
+  (require 'compile)
+
+  (defun turbo_mack/my_c ()
+    (interactive)
+    "setup compile command"
+    (set (make-local-variable 'compile-command) "make")
+
+    "bind key"
+    (define-key evil-normal-state-map (kbd "C-c C-c") 'projectile-compile-project))
+
+
+  (add-hook 'c-mode-hook 'turbo_mack/my_c)
+#+END_SRC
+
 ** Web
 
 All the web craziness. I like to use SASS for writing CSS (if I really have to use something close to css)
