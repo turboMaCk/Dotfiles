@@ -1,8 +1,6 @@
 (source "gnu" "http://elpa.gnu.org/packages/")
 (source "melpa" "http://melpa.milkbox.net/packages/")
 
-(depends-on "ac-etags")
-(depends-on "auto-complete")
 (depends-on "autumn-light-theme")
 (depends-on "bash-completion")
 (depends-on "caml")
