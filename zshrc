@@ -66,3 +66,9 @@ if [ -f '/Users/marek/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/mare
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/marek/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/marek/google-cloud-sdk/completion.zsh.inc'; fi
+
+# Silence direnv
+# see https://github.com/direnv/direnv/issues/68
+_direnv_hook() {
+  eval "$(direnv export zsh 2> >( egrep -v -e '^direnv: (loading|export|unloading)' ))"
+};
