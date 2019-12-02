@@ -790,41 +790,6 @@ However mode is not enabled for ~*.nix~ files by default.
 (global-flycheck-mode t)
 #+END_SRC
 
-* Auto complete
-
-I have a history of using various text editor. I was actually never big fan of IDEs mostly because
-my primary focus was on scripting languages. Even though I have used Netbeans and similar I never really stick to it.
-However as vimmer and now Emacs user my editors configuration grows with me over time and because I'm working
-on larger and larger projects all this additional stuff make something I end up with almost full IDE like environment.
-Auto completion is big part of this setup which makes my life a bit easier.
-
-I'm using auto complete mode. However I'm thinking about switching to company since it turned out that it's bit more supported.
-
-#+BEGIN_SRC emacs-lisp
-  ;;(require 'auto-complete)
-  ;;(require 'auto-complete-config)
-
-  (defun turbo_mack/init-auto-complete ()
-    "Setup auto compltete mode."
-
-    (setq ac-auto-show-menu t)
-    (setq ac-auto-start t)
-
-    (setq ac-quick-help-delay 0.3)
-    (setq ac-quick-help-height 30)
-    (setq ac-show-menu-immediately-on-auto-complete t))
-
-  ;;(turbo_mack/init-auto-complete)
-
-  ;; (defun turbo_mack/init-ac-etags ()
-  ;;   "Setup auto completion for etags."
-  ;;   (setq ac-etags-requires t)
-  ;;   (ac-config-default)
-  ;;   (ac-etags-setup))
-
-  ;; (turbo_mack/init-ac-etags)
-#+END_SRC
-
 * Evil
 
 Vimmify Emacs. Sorry folks. I'm on dark side of power.
