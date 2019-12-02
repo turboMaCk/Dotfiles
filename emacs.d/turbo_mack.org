@@ -548,6 +548,12 @@ npm install -g elm
 
 ** Haskell
 
+Disabling Stack build tool is painful.
+
+#+BEGIN_SRC emacs-lisp :results none
+  (add-to-list 'flycheck-disabled-checkers 'haskell-stack-ghc)
+#+END_SRC
+
 [[https://github.com/serras/emacs-haskell-tutorial/blob/master/tutorial.md][There]] is a great article about setting up Emacs for Haskell development by Serras.
 
 This configuration is using several packages which requires installed binaries:
@@ -614,6 +620,16 @@ Flycheck Haskell support:
 #+BEGIN_SRC emacs-lisp :results none
     (require 'flycheck-haskell)
     (add-hook 'haskell-mode-hook #'flycheck-haskell-setup)
+#+END_SRC
+
+Company based autocomplete for Haskell
+
+#+BEGIN_SRC emacs-lisp :results none
+  (require 'company-ghci)
+  (push 'company-ghci company-backends)
+  (add-hook 'haskell-mode-hook 'company-mode)
+  ;;; To get completions in the REPL
+  (add-hook 'haskell-interactive-mode-hook 'company-mode)
 #+END_SRC
 
 Haskell sandbox wrapper

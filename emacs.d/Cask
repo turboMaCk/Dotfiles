@@ -11,6 +11,7 @@
 (depends-on "cmake-mode")
 (depends-on "color-identifiers-mode")
 (depends-on "company-flow")
+(depends-on "company-ghci")
 (depends-on "company-rtags")
 (depends-on "dhall-mode")
 (depends-on "diminish")

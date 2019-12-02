@@ -27,6 +27,7 @@ in
     libnotify
     direnv
     cachix
+    lorri
 
     #vpn
     networkmanager-l2tp
@@ -57,7 +58,7 @@ in
   services.pcscd.enable = true;
 
   # lorri
-  services.lorri.enable = true;
+  services.lorri.enable = false;
 
   location = {
     provider = "geoclue2";

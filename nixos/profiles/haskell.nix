@@ -3,7 +3,9 @@
 # For other Haskell projects it's better to have local nix definitions!
 
 { config, pkgs, ... }:
-
+let
+  all-hies = import (fetchTarball "https://github.com/infinisil/all-hies/tarball/master") {};
+in
 {
   environment.systemPackages = with pkgs.haskellPackages; [
     pkgs.cabal-install
@@ -14,10 +16,24 @@
     ghcid
     ghc
     zlib
-    stack
+    # first add caches before installing this!
+    (all-hies.unstableFallback.selection { selector = p: { inherit (p) ghc864 ghc863 ghc843; }; })
+
+    # stack
   ];
 
-  # Enable GHC.js binary cache
-  nix.binaryCaches = [ "https://cache.nixos.org/" "https://nixcache.reflex-frp.org" ];
-  nix.binaryCachePublicKeys = [ "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI=" ];
+
+  # Setup binary caches
+  nix = {
+    binaryCaches = [
+      "https://cache.nixos.org/"
+      "https://nixcache.reflex-frp.org"
+      "https://all-hies.cachix.org"
+    ];
+    binaryCachePublicKeys = [
+      "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI="
+      "all-hies.cachix.org-1:JjrzAOEUsD9ZMt8fdFbzo3jNAyEWlPAwdVuHw4RD43k="
+    ];
+    trustedUsers = [ "root" "marek" ];
+  };
 }
