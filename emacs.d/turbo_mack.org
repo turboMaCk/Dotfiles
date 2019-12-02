@@ -557,33 +557,31 @@ This configuration is using several packages which requires installed binaries:
 - [[https://github.com/jaspervdj/stylish-haskell][stylish-haskell]] is another code formatting tool
 
 #+BEGIN_SRC shell :exports none :results none
-cabal install -g hindent
-cabal install -g hasktags
-cabal install -g stylish-haskell
+  cabal install -g hindent
+  cabal install -g hasktags
+  cabal install -g stylish-haskell
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp :results none
   (require 'haskell-mode)
   (require 'hindent)
-  (require 'flycheck-haskell)
   (add-hook 'haskell-mode-hook #'hindent-mode)
 
   (eval-after-load 'haskell-mode
     '(define-key haskell-mode-map [f8] 'haskell-navigate-imports))
 
+  ;; Fix path
   ;; (let ((my-cabal-path (expand-file-name "~/.cabal/bin")))
   ;;   (setenv "PATH" (concat my-cabal-path path-separator (getenv "PATH")))
   ;;   (add-to-list 'exec-path my-cabal-path))
 
-  (custom-set-variables '(haskell-tags-on-save -1))
-
-  ;; use stack instead of plain ghci
-  ;(custom-set-variables '(haskell-process-type 'stack-ghci))
-
   (custom-set-variables
    '(haskell-process-suggest-remove-import-lines t)
    '(haskell-process-auto-import-loaded-modules t)
+   '(haskell-tags-on-save -1)
+   '(haskell-process-type 'cabal-new-repl)
    '(haskell-process-log t))
+
   (eval-after-load 'haskell-mode '(progn
                                     (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
                                     (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
@@ -591,11 +589,31 @@ cabal install -g stylish-haskell
                                     (define-key haskell-mode-map (kbd "C-c C-n C-i") 'haskell-process-do-info)
                                     (define-key haskell-mode-map (kbd "C-c C-n C-c") 'haskell-process-cabal-build)
                                     (define-key haskell-mode-map (kbd "C-c C-n c") 'haskell-process-cabal)))
+
   (eval-after-load 'haskell-cabal '(progn
                                      (define-key haskell-cabal-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
                                      (define-key haskell-cabal-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
                                      (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
                                      (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
+
+  ;; LSP based haskell intergration
+  ;; (require 'lsp)
+  ;; (require 'lsp-haskell)
+  ;; (add-hook 'haskell-mode-hook #'lsp)
+
+  ;; (add-hook 'haskell-mode-hook 'lsp)
+  ;; (add-hook 'haskell-mode-hook 'direnv-update-environment)
+
+  (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+
+  ;; flycheck
+#+END_SRC
+
+Flycheck Haskell support:
+
+#+BEGIN_SRC emacs-lisp :results none
+    (require 'flycheck-haskell)
+    (add-hook 'haskell-mode-hook #'flycheck-haskell-setup)
 #+END_SRC
 
 Haskell sandbox wrapper
@@ -614,6 +632,7 @@ Haskell sandbox wrapper
 
 *** TODO GHC-MOD
     GHC-Mode needs binary and some special settings. Anyway It can supports integration with company mode and other interesting features.
+    Seem this package is legacy anyway
 
 *** TODO Structured-Haskell mode
 
@@ -651,6 +670,7 @@ brew install rbenv
 
   (require 'robe)
   (add-hook 'ruby-mode-hook 'robe-mode)
+
   (eval-after-load 'company
     '(push 'company-robe company-backends))
 

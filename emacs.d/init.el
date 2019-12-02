@@ -54,7 +54,7 @@
  '(haskell-process-auto-import-loaded-modules t)
  '(haskell-process-log t)
  '(haskell-process-suggest-remove-import-lines t)
- '(haskell-process-type (quote stack-ghci))
+ '(haskell-process-type (quote cabal-new-repl))
  '(haskell-tags-on-save t)
  '(markdown-command "/usr/bin/pandoc")
   '(package-selected-packages
