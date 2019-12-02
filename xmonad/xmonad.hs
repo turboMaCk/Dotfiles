@@ -358,7 +358,7 @@ myStartupHook :: X ()
 myStartupHook = do
   spawn "feh --bg-center ~/Dotfiles/images/wallpaper.jpg"
   spawn "polybar example"
-  spawn "imwheel --kill"
+  spawn "imwheel --kill --buttons 45"
   -- Java Apps might require this
   -- WMName.setWMName "LG3D"
 

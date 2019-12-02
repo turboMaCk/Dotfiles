@@ -19,6 +19,7 @@
       ../profiles/rust.nix
       ../profiles/ocaml.nix
       # Extra
+      ../profiles/unison.nix
       ../profiles/heroku.nix
       ../profiles/stream.nix
     ];
