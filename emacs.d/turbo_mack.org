@@ -351,39 +351,6 @@ Which Key helps me with key bindings
 (which-key-mode t)
 #+END_SRC
 
-* Syntax improvements
-
-#+BEGIN_SRC emacs-lisp
-  (require 'smartparens)
-
-  (require 'rainbow-delimiters)
-  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
-
-  (require 'diminish)
-
-  (global-color-identifiers-mode)
-  (diminish 'color-identifiers-mode)
-
-  ;; autocomplete
-  ;; commented out as it beats with other autocomplete
-  (add-hook 'after-init-hook 'global-company-mode)
-
-  ;; Setting out company idle mode
-  ;; shen set too high it migth overload a backend and make
-  ;; it effectively slower!!!
-  (setq company-idle-delay 0.02)
-
-
-  ;; fic-mode for highlightng TODOs, FIXMEs etc.
-  ;; TODO: add custom face
-  (require 'fic-mode)
-  (custom-set-variables
-   '(fic-highlighted-words '("FIXME" "TODO" "BUG" "HACK")))
-
-  ;; turn on fic-mode
-  (add-hook 'prog-mode-hook 'fic-mode)
-#+END_SRC
-
 * Spell Check
 
 #+BEGIN_SRC emacs-lisp
@@ -563,7 +530,6 @@ npm install -g elm
 #+BEGIN_SRC emacs-lisp results: none
   (require 'elm-mode)
 
-
   ;; auto complete
   (eval-after-load 'company
     '(push 'company-elm company-backends))
@@ -731,16 +697,6 @@ brew install rbenv
                       "\\(?:^\\|\\s-+\\)\\(?:do\\)")
                  (set (make-variable-buffer-local 'ruby-end-check-statement-modifiers) nil)
                  (ruby-end-mode +1)))
-
-  ;; setup smartprens
-  (sp-with-modes '(elixir-mode)
-    (sp-local-pair "fn" "end"
-                   :when '(("SPC" "RET"))
-                   :actions '(insert navigate))
-    (sp-local-pair "do" "end"
-                   :when '(("SPC" "RET"))
-                   :post-handlers '(sp-ruby-def-post-handler)
-                   :actions '(insert navigate)))
 #+END_SRC
 
 ** Clojure
@@ -782,6 +738,38 @@ However mode is not enabled for ~*.nix~ files by default.
   (add-to-list 'auto-mode-alist
                '("\\.nix\\'" . (lambda ()
                                  (nix-mode))))
+#+END_SRC
+
+* Syntax improvements
+
+#+BEGIN_SRC emacs-lisp
+  (require 'smartparens)
+
+  (require 'rainbow-delimiters)
+  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+
+  (require 'diminish)
+
+  (global-color-identifiers-mode)
+  (diminish 'color-identifiers-mode)
+
+  ;; autocomplete
+  (add-hook 'after-init-hook 'global-company-mode)
+
+  ;; Setting out company idle mode
+  ;; shen set too high it migth overload a backend and make
+  ;; it effectively slower!!!
+  (setq company-idle-delay 0.02)
+
+
+  ;; fic-mode for highlightng TODOs, FIXMEs etc.
+  ;; TODO: add custom face
+  (require 'fic-mode)
+  (custom-set-variables
+   '(fic-highlighted-words '("FIXME" "TODO" "BUG" "HACK")))
+
+  ;; turn on fic-mode
+  (add-hook 'prog-mode-hook 'fic-mode)
 #+END_SRC
 
 * Other Tools
