@@ -1,4 +1,3 @@
-# Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
@@ -11,7 +10,7 @@
       ../profiles/desktop.nix
       ../users/marek.nix
       ../profiles/direnv.nix
-      ../profiles/virtualization.nix
+      #../profiles/virtualization.nix
       ../profiles/elm.nix
       ../profiles/nodejs.nix
       ../profiles/haskell.nix
@@ -30,6 +29,8 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
+    # Latest kernel
+    kernelPackages = pkgs.linuxPackages_latest;
   };
 
   networking = {
@@ -85,6 +86,9 @@
   # Enable sound.
   sound.enable = true;
 
+  # graphic card requires this
+  hardware.enableRedistributableFirmware = true;
+
   # HW support
   hardware.pulseaudio = {
     # Sound config
@@ -93,6 +97,7 @@
   };
 
   services.xserver.dpi = 130;
+  services.xserver.videoDrivers = ["amdgpu"];
 
   # services.xserver.imwheel = {
   #   enable = true;
