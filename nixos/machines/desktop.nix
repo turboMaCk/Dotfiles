@@ -89,6 +89,15 @@
   # graphic card requires this
   hardware.enableRedistributableFirmware = true;
 
+  services.xserver = {
+   dpi = 130;
+   videoDrivers = ["amdgpu"];
+  };
+
+  hardware.opengl = {
+    enable = true;
+  };
+
   # HW support
   hardware.pulseaudio = {
     # Sound config
@@ -96,8 +105,6 @@
     support32Bit = true;
   };
 
-  services.xserver.dpi = 130;
-  services.xserver.videoDrivers = ["amdgpu"];
 
   # services.xserver.imwheel = {
   #   enable = true;
