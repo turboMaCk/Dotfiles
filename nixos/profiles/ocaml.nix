@@ -4,13 +4,13 @@ let
     pkgs.fetchFromGitHub {
       owner = "turboMaCk";
       repo = "bs-platform.nix";
-      rev = "c20e8dc8703ad7975c99d76b5779d31c86078d98";
-      sha256 = "06wii6487crawi7ngbls59snvygqhh29jz5f9q106m3vp9jzy7h9";
+      rev = "e37dbb37be393739c9ee0a0dc9c315229ad4a9ed";
+      sha256 = "1kjj1mqw46l1y2p2z7hc2s80v1fcqr13jgb62l6xgv88dvr9499y";
     };
 
   bs-platform = with pkgs;
     import "${bs-platform-src}/bs-platform.nix" {
-      inherit stdenv fetchFromGitHub nodejs ninja python35;
+      inherit stdenv fetchFromGitHub nodejs ninja python3;
     };
 in
 {
