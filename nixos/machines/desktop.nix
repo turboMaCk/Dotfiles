@@ -10,7 +10,7 @@
       ../profiles/desktop.nix
       ../users/marek.nix
       ../profiles/direnv.nix
-      #../profiles/virtualization.nix
+      ../profiles/virtualization.nix
       ../profiles/elm.nix
       ../profiles/nodejs.nix
       ../profiles/haskell.nix

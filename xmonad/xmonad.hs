@@ -139,9 +139,10 @@ manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
 
 
 scratchpads = [ NS "htop" "urxvt -e htop" (title =? "htop") defaultFloating
-              , NS "caprine" "caprine" (title =? "Caprine") defaultFloating
               , NS "obs" "obs" (className =? ".obs-wrapped") defaultFloating
               , NS "peek" "peek" (className =? "Peek") defaultFloating
+              , NS "slack" "slack" (className =? "slack") defaultFloating
+              , NS "discord" "discord" (className =? "discord") defaultFloating
               ] where role = stringProperty "WM_WINDOW_ROLE"
 
 
@@ -279,8 +280,8 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
     , ((modMasq .|. shiftMask, xK_c     ), io (exitWith ExitSuccess))
 
     -- Sratchpads
-    -- , ((modMasq .|. shiftMask, xK_f     ), namedScratchpadAction scratchpads "caprine")
-    -- , ((modMasq .|. shiftMask, xK_d     ), namedScratchpadAction scratchpads "wire")
+    , ((modMasq .|. shiftMask, xK_f     ), namedScratchpadAction scratchpads "slack")
+    , ((modMasq .|. shiftMask, xK_d     ), namedScratchpadAction scratchpads "discord")
     , ((modMasq .|. shiftMask, xK_g     ), namedScratchpadAction scratchpads "peek")
     , ((modMasq .|. shiftMask, xK_h     ), namedScratchpadAction scratchpads "obs")
 
@@ -366,9 +367,10 @@ myStartupHook = do
 myManageHook :: Query (Endo WindowSet)
 myManageHook = composeAll
     [ className =? "stalonetray"  --> doIgnore
-    , className =? "Caprine"      --> doFloat
     , className =? ".obs-wrapped" --> doFloat
     , className =? "Peek"         --> doFloat
+    , className =? "slack"        --> doFloat -- not working properly it seems
+    , className =? "discord"      --> doFloat
     , Docks.manageDocks
     , isFullscreen                --> doF W.focusDown <+> doFullFloat
     ]
