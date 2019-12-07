@@ -104,6 +104,18 @@
     temperature.night = 2500;
   };
 
+  # Dropbox service
+  systemd.user.services.dropbox = {
+    description = "Dropbox service";
+    wantedBy = [ "graphical-session.targe" ];
+    serviceConfig = {
+      Type = "exec";
+      ExecStart = "${pkgs.dropbox}/bin/dropbox";
+      ExecStop = "${pkgs.procps}/bin/pkill dropbnox";
+      Restart = "on-failure";
+    };
+  };
+
   # Fonts
   fonts = {
     enableFontDir = true;
