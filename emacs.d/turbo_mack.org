@@ -197,8 +197,12 @@ Setup essential packages.
   (put 'narrow-to-region 'disabled nil)
 
   ;; dired
+  (require 'dired)
   (add-hook 'dired-load-hook
             (function (lambda () (load "dired-x"))))
+
+  ;; create files from dired mode
+  (define-key dired-mode-map "c" 'find-file)
 
   ;; ibuffer
   (setq-default ibuffer-expert t)
