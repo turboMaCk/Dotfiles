@@ -29,6 +29,7 @@ import           XMonad.Util.NamedScratchpad
 import           XMonad.Util.Scratchpad           (scratchpadManageHook,
                                                    scratchpadSpawnActionTerminal)
 import           XMonad.Util.SpawnOnce            (spawnOnce)
+import           XMonad.Layout.Spacing            (smartSpacing)
 
 import qualified Codec.Binary.UTF8.String         as UTF8
 import qualified DBus                             as D
@@ -273,8 +274,8 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
     , ((modMasq              , xK_period), sendMessage (IncMasterN (-1)))
 
     -- Marks as booring
-    , ((modMasq .|. shiftMask, xK_i     ), markBoring)
-    , ((modMasq .|. shiftMask, xK_u     ), clearBoring)
+    , ((modMasq              , xK_i     ), markBoring)
+    , ((modMasq              , xK_u     ), clearBoring)
 
     -- Quit xmonad
     , ((modMasq .|. shiftMask, xK_c     ), io (exitWith ExitSuccess))
@@ -371,6 +372,7 @@ myManageHook = composeAll
     , className =? "Peek"         --> doFloat
     , className =? "slack"        --> doFloat -- not working properly it seems
     , className =? "discord"      --> doFloat
+    , className =? "Gimp"         --> doFloat
     , Docks.manageDocks
     , isFullscreen                --> doF W.focusDown <+> doFullFloat
     ]
@@ -396,10 +398,12 @@ myLayoutHook = Docks.avoidStruts $ smartBorders $ workspaceDir "/home/marek" $ w
   ||| (boringAuto Simplest)
   where
     tall = Tabbed.addTabs shrinkText tabbedConf
+      $ smartSpacing 5
       $ subLayout [] Simplest
       $ boringWindows
       $ ResizableTall 1 (3/100) (2/3) []
     wide = boringAuto
+      $ smartSpacing 5
       $ Mirror $ ResizableTall 1 (2/100) (5/6) []
 
 -- Local Variables:
