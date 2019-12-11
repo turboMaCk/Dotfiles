@@ -56,6 +56,7 @@
 (depends-on "idris-mode")
 (depends-on "jsx-mode")
 (depends-on "key-chord")
+(depends-on "latex-preview-pane")
 (depends-on "magit")
 (depends-on "markdown-mode+")
 (depends-on "markdown-preview-mode")
