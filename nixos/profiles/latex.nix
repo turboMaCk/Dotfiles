@@ -6,6 +6,11 @@
     (pkgs.texlive.combine {
       inherit (texlive)
         scheme-basic
+        collection-fontsextra
+        collection-fontsrecommended
+        collection-fontutils
+        collection-basic
+
         blindtext
         geometry
         microtype
@@ -19,6 +24,9 @@
         titling
         opensans
         xcolor
+        fontspec
+        frame
+        framed
       ;
     })
   ];
