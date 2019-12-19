@@ -3,14 +3,38 @@
 {
   environment.systemPackages = with pkgs; [
     ghostscript
-    (pkgs.texlive.combine {
+    (texlive.combine {
       inherit (texlive)
-        scheme-basic
-        collection-fontsextra
-        collection-fontsrecommended
-        collection-fontutils
+        # Sick of installing plugins on by one
         collection-basic
+        collection-latexextra
+        collection-bibtexextra
+        collection-latexrecommended
+        collection-binextra
+        collection-langeuropean
+        collection-luatex
+        collection-context
+        collection-mathscience
+        collection-fontsextra
+        collection-langgerman
+        collection-metapost
+        collection-fontsrecommended
+        collection-music
+        collection-fontutils
+        collection-pictures
+        collection-formatsextra
+        collection-plaingeneric
+        collection-langkorean
+        collection-pstricks
+        collection-humanities
+        collection-langother
+        collection-publishers
+        collection-texworks
+        collection-wintools
+        collection-xetex
+        collection-latex
 
+        scheme-small
         blindtext
         geometry
         microtype
@@ -20,13 +44,14 @@
         fancyhdr
         amsmath
         index
-        titlesec
+        fontawesome5
         titling
-        opensans
         xcolor
+        titlesec
+        multicolrule
+        shapes
         fontspec
-        frame
-        framed
+        bchart
       ;
     })
   ];
