@@ -38,7 +38,7 @@ in
   # Allow unfree packages :'(
   nixpkgs.config.allowUnfree = true;
 
-  services.xserver.layout = "us";
+  services.xserver.layout = "us,cz";
 
   # Select internationalisation properties.
   i18n = {
