@@ -17,7 +17,9 @@ in
     ghc
     zlib
     # first add caches before installing this!
-    (all-hies.unstableFallback.selection { selector = p: { inherit (p) ghc864 ghc863 ghc843; }; })
+    # (all-hies.unstableFallback.selection {
+    #   selector = p: { inherit (p) ghc864 ghc863 ghc843; };
+    # })
 
     # stack
   ];
