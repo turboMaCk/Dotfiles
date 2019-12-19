@@ -51,6 +51,7 @@
         aspellDicts.cs
         zeal
         emacs26
+        keybase-gui
     ];
   };
 
