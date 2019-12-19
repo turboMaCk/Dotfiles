@@ -144,6 +144,7 @@ scratchpads = [ NS "htop" "urxvt -e htop" (title =? "htop") defaultFloating
               , NS "peek" "peek" (className =? "Peek") defaultFloating
               , NS "slack" "slack" (className =? "slack") defaultFloating
               , NS "discord" "discord" (className =? "discord") defaultFloating
+              , NS "keybase-gui" "keybase-gui" (className =? "Keybase") defaultFloating
               ] where role = stringProperty "WM_WINDOW_ROLE"
 
 
@@ -285,6 +286,7 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
     , ((modMasq .|. shiftMask, xK_d     ), namedScratchpadAction scratchpads "discord")
     , ((modMasq .|. shiftMask, xK_g     ), namedScratchpadAction scratchpads "peek")
     , ((modMasq .|. shiftMask, xK_h     ), namedScratchpadAction scratchpads "obs")
+    , ((modMasq .|. shiftMask, xK_s     ), namedScratchpadAction scratchpads "keybase-gui")
 
     -- Struts...
     , ((modMasq, xK_b                   ), sendMessage $ Docks.ToggleStrut Docks.U)
@@ -373,6 +375,7 @@ myManageHook = composeAll
     , className =? "slack"        --> doFloat -- not working properly it seems
     , className =? "discord"      --> doFloat
     , className =? "Gimp"         --> doFloat
+    , className =? "Keybase"      --> doFloat
     , Docks.manageDocks
     , isFullscreen                --> doF W.focusDown <+> doFullFloat
     ]
