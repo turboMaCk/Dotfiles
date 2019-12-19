@@ -25,12 +25,6 @@
     rofi-pass
     obs-studio
     peek # screen recording to gif
-
-    # gaming
-    (steam.override {
-      extraPkgs = pkgs: [ openldap ];
-      nativeOnly = true;
-    }).run
   ];
 
   # Packages

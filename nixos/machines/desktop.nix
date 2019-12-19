@@ -21,6 +21,7 @@
       ../profiles/unison.nix
       ../profiles/heroku.nix
       ../profiles/stream.nix
+      ../profiles/gaming.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
