@@ -53,11 +53,11 @@
     displayManager = {
        sddm.enable = true;
        lightdm.enable = false;
+       defaultSession = "none+xmonad";
     };
 
     desktopManager = {
       gnome3.enable = true;
-      default = "none";
    };
 
     # Xmonad
