@@ -39,14 +39,6 @@ This is to setup user. *This is probably first think you want to change in your 
         user-mail-address "marek.faj@gmail.com")
 #+END_SRC
 
-* Tramp model
-
-I'm using tramp-mode mainly to access remote machines via ssh.
-
-#+BEGIN_SRC emacs-lisp
-  (setq tramp-default-method "ssh")
-#+END_SRC
-
 * Core configuration
 
 Setup environment and exec path. This is using ~exec-path-from-shell~ package.
@@ -59,6 +51,14 @@ Start Emacs server if it's not running. This allows you to use ~emacsclient [fil
   (require 'server)
   (unless (server-running-p)
     (server-start))
+#+END_SRC
+
+This stops emacs adding customised settings to init.el.
+I try to avoid using customize anyway, preferring programmatic control of variables.
+Creating it as a temporary file effectively disables it (i.e. any changes are session local).
+
+#+BEGIN_SRC emacs-lisp
+  (setq custom-file (make-temp-file "emacs-custom"))
 #+END_SRC
 
 Disable dummy parts of GUI like scroll-bars.
@@ -290,6 +290,14 @@ Stay sane please
   (transient-mark-mode t)
   (delete-selection-mode t)
   (random t) ;; seed
+#+END_SRC
+
+* Tramp mode
+
+I'm using tramp-mode mainly to access remote machines via ssh.
+
+#+BEGIN_SRC emacs-lisp
+  (setq tramp-default-method "ssh")
 #+END_SRC
 
 * Color Theme
