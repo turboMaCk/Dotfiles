@@ -125,6 +125,9 @@
         Control_L, Down, Control_L|Button5
       '';
     };
+    extraOptions = [
+      "--buttons=45"
+    ];
   };
 
   # Set hosts
