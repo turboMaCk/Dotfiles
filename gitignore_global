@@ -47,7 +47,7 @@ Thumbs.db
 
 # Emacs #
 #########
-.dir-locals.el
+#.dir-locals.el
 
 # Sublime Text files #
 ######################
