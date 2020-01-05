@@ -437,10 +437,7 @@ C works quite nicely out of the box (no surprise) so I'm adding just a few minor
   (defun turbo_mack/my_c ()
     (interactive)
     "setup compile command"
-    (set (make-local-variable 'compile-command) "make")
-
-    "bind key"
-    (define-key evil-normal-state-map (kbd "C-c C-c") 'projectile-compile-project))
+    (set (make-local-variable 'compile-command) "make"))
 
 
   (add-hook 'c-mode-hook 'turbo_mack/my_c)
