@@ -9,7 +9,6 @@
       ../profiles/base.nix
       ../profiles/desktop.nix
       ../users/marek.nix
-      ../profiles/direnv.nix
       ../profiles/virtualization.nix
       ../profiles/elm.nix
       ../profiles/nodejs.nix
@@ -17,6 +16,7 @@
       ../profiles/purescript.nix
       ../profiles/rust.nix
       ../profiles/ocaml.nix
+      ../profiles/direnv.nix
       # Extra
       ../profiles/unison.nix
       ../profiles/heroku.nix
