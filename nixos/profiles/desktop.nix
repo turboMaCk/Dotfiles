@@ -25,6 +25,7 @@
     rofi-pass
     obs-studio
     peek # screen recording to gif
+    rescuetime
   ];
 
   # Packages
