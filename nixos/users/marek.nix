@@ -52,6 +52,7 @@
         zeal
         emacs26
         keybase-gui
+        skypeforlinux
     ];
   };
 

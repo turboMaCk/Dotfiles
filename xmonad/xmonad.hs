@@ -143,7 +143,7 @@ scratchpads = [ NS "htop" "urxvt -e htop" (title =? "htop") defaultFloating
               , NS "obs" "obs" (className =? ".obs-wrapped") defaultFloating
               , NS "peek" "peek" (className =? "Peek") defaultFloating
               , NS "slack" "slack" (className =? "slack") defaultFloating
-              , NS "discord" "discord" (className =? "discord") defaultFloating
+              , NS "discord" "Discord" (className =? "discord") defaultFloating
               , NS "keybase-gui" "keybase-gui" (className =? "Keybase") defaultFloating
               , NS "gnome-calculator" "gnome-calculator" (title =? "Calculator") defaultFloating
               ] where role = stringProperty "WM_WINDOW_ROLE"
