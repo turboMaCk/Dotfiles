@@ -16,8 +16,10 @@
       };
     };
 
-    virtualbox = {
-      host.enable = true;
+    virtualbox.host = {
+      enable = true;
+      enableExtensionPack = true;
+      enableHardening = true;
     };
   };
 }

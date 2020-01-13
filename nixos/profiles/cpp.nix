@@ -7,5 +7,6 @@
     # debugging
     gdb
     codeblocksFull
+    valgrind
   ];
 }
