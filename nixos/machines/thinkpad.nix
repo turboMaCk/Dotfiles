@@ -38,13 +38,12 @@
      echo '    \/_/   \/_____/   \/_/ /_/   \/_____/   \/_____/   \/_/  \/_/   \/_/\/_/   \/_____/   \/_/\/_/'
     '';
 
-    initrd.luks.devices = [
-      {
-        name = "root";
+    initrd.luks.devices = {
+      root = {
         device = "/dev/nvme0n1p3";
         preLVM = true;
-      }
-    ];
+      };
+    };
   };
 
   networking = {
