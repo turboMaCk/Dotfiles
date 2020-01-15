@@ -12,6 +12,13 @@
     dunst # notifications
     google-fonts
     xclip
+    xmonad-log
+    rofi
+    rofi-pass
+    obs-studio
+    peek # screen recording to gif
+    rescuetime
+    networkmanagerapplet
 
     # Themes
     adapta-gtk-theme
@@ -20,12 +27,6 @@
     gnome3.evince
     xorg.xcursorthemes
     lxappearance
-    xmonad-log
-    rofi
-    rofi-pass
-    obs-studio
-    peek # screen recording to gif
-    rescuetime
   ];
 
   # Packages

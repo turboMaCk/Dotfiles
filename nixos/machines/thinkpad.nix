@@ -147,6 +147,9 @@
         #Enable=Source,Sink,Media,Socket
       #";
     };
+
+    # GPU support
+    opengl.extraPackages = [ pkgs.vaapiIntel ];
   };
 
   services.xserver = {
