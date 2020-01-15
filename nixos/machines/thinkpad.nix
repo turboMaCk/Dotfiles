@@ -7,14 +7,11 @@
 {
   imports =
     [ <nixos-hardware/lenovo/thinkpad/t480s>
-      # overrides
-      # ../overrides/haskell.nix
-
       ../profiles/base.nix
       ../profiles/desktop.nix
       ../users/marek.nix
       ../profiles/virtualization.nix
-      # ../profiles/elm.nix
+      ../profiles/elm.nix
       ../profiles/nodejs.nix
       ../profiles/haskell.nix
       ../profiles/purescript.nix
@@ -123,27 +120,61 @@
   # Enable sound.
   sound.enable = true;
 
-  hardware.pulseaudio = {
-    enable = true;
-    # required for bluetooth package
-    package = pkgs.pulseaudioFull;
-    extraModules = [ pkgs.pulseaudio-modules-bt ];
+  hardware = {
+    pulseaudio = {
+      enable = true;
+      # required for bluetooth package
+      package = pkgs.pulseaudioFull;
+      extraModules = [ pkgs.pulseaudio-modules-bt ];
+    };
+
+    # Trackpoint settings
+    trackpoint = {
+      enable = true;
+      emulateWheel = true;
+      sensitivity = 128; # default kernel value is 128
+      speed = 97; # default kernel value is 97
+    };
+
+    # Bluetooth
+    bluetooth = {
+      enable = true;
+
+      # Modern headsets will generally try to connect
+      # using the A2DP profile
+      #extraConfig = "
+        #[General]
+        #Enable=Source,Sink,Media,Socket
+      #";
+    };
   };
 
-  # X11 XKB key map
-  # Mainly Caps -> Ctrl
-  # check https://www.x.org/releases/X11R7.6/doc/xorg-docs/input/XKB-Config.html
-  services.xserver.xkbOptions = "ctrl:nocaps,caps:none,lv3:rwin_switch,grp:alt_space_toggle,altwin:swap_alt_win";
+  services.xserver = {
+    # X11 XKB key map
+    # Mainly Caps -> Ctrl
+    # check https://www.x.org/releases/X11R7.6/doc/xorg-docs/input/XKB-Config.html
+    xkbOptions = "ctrl:nocaps,caps:none,lv3:rwin_switch,grp:alt_space_toggle,altwin:swap_alt_win";
 
-  # screen locking
-  services.xserver.xautolock = {
-    enable = true;
-    locker = "${pkgs.xlockmore}/bin/xlock -mode ant";
-    extraOptions = [ "-detectsleep" ];
-    killer = "${pkgs.systemd}/bin/systemctl suspend";
-    killtime = 10; # 10 is minimal value
-    time = 5;
+    # screen locking
+    xautolock = {
+      enable = true;
+      locker = "${pkgs.xlockmore}/bin/xlock -mode ant";
+      extraOptions = [ "-detectsleep" ];
+      killer = "${pkgs.systemd}/bin/systemctl suspend";
+      killtime = 10; # 10 is minimal value
+      time = 5;
+    };
+
+    # Enable touchpad support.
+    libinput = {
+      enable = true;
+      scrollMethod = "twofinger";
+      naturalScrolling = true;
+      disableWhileTyping = true;
+      clickMethod = "clickfinger";
+    };
   };
+
   services.logind.lidSwitch = "suspend";
 
   # xss-lock subscribes to the systemd-events suspend, hibernate, lock-session,
@@ -152,35 +183,6 @@
   programs.xss-lock = {
     enable = true;
     lockerCommand = "${pkgs.xlockmore}/bin/xlock -mode ant";
-  };
-
-  # Enable touchpad support.
-  services.xserver.libinput = {
-    enable = true;
-    scrollMethod = "twofinger";
-    naturalScrolling = true;
-    disableWhileTyping = true;
-    clickMethod = "clickfinger";
-  };
-
-  # Trackpoint settings
-  hardware.trackpoint = {
-    enable = true;
-    emulateWheel = true;
-    sensitivity = 128; # default kernel value is 128
-    speed = 97; # default kernel value is 97
-  };
-
-  # Bluetooth
-  hardware.bluetooth = {
-    enable = true;
-
-    # Modern headsets will generally try to connect
-    # using the A2DP profile
-    #extraConfig = "
-      #[General]
-      #Enable=Source,Sink,Media,Socket
-    #";
   };
 
   # Brightness service

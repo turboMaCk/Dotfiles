@@ -6,6 +6,7 @@ let
 in
 {
   environment.systemPackages = with pkgs; [
+    busybox
     nix-prefetch-scripts
     python
     python3

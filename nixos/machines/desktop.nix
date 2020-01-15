@@ -57,8 +57,6 @@
   # Set your time zone.
   time.timeZone = "Europe/Prague";
 
-  services.xserver.libinput.enable = false; # touchbar
-
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [];
@@ -87,36 +85,43 @@
   # Enable sound.
   sound.enable = true;
 
-  # graphic card requires this
-  hardware.enableRedistributableFirmware = true;
+  hardware = {
+    # graphic card requires this (AMDGPU)
+    enableRedistributableFirmware = true;
 
+    opengl = {
+      enable = true;
+      driSupport = true;
+    };
+
+    # HW support
+    pulseaudio = {
+      # Sound config
+      enable = true;
+      package = pkgs.pulseaudioFull;
+      extraModules = [ pkgs.pulseaudio-modules-bt ];
+      support32Bit = true;
+    };
+
+    # Bluetooth
+    bluetooth = {
+      enable = true;
+    };
+
+    cpu.amd.updateMicrocode = true;
+  };
+
+  # XORG
   services.xserver = {
    dpi = 130;
-   videoDrivers = ["amdgpu"];
-  };
+   videoDrivers = [ "amdgpu" ];
 
-  hardware.opengl = {
-    enable = true;
-  };
+   libinput.enable = false; # touchbar
 
-  # HW support
-  hardware.pulseaudio = {
-    # Sound config
-    enable = true;
-    package = pkgs.pulseaudioFull;
-    extraModules = [ pkgs.pulseaudio-modules-bt ];
-    support32Bit = true;
-  };
-
-  # Bluetooth
-  hardware.bluetooth = {
-    enable = true;
-  };
-
-  services.xserver.imwheel = {
-    enable = true;
-    rules = {
-      "chrom*|slack|discord|evolution|Firefox" = ''
+   imwheel = {
+     enable = true;
+     rules = {
+       "chrom*|slack|discord|evolution|Firefox" = ''
         None,      Up,   Button4, 8
         None,      Down, Button5, 8
         Shift_L,   Up,   Shift_L|Button4, 4
@@ -124,10 +129,11 @@
         Control_L, Up,   Control_L|Button4
         Control_L, Down, Control_L|Button5
       '';
-    };
-    extraOptions = [
-      "--buttons=45"
-    ];
+     };
+     extraOptions = [
+       "--buttons=45"
+     ];
+   };
   };
 
   # Set hosts
