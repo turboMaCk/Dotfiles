@@ -121,7 +121,7 @@
    imwheel = {
      enable = true;
      rules = {
-       "chrom*|slack|discord|evolution|Firefox" = ''
+       "chrom*|slack|discord|evolution|Firefox|brave-browser" = ''
         None,      Up,   Button4, 8
         None,      Down, Button5, 8
         Shift_L,   Up,   Shift_L|Button4, 4

@@ -4,8 +4,8 @@
     xterm
     polybar
     feh
-    chromium
     firefox
+    brave
     transmission-gtk
     openssl
     flameshot # screeshots
@@ -55,8 +55,8 @@
 
     # Display Manager
     displayManager = {
-       sddm.enable = true;
-       lightdm.enable = false;
+       sddm.enable = false;
+       lightdm.enable = true;
        defaultSession = "none+xmonad";
     };
 
