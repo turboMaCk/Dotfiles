@@ -6,6 +6,7 @@
     cmake
     # debugging
     gdb
+    lldb
     codeblocksFull
     valgrind
   ];

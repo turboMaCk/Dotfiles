@@ -31,7 +31,8 @@
       efi.canTouchEfiVariables = true;
     };
     # Latest kernel
-    kernelPackages = pkgs.linuxPackages_latest;
+    # not using latest due to issue with virtual box compilation
+    kernelPackages = pkgs.linuxPackages_5_4;
   };
 
   networking = {
