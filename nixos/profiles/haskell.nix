@@ -31,6 +31,7 @@ in
       "https://cache.nixos.org/"
       "https://nixcache.reflex-frp.org"
       "https://all-hies.cachix.org"
+      "https://miso-haskell.cachix.org"
     ];
     binaryCachePublicKeys = [
       "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI="

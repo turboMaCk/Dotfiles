@@ -23,7 +23,6 @@
     # Themes
     adapta-gtk-theme
     gnome3.adwaita-icon-theme
-    gnome3.evolution
     gnome3.evince
     xorg.xcursorthemes
     lxappearance
