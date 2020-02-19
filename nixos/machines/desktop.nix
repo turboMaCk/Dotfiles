@@ -4,6 +4,13 @@
 { config, pkgs, ... }:
 
 {
+  nixpkgs = {
+    config.allowBroken = true;
+    overlays = [
+      (import ../overlays/haskell.nix)
+    ];
+  };
+
   imports =
     [ <nixos-hardware/common/pc/ssd>
       ../profiles/base.nix
