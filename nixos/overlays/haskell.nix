@@ -11,6 +11,12 @@ self: super:
       stylish-haskell = nsuper.stylish-haskell.override {
         HsYAML = nself.HsYAML_0_2_1_0;
       };
+
+      # patch hakyll to include watchServer and previewServer
+      hakyll = nsuper.hakyll.overrideAttrs(old: {
+        configureFlags = "-f watchServer -f previewServer";
+        patches = [./hakyll.patch];
+      });
     };
   };
 }
