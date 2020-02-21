@@ -23,7 +23,6 @@
       ../profiles/purescript.nix
       ../profiles/rust.nix
       ../profiles/ocaml.nix
-      ../profiles/direnv.nix
       # Extra
       ../profiles/unison.nix
       ../profiles/heroku.nix

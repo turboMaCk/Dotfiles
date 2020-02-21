@@ -17,7 +17,6 @@
       ../profiles/purescript.nix
       ../profiles/rust.nix
       ../profiles/ocaml.nix
-      ../profiles/direnv.nix
     ];
 
   # Use the systemd-boot EFI boot loader.

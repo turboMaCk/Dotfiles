@@ -30,6 +30,7 @@ in
     cachix
     lorri
     tldr-hs
+    direnv
 
     #vpn
     networkmanager-l2tp
