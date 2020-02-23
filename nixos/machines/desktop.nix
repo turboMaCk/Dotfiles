@@ -7,6 +7,7 @@
   nixpkgs = {
     config.allowBroken = true;
     overlays = [
+      (import ../overlays/pkgs.nix)
       (import ../overlays/haskell.nix)
     ];
   };
