@@ -5,6 +5,13 @@
 { config, pkgs, ... }:
 
 {
+  nixpkgs = {
+    config.allowBroken = true;
+    overlays = [
+      (import ../overlays/haskell.nix)
+    ];
+  };
+
   imports =
     [ <nixos-hardware/lenovo/thinkpad/t480s>
       ../profiles/base.nix
@@ -25,6 +32,9 @@
       systemd-boot.enable = true;
       efi.canTouchEfiVariables = true;
     };
+
+    # Kernel 5.4 has issues with i915 driver (intel gpu)
+    kernelPackages = pkgs.linuxPackages_4_19;
 
     initrd.preLVMCommands = ''
      echo '  ______   __  __     ______     ______     ______     __    __     ______     ______     __  __  '
