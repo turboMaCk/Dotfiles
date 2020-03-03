@@ -17,5 +17,6 @@ in {
     purs
     psc-package-simple
     purp
+    spago
   ];
 }

@@ -86,8 +86,6 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     xlockmore
-    xl2tpd
-    strongswan
   ];
 
   # Open ports in the firewall.
