@@ -22,14 +22,16 @@ import qualified XMonad.Hooks.SetWMName           as WMName
 import           XMonad.Layout.NoBorders          (smartBorders)
 import           XMonad.Layout.Simplest           (Simplest (..))
 import qualified XMonad.Layout.Tabbed             as Tabbed
+import           XMonad.Layout.ThreeColumns       (ThreeCol (..))
 import           XMonad.Layout.WorkspaceDir       (changeDir, workspaceDir)
+
+import           XMonad.Layout.Spacing            (smartSpacing)
 import           XMonad.Prompt
 import qualified XMonad.StackSet                  as W
 import           XMonad.Util.NamedScratchpad
 import           XMonad.Util.Scratchpad           (scratchpadManageHook,
                                                    scratchpadSpawnActionTerminal)
 import           XMonad.Util.SpawnOnce            (spawnOnce)
-import           XMonad.Layout.Spacing            (smartSpacing)
 
 import qualified Codec.Binary.UTF8.String         as UTF8
 import qualified DBus                             as D
@@ -280,7 +282,7 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
     , ((modMasq              , xK_u     ), clearBoring)
 
     -- Quit xmonad
-    , ((modMasq .|. shiftMask, xK_c     ), io (exitWith ExitSuccess))
+    , ((modMasq .|. shiftMask, xK_Escape     ), io (exitWith ExitSuccess))
 
     -- Sratchpads
     , ((modMasq .|. shiftMask, xK_f     ), namedScratchpadAction scratchpads "slack")
@@ -402,7 +404,9 @@ myLayoutHook = Docks.avoidStruts $ smartBorders $ workspaceDir "/home/marek" $ w
   tall
   ||| wide
   ||| (boringAuto Simplest)
+  ||| threeColumns
   where
+    threeColumns = ThreeColMid 1 (3/100) (1/2)
     tall = Tabbed.addTabs shrinkText tabbedConf
       $ smartSpacing 5
       $ subLayout [] Simplest
