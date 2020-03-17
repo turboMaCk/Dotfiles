@@ -29,13 +29,13 @@ in
     direnv
     cachix
     lorri
-    tldr-hs
+    # package seems to be broken
+    # tldr-hs
     direnv
 
     #vpn
     networkmanager-l2tp
     networkmanager_strongswan
-
   ];
 
   # Allow unfree packages :'(

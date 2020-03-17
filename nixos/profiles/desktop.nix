@@ -17,7 +17,6 @@
     rofi-pass
     obs-studio
     peek # screen recording to gif
-    rescuetime
     networkmanagerapplet
 
     # Themes
@@ -71,7 +70,7 @@
          haskellPackages.xmonad-contrib
          haskellPackages.xmonad-extras
          haskellPackages.xmonad
-         (pkgs.haskell.lib.appendPatch haskellPackages.dbus ../patches/dbus-session-multiple.patch)
+         haskellPackages.dbus
          haskellPackages.utf8-string
          haskellPackages.raw-strings-qq
       ];

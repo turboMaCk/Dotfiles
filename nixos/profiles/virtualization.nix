@@ -18,8 +18,8 @@
 
     virtualbox.host = {
       enable = true;
-      enableExtensionPack = true;
-      enableHardening = true;
+      # enableExtensionPack = true;
+      # enableHardening = true;
     };
   };
 }

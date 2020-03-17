@@ -10,7 +10,7 @@ in
   environment.systemPackages = with pkgs.haskellPackages; [
     pkgs.cabal-install
     pkgs.cabal2nix
-    hindent
+    # hindent
     stylish-haskell
     hasktags
     ghcid
