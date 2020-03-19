@@ -411,7 +411,7 @@ myLayoutHook = Docks.avoidStruts $ smartBorders $ workspaceDir "/home/marek" $ w
       $ smartSpacing 5
       $ subLayout [] Simplest
       $ boringWindows
-      $ ResizableTall 1 (3/100) (2/3) []
+      $ ResizableTall 1 (3/100) (1/2) []
     wide = boringAuto
       $ smartSpacing 5
       $ Mirror $ ResizableTall 1 (2/100) (5/6) []
