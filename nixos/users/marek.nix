@@ -53,6 +53,7 @@
         emacs26
         keybase-gui
         skypeforlinux
+        gnome3.evolution
     ];
   };
 
