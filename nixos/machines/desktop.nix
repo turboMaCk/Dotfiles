@@ -29,6 +29,7 @@
       ../profiles/heroku.nix
       ../profiles/stream.nix
       ../profiles/gaming.nix
+      ../profiles/printing.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -86,20 +87,6 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
-
-  # Enable CUPS to print documents.
-  # helpful resources:
-  #   - https://mypersonalblog1984.wordpress.com/2016/01/09/cups-unable-to-automatically-locate-printer-2/
-  #   - https://github.com/NixOS/nixpkgs/issues/5409
-  services.printing = {
-    enable = true;
-    drivers = with pkgs; [ hplipWithPlugin ];
-  };
-  # anable service discovery (useful for network printers)
-  services.avahi = {
-    enable = true;
-    nssmdns = true;
-  };
 
   # Enable sound.
   sound.enable = true;
