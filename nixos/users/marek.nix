@@ -54,6 +54,8 @@
         keybase-gui
         skypeforlinux
         gnome3.evolution
+        zoom-us
+        signal-desktop
     ];
   };
 
