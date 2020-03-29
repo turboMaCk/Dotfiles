@@ -9,6 +9,7 @@
     overlays = [
       (import ../overlays/pkgs.nix)
       (import ../overlays/haskell.nix)
+      (import ../overlays/gnu-r.nix)
     ];
   };
 
@@ -25,6 +26,7 @@
       ../profiles/rust.nix
       ../profiles/ocaml.nix
       # Extra
+      ../profiles/data-science.nix
       ../profiles/unison.nix
       ../profiles/heroku.nix
       ../profiles/stream.nix
