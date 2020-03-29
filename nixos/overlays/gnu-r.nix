@@ -15,6 +15,7 @@ let
     shiny
     stringr
     tidyr
+    psych
   ];
 in {
   rEnv = super.rWrapper.override {
