@@ -25,6 +25,7 @@
     gnome3.evince
     xorg.xcursorthemes
     lxappearance
+    pavucontrol
   ];
 
   # Packages
