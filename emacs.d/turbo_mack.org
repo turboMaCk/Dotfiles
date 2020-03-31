@@ -431,7 +431,7 @@ This part of configuration handles settings for specific languages and major mod
 
 ** C
 C works quite nicely out of the box (no surprise) so I'm adding just a few minor tweaks
-#+BEGIN_SRC emacs-lisp :results: none
+#+BEGIN_SRC emacs-lisp :results none
   (require 'compile)
 
   (defun turbo_mack/my_c ()
@@ -441,6 +441,12 @@ C works quite nicely out of the box (no surprise) so I'm adding just a few minor
 
 
   (add-hook 'c-mode-hook 'turbo_mack/my_c)
+#+END_SRC
+
+Use C++ mode for all header files by default as that seems to be more universal
+
+#+BEGIN_SRC emacs-list :results none
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 #+END_SRC
 
 ** Web
