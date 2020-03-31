@@ -445,9 +445,11 @@ C works quite nicely out of the box (no surprise) so I'm adding just a few minor
 
 Use C++ mode for all header files by default as that seems to be more universal
 
-#+BEGIN_SRC emacs-list :results none
+#+BEGIN_SRC emacs-lisp :results none
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+(c++-mode)
 #+END_SRC
+
 
 ** Web
 
