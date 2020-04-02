@@ -21,7 +21,7 @@ in
     #   selector = p: { inherit (p) ghc864 ghc863 ghc843; };
     # })
 
-    # stack
+    stack
   ];
 
 
