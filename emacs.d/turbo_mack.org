@@ -292,6 +292,14 @@ Stay sane please
   (random t) ;; seed
 #+END_SRC
 
+I keep all my coding projects (in case I can anyway)
+in ~~/Projects~ directory. I usually want to work with
+those whenever I open Emacs.
+
+#+BEGIN_SRC
+(setq default-directory "~/Projects")
+#+END_SRC
+
 * Tramp mode
 
 I'm using tramp-mode mainly to access remote machines via ssh.
@@ -546,21 +554,18 @@ npm install -g elm
 
 #+BEGIN_SRC emacs-lisp results: none
   (require 'elm-mode)
-
-  ;; auto complete
-  (eval-after-load 'company
-    '(push 'company-elm company-backends))
-
-  (add-hook 'elm-mode-hook #'elm-oracle-setup-completion)
-  (add-hook 'elm-mode-hook #'elm-oracle-setup-ac)
+  (add-hook 'elm-mode-hook 'elm-indent-mode)
+  (add-hook 'elm-mode-hook 'lsp-ui)
 
   (defun turbo_mack/init-elm ()
     (elm-tags-on-save t)
-    (elm-format-on-save t)
+    ;; disabled for now
+    ;; use C-c C-f
+    ;; (elm-format-on-save t)
   )
 
   ;; Not worging with lastest elm-mode
-  ;; (add-hook 'elm-mode-hook 'turbo_mack/init-elm)
+  (add-hook 'elm-mode-hook 'turbo_mack/init-elm)
 #+END_SRC
 
 ** Haskell
@@ -812,7 +817,7 @@ However mode is not enabled for ~*.nix~ files by default.
   ;; Setting out company idle mode
   ;; shen set too high it migth overload a backend and make
   ;; it effectively slower!!!
-  (setq company-idle-delay 0.02)
+  (setq company-idle-delay 0.0)
 
 
   ;; fic-mode for highlightng TODOs, FIXMEs etc.

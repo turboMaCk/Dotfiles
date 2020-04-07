@@ -12,5 +12,6 @@
         elm-verify-examples
         elm-analyse
         elm-doc-preview
+        elm-language-server
     ];
 }
