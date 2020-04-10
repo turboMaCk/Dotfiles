@@ -7,3 +7,4 @@ emacs.d/bookmakrs
 emacs.d/transient
 emacs.d/session.*
 /xmonad/prompt-history
+/emacs.d/.lsp*
