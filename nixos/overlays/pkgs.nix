@@ -1,6 +1,7 @@
 self: super:
 {
   zasm = super.callPackage ../pkgs/zasm.nix {};
+
   discord = super.discord.overrideAttrs (old: rec {
     version = "0.0.10";
     src = super.fetchurl {
@@ -8,4 +9,9 @@ self: super:
       sha256 = "0kx92i8naqr3algmyy3wyzbh8146z7gigxwf1nbpg1gl16wlplaq";
     };
   });
+
+  # See issues for mode details
+  #   - https://github.com/input-output-hk/haskell.nix/issues/537#issuecomment-611322396
+  #   - https://github.com/NixOS/nixpkgs/issues/67032#issuecomment-607732200
+  liblapack = super.liblapack.override { shared = true; };
 }
