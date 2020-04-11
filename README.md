@@ -40,6 +40,15 @@ At the time clone I usually don't have ssh setuped yet!**
 git clone --recursive https://github.com/turboMaCK/Dotfiles.git "$HOME/Dotfiles"
 ```
 
+## Updating
+
+Updating happens just via git. There is a shell script that automates update of git repository
+with all submodules.
+
+```shell
+$ ./bin/update.sh
+```
+
 ## Shell
 
 I'm ZSH and Prezto user. I also use my [custom theme](https://github.com/turboMaCk/prezto-Prague-Shell).
