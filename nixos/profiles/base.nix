@@ -6,6 +6,7 @@ let
 in
 {
   environment.systemPackages = with pkgs; [
+    which
     nix-prefetch-scripts
     python
     python3
