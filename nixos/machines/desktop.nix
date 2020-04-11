@@ -24,13 +24,14 @@
       ../profiles/purescript.nix
       ../profiles/rust.nix
       ../profiles/ocaml.nix
+      ../profiles/printing.nix
       # Extra
       ../profiles/data-science.nix
       ../profiles/unison.nix
       ../profiles/heroku.nix
       ../profiles/stream.nix
       ../profiles/gaming.nix
-      ../profiles/printing.nix
+      ../profiles/admin.nix # things for booring administrative tasks
     ];
 
   # Use the systemd-boot EFI boot loader.
