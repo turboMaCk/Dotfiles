@@ -26,6 +26,7 @@
       ../profiles/ocaml.nix
       ../profiles/printing.nix
       # Extra
+      ../profiles/holmusk.nix
       ../profiles/data-science.nix
       ../profiles/unison.nix
       ../profiles/heroku.nix
