@@ -22,7 +22,7 @@ let
       exit 1
     fi
 
-    PROJECT_NAME=$(jq '.name' package.json | sed 's/"//g')
+    PROJECT_NAME=$(${pkgs.jq}/bin/jq '.name' package.json | sed 's/"//g')
 
     if [[ $PROJECT_NAME != "pi-frontend" ]]; then
       echo "This is not RWE project!"
