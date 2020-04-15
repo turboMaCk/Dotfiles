@@ -13,5 +13,6 @@
         elm-analyse
         elm-doc-preview
         elm-language-server
+        create-elm-app
     ];
 }
