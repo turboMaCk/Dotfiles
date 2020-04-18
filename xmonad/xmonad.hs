@@ -22,7 +22,6 @@ import qualified XMonad.Hooks.SetWMName           as WMName
 import           XMonad.Layout.NoBorders          (smartBorders)
 import           XMonad.Layout.Simplest           (Simplest (..))
 import qualified XMonad.Layout.Tabbed             as Tabbed
-import           XMonad.Layout.ThreeColumns       (ThreeCol (..))
 import           XMonad.Layout.WorkspaceDir       (changeDir, workspaceDir)
 
 import           XMonad.Layout.Spacing            (smartSpacing)
@@ -404,9 +403,7 @@ myLayoutHook = Docks.avoidStruts $ smartBorders $ workspaceDir "/home/marek" $ w
   tall
   ||| wide
   ||| (boringAuto Simplest)
-  ||| threeColumns
   where
-    threeColumns = ThreeColMid 1 (3/100) (1/2)
     tall = Tabbed.addTabs shrinkText tabbedConf
       $ smartSpacing 5
       $ subLayout [] Simplest
