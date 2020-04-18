@@ -35,5 +35,6 @@ in {
   environment.systemPackages = [
     dropbox
     sync-rwe-assets
+    pkgs.awscli
   ];
 }
