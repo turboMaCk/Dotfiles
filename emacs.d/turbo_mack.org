@@ -554,18 +554,9 @@ npm install -g elm
 
 #+BEGIN_SRC emacs-lisp results: none
   (require 'elm-mode)
-  (add-hook 'elm-mode-hook 'elm-indent-mode)
-  (add-hook 'elm-mode-hook 'lsp-ui)
-
-  (defun turbo_mack/init-elm ()
-    (elm-tags-on-save t)
-    ;; disabled for now
-    ;; use C-c C-f
-    ;; (elm-format-on-save t)
-  )
-
-  ;; Not worging with lastest elm-mode
-  (add-hook 'elm-mode-hook 'turbo_mack/init-elm)
+  (add-hook 'elm-mode-hook #'elm-indent-mode)
+  (add-hook 'elm-mode-hook #'rainbow-delimiters-mode)
+  (add-hook 'elm-mode-hook #'lsp)
 #+END_SRC
 
 ** Haskell

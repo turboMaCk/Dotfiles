@@ -17,10 +17,8 @@ self: super:
 
   elmPackages = super.elmPackages // {
     create-elm-app = super.elmPackages.create-elm-app.override (old: {
-      nativeBuildInputs = old.nativeBuildInputs or [] ++ [ self.makeWrapper ];
       postInstall = old.postInstall + ''
         ln -sf ${self.elmPackages.elm}/bin/elm $out/lib/node_modules/create-elm-app/node_modules/elm/bin
-        wrapProgram $out/bin/elm-app --suffix PATH : ${self.elmPackages.elm}/bin
       '';
     });
   };
