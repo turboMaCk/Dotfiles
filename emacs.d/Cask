@@ -118,4 +118,3 @@
 (depends-on "with-editor")
 (depends-on "writegood-mode")
 (depends-on "yaml-mode")
-(depends-on "yasnippet")

@@ -556,7 +556,7 @@ npm install -g elm
   (require 'elm-mode)
   (add-hook 'elm-mode-hook #'elm-indent-mode)
   (add-hook 'elm-mode-hook #'rainbow-delimiters-mode)
-  (add-hook 'elm-mode-hook #'lsp)
+  ;; (add-hook 'elm-mode-hook #'lsp)
 #+END_SRC
 
 ** Haskell
@@ -1114,15 +1114,6 @@ Documentation of package is located on [[https://github.com/ahungry/org-jira/tre
 If you don't want to enter your credentials (login/password) each time you go to connect, you can add to your ~/.authinfo.gpg or ~/.authinfo file, in a format similar to:
 ~machine your-site.atlassian.net login you@example.com password yourPassword port 80~
 #+END_NAME
-
-* Yasnippet
-
-Honestly I never did get used to using snippets a lot. Anyway I'm keeping this as part of my configuration because
-I know it might be useful in future.
-
-#+BEGIN_SRC emacs-lisp
-  (require 'yasnippet)
-#+END_SRC
 
 * Wanderlust
 
