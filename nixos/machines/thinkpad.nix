@@ -25,6 +25,7 @@
       ../profiles/rust.nix
       ../profiles/ocaml.nix
       ../profiles/printing.nix
+      ../profiles/holmusk.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
