@@ -36,5 +36,16 @@ in {
     dropbox
     sync-rwe-assets
     pkgs.awscli
+    pkgs.mattermost
+
+    # yubikey
+    pkgs.yubikey-manager
+    pkgs.yubikey-manager-qt
+    pkgs.yubioath-desktop
+    # pkgs.yubico-pam
+    # pkgs.yubico-piv-tool
   ];
+
+  # Yubikey hw support
+  hardware.u2f.enable = true;
 }
