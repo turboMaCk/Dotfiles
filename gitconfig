@@ -31,7 +31,7 @@
   ff = only
 
 [web]
-  browser = google-chrome
+  browser = firefox
 
 [alias]
   s = status

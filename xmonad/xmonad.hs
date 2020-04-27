@@ -207,7 +207,7 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
     , ((modMasq .|. shiftMask, xK_x     ), changeDir def)
 
     -- launch a browser
-    , ((modMasq .|. shiftMask, xK_b    ), spawn "brave")
+    , ((modMasq .|. shiftMask, xK_b    ), spawn "firefox")
 
     -- launch emacs client frame
     , ((modMasq .|. shiftMask, xK_o    ), spawn "emacsclient -n -c")
