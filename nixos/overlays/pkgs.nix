@@ -21,5 +21,7 @@ self: super:
         ln -sf ${self.elmPackages.elm}/bin/elm $out/lib/node_modules/create-elm-app/node_modules/elm/bin
       '';
     });
+
+    elm-format = self.haskell.lib.dontCheck super.elmPackages.elm-format;
   };
 }

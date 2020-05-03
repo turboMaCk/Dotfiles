@@ -31,7 +31,6 @@
     shell = pkgs.zsh;
 
     packages = with pkgs; [
-        steam
         browserpass
         dropbox
         slack
@@ -52,10 +51,8 @@
         zeal
         emacs26
         keybase-gui
-        skypeforlinux
         gnome3.evolution
         zoom-us
-        signal-desktop
     ];
   };
 

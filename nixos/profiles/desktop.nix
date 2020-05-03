@@ -39,8 +39,8 @@
     };
 
     firefox = {
-      jre = false;
-      enableGoogleTalkPlugin = true;
+      # jre = false;
+      # enableGoogleTalkPlugin = true;
       enableAdobeFlash = false;
       enablePepperPDF = true;
     };

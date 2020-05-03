@@ -41,7 +41,7 @@ in {
     # yubikey
     pkgs.yubikey-manager
     pkgs.yubikey-manager-qt
-    pkgs.yubioath-desktop
+    # pkgs.yubioath-desktop
     # pkgs.yubico-pam
     # pkgs.yubico-piv-tool
   ];
