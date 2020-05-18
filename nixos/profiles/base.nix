@@ -2,7 +2,7 @@
 
 let
   my_vim =
-    pkgs.vim_configurable.override { python3 = true; };
+    pkgs.vim_configurable.customize { python3 = true; name = "my-vim"; };
 
   nix-prune-roots = pkgs.writeScriptBin "nix-prune-roots" ''
     #!/usr/bin/env bash
@@ -20,9 +20,10 @@ in
   environment.systemPackages = with pkgs; [
     which
     nix-prefetch-scripts
+    nix-prune-roots
     python
     python3
-    my_vim
+    vim
     lsof
     wget
     git
