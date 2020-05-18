@@ -9,8 +9,5 @@
 
     # NixOps
     nixops
-
-    # AWS
-    aws
   ];
 }
