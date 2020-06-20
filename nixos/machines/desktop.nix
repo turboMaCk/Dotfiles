@@ -29,9 +29,8 @@
       # Extra
       ../profiles/data-science.nix
       ../profiles/unison.nix
-      ../profiles/heroku.nix
       ../profiles/stream.nix
-      ../profiles/gaming.nix
+      #../profiles/gaming.nix
       ../profiles/admin.nix # things for booring administrative tasks
     ];
 

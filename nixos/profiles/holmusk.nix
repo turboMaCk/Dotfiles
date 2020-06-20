@@ -45,7 +45,4 @@ in {
     # pkgs.yubico-pam
     # pkgs.yubico-piv-tool
   ];
-
-  # Yubikey hw support
-  hardware.u2f.enable = true;
 }

@@ -8,6 +8,7 @@
     sops
 
     # NixOps
-    nixops
+    # requirtes patch https://github.com/NixOS/nixpkgs/pull/91047
+    # nixops
   ];
 }
