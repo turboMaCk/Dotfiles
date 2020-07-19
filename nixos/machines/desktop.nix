@@ -27,11 +27,12 @@
       ../profiles/printing.nix
       ../profiles/holmusk.nix
       # Extra
-      ../profiles/data-science.nix
+      # ../profiles/data-science.nix
       ../profiles/unison.nix
       ../profiles/stream.nix
       ../profiles/gaming.nix
       ../profiles/admin.nix # things for booring administrative tasks
+      ../profiles/rc.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -42,7 +43,7 @@
     };
     # Latest kernel
     # not using latest due to issue with virtual box compilation
-    kernelPackages = pkgs.linuxPackages_5_4;
+    # kernelPackages = pkgs.linuxPackages_5_4;
   };
 
   networking = {
