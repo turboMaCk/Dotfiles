@@ -2,7 +2,7 @@
 
 let
   my_vim =
-    pkgs.vim_configurable.customize { python3 = true; name = "my-vim"; };
+    pkgs.vim_configurable.customize { name = "my-vim"; };
 
   nix-prune-roots = pkgs.writeScriptBin "nix-prune-roots" ''
     #!/usr/bin/env bash
