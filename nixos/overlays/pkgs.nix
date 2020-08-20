@@ -5,11 +5,16 @@ self: super:
   #   - https://github.com/NixOS/nixpkgs/issues/67032#issuecomment-607732200
   liblapack = super.liblapack.override { shared = true; };
 
-  elmPackages = super.elmPackages // {
-    create-elm-app = super.elmPackages.create-elm-app.override (old: {
-      postInstall = old.postInstall + ''
-        ln -sf ${self.elmPackages.elm}/bin/elm $out/lib/node_modules/create-elm-app/node_modules/elm/bin
-      '';
-    });
-  };
+  emacs26 = with super;
+    callPackage ./emacs26.nix {
+      # use override to enable additional features
+      libXaw = xorg.libXaw;
+      Xaw3d = null;
+      gconf = null;
+      alsaLib = null;
+      imagemagick = null;
+      acl = null;
+      gpm = null;
+      inherit (darwin.apple_sdk.frameworks) AppKit GSS ImageIO;
+    };
 }
