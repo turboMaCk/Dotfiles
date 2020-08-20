@@ -80,7 +80,7 @@
 (depends-on "org-pomodoro")
 (depends-on "org-ref")
 (depends-on "osx-clipboard")
-(depends-on "pallet" :git "https://githib.com/rdallasgray/pallet" :ref "master")
+(depends-on "pallet" :git "https://github.com/rdallasgray/pallet" :ref "master")
 (depends-on "pallet")
 (depends-on "pbcopy")
 (depends-on "perspective")

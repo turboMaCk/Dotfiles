@@ -49,7 +49,6 @@
         aspellDicts.en-science
         aspellDicts.cs
         zeal
-        emacs26
         keybase-gui
         gnome3.evolution
         zoom-us
