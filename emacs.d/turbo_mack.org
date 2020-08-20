@@ -575,6 +575,17 @@ This configuration is using several packages which requires installed binaries:
 - [[https://github.com/marcotmarcot/hasktags][hasktags]] is tool for creating tag files
 - [[https://github.com/jaspervdj/stylish-haskell][stylish-haskell]] is another code formatting tool
 
+using nix:
+
+#+BEGIN_SRC shell :exports none :results none
+  nix-env -iA haskellPackages.hindent haskellPackages.hasktags haskellPackages.stylish-haskell
+  cabal install -g hindent
+  cabal install -g hasktags
+  cabal install -g stylish-haskell
+#+END_SRC
+
+using cabal:
+
 #+BEGIN_SRC shell :exports none :results none
   cabal install -g hindent
   cabal install -g hasktags

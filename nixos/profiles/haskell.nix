@@ -11,6 +11,8 @@ in
     pkgs.cabal-install
     pkgs.cabal2nix
     hlint
+    # hindent
+    hasktags
     stylish-haskell
     hasktags
     ghcid
