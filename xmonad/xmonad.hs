@@ -365,9 +365,8 @@ myStartupHook :: X ()
 myStartupHook = do
   spawn "feh --bg-center ~/Dotfiles/images/wallpaper.jpg"
   spawn "polybar example"
-  spawn "imwheel --kill --buttons 45"
   -- Java Apps might require this
-  -- WMName.setWMName "LG3D"
+  WMName.setWMName "LG3D"
 
 
 myManageHook :: Query (Endo WindowSet)

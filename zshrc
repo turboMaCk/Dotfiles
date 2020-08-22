@@ -72,3 +72,5 @@ if [ -f '/Users/marek/google-cloud-sdk/completion.zsh.inc' ]; then source '/User
 _direnv_hook() {
   eval "$(direnv export zsh 2> >( egrep -v -e '^direnv: (loading|export|unloading)' ))"
 };
+
+eval "$(direnv hook zsh)"
