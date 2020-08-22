@@ -15,5 +15,6 @@
         elm-language-server
         create-elm-app
         elm-xref
+        elm-json
     ];
 }
