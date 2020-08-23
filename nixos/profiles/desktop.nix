@@ -54,13 +54,14 @@
 
     # Display Manager
     displayManager = {
-       sddm.enable = false;
-       lightdm.enable = true;
+       sddm.enable = true;
+       lightdm.enable = false;
        defaultSession = "none+xmonad";
     };
 
     desktopManager = {
-      gnome3.enable = true;
+      gnome3.enable = false;
+      plasma5.enable = true;
    };
 
     # Xmonad
