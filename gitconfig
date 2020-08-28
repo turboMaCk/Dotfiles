@@ -91,6 +91,14 @@
   # tags sorted by date #
   #######################
   dated-tags = for-each-ref --sort=taggerdate --format '%(tag)'
+  ##########################################
+  # resolve conflicts using theirs version #
+  ##########################################
+  checkout-theirs = !git diff --name-only --diff-filter=U | xargs git checkout --theirs
+  ########################################
+  # resolve conflicts using ours version #
+  ########################################
+  checkout-ours = !git diff --name-only --diff-filter=U | xargs git checkout --ours
 
 [mergetool]
   keepBackup = false
