@@ -118,6 +118,26 @@
     };
   };
 
+  # urxvtd
+  services.urxvtd = {
+    enable = true;
+    package = pkgs.rxvt_unicode-with-plugins;
+  };
+
+  # keybase
+  services.kbfs = {
+    enable = true;
+  };
+  services.keybase = {
+    enable = true;
+  };
+
+  # Emacs
+  services.emacs = {
+    enable = true;
+    package = pkgs.emacs26;
+  };
+
   # Fonts
   fonts = {
     enableFontDir = true;

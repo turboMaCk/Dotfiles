@@ -2,19 +2,15 @@
 
 {
   imports =
-    [ ../profiles/devops.nix
-      ../profiles/graphics.nix
-      ../profiles/cpp.nix
-      # ../profiles/latex.nix
-    ];
+    [];
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.extraUsers.marek = {
-    description = "Marek Fajkus (@turbo_MaCk)";
+  users.extraUsers.nikola = {
+    description = "Zlobik";
     isNormalUser = true;
-    uid = 1000;
+    uid = 2000;
     createHome = true;
-    home = "/home/marek";
+    home = "/home/nikola";
 
     extraGroups = [
       "wheel"
@@ -22,8 +18,6 @@
       "audio"
       "video"
       "networkmanager"
-      "vboxusers"
-      "docker"
       "systemd-jurnal"
     ];
 
@@ -31,26 +25,18 @@
     shell = pkgs.zsh;
 
     packages = with pkgs; [
-        browserpass
-        dropbox
         slack
         discord
         spotify
         wire-desktop
-        lf
-        ag
         vlc
         gource
-        weechat
         aspell
         aspellDicts.en
         aspellDicts.en
         aspellDicts.en-computers
         aspellDicts.en-science
         aspellDicts.cs
-        zeal
-        keybase-gui
-        zoom-us
     ];
   };
 }

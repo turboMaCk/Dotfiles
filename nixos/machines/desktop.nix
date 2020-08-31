@@ -17,6 +17,7 @@
       ../profiles/base.nix
       ../profiles/desktop.nix
       ../users/marek.nix
+      ../users/nikola.nix
       ../profiles/virtualization.nix
       ../profiles/elm.nix
       ../profiles/nodejs.nix
