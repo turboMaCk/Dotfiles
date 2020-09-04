@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    # steam-run
     steam
     # (steam.override {
     #   extraPkgs = pkgs: [ openldap ];

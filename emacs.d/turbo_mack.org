@@ -643,8 +643,8 @@ using cabal:
 Flycheck Haskell support:
 
 #+BEGIN_SRC emacs-lisp :results none
-    (require 'flycheck-haskell)
-    (add-hook 'haskell-mode-hook #'flycheck-haskell-setup)
+  ;; (require 'flycheck-haskell)
+  ;; (add-hook 'haskell-mode-hook #'flycheck-haskell-setup)
 #+END_SRC
 
 Company based autocomplete for Haskell

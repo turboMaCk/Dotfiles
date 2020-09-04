@@ -21,6 +21,7 @@ let
 in
 {
   environment.systemPackages = with pkgs; [
+    tmux
     which
     nix-prefetch-scripts
     nix-prune-roots
@@ -44,7 +45,6 @@ in
     libnotify
     direnv
     cachix
-    lorri
     # package seems to be broken
     # tldr-hs
     direnv
