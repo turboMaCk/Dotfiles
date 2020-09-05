@@ -2,10 +2,9 @@
 {
   environment.systemPackages = with pkgs; [
     steam
-    # (steam.override {
-    #   extraPkgs = pkgs: [ openldap ];
-    #   nativeOnly = true;
-    # }).run
+    (steam.override {
+      extraPkgs = pkgs: [ openldap gdk-pixbuf ];
+    }).run
   ];
 
   # Steam requirements

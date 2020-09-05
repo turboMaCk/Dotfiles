@@ -36,7 +36,6 @@
 (depends-on "flow-minor-mode")
 (depends-on "flycheck-clojure")
 (depends-on "flycheck-flow")
-(depends-on "flycheck-haskell")
 (depends-on "flycheck-ocaml")
 (depends-on "flycheck-rtags")
 (depends-on "flycheck-rust")

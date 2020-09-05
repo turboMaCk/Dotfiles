@@ -22,6 +22,7 @@ in
 {
   environment.systemPackages = with pkgs; [
     tmux
+    cask
     which
     nix-prefetch-scripts
     nix-prune-roots
