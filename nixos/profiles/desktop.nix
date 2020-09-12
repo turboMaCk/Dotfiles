@@ -147,7 +147,11 @@
     enableGhostscriptFonts = true;
     fonts = with pkgs; [
       anonymousPro
-      corefonts
+
+      # corefonts TODO: fix hash missmatch
+      # wanted: sha256:0baadsrgpqj15fgjmcn0aim0k0nk7mvivcxinw1zwg61kkcwhalx
+      # got:    sha256:089d2m9bvaacj36qdq77pcazji0sbbr796shic3k52cpxkjnzbwh
+
       dejavu_fonts
       noto-fonts
       freefont_ttf

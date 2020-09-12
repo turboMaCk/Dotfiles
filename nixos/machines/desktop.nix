@@ -39,8 +39,17 @@
   # Use the systemd-boot EFI boot loader.
   boot = {
     loader = {
-      systemd-boot.enable = true;
-      efi.canTouchEfiVariables = true;
+
+      # Using grub instead of systemd-boot
+      # see https://github.com/NixOS/nixpkgs/issues/97426
+      systemd-boot.enable = false;
+      efi.canTouchEfiVariables = false;
+      grub = {
+        enable = true;
+        efiSupport = true;
+        efiInstallAsRemovable = true;
+        device = "/dev/nvme0n1";
+      };
     };
     # Latest kernel
     # not using latest due to issue with virtual box compilation
@@ -145,14 +154,4 @@
      ];
    };
   };
-
-  # Set hosts
-  # networking.hosts."128.199.58.247" = [ "planning-game.com" ];
-  # networking.hosts."35.244.244.204" = ["app.globalwebindex.com"];
-
-  # This value determines the NixOS release with which your system is to be
-  # compatible, in order to avoid breaking some software such as database
-  # servers. You should change this only after NixOS release notes say you
-  # should.
-  system.stateVersion = "19.03"; # Did you read the comment?
 }
