@@ -36,7 +36,7 @@
     };
 
     # Kernel 5.4 has issues with i915 driver (intel gpu)
-    kernelPackages = pkgs.linuxPackages_4_19;
+    #kernelPackages = pkgs.linuxPackages_4_19;
 
     initrd.preLVMCommands = ''
      echo '  ______   __  __     ______     ______     ______     __    __     ______     ______     __  __  '
