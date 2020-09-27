@@ -2,18 +2,10 @@
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
 { config, pkgs, ... }:
-
 {
-  nixpkgs = {
-    overlays = [
-      (import ../overlays/pkgs.nix)
-      (import ../overlays/haskell.nix)
-      (import ../overlays/gnu-r.nix)
-    ];
-  };
-
   imports =
     [ <nixos-hardware/common/pc/ssd>
+      ../nixpkgs.nix
       ../profiles/base.nix
       ../profiles/desktop.nix
       ../users/marek.nix

@@ -5,15 +5,9 @@
 { config, pkgs, ... }:
 
 {
-  nixpkgs = {
-    overlays = [
-      (import ../overlays/pkgs.nix)
-      (import ../overlays/haskell.nix)
-    ];
-  };
-
   imports =
     [ <nixos-hardware/lenovo/thinkpad/t480s>
+      ../nixpkgs.nix
       ../profiles/base.nix
       ../profiles/desktop.nix
       ../users/marek.nix

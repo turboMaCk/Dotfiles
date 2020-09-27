@@ -3,9 +3,6 @@
 # For other Haskell projects it's better to have local nix definitions!
 
 { config, pkgs, ... }:
-let
-  all-hies = import (fetchTarball "https://github.com/infinisil/all-hies/tarball/master") {};
-in
 {
   environment.systemPackages = with pkgs.haskellPackages; [
     pkgs.cabal-install
@@ -18,11 +15,7 @@ in
     ghcid
     ghc
     zlib
-    # first add caches before installing this!
-    # (all-hies.unstableFallback.selection {
-    #   selector = p: { inherit (p) ghc864 ghc863 ghc843; };
-    # })
-
+    pks.haskell.packages.ghc865
     stack
   ];
 
