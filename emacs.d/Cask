@@ -58,6 +58,7 @@
 (depends-on "jsx-mode")
 (depends-on "key-chord")
 (depends-on "latex-preview-pane")
+(depends-on "lsp-haskell")
 (depends-on "lsp-mode")
 (depends-on "lsp-ui")
 (depends-on "magit")
