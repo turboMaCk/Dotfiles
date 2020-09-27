@@ -15,7 +15,6 @@
     ghcid
     ghc
     zlib
-    pks.haskell.packages.ghc865
     stack
   ];
 
