@@ -433,6 +433,15 @@ Line ends sanitization.
 (add-hook 'find-file-hook 'turbo_mack/find-file-check-line-endings)
 #+END_SRC
 
+* Linting
+
+Enable flycheck
+
+#+BEGIN_SRC emacs-lisp
+(require 'flycheck)
+;;(global-flycheck-mode t)
+#+END_SRC
+
 * Languages and Platforms
 
 This part of configuration handles settings for specific languages and major modes in general.
@@ -561,12 +570,6 @@ npm install -g elm
 
 ** Haskell
 
-Disabling Stack build tool is painful.
-
-#+BEGIN_SRC emacs-lisp :results none
-  (add-to-list 'flycheck-disabled-checkers 'haskell-stack-ghc)
-#+END_SRC
-
 [[https://github.com/serras/emacs-haskell-tutorial/blob/master/tutorial.md][There]] is a great article about setting up Emacs for Haskell development by Serras.
 
 This configuration is using several packages which requires installed binaries:
@@ -590,6 +593,16 @@ using cabal:
   cabal install -g hindent
   cabal install -g hasktags
   cabal install -g stylish-haskell
+#+END_SRC
+
+Automatically run LSP server (don't want to for now)
+
+#+BEGIN_SRC emacs-lisp :results none
+  (require 'lsp)
+  (require 'lsp-haskell)
+  ;; Hooks so haskell and literate haskell major modes trigger LSP setup
+  (add-hook 'haskell-mode-hook #'lsp)
+  ;(add-hook 'haskell-literate-mode-hook #'lsp)
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp :results none
@@ -660,8 +673,14 @@ Company based autocomplete for Haskell
 Haskell sandbox wrapper
 
 #+BEGIN_SRC emacs-lisp
-(setq haskell-process-wrapper-function
-        (lambda (args) (apply 'nix-shell-command (nix-current-sandbox) args)))
+  ;; (setq haskell-process-wrapper-function
+  ;;         (lambda (args) (apply 'nix-shell-command (nix-current-sandbox) args)))
+#+END_SRC
+
+Disabling stack based flycheck checker:
+
+#+BEGIN_SRC emacs-lisp :results none
+  (add-to-list 'flycheck-disabled-checkers 'haskell-stack-ghc)
 #+END_SRC
 
 *** TODO Improve performance of auto complete
@@ -841,14 +860,6 @@ However mode is not enabled for ~*.nix~ files by default.
 
 #+BEGIN_SRC emacs-lisp
   (require 'restclient)
-#+END_SRC
-
-* Linting
-   This configuration is mostly around awesome ~fly-check-mode~.
-
-#+BEGIN_SRC emacs-lisp
-(require 'flycheck)
-(global-flycheck-mode t)
 #+END_SRC
 
 * Evil
