@@ -55,11 +55,15 @@ if [ -f ~/.aliases ]; then
     . ~/.aliases
 fi
 
+
 # GO FUCK YOURSELF
 export GOPATH=$HOME/go
 export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 export PATH=$PATH:$(npm config get prefix)/bin
+
+# Add ~/.local/bin to PATH
+export PATH=$PATH:$HOME/.local/bin
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/marek/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/marek/google-cloud-sdk/path.zsh.inc'; fi
