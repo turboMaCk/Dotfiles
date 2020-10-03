@@ -355,13 +355,6 @@ Setup comments style to be more visible
   (set-face-background 'hl-line "#000000")
 #+END_SRC
 
-Make window transparent (requires compositor):
-
-#+BEGIN_SRC emacs-lisp
-  ;; (set-frame-parameter (selected-frame) 'alpha '(95 80))
-  ;; (add-to-list 'default-frame-alist '(alpha 95 80))
-#+END_SRC
-
 * Toggle Transparency
 
 Taken from [[https://www.emacswiki.org/emacs/TransparentEmacs][Emacs Wiki: Transparent Emacs]].
@@ -1061,6 +1054,9 @@ Actually this whole configuration is one big org file.
   ;; setup TODOs
   (setq org-log-done t
         org-todo-keywords '((sequence "TODO" "INPROGRESS" "DONE")))
+
+  ;; projectile invalidate cache
+  (global-set-key (kbd "C-c i") 'projectile-invalidate-cache)
 
   ;; bulet mode
   (add-hook 'org-mode-hook 'org-bullets-mode)
