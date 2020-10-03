@@ -52,6 +52,7 @@ URxvt.url-select.underline: true
 
 !! keyboard-select:
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
+URxvt.keyboard-select.clipboard: true
 
 !! font-size
 URxvt.keysym.M-plus:  font-size:increase
