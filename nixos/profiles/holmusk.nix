@@ -35,7 +35,7 @@ in {
   environment.systemPackages = [
     dropbox
     sync-rwe-assets
-    pkgs.awscli
+    pkgs.awscli2
     pkgs.mattermost-desktop
 
     # yubikey

@@ -10,7 +10,7 @@
     hlint
     # hindent
     hasktags
-    stylish-haskell
+    # stylish-haskell using stack installation because 0.12.0.0
     hasktags
     ghcid
     ghc
