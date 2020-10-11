@@ -67,6 +67,10 @@ for i in "${dotfiles[@]}"; do
   ln -fs $dotfiles_dir/$i $HOME/.$i
 done
 
+# polybar
+mkdir -p $HOME/.config/polybar
+ln -fs $dotfiles_dir/polybar $HOME/.config/polybar/config
+
 # symlink neovim
 # ln -fs ~/.vim ~/.nvim
 
