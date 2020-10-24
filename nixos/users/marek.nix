@@ -46,7 +46,8 @@
         aspellDicts.en
         aspellDicts.en
         aspellDicts.en-computers
-        aspellDicts.en-science
+        # Currently broken - fixed by 101194 - uncomment later
+        # aspellDicts.en-science
         aspellDicts.cs
         zeal
         keybase-gui
