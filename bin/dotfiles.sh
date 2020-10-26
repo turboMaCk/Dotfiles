@@ -71,6 +71,10 @@ done
 mkdir -p $HOME/.config/polybar
 ln -fs $dotfiles_dir/polybar $HOME/.config/polybar/config
 
+# weechat
+mkdir -p $HOME/.weechat
+ln -fs $dotfiles_dir/irc.conf $HOME/.weechat/irc.conf
+
 # symlink neovim
 # ln -fs ~/.vim ~/.nvim
 
