@@ -46,6 +46,7 @@ in
     libnotify
     direnv
     cachix
+    jq
     # package seems to be broken
     # tldr-hs
     direnv
