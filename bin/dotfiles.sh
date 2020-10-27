@@ -73,7 +73,7 @@ ln -fs $dotfiles_dir/polybar $HOME/.config/polybar/config
 
 # dunst
 mkdir -p $HOME/.config/dunst
-ln -fs $dotfiles_dir/dustrc $HOME/.config/dunst/dunstrc
+ln -fs $dotfiles_dir/dunstrc $HOME/.config/dunst/dunstrc
 
 # weechat
 mkdir -p $HOME/.weechat
