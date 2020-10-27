@@ -71,6 +71,10 @@ done
 mkdir -p $HOME/.config/polybar
 ln -fs $dotfiles_dir/polybar $HOME/.config/polybar/config
 
+# dunst
+mkdir -p $HOME/.config/dunst
+ln -fs $dotfiles_dir/dustrc $HOME/.config/dunst/dunstrc
+
 # weechat
 mkdir -p $HOME/.weechat
 ln -fs $dotfiles_dir/irc.conf $HOME/.weechat/irc.conf
