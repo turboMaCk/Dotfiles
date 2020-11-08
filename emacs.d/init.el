@@ -42,3 +42,4 @@
 (turbo_mack/load-config)
 (provide 'init)
 ;;; init.el ends here
+(put 'downcase-region 'disabled nil)

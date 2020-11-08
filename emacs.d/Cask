@@ -112,6 +112,7 @@
 (depends-on "tuareg")
 (depends-on "twittering-mode")
 (depends-on "typescript-mode")
+(depends-on "undo-tree")
 (depends-on "wanderlust")
 (depends-on "web-mode")
 (depends-on "which-key")
