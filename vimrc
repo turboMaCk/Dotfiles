@@ -111,7 +111,6 @@ Plugin 'lambdatoast/elm.vim'
 " HASKEL
 Plugin 'travitch/hasksyn'
 Plugin 'dag/vim2hs'
-Plugin 'Twinside/vim-haskellConceal'
 Plugin 'lukerandall/haskellmode-vim'
 Plugin 'eagletmt/neco-ghc'
 Plugin 'eagletmt/ghcmod-vim'
