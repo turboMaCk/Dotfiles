@@ -25,6 +25,7 @@
       "vboxusers"
       "docker"
       "systemd-jurnal"
+      "input"
     ];
 
     # Shell

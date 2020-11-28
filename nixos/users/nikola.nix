@@ -19,6 +19,7 @@
       "video"
       "networkmanager"
       "systemd-jurnal"
+      "input"
     ];
 
     # Shell
