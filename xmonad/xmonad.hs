@@ -281,7 +281,7 @@ myKeys conf@(XConfig { XMonad.modMask = modMasq }) = M.fromList $
     , ((modMasq              , xK_u     ), clearBoring)
 
     -- Quit xmonad
-    , ((modMasq .|. shiftMask, xK_Escape     ), io (exitWith ExitSuccess))
+    , ((modMasq .|. shiftMask, xK_Escape), io (exitWith ExitSuccess))
 
     -- Sratchpads
     , ((modMasq .|. shiftMask, xK_f     ), namedScratchpadAction scratchpads "slack")

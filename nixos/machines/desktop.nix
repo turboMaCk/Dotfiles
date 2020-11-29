@@ -20,7 +20,7 @@
       ../profiles/printing.nix
       ../profiles/holmusk.nix
       # Extra
-      # ../profiles/data-science.nix
+      ../profiles/data-science.nix
       ../profiles/unison.nix
       ../profiles/stream.nix
       ../profiles/gaming.nix
