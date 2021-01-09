@@ -7,6 +7,7 @@
     [ <nixos-hardware/common/pc/ssd>
       ../nixpkgs.nix
       ../profiles/base.nix
+      ../profiles/sound.nix
       ../profiles/desktop.nix
       ../users/marek.nix
       ../users/nikola.nix
@@ -97,15 +98,6 @@
     opengl = {
       enable = true;
       driSupport = true;
-    };
-
-    # HW support
-    pulseaudio = {
-      # Sound config
-      enable = true;
-      package = pkgs.pulseaudioFull;
-      extraModules = [ pkgs.pulseaudio-modules-bt ];
-      support32Bit = true;
     };
 
     # Bluetooth

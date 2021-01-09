@@ -9,6 +9,7 @@
     [ <nixos-hardware/lenovo/thinkpad/t480s>
       ../nixpkgs.nix
       ../profiles/base.nix
+      ../profiles/sound.nix
       ../profiles/desktop.nix
       ../users/marek.nix
       ../profiles/virtualization.nix
@@ -109,13 +110,6 @@
   sound.enable = true;
 
   hardware = {
-    pulseaudio = {
-      enable = true;
-      # required for bluetooth package
-      package = pkgs.pulseaudioFull;
-      extraModules = [ pkgs.pulseaudio-modules-bt ];
-    };
-
     # Trackpoint settings
     trackpoint = {
       enable = true;
