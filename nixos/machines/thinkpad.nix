@@ -75,9 +75,6 @@
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
 
-  # Enable CUPS to print documents.
-  services.printing.enable = true;
-
   #services.thinkfan.enable = true;
   # ACPID power saving
   services.acpid = {
