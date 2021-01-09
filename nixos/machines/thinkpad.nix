@@ -20,6 +20,7 @@
       ../profiles/ocaml.nix
       ../profiles/printing.nix
       ../profiles/holmusk.nix
+      ../profiles/vpn.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -33,11 +34,11 @@
     #kernelPackages = pkgs.linuxPackages_4_19;
 
     initrd.preLVMCommands = ''
-     echo '  ______   __  __     ______     ______     ______     __    __     ______     ______     __  __  '
-     echo '/\__  _\ /\ \/\ \   /\  == \   /\  == \   /\  __ \   /\ "-./  \   /\  __ \   /\  ___\   /\ \/ /   '
-     echo '\/_/\ \/ \ \ \_\ \  \ \  __<   \ \  __<   \ \ \/\ \  \ \ \-./\ \  \ \  __ \  \ \ \____  \ \  _"-. '
-     echo '   \ \_\  \ \_____\  \ \_\ \_\  \ \_____\  \ \_____\  \ \_\ \ \_\  \ \_\ \_\  \ \_____\  \ \_\ \_\'
-     echo '    \/_/   \/_____/   \/_/ /_/   \/_____/   \/_____/   \/_/  \/_/   \/_/\/_/   \/_____/   \/_/\/_/'
+      echo '  ______   __  __     ______     ______     ______     __    __     ______     ______     __  __  '
+      echo '/\__  _\ /\ \/\ \   /\  == \   /\  == \   /\  __ \   /\ "-./  \   /\  __ \   /\  ___\   /\ \/ /   '
+      echo '\/_/\ \/ \ \ \_\ \  \ \  __<   \ \  __<   \ \ \/\ \  \ \ \-./\ \  \ \  __ \  \ \ \____  \ \  _"-. '
+      echo '   \ \_\  \ \_____\  \ \_\ \_\  \ \_____\  \ \_____\  \ \_\ \ \_\  \ \_\ \_\  \ \_____\  \ \_\ \_\'
+      echo '    \/_/   \/_____/   \/_/ /_/   \/_____/   \/_____/   \/_/  \/_/   \/_/\/_/   \/_____/   \/_/\/_/'
     '';
 
     initrd.luks.devices = {
@@ -50,22 +51,6 @@
 
   networking = {
     hostName = "nixos"; # Define your hostname.
-    networkmanager = {
-      enable = true;
-      enableStrongSwan = true;
-      extraConfig = ''
-        [main]
-        rc-manager=resolvconf
-      '';
-    };
-  };
-
-  services.strongswan = {
-    enable = true;
-    secrets = [
-      # see https://github.com/NixOS/nixpkgs/issues/64965
-      "ipsec.d/ipsec.nm-l2tp.secrets"
-    ];
   };
 
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.

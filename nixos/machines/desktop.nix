@@ -19,6 +19,7 @@
       ../profiles/ocaml.nix
       ../profiles/printing.nix
       ../profiles/holmusk.nix
+      ../profiles/vpn.nix
       # Extra
       ../profiles/data-science.nix
       ../profiles/unison.nix
@@ -35,7 +36,7 @@
       # Using grub instead of systemd-boot
       # see https://github.com/NixOS/nixpkgs/issues/97426
       systemd-boot.enable = false;
-      efi.canTouchEfiVariables = false;
+
       grub = {
         enable = true;
         efiSupport = true;
@@ -43,6 +44,15 @@
         device = "/dev/nvme0n1";
       };
     };
+
+    initrd.preLVMCommands = ''
+      echo '  ______   __  __     ______     ______     ______     __    __     ______     ______     __  __  '
+      echo '/\__  _\ /\ \/\ \   /\  == \   /\  == \   /\  __ \   /\ "-./  \   /\  __ \   /\  ___\   /\ \/ /   '
+      echo '\/_/\ \/ \ \ \_\ \  \ \  __<   \ \  __<   \ \ \/\ \  \ \ \-./\ \  \ \  __ \  \ \ \____  \ \  _"-. '
+      echo '   \ \_\  \ \_____\  \ \_\ \_\  \ \_____\  \ \_____\  \ \_\ \ \_\  \ \_\ \_\  \ \_____\  \ \_\ \_\'
+      echo '    \/_/   \/_____/   \/_/ /_/   \/_____/   \/_____/   \/_/  \/_/   \/_/\/_/   \/_____/   \/_/\/_/'
+    '';
+
     # Latest kernel
     # not using latest due to issue with virtual box compilation
     # kernelPackages = pkgs.linuxPackages_5_4;
@@ -50,22 +60,6 @@
 
   networking = {
     hostName = "nixos-mainframe"; # Define your hostname.
-    networkmanager = {
-      enable = true;
-      enableStrongSwan = true;
-      extraConfig = ''
-        [main]
-        rc-manager=resolvconf
-      '';
-    };
-  };
-
-  services.strongswan = {
-    enable = true;
-    secrets = [
-      # see https://github.com/NixOS/nixpkgs/issues/64965
-      "ipsec.d/ipsec.nm-l2tp.secrets"
-    ];
   };
 
   # Set your time zone.
