@@ -621,6 +621,7 @@ Automatically run LSP server (don't want to for now)
   (require 'haskell-mode)
   (require 'hindent)
   (add-hook 'haskell-mode-hook #'hindent-mode)
+  (add-hook 'haskell-mode-hook #'haskell-indent-mode)
 
   (eval-after-load 'haskell-mode
     '(define-key haskell-mode-map [f8] 'haskell-navigate-imports))
