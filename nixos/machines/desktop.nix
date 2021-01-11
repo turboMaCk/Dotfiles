@@ -56,7 +56,7 @@
 
     # Latest kernel
     # not using latest due to issue with virtual box compilation
-    # kernelPackages = pkgs.linuxPackages_5_4;
+    kernelPackages = pkgs.linuxPackages_5_9;
   };
 
   networking = {
@@ -110,15 +110,22 @@
 
   # XORG
   services.xserver = {
-   dpi = 130;
-   videoDrivers = [ "amdgpu" ];
+    dpi = 130;
+    videoDrivers = [ "amdgpu" ];
 
-   libinput.enable = false; # touchbar
+    serverFlagsSection = ''
+      Option "BlankTime" "0"
+      Option "StandbyTime" "0"
+      Option "SuspendTime" "0"
+      Option "OffTime" "0"
+    '';
 
-   imwheel = {
-     enable = true;
-     rules = {
-       "chrom*|slack|discord|evolution|Firefox|brave-browser" = ''
+    libinput.enable = false; # touchbar
+
+    imwheel = {
+      enable = true;
+      rules = {
+        "chrom*|slack|discord|evolution|Firefox|brave-browser" = ''
         None,      Up,   Button4, 8
         None,      Down, Button5, 8
         Shift_L,   Up,   Shift_L|Button4, 4
@@ -126,10 +133,10 @@
         Control_L, Up,   Control_L|Button4
         Control_L, Down, Control_L|Button5
       '';
-     };
-     extraOptions = [
-       "--buttons=45"
-     ];
-   };
+      };
+      extraOptions = [
+        "--buttons=45"
+      ];
+    };
   };
 }
