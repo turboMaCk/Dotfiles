@@ -8,6 +8,6 @@
     # sops
 
     # NixOps
-    nixops
+    # nixops
   ];
 }

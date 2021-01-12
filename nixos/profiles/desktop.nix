@@ -29,14 +29,6 @@
 
   # Packages
   nixpkgs.config = {
-    chromium = {
-      # enableGoogleTalkPlugin = true;
-      # enableAdobeFlash = true;
-      # enablePepperFlash = true;
-      # enablePepperPDF = true;
-      # enableWideVine = true;
-    };
-
     firefox = {
       # jre = false;
       # enableGoogleTalkPlugin = true;
@@ -108,7 +100,7 @@
   # Dropbox service
   systemd.user.services.dropbox = {
     description = "Dropbox service";
-    wantedBy = [ "graphical-session.targe" ];
+    wantedBy = [ "graphical-session.target" ];
     serviceConfig = {
       Type = "exec";
       ExecStart = "${pkgs.dropbox}/bin/dropbox";
