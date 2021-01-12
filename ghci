@@ -4,3 +4,9 @@
 -- Utils
 
 let ghciEscapeShellArg arg = "'" ++ concatMap (\c -> if c == '\"' then "'\"'\"'" else [c]) arg ++ "'"
+
+-- Setup language extensions
+
+:set -XOverloadedStrings
+:set -XTypeApplications
+:set -XScopedTypeVariables
