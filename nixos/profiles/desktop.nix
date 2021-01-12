@@ -16,7 +16,6 @@
     rofi-pass
     obs-studio
     peek # screen recording to gif
-    networkmanagerapplet
 
     # Themes
     xorg.xcursorthemes
@@ -105,6 +104,18 @@
       Type = "exec";
       ExecStart = "${pkgs.dropbox}/bin/dropbox";
       ExecStop = "${pkgs.procps}/bin/pkill dropbnox";
+      Restart = "on-failure";
+    };
+  };
+
+  # nm-applet service
+  systemd.user.services.nm-applet = {
+    description = "NetworkManagerApplet service";
+    wantedBy = [ "graphical-session.target" ];
+    serviceConfig = {
+      Type = "exec";
+      ExecStart = "${pkgs.networkmanagerapplet}/bin/nm-applet";
+      ExecStop = "${pkgs.procps}/bin/pkill nm-applet";
       Restart = "on-failure";
     };
   };
