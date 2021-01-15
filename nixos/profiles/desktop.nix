@@ -120,6 +120,30 @@
     };
   };
 
+  # keybase-gui service
+  systemd.user.services.keybase-gui = {
+    description = "Keybase Gui";
+    wantedBy = [ "graphical-session.target" ];
+    serviceConfig = {
+      Type = "exec";
+      ExecStart = "${pkgs.keybase-gui}/bin/keybase-gui";
+      ExecStop = "${pkgs.procps}/bin/pkill keybase-gui";
+      Restart = "on-failure";
+    };
+  };
+
+  # discord service
+  systemd.user.services.discord = {
+    description = "Discord";
+    wantedBy = [ "graphical-session.target" ];
+    serviceConfig = {
+      Type = "exec";
+      ExecStart = "${pkgs.discord}/bin/Discord";
+      ExecStop = "${pkgs.procps}/bin/pkill Discord";
+      Restart = "on-failure";
+    };
+  };
+
   # urxvtd
   services.urxvtd = {
     enable = true;
