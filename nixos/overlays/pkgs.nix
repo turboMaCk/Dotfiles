@@ -18,6 +18,8 @@ self: super:
       inherit (darwin.apple_sdk.frameworks) AppKit GSS ImageIO;
     };
 
+  fourmolu = self.haskell.lib.justStaticExecutables self.haskellPackages.fourmolu;
+
   discord = super.discord.override rec {
     version = "0.0.13";
     src = self.fetchurl {

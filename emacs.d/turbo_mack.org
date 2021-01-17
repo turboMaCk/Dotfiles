@@ -589,14 +589,21 @@ This configuration is using several packages which requires installed binaries:
 - [[https://github.com/chrisdone/hindent][hindent-mode]] takes care of formatting
 - [[https://github.com/marcotmarcot/hasktags][hasktags]] is tool for creating tag files
 - [[https://github.com/jaspervdj/stylish-haskell][stylish-haskell]] is another code formatting tool
+- [[https://hackage.haskell.org/package/fourmolu][fourmolu]] is another code formatting tool
 
 using nix:
 
 #+BEGIN_SRC shell :exports none :results none
-  nix-env -iA haskellPackages.hindent haskellPackages.hasktags haskellPackages.stylish-haskell
+  nix-env -iA haskellPackages.hindent haskellPackages.hasktags haskellPackages.stylish-haskell haskellPackages.fourmolu
+#+END_SRC
+
+or cabal
+
+#+BEGIN_SRC shell :exports none :results none
   cabal install -g hindent
   cabal install -g hasktags
   cabal install -g stylish-haskell
+  cabal install -g fourmolu
 #+END_SRC
 
 using cabal:
@@ -620,6 +627,7 @@ Automatically run LSP server (don't want to for now)
 #+BEGIN_SRC emacs-lisp :results none
   (require 'haskell-mode)
   (require 'hindent)
+  (load-library "ormolu")
   (add-hook 'haskell-mode-hook #'hindent-mode)
   (add-hook 'haskell-mode-hook #'haskell-indent-mode)
 
@@ -636,7 +644,8 @@ Automatically run LSP server (don't want to for now)
    '(haskell-process-auto-import-loaded-modules t)
    '(haskell-tags-on-save -1)
    '(haskell-process-type 'cabal-new-repl)
-   '(haskell-process-log t))
+   '(haskell-process-log t)
+   '(ormolu-process-path "fourmolu"))
 
   (eval-after-load 'haskell-mode '(progn
                                     (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
@@ -645,7 +654,8 @@ Automatically run LSP server (don't want to for now)
                                     (define-key haskell-mode-map (kbd "C-c C-n C-i") 'haskell-process-do-info)
                                     (define-key haskell-mode-map (kbd "C-c C-n C-c") 'haskell-process-cabal-build)
                                     (define-key haskell-mode-map (kbd "C-c C-n c") 'haskell-process-cabal)
-                                    (define-key haskell-mode-map (kbd "C-c C-f") 'haskell-mode-stylish-buffer)))
+                                    (define-key haskell-mode-map (kbd "C-c C-f") 'haskell-mode-stylish-buffer)
+                                    (define-key haskell-mode-map (kbd "C-c C-f") 'ormolu-format-buffer)))
 
   (eval-after-load 'haskell-cabal '(progn
                                      (define-key haskell-cabal-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)

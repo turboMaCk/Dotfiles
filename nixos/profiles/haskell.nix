@@ -16,6 +16,7 @@
     ghc
     zlib
     stack
+    pkgs.fourmolu
   ];
 
 

@@ -79,6 +79,7 @@
 (depends-on "org-jira")
 (depends-on "org-pomodoro")
 (depends-on "org-ref")
+(depends-on "ormolu")
 (depends-on "osx-clipboard")
 (depends-on "pallet" :git "https://github.com/rdallasgray/pallet" :ref "master")
 (depends-on "pallet")
