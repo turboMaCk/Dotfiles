@@ -628,16 +628,6 @@ Automatically run LSP server (don't want to for now)
   (require 'haskell-mode)
   (require 'hindent)
   (load-library "ormolu")
-  (add-hook 'haskell-mode-hook #'hindent-mode)
-  (add-hook 'haskell-mode-hook #'haskell-indent-mode)
-
-  (eval-after-load 'haskell-mode
-    '(define-key haskell-mode-map [f8] 'haskell-navigate-imports))
-
-  ;; Fix path
-  ;; (let ((my-cabal-path (expand-file-name "~/.cabal/bin")))
-  ;;   (setenv "PATH" (concat my-cabal-path path-separator (getenv "PATH")))
-  ;;   (add-to-list 'exec-path my-cabal-path))
 
   (custom-set-variables
    '(haskell-process-suggest-remove-import-lines t)
@@ -647,6 +637,27 @@ Automatically run LSP server (don't want to for now)
    '(haskell-process-log t)
    '(ormolu-process-path "fourmolu"))
 
+  (defun turbo_mack/haskell-setup ()
+      "setup haskell specific configuration"
+
+      ;; (make-local-variable 'tab-stop-list)
+      ;; (setq tab-stop-list (number-sequence 0 120 4))
+      ;; (setq indent-line-function 'tab-to-tab-stop)
+      (setq haskell-indent-spaces 4))
+
+  ;; (add-hook 'haskell-mode-hook #'hindent-mode)
+  (add-hook 'haskell-mode-hook #'haskell-indent-mode)
+  (add-hook 'haskell-mode-hook 'turbo_mack/haskell-setup)
+
+  (eval-after-load 'haskell-mode
+    '(define-key haskell-mode-map [f8] 'haskell-navigate-imports))
+
+  ;; Fix path
+  ;; (let ((my-cabal-path (expand-file-name "~/.cabal/bin")))
+  ;;   (setenv "PATH" (concat my-cabal-path path-separator (getenv "PATH")))
+  ;;   (add-to-list 'exec-path my-cabal-path))
+
+
   (eval-after-load 'haskell-mode '(progn
                                     (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
                                     (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
@@ -655,7 +666,7 @@ Automatically run LSP server (don't want to for now)
                                     (define-key haskell-mode-map (kbd "C-c C-n C-c") 'haskell-process-cabal-build)
                                     (define-key haskell-mode-map (kbd "C-c C-n c") 'haskell-process-cabal)
                                     (define-key haskell-mode-map (kbd "C-c C-f") 'haskell-mode-stylish-buffer)
-                                    (define-key haskell-mode-map (kbd "C-c C-f") 'ormolu-format-buffer)))
+                                    (define-key haskell-mode-map (kbd "C-c C-n C-f") 'ormolu-format-buffer)))
 
   (eval-after-load 'haskell-cabal '(progn
                                      (define-key haskell-cabal-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
@@ -914,6 +925,7 @@ Emacs way of doing things by default rather then bending every key map I can.
 
     (evil-ex-define-cmd "W[rite]" 'evil-write)
     (evil-ex-define-cmd "Q[uit]" 'evil-quit)
+    ;; TODO: should both write and quit perhaps?
     (evil-ex-define-cmd "wq[rite]" 'evil-write)
     (evil-ex-define-cmd "Wq[rite]" 'evil-write)
     (evil-ex-define-cmd "WQ[rite]" 'evil-write))

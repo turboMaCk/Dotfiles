@@ -132,14 +132,14 @@
     };
   };
 
-  # discord service
-  systemd.user.services.discord = {
-    description = "Discord";
+  # matter-most service
+  systemd.user.services.mattermost-desktop = {
+    description = "Mattermost desktop";
     wantedBy = [ "graphical-session.target" ];
     serviceConfig = {
       Type = "exec";
-      ExecStart = "${pkgs.discord}/bin/Discord";
-      ExecStop = "${pkgs.procps}/bin/pkill Discord";
+      ExecStart = "${pkgs.mattermost-desktop}/bin/mattermost-desktop --hidden";
+      ExecStop = "${pkgs.procps}/bin/pkill mattermost-desktop";
       Restart = "on-failure";
     };
   };
