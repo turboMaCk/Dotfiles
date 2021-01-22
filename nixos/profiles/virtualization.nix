@@ -16,10 +16,11 @@
       };
     };
 
-    virtualbox.host = {
-      enable = true;
-      # enableExtensionPack = true;
-      # enableHardening = true;
-    };
+    # set on the machine level for now
+    # virtualbox.host = {
+    #   enable = true;
+    #   # enableExtensionPack = true;
+    #   # enableHardening = true;
+    # };
   };
 }

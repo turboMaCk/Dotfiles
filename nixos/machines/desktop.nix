@@ -54,10 +54,12 @@
       echo '    \/_/   \/_____/   \/_/ /_/   \/_____/   \/_____/   \/_/  \/_/   \/_/\/_/   \/_____/   \/_/\/_/'
     '';
 
-    # Latest kernel
-    # not using latest due to issue with virtual box compilation
-    kernelPackages = pkgs.linuxPackages_5_9;
+    # Setup kernel
+    kernelPackages = pkgs.linuxPackages_5_10;
   };
+
+  # virtualbox is not compatible with the 5.10 kernel
+  virtualisation.virtualbox.host.enable = false;
 
   networking = {
     hostName = "nixos-mainframe"; # Define your hostname.
