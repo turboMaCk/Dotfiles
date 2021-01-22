@@ -373,11 +373,8 @@ myLayoutHook =
     Docks.avoidStruts $
         smartBorders $
             workspaceDir "/home/marek" $
-                windowNavigation
-                    tall
-                    ||| wide
-                    ||| threeCol
-                    ||| boringAuto Simplest
+                windowNavigation $
+                    tall ||| wide ||| threeCol ||| boringAuto Simplest
   where
     space = smartSpacing 5
     tall =
