@@ -910,15 +910,13 @@ It really doesn't feel like first class thing within Emacs and I try to force my
 Emacs way of doing things by default rather then bending every key map I can.
 
 #+BEGIN_SRC emacs-lisp
-  (defun turbo_mack/init-evil ()
-    "Setup evil... Very magicaly."
+  (setq evil-search-module 'evil-search)
+  (setq evil-magic 'very-magic)
+  (setq evil-want-C-u-scroll t)
+  (setq evil-undo-system 'undo-fu)
 
-    (evil-mode t)
-    (setq evil-search-module 'evil-search)
-    (setq evil-magic 'very-magic))
-    (setq evil-want-C-u-scroll t)
+  (evil-mode t)
 
-  (turbo_mack/init-evil)
 
   (defun turbo_mack/map-basic-evil-commands ()
     "Setup W/Q commands."
