@@ -393,4 +393,4 @@ myLayoutHook =
             space $
                 subLayout [] Simplest $
                     boringWindows $
-                        ThreeColMid 1 (3 / 100) (1 / 2)
+                        ThreeColMid 1 (3 / 100) (2 / 3)
