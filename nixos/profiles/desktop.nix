@@ -162,7 +162,7 @@
   # Emacs
   services.emacs = {
     enable = true;
-    package = pkgs.emacs26;
+    package = pkgs.emacs27;
   };
 
   # Fonts
