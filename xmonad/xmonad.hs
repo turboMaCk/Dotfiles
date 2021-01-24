@@ -86,7 +86,7 @@ myTerminal = "urxvt"
 red = "#fb4934"
 bg1 = "#3c3836"
 bg2 = "#504945"
-blue = "#2E9AFE"
+blue = "#039be5"
 black = "#000000"
 
 -- Override the PP values as you would otherwise, adding colors etc depending
@@ -198,14 +198,13 @@ myWorkspaces =
 
 rofi :: String
 rofi =
-    [r| rofi -show run -modi run -locat4on 1 -width 50 \
-                 -lines 10 -line-margin 3 -line-padding 1 \
-                 -font "mono 10" -columns 1 -bw 0 \
-                 -color-window "#222222, #222222, #b1b4b3" \
-                 -color-normal "#222222, #b1b4b3, #222222, #005577, #b1b4b3" \
-                 -color-active "#222222, #b1b4b3, #222222, #007763, #b1b4b3" \
-                 -color-urgent "#222222, #b1b4b3, #222222, #77003d, #b1b4b3" \
-                 -kb-row-select "Tab" -kb-row-tab ""|]
+    [r| rofi -modi drun,run -show drun -locat4on 1 -width 35 \
+                 -lines 10 -line-margin 3 -line-padding 6 \
+                 -font "OpenSans 13" -columns 1 -bw 0 \
+                 -color-window "#222222, #222222, #039be5" \
+                 -color-normal "#222222, #b1b4b3, #222222, #039be5, #ffffff" \
+                 -kb-row-select "Tab" -kb-row-tab "" \
+                 -icon-theme "breeze" -show-icons|]
 
 myKeys conf@(XConfig{XMonad.modMask = modMasq}) =
     M.fromList $
