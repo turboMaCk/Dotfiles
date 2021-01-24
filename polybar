@@ -39,7 +39,7 @@ adapta-grey = #475359
 for-modules = 1
 ;==========================================================
 
-[bar/example]
+[bar/main]
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
 height = 30

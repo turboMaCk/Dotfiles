@@ -55,6 +55,7 @@
 (depends-on "hindent")
 (depends-on "htmlize")
 (depends-on "idris-mode")
+(depends-on "ini-mode")
 (depends-on "jsx-mode")
 (depends-on "key-chord")
 (depends-on "latex-preview-pane")

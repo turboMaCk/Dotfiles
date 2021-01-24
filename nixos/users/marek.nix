@@ -1,12 +1,4 @@
 { config, pkgs, ... }:
-
-let
-  my-thunderbird = pkgs.writeScriptBin "thunderbird" ''
-    #! ${pkgs.stdenv.shell}
-    mkdir -p $HOME/.thunderbird
-    ${pkgs.thunderbird}/bin/thunderbird --profile $HOME/.thunderbird
-  '';
-in
 {
   imports =
     [ ../profiles/devops.nix
@@ -60,7 +52,7 @@ in
         zeal
         keybase-gui
         zoom-us
-        my-thunderbird
+        thunderbird
     ];
   };
 }
