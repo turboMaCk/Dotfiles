@@ -142,6 +142,21 @@
     };
   };
 
+  # Enable ssh daemon
+  services.openssh.enable = true;
+
+  services.samba = {
+    enable = true;
+    nsswins = true;
+    enableWinbindd = true;
+  };
+  services.samba-wsdd = {
+    enable = true;
+    discovery = true;
+  };
+  networking.firewall.allowedTCPPorts = [ 139 445 5357 ];
+  networking.firewall.allowedUDPPorts = [ 137 138 3702 ];
+
   # Fix XHCI suspend bug
   # see: https://github.com/NixOS/nixpkgs/issues/109048
   powerManagement.powerDownCommands = ''
