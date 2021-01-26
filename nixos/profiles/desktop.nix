@@ -72,8 +72,8 @@
   # autorandr
   services.autorandr.enable = true;
 
-  # Compton
-  services.compton = {
+  # Picom compositor (compton alternative)
+  services.picom = {
     enable          = true;
     fade            = true;
     shadow          = true;

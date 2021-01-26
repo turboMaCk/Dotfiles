@@ -271,7 +271,7 @@ myKeys conf@(XConfig{XMonad.modMask = modMasq}) =
         , -- Struts...
           ((modMasq, xK_b), sendMessage $ Docks.ToggleStrut Docks.U)
         , -- Restart xmonad
-          ((modMasq .|. shiftMask, xK_q), spawn "xmonad --recompile; ~/.xmonad/kill.sh; notify-send \"XMonad\" \"Reloaded!\"; xmonad --restart")
+          ((modMasq .|. shiftMask, xK_q), spawn "xmonad --recompile; killall polybar; notify-send \"XMonad\" \"Reloaded!\"; xmonad --restart")
         , -- TODO: review
           ((modMasq .|. controlMask, xK_h), sendMessage $ pullGroup L)
         , ((modMasq .|. controlMask, xK_l), sendMessage $ pullGroup R)
@@ -335,7 +335,7 @@ micMuteToggleScript =
 myStartupHook :: X ()
 myStartupHook = do
     spawn "feh --bg-center ~/Dotfiles/images/wallpaper.jpg"
-    spawn "polybar example"
+    spawn "polybar main"
     -- Java Apps might require this
     WMName.setWMName "LG3D"
 
