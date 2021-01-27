@@ -23,7 +23,6 @@ dotfiles=('agrc'
           'ghci'
           'Xresources'
           'Xmodmap'
-          'xinitrc'
           'xmobarrc'
           'xmonad'
           'stalonetrayrc')
