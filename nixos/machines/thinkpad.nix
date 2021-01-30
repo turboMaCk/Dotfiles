@@ -154,10 +154,13 @@
     # Enable touchpad support.
     libinput = {
       enable = true;
-      scrollMethod = "twofinger";
-      naturalScrolling = true;
-      disableWhileTyping = true;
-      clickMethod = "clickfinger";
+
+      touchpad = {
+        scrollMethod = "twofinger";
+        naturalScrolling = true;
+        disableWhileTyping = true;
+        clickMethod = "clickfinger";
+      };
     };
   };
 
