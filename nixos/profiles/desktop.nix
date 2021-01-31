@@ -103,7 +103,7 @@
     serviceConfig = {
       Type = "exec";
       ExecStart = "${pkgs.dropbox}/bin/dropbox";
-      ExecStop = "${pkgs.procps}/bin/pkill dropbnox";
+      ExecStop = "${pkgs.procps}/bin/pkill dropbox";
       Restart = "on-failure";
     };
   };
