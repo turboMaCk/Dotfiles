@@ -87,10 +87,10 @@ module-margin-right = 2
 
 font-0 = "Open Sans:size=9;3"
 font-1 = "Iosevka Nerd Font:size=12;3"
-font-2 = "Iosevka Nerd Font:size=16;4"
-modules-left = menu term editor web files settings xmonad sep xwindow
+font-2 = "Iosevka Nerd Font:size=10;3"
+modules-left = menu term editor web files xmonad sep xwindow
 modules-center = cpu-graph
-modules-right = filesystem sep alsa sep xkeyboard sep memory sep battery sep date sep sysmenu sep
+modules-right = filesystem sep alsa mixer sep xkeyboard sep memory sep battery sep date sep sysmenu sep
 
 separator =
 
@@ -122,27 +122,28 @@ label = %title:0:30:...%
 type = internal/xkeyboard
 blacklist-0 = num lock
 
-format-prefix =
-format-prefix-foreground = ${color.fg-alt}
-format-prefix-underline = ${color.fg-alt}
+format-prefix = "%{T3}凌%{T-}  "
+format-prefix-foreground = ${color.orange}
+format-prefix-underline = ${color.orange}
 
 label-layout = %layout%
-label-layout-underline = ${color.fg-alt}
+label-layout-underline = ${color.orange}
 
 label-indicator-padding = 2
 label-indicator-margin = 1
-label-indicator-background = ${color.fg-alt}
-label-indicator-underline = ${color.fg-alt}
+label-indicator-background = ${color.bg}
+label-indicator-underline = ${color.orange}
 
 [module/filesystem]
 type = internal/fs
 interval = 25
 
 mount-0 = /
+mount-1 = /data
 
-label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
+label-mounted = %{F#d81b60}%mountpoint%%{F-}: %percentage_used%%
 label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${color.fg-alt}
+label-unmounted-foreground = ${color.grey}
 
 [module/mpd]
 type = internal/mpd
@@ -169,10 +170,10 @@ bar-indicator-foreground = #fff
 bar-indicator-font = 2
 bar-fill = ─
 bar-fill-font = 2
-bar-fill-foreground = #9f78e1
+bar-fill-foreground = ${color.cyan}
 bar-empty = ─
 bar-empty-font = 2
-bar-empty-foreground = ${color.fg-alt}
+bar-empty-foreground = ${color.cyan}
 
 [module/backlight-acpi]
 inherit = module/xbacklight
@@ -183,16 +184,16 @@ card = intel_backlight
 type = internal/cpu
 interval = 2
 format-prefix =
-format-prefix-foreground = ${color.fg-alt}
+format-prefix-foreground = ${color.light-blue}
 format-underline = #f90000
 label = %percentage:2%%
 
 [module/memory]
 type = internal/memory
 interval = 2
-format-prefix =
-format-prefix-foreground = ${color.fg-alt}
-format-underline = #4bffdc
+format-prefix = "%{T3}ﳚ%{T-}  "
+format-prefix-foreground = ${color.green}
+format-underline = ${color.green}
 label = %percentage_used%%
 
 [module/wlan]
@@ -243,9 +244,9 @@ date-alt = " %Y-%m-%d"
 time = %H:%M
 time-alt = %H:%M:%S
 
-format-prefix =
-format-prefix-foreground = ${color.fg-alt}
-format-underline = #0a6cf5
+format-prefix = "%{T3}ﭷ%{T-}  "
+format-prefix-foreground = ${color.blue}
+format-underline = ${color.blue}
 
 label = %date% %time%
 
@@ -281,20 +282,20 @@ type = internal/alsa
 
 format-volume = <label-volume> <bar-volume>
 label-volume = VOL
-label-volume-foreground = ${root.foreground}
+label-volume-foreground = ${color.fg}
 
 format-muted-prefix =
 format-muted-foreground = ${color.fg-alt}
 label-muted = sound muted
 
 bar-volume-width = 10
-bar-volume-foreground-0 = #55aa55
-bar-volume-foreground-1 = #55aa55
-bar-volume-foreground-2 = #55aa55
-bar-volume-foreground-3 = #55aa55
-bar-volume-foreground-4 = #55aa55
-bar-volume-foreground-5 = #f5a70a
-bar-volume-foreground-6 = #ff5555
+bar-volume-foreground-0 = ${color.light-blue}
+bar-volume-foreground-1 = ${color.blue}
+bar-volume-foreground-2 = ${color.light-green}
+bar-volume-foreground-3 = ${color.green}
+bar-volume-foreground-4 = ${color.orange}
+bar-volume-foreground-5 = ${color.orange}
+bar-volume-foreground-6 = ${color.red}
 bar-volume-gradient = false
 bar-volume-indicator = |
 bar-volume-indicator-font = 2
@@ -365,7 +366,7 @@ type = internal/cpu
 interval = 0.08
 format = "<ramp-coreload>"
 format-margin = ${margin.for-modules}
-format-padding = 1
+format-padding = 0
 ramp-coreload-0 = ▁
 ramp-coreload-0-foreground = ${color.light-blue}
 ramp-coreload-1 = ▂
@@ -436,7 +437,7 @@ content-padding = 0
 
 click-left  = dolphin &
 
-[module/settings]
+[module/mixer]
 type = custom/text
 
 content = "%{T2}ﭩ%{T-}"
@@ -444,7 +445,7 @@ content-foreground = ${color.red}
 content-background = ${color.bg}
 content-padding = 0
 
-click-left  = systemsettings5 &
+click-left  = pavucontrol &
 
 [module/editor]
 type = custom/text
