@@ -90,7 +90,7 @@ font-1 = "Iosevka Nerd Font:size=12;3"
 font-2 = "Iosevka Nerd Font:size=16;4"
 modules-left = menu term editor web files settings xmonad sep xwindow
 modules-center = cpu-graph
-modules-right = filesystem sep alsa xkeyboard memory battery date sep sysmenu sep
+modules-right = filesystem sep alsa sep xkeyboard sep memory sep battery sep date sep sysmenu sep
 
 separator =
 
@@ -107,14 +107,6 @@ content = |
 content-foreground = ${color.grey}
 content-background = ${color.bg-alt}
 content-padding = 0
-
-[module/sep2]
-type = custom/text
-
-content = |
-content-foreground = ${color.bg}
-content-background = ${color.bg}
-content-padding = 1
 
 [module/xmonad]
 type = custom/script

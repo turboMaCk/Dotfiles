@@ -120,16 +120,13 @@
     };
   };
 
-  # keybase-gui service
-  systemd.user.services.keybase-gui = {
-    description = "Keybase Gui";
-    wantedBy = [ "graphical-session.target" ];
-    serviceConfig = {
-      Type = "exec";
-      ExecStart = "${pkgs.keybase-gui}/bin/keybase-gui";
-      ExecStop = "${pkgs.procps}/bin/pkill keybase-gui";
-      Restart = "on-failure";
-    };
+  # keybase
+  services.keybase = {
+    enable = true;
+  };
+
+  services.kbfs = {
+    enable = true;
   };
 
   # matter-most service
@@ -148,15 +145,6 @@
   services.urxvtd = {
     enable = true;
     package = pkgs.rxvt_unicode-with-plugins;
-  };
-
-  # keybase
-  services.kbfs = {
-    enable = true;
-  };
-
-  services.keybase = {
-    enable = true;
   };
 
   # Emacs
