@@ -17,23 +17,39 @@
 ;==========================================================
 
 ;====General Settings======================================
-[colors]
-;background = ${xrdb:color0:#222}
-background = #111
-background-alt = #444
-;foreground = ${xrdb:color7:#222}
-foreground = #dfdfdf
-foreground-alt = #555
-primary = #ffb52a
-secondary = #e60053
-alert = #bd2c40
-adapta-cyan = #00BCD4
-adapta-red = #FF5252
-;adapta-yellow = #FFB224
-adapta-yellow = #C9BC0E
-adapta-lightgreen = #4DB6AC
-adapta-green = #009688
-adapta-grey = #475359
+
+[color]
+
+;; Active Colors
+bg = #1C2028
+fg = #EAEAEA
+fg-alt = #9C9C9C
+
+trans = #00000000
+white = #FFFFFF
+black = #000000
+
+;; Material Colors
+
+red = #e53935
+pink = #d81b60
+purple = #8e24aa
+deep-purple = #5e35b1
+indigo = #3949ab
+blue = #1e88e5
+light-blue = #039be5
+cyan = #00acc1
+teal = #00897b
+green = #43a047
+light-green = #7cb342
+lime = #c0ca33
+yellow = #fdd835
+amber = #ffb300
+orange = #fb8c00
+deep-orange = #f4511e
+brown = #6d4c41
+grey = #757575
+blue-gray = #546e7a
 
 [margin]
 for-modules = 1
@@ -46,21 +62,22 @@ height = 30
 offset-x = 0
 offset-y = 0
 radius = 0
-dim-value = 0.8
+dim-value = 1
 fixed-center = true
-modules-left = xmonad
 ;-1 means automatic detection
 ; https://github.com/polybar/polybar/issues/388
-dpi = -1 
+dpi = -1
 
-background = ${colors.background}
-foreground = ${colors.foreground}
+background = ${color.bg}
+foreground = ${color.fg}
 
 line-size = 2
-ldine-color = #f00
 
 border-size = 0
 border-color =
+
+radius-top = 0.0
+radius-bottom = 0.0
 
 padding-left = 2
 padding-right = 2
@@ -68,36 +85,42 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = fixed:pixelsize=16:antialias=false;1
-font-1 = unifont:fontformat=truetype:size=10:antialias=false;0
-font-2 = siji:pixelsize=10;1
-
+font-0 = "Open Sans:size=9;3"
+font-1 = "Iosevka Nerd Font:size=12;3"
+font-2 = "Iosevka Nerd Font:size=16;4"
+modules-left = menu term editor web files settings xmonad sep xwindow
 modules-center = cpu-graph
-modules-right = filesystem alsa xkeyboard memory battery date
+modules-right = filesystem sep alsa xkeyboard memory battery date sep sysmenu sep
+
+separator =
 
 tray-position = right
 tray-padding = 2
-;tray-background = #0063ff
-
-;wm-restack = bspwm
-;wm-restack = i3
-
-;override-redirect = true
-
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
-
-;scroll-up = i3wm-wsnext
-;scroll-down = i3wm-wsprev
 
 cursor-click = pointer
 cursor-scroll = ns-resize
+
+[module/sep]
+type = custom/text
+
+content = |
+content-foreground = ${color.grey}
+content-background = ${color.bg-alt}
+content-padding = 0
+
+[module/sep2]
+type = custom/text
+
+content = |
+content-foreground = ${color.bg}
+content-background = ${color.bg}
+content-padding = 1
 
 [module/xmonad]
 type = custom/script
 exec = xmonad-log
 tail = true
-interval = 1
+interval = 0
 
 [module/xwindow]
 type = internal/xwindow
@@ -108,16 +131,16 @@ type = internal/xkeyboard
 blacklist-0 = num lock
 
 format-prefix =
-format-prefix-foreground = ${colors.foreground-alt}
-format-prefix-underline = ${colors.secondary}
+format-prefix-foreground = ${color.fg-alt}
+format-prefix-underline = ${color.fg-alt}
 
 label-layout = %layout%
-label-layout-underline = ${colors.secondary}
+label-layout-underline = ${color.fg-alt}
 
 label-indicator-padding = 2
 label-indicator-margin = 1
-label-indicator-background = ${colors.secondary}
-label-indicator-underline = ${colors.secondary}
+label-indicator-background = ${color.fg-alt}
+label-indicator-underline = ${color.fg-alt}
 
 [module/filesystem]
 type = internal/fs
@@ -127,67 +150,7 @@ mount-0 = /
 
 label-mounted = %{F#0a81f5}%mountpoint%%{F-}: %percentage_used%%
 label-unmounted = %mountpoint% not mounted
-label-unmounted-foreground = ${colors.foreground-alt}
-
-[module/bspwm]
-type = internal/bspwm
-
-label-focused = %index%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
-label-focused-padding = 2
-
-label-occupied = %index%
-label-occupied-padding = 2
-
-label-urgent = %index%!
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
-
-label-empty = %index%
-label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 2
-
-; Separator in between workspaces
-; label-separator = |
-
-[module/i3]
-type = internal/i3
-format = <label-state> <label-mode>
-index-sort = true
-wrapping-scroll = false
-
-; Only show workspaces on the same output as the bar
-;pin-workspaces = true
-
-label-mode-padding = 2
-label-mode-foreground = #000
-label-mode-background = ${colors.primary}
-
-; focused = Active workspace on focused monitor
-label-focused = %index%
-label-focused-background = ${module/bspwm.label-focused-background}
-label-focused-underline = ${module/bspwm.label-focused-underline}
-label-focused-padding = ${module/bspwm.label-focused-padding}
-
-; unfocused = Inactive workspace on any monitor
-label-unfocused = %index%
-label-unfocused-padding = ${module/bspwm.label-occupied-padding}
-
-; visible = Active workspace on unfocused monitor
-label-visible = %index%
-label-visible-background = ${self.label-focused-background}
-label-visible-underline = ${self.label-focused-underline}
-label-visible-padding = ${self.label-focused-padding}
-
-; urgent = Workspace with urgency hint set
-label-urgent = %index%
-label-urgent-background = ${module/bspwm.label-urgent-background}
-label-urgent-padding = ${module/bspwm.label-urgent-padding}
-
-; Separator in between workspaces
-; label-separator = |
-
+label-unmounted-foreground = ${color.fg-alt}
 
 [module/mpd]
 type = internal/mpd
@@ -217,7 +180,7 @@ bar-fill-font = 2
 bar-fill-foreground = #9f78e1
 bar-empty = ─
 bar-empty-font = 2
-bar-empty-foreground = ${colors.foreground-alt}
+bar-empty-foreground = ${color.fg-alt}
 
 [module/backlight-acpi]
 inherit = module/xbacklight
@@ -228,7 +191,7 @@ card = intel_backlight
 type = internal/cpu
 interval = 2
 format-prefix =
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-foreground = ${color.fg-alt}
 format-underline = #f90000
 label = %percentage:2%%
 
@@ -236,7 +199,7 @@ label = %percentage:2%%
 type = internal/memory
 interval = 2
 format-prefix =
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-foreground = ${color.fg-alt}
 format-underline = #4bffdc
 label = %percentage_used%%
 
@@ -253,14 +216,14 @@ format-disconnected =
 ;format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
+;label-disconnected-foreground = ${color.fg-alt}
 
 ramp-signal-0 = 
 ramp-signal-1 = 
 ramp-signal-2 = 
 ramp-signal-3 = 
 ramp-signal-4 = 
-ramp-signal-foreground = ${colors.foreground-alt}
+ramp-signal-foreground = ${color.fg-alt}
 
 [module/eth]
 type = internal/network
@@ -269,14 +232,14 @@ interval = 3.0
 
 format-connected-underline = #55aa55
 format-connected-prefix =
-format-connected-prefix-foreground = ${colors.foreground-alt}
+format-connected-prefix-foreground = ${color.fg-alt}
 label-connected = %local_ip%
 
 format-disconnected =
 ;format-disconnected = <label-disconnected>
 ;format-disconnected-underline = ${self.format-connected-underline}
 ;label-disconnected = %ifname% disconnected
-;label-disconnected-foreground = ${colors.foreground-alt}
+;label-disconnected-foreground = ${color.fg-alt}
 
 [module/date]
 type = internal/date
@@ -289,7 +252,7 @@ time = %H:%M
 time-alt = %H:%M:%S
 
 format-prefix =
-format-prefix-foreground = ${colors.foreground-alt}
+format-prefix-foreground = ${color.fg-alt}
 format-underline = #0a6cf5
 
 label = %date% %time%
@@ -319,7 +282,7 @@ bar-volume-fill = ─
 bar-volume-fill-font = 2
 bar-volume-empty = ─
 bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
+bar-volume-empty-foreground = ${color.fg-alt}
 
 [module/alsa]
 type = internal/alsa
@@ -329,7 +292,7 @@ label-volume = VOL
 label-volume-foreground = ${root.foreground}
 
 format-muted-prefix =
-format-muted-foreground = ${colors.foreground-alt}
+format-muted-foreground = ${color.fg-alt}
 label-muted = sound muted
 
 bar-volume-width = 10
@@ -347,7 +310,7 @@ bar-volume-fill = ─
 bar-volume-fill-font = 2
 bar-volume-empty = ─
 bar-volume-empty-font = 2
-bar-volume-empty-foreground = ${colors.foreground-alt}
+bar-volume-empty-foreground = ${color.fg-alt}
 
 [module/battery]
 type = internal/battery
@@ -362,24 +325,24 @@ format-discharging = <animation-discharging> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
 format-full-prefix =
-format-full-prefix-foreground = ${colors.foreground-alt}
+format-full-prefix-foreground = ${color.fg-alt}
 format-full-underline = ${self.format-charging-underline}
 
 ramp-capacity-0 =
 ramp-capacity-1 =
 ramp-capacity-2 =
-ramp-capacity-foreground = ${colors.foreground-alt}
+ramp-capacity-foreground = ${color.fg-alt}
 
 animation-charging-0 =
 animation-charging-1 =
 animation-charging-2 =
-animation-charging-foreground = ${colors.foreground-alt}
+animation-charging-foreground = ${color.fg-alt}
 animation-charging-framerate = 750
 
 animation-discharging-0 =
 animation-discharging-1 =
 animation-discharging-2 =
-animation-discharging-foreground = ${colors.foreground-alt}
+animation-discharging-foreground = ${color.fg-alt}
 animation-discharging-framerate = 750
 
 [module/temperature]
@@ -394,49 +357,12 @@ format-warn-underline = ${self.format-underline}
 
 label = %temperature-c%
 label-warn = %temperature-c%
-label-warn-foreground = ${colors.secondary}
+label-warn-foreground = ${color.orange}
 
 ramp-0 = 
 ramp-1 = 
 ramp-2 = 
-ramp-foreground = ${colors.foreground-alt}
-
-[module/powermenu]
-type = custom/menu
-
-expand-right = true
-
-format-spacing = 1
-
-label-open = 
-label-open-foreground = ${colors.secondary}
-label-close =  cancel
-label-close-foreground = ${colors.secondary}
-label-separator = |
-label-separator-foreground = ${colors.foreground-alt}
-
-menu-0-0 = reboot
-menu-0-0-exec = menu-open-1
-menu-0-1 = power off
-menu-0-1-exec = menu-open-2
-
-menu-1-0 = cancel
-menu-1-0-exec = menu-open-0
-menu-1-1 = reboot
-menu-1-1-exec = sudo reboot
-
-menu-2-0 = power off
-menu-2-0-exec = sudo poweroff
-menu-2-1 = cancel
-menu-2-1-exec = menu-open-0
-
-[settings]
-screenchange-reload = true
-;compositing-background = xor
-;compositing-background = screen
-;compositing-foreground = source
-;compositing-border = over
-;pseudo-transparency = false
+ramp-foreground = ${colors.fg-alt}
 
 [global/wm]
 margin-top = 0
@@ -446,25 +372,96 @@ margin-bottom = 4
 type = internal/cpu
 interval = 0.08
 format = "<ramp-coreload>"
-format-underline = #111
 format-margin = ${margin.for-modules}
 format-padding = 1
 ramp-coreload-0 = ▁
-ramp-coreload-0-foreground = #0a6cf5
+ramp-coreload-0-foreground = ${color.light-blue}
 ramp-coreload-1 = ▂
-ramp-coreload-1-foreground = ${colors.adapta-green}
+ramp-coreload-1-foreground = ${color.blue}
 ramp-coreload-2 = ▃
-ramp-coreload-2-foreground = ${colors.adapta-lightgreen}
+ramp-coreload-2-foreground = ${color.blue}
 ramp-coreload-3 = ▄
-ramp-coreload-3-foreground = ${colors.adapta-lightgreen}
+ramp-coreload-3-foreground = ${color.green}
 ramp-coreload-4 = ▅
-ramp-coreload-4-foreground = ${colors.adapta-yellow}
+ramp-coreload-4-foreground = ${color.yellow}
 ramp-coreload-5 = ▆
-ramp-coreload-5-foreground = ${colors.adapta-yellow}
+ramp-coreload-5-foreground = ${color.yellow}
 ramp-coreload-6 = ▇
-ramp-coreload-6-foreground = ${colors.adapta-red}
+ramp-coreload-6-foreground = ${color.red}
 ramp-coreload-7 = █
-ramp-coreload-7-foreground = ${colors.adapta-red}
+ramp-coreload-7-foreground = ${color.red}
 ramp-coreload-font = 2
+
+[module/menu]
+type = custom/text
+
+content = ﰕ
+content-background = ${color.light-blue}
+content-foreground = ${color.fg}
+content-padding = 3
+
+click-left = rofi -modi drun,run -show drun -theme "$HOME/Dotfiles/rofi/launcher.rasi" -kb-row-select "Tab" -kb-row-tab ""
+
+[module/sysmenu]
+type = custom/text
+
+content = 襤
+content-background = ${color.bg}
+content-foreground = ${color.fg}
+content-padding = 0
+
+click-left = bash $HOME/Dotfiles/rofi/power-menu.sh
+
+;; APPs
+
+[module/term]
+type = custom/text
+
+content = "%{T2}%{T-}"
+content-foreground = ${color.green}
+content-background = ${color.bg}
+content-padding = 0
+
+click-left  = urxvt &
+
+[module/web]
+type = custom/text
+
+content = "%{T2}%{T-}"
+content-foreground = ${color.orange}
+content-background = ${color.bg}
+content-padding = 0
+
+click-left  = firefox &
+
+[module/files]
+type = custom/text
+
+content = "%{T2}%{T-}"
+content-foreground = ${color.blue}
+content-background = ${color.bg}
+content-padding = 0
+
+click-left  = dolphin &
+
+[module/settings]
+type = custom/text
+
+content = "%{T2}ﭩ%{T-}"
+content-foreground = ${color.red}
+content-background = ${color.bg}
+content-padding = 0
+
+click-left  = systemsettings5 &
+
+[module/editor]
+type = custom/text
+
+content = "%{T2}ﭞ%{T-}"
+content-foreground = ${color.blue}
+content-background = ${color.bg}
+content-padding = 0
+
+click-left  = emacsclient -n -c &
 
 ; vim:ft=dosini

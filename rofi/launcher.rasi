@@ -1,0 +1,82 @@
+configuration {
+  font: "OpenSans 13";
+  show-icons: true;
+  icon-theme: "breeze";
+  display-drun: "";
+}
+
+@import "colors.rasi"
+
+window {
+  width: 1200px;
+	border:	0px;
+  transparency: "real";
+  text-color: @text;
+  background-color: @bg;
+  border-radius: 8px;
+}
+
+mainbox {
+  background-color: @bg;
+  children: [ inputbar, listview ];
+  spacing: 4px;
+}
+
+inputbar {
+	children: [ prompt, entry ];
+  background-color: @bg;
+  text-color: @fg;
+  expand: false;
+	border: 0px 0px 2px 0px;
+  border-radius: 0px;
+	border-color: @blue;
+  margin: 0px;
+  padding: 10px;
+}
+
+prompt {
+  enabled: true;
+	padding: 8px 0 0 0;
+	background-color: @bg;
+	text-color: @white;
+}
+
+entry {
+  background-color: @bg;
+  text-color: @white;
+  placeholder-color: @text;
+  expand: true;
+  horizontal-align: 0;
+  placeholder: "Search";
+  padding: 0px 0px 0px 5px;
+  blink: true;
+  padding: 6px;
+}
+
+listview {
+  columns: 1;
+  lines: 10;
+  padding: 0px;
+  margin: 0px;
+  padding: 0px;
+  margin: 0px;
+  background-color: @bg;
+}
+
+element {
+  background-color: @bg;
+  text-color: @text;
+  orientation: horizontal;
+  border-radius: 0px;
+  padding: 6px;
+}
+
+element-icon {
+  size: 24px;
+  border: 0px;
+}
+
+element selected {
+  background-color: @blue;
+  text-color: @white;
+}

@@ -1,0 +1,6 @@
+* {
+  bg: #222222ff;
+  blue: #039be5ff;
+  text: #b1b4b3ff;
+  white: #ffffffff;
+}

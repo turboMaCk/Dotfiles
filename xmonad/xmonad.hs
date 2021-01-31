@@ -96,13 +96,15 @@ myLogHook :: D.Client -> PP
 myLogHook dbus =
     def
         { ppOutput = dbusOutput dbus
-        , ppCurrent = wrap ("%{B" ++ bg2 ++ "} ") " %{B-}"
-        , ppVisible = wrap ("%{B" ++ bg1 ++ "} ") " %{B-}"
-        , ppUrgent = wrap ("%{F" ++ red ++ "} ") " %{F-}"
-        , ppHidden = wrap " " " "
+        , ppCurrent = wrap ("%{B" ++ bg2 ++ "}  ") "  %{B-}"
+        , ppVisible = wrap ("%{B" ++ bg1 ++ "}  ") "  %{B-}"
+        , ppUrgent = wrap ("%{F" ++ red ++ "}  ") "  %{F-}"
+        , ppHidden = wrap "  " "  "
         , ppWsSep = ""
-        , ppSep = " : "
-        , ppTitle = shorten 40
+        , ppSep = ""
+        , ppTitle = const ""
+        , ppLayout = const ""
+
         }
 
 -- Emit a DBus signal on log updates
@@ -198,13 +200,9 @@ myWorkspaces =
 
 rofi :: String
 rofi =
-    [r| rofi -modi drun,run -show drun -locat4on 1 -width 35 \
-                 -lines 10 -line-margin 3 -line-padding 6 \
-                 -font "OpenSans 13" -columns 1 -bw 0 \
-                 -color-window "#222222, #222222, #039be5" \
-                 -color-normal "#222222, #b1b4b3, #222222, #039be5, #ffffff" \
+    [r| rofi -modi drun,run -show drun -theme "$HOME/Dotfiles/rofi/launcher.rasi" \
                  -kb-row-select "Tab" -kb-row-tab "" \
-                 -icon-theme "breeze" -show-icons|]
+                 |]
 
 myKeys conf@(XConfig{XMonad.modMask = modMasq}) =
     M.fromList $

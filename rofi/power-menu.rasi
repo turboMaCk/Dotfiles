@@ -1,0 +1,76 @@
+configuration {
+  font: "OpenSans 13";
+  show-icons: false;
+}
+
+@import "colors.rasi"
+
+window {
+  width: 400px;
+	border:	0px;
+  transparency: "real";
+  text-color: @text;
+  background-color: @bg;
+  border-radius: 2px;
+  location: northeast;
+  y-offset: 46;
+  x-offset: -15;
+}
+
+mainbox {
+  background-color: @bg;
+  children: [ listview ];
+  spacing: 4px;
+}
+
+inputbar {
+	children: [ entry ];
+  background-color: @bg;
+  text-color: @fg;
+  expand: false;
+	border: 0px 0px 2px 0px;
+  border-radius: 0px;
+	border-color: @blue;
+  margin: 0px;
+  padding: 10px;
+}
+
+entry {
+  background-color: @bg;
+  text-color: @white;
+  placeholder-color: @text;
+  expand: true;
+  horizontal-align: 0;
+  placeholder: "";
+  padding: 0px 0px 0px 5px;
+  blink: true;
+  padding: 6px;
+}
+
+listview {
+  columns: 1;
+  lines: 5;
+  padding: 0px;
+  margin: 0px;
+  padding: 0px;
+  margin: 0px;
+  background-color: @bg;
+}
+
+element {
+  background-color: @bg;
+  text-color: @text;
+  orientation: horizontal;
+  border-radius: 0px;
+  padding: 6px;
+}
+
+element-icon {
+  size: 24px;
+  border: 0px;
+}
+
+element selected {
+  background-color: @blue;
+  text-color: @white;
+}
