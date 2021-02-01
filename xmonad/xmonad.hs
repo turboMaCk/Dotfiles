@@ -15,7 +15,13 @@
 import XMonad
 import XMonad.Actions.CopyWindow (copyToAll)
 import XMonad.Hooks.DynamicLog
-import XMonad.Hooks.EwmhDesktops (ewmh, fullscreenEventHook)
+import XMonad.Hooks.EwmhDesktops (
+    ewmh,
+    ewmhDesktopsEventHook,
+    ewmhDesktopsLogHook,
+    ewmhDesktopsStartup,
+    fullscreenEventHook,
+ )
 import qualified XMonad.Hooks.ManageDocks as Docks
 import XMonad.Hooks.ManageHelpers (doFullFloat, isFullscreen)
 import qualified XMonad.Hooks.SetWMName as WMName
@@ -35,8 +41,6 @@ import XMonad.Util.Scratchpad (
 import XMonad.Util.SpawnOnce (spawnOnce)
 
 import qualified Codec.Binary.UTF8.String as UTF8
-import qualified DBus as D
-import qualified DBus.Client as D
 
 import qualified Data.Map as M
 import Data.Monoid (Endo)
@@ -62,19 +66,7 @@ import qualified XMonad.Util.Brightness as Brightness
 -------------------------------------
 
 main :: IO ()
-main = do
-    dbus <- D.connectSession
-    -- Request access to DBus name
-    D.requestName
-        dbus
-        (D.busName_ "org.xmonad.Log")
-        [D.nameAllowReplacement, D.nameReplaceExisting, D.nameDoNotQueue]
-
-    xmonad $
-        ewmh $
-            myConfig
-                { logHook = dynamicLogWithPP (myLogHook dbus)
-                }
+main = xmonad $ ewmh $ myConfig
 
 -------------------------------------
 -- Config
@@ -89,36 +81,6 @@ bg2 = "#504945"
 blue = "#039be5"
 black = "#000000"
 
--- Override the PP values as you would otherwise, adding colors etc depending
--- on  the statusbar used
-
-myLogHook :: D.Client -> PP
-myLogHook dbus =
-    def
-        { ppOutput = dbusOutput dbus
-        , ppCurrent = wrap ("%{B" ++ bg2 ++ "}  ") "  %{B-}"
-        , ppVisible = wrap ("%{B" ++ bg1 ++ "}  ") "  %{B-}"
-        , ppUrgent = wrap ("%{F" ++ red ++ "}  ") "  %{F-}"
-        , ppHidden = wrap "  " "  "
-        , ppWsSep = ""
-        , ppSep = ""
-        , ppTitle = const ""
-        , ppLayout = const ""
-
-        }
-
--- Emit a DBus signal on log updates
-dbusOutput :: D.Client -> String -> IO ()
-dbusOutput dbus str = do
-    let signal =
-            (D.signal objectPath interfaceName memberName)
-                { D.signalBody = [D.toVariant $ UTF8.decodeString str]
-                }
-    D.emit dbus signal
-  where
-    objectPath = D.objectPath_ "/org/xmonad/Log"
-    interfaceName = D.interfaceName_ "org.xmonad.Log"
-    memberName = D.memberName_ "Update"
 
 -- Main configuration, override the defaults to your liking.
 myConfig =
@@ -137,9 +99,11 @@ myConfig =
                 <+> manageScratchPad
         , handleEventHook =
             Docks.docksEventHook
+                <+> ewmhDesktopsEventHook
                 <+> fullscreenEventHook
         , borderWidth = 4
-        , startupHook = myStartupHook
+        , startupHook = myStartupHook <+> ewmhDesktopsStartup
+        , logHook = ewmhDesktopsLogHook
         }
 
 -- then define your scratchpad management separately:

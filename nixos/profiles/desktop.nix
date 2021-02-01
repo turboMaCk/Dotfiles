@@ -1,21 +1,32 @@
 { config, pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
+    # xorg
     xterm
+    xdo
+    xclip
+
+    # other xorg utils
     polybar
     feh
+
+    # browsers
     firefox
     brave
-    transmission-gtk
-    openssl
-    flameshot # screeshots
-    dunst # notifications
-    xclip
-    xmonad-log
+
+    # xmonad miscelaneous
     rofi
     rofi-pass
-    obs-studio
+    dunst # notifications
+
+    # GTK utils
+    transmission-gtk
     peek # screen recording to gif
+
+    # Others
+    openssl
+    flameshot # screeshots
+    obs-studio
 
     # Themes
     xorg.xcursorthemes
@@ -62,7 +73,6 @@
          haskellPackages.xmonad-contrib
          haskellPackages.xmonad-extras
          haskellPackages.xmonad
-         haskellPackages.dbus
          haskellPackages.utf8-string
          haskellPackages.raw-strings-qq
       ];
