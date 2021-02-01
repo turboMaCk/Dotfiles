@@ -118,7 +118,7 @@ enable-scroll = false
 
 format = <label-state> <label-monitor>
 label-monitor = "%{T4}%name%%{T-}"
-label-monitor-foreground = ${color.blue}
+label-monitor-foreground = ${color.cyan}
 label-monitor-margin-left = 2
 
 label-active = %name%

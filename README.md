@@ -2,22 +2,28 @@
 
 This repository contains my dotfiles and setup **MacOS/NixOS** development machine.
 
-**Purpose of this repository is to archive my configuration as it evolves and share
-usefull parts of my config with other. That's being say you're free to use and modify
-any part of this config to suit your own needs however, this repository evolves a lot
-and from time to time can be contain outdated information, messy workarounds
-or even be broken.**
+**The purpose of this repository is to version my configuration as it evolves.
+That's being said, you're free to use and modify any part of this config to suit your own needs.
+However, this repository evolves a lot and from time to time can contain outdated information,
+messy workarounds or even be broken.**
 
-Usually when I'm setting up new box I spent quite some tome just in terminal setting up bouch of things.
-To make this more pleasant experience I like to install my shell (ZSH) and configuration and vim config.
+Usually I'm setting up my machine using just terminal and start by configuring shell and vim
+which is the editor I prefer to use when working within terminal.
 Once the shell is settuped I continue by configuration of other essetial tools which in my case is
 Emacs and XMonad on X11 based system.
 
-Shell and Vim instruction are part of this README.
-For instaraction how to install different parts please fallow specific directory:
+My primary OS is [NixOS](nixos.org/) and I use [Nix](https://nixos.org/manual/nix/stable/)
+for many parts of my configuration. However my setup is not fully nix specific
+since I like to use the same configuration on boxes without nix installed.
+Primary I need to be able to setup zsh, vim emacs and xmonad environment on systems
+without nix.
 
-- Emacs installation [link](/emacs.d)
-- XMonad installation in X11 systems [link](xmonad)
+Shell and Vim configuration instructions are part of this README.
+For instaraction about how to install different parts please fallow specific directory:
+
+- Emacs installation [link](emacs.d)
+- XMonad installation [link](xmonad)
+- NixOS configuration [link](nixos)
 
 
 ## Install Dotfiles
@@ -65,13 +71,12 @@ This is how zsh can be set as default shell on OS other than NixOS (Mac for inst
 $ chsh -s /bin/zsh
 ```
 
-This installation is broken:
+Install [Shell Theme](https://github.com/turboMaCk/prezto-Prague-Shell)
 
->   Install Shell Theme
->
->   ```shell
->   $ sh ~/Dotfiles/prezto-Prague-Shell/bin/install.sh
->   ```
+```shell
+$ cd ~/Dotfiles/prezto-Prague-Shell
+$ ./bin/install.sh
+```
 
 To install Dotfiles themselves you can run the script that cerates symlink in home directlory.
 
