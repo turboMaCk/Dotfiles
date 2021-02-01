@@ -336,13 +336,13 @@ adapter = ADP1
 full-at = 98
 
 format-charging = <animation-charging> <label-charging>
-format-charging-underline = #ffb52a
+format-charging-underline = ${color.yellow}
 
 format-discharging = <animation-discharging> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
 
-format-full-prefix =
-format-full-prefix-foreground = ${color.fg-alt}
+format-full-prefix = "%{T3}ﴍ%{T-} "
+format-full-prefix-foreground = ${color.yellow}
 format-full-underline = ${self.format-charging-underline}
 
 ramp-capacity-0 =
