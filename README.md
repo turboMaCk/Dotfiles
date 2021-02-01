@@ -1,4 +1,7 @@
-# My Dotfiles
+<div align="center">
+    <h1>My Dotfiles</h1>
+    <img src="images/screenshot.png" alt="screenshot">
+</div>
 
 This repository contains my dotfiles and setup **MacOS/NixOS** development machine.
 

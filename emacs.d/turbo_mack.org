@@ -479,7 +479,6 @@ Use C++ mode for all header files by default as that seems to be more universal
 (c++-mode)
 #+END_SRC
 
-
 ** Web
 
 All the web craziness. I like to use SASS for writing CSS (if I really have to use something close to css)
