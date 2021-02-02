@@ -23,9 +23,7 @@ dotfiles=('agrc'
           'ghci'
           'Xresources'
           'Xmodmap'
-          'xmobarrc'
-          'xmonad'
-          'stalonetrayrc')
+          'xmonad')
 
 # Backup directory
 backup_dir="$(pwd)/backup"

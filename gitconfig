@@ -87,6 +87,7 @@
   # prune local branches that doesn't exist in origin #
   #####################################################
   prune-branches = !git remote prune origin && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -D
+  upstream-prune-branches = !git remote prune upstream && git branch -vv | grep ': gone]' | awk '{print $1}' | xargs -r git branch -D
   #######################
   # tags sorted by date #
   #######################
