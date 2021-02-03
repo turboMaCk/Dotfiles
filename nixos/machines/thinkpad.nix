@@ -22,6 +22,7 @@
       ../profiles/printing.nix
       ../profiles/holmusk.nix
       ../profiles/vpn.nix
+      ../profiles/samba.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
