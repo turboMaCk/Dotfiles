@@ -11,4 +11,8 @@
   };
   networking.firewall.allowedTCPPorts = [ 139 445 5357 ];
   networking.firewall.allowedUDPPorts = [ 137 138 3702 ];
+
+  environment.systemPackages = [
+    pkgs.cifs_utils
+  ];
 }
