@@ -81,7 +81,6 @@ bg2 = "#504945"
 blue = "#039be5"
 black = "#000000"
 
-
 -- Main configuration, override the defaults to your liking.
 myConfig =
     def
@@ -335,7 +334,7 @@ myLayoutHook =
         smartBorders $
             workspaceDir "/home/marek" $
                 windowNavigation $
-                    tall ||| wide ||| threeCol ||| boringAuto Simplest
+                    tall ||| wide ||| threeCol ||| boringAuto Full
   where
     space = smartSpacing 5
     tall =
