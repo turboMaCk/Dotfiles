@@ -40,9 +40,6 @@
   # Packages
   nixpkgs.config = {
     firefox = {
-      # jre = false;
-      # enableGoogleTalkPlugin = true;
-      enableAdobeFlash = false;
       enablePepperPDF = true;
     };
   };

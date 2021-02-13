@@ -290,6 +290,9 @@ Stay sane please
   (transient-mark-mode t)
   (delete-selection-mode t)
   (random t) ;; seed
+
+  ;; disable anoying gui popups
+  (setq use-dialog-box nil)
 #+END_SRC
 
 I keep all my coding projects (in case I can anyway)
@@ -631,7 +634,7 @@ Automatically run LSP server (don't want to for now)
   (custom-set-variables
    '(haskell-process-suggest-remove-import-lines t)
    '(haskell-process-auto-import-loaded-modules t)
-   '(haskell-tags-on-save -1)
+   '(haskell-tags-on-save nil)
    '(haskell-process-type 'cabal-new-repl)
    '(haskell-process-log t)
    '(ormolu-process-path "fourmolu"))

@@ -47,6 +47,7 @@ in
     direnv
     cachix
     jq
+    file
     # package seems to be broken
     # tldr-hs
     direnv
