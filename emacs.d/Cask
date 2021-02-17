@@ -86,6 +86,7 @@
 (depends-on "pallet")
 (depends-on "pbcopy")
 (depends-on "perspective")
+(depends-on "php-mode")
 (depends-on "presentation")
 (depends-on "projectile")
 (depends-on "projectile-rails")

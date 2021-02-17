@@ -311,6 +311,17 @@ I'm using tramp-mode mainly to access remote machines via ssh.
   (setq tramp-default-method "ssh")
 #+END_SRC
 
+Speedup tramp mode
+
+#+BEGIN_SRC emacs-lisp
+  (setq remote-file-name-inhibit-cache nil)
+  (setq vc-ignore-dir-regexp
+        (format "%s\\|%s"
+                      vc-ignore-dir-regexp
+                      tramp-file-name-regexp))
+  (setq tramp-verbose 1)
+#+END_SRC
+
 * Color Theme
 
 This loads my customized version of twilight theme.
