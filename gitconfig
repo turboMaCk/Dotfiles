@@ -3,6 +3,9 @@
   email = marek.faj@gmail.com
 	singingkey = 8725E42820286274355C00F495585219BA6FE2CC
 
+[init]
+	defaultBranch = main
+
 [github]
   user = turbomack
   token = token
@@ -112,7 +115,9 @@
 
 [fetch]
 	prune = true
+
 [commit]
 	gpgsign = true
+
 [gpg]
 	program = gpg2
