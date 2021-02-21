@@ -20,7 +20,6 @@
     dunst # notifications
 
     # GTK utils
-    transmission-gtk
     peek # screen recording to gif
 
     # Others
@@ -35,6 +34,7 @@
 
     # KDE utils
     gwenview
+    transmission-qt
   ];
 
   # Packages

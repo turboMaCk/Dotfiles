@@ -101,6 +101,15 @@
     opengl = {
       enable = true;
       driSupport = true;
+
+      # Vulkan
+      extraPackages = with pkgs; [
+        amdvlk
+      ];
+
+      extraPackages32 = with pkgs; [
+        driversi686Linux.amdvlk
+      ];
     };
 
     # Bluetooth
