@@ -51,6 +51,7 @@ in
     # package seems to be broken
     # tldr-hs
     direnv
+    openssl
 
     #vpn
     networkmanager-l2tp

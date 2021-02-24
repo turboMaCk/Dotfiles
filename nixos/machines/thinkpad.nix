@@ -10,7 +10,7 @@
       ../nixpkgs.nix
       ../profiles/base.nix
       ../profiles/sound.nix
-      ../profiles/desktop.nix
+      ../profiles/xmonad.nix
       ../users/marek.nix
       ../profiles/virtualization.nix
       ../profiles/elm.nix
