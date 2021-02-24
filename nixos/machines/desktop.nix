@@ -8,7 +8,7 @@
       ../nixpkgs.nix
       ../profiles/base.nix
       ../profiles/sound.nix
-      ../profiles/desktop.nix
+      ../profiles/kde.nix
       ../users/marek.nix
       ../users/nikola.nix
       ../profiles/virtualization.nix
@@ -23,7 +23,7 @@
       ../profiles/vpn.nix
       ../profiles/samba.nix
       # Extra
-      ../profiles/data-science.nix
+      # ../profiles/data-science.nix
       ../profiles/unison.nix
       ../profiles/stream.nix
       ../profiles/gaming.nix
