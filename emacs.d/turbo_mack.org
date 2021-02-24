@@ -770,8 +770,8 @@ brew install rbenv
   ;;(rbenv-use-corresponding)
 
   ;; Rails
-  (require 'projectile-rails)
-  (add-hook 'projectile-mode-hook 'projectile-rails-on)
+  ;; (require 'projectile-rails)
+  ;; (add-hook 'projectile-mode-hook 'projectile-rails-on)
 
   (require 'yaml-mode)
 
