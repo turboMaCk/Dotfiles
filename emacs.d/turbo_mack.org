@@ -959,7 +959,6 @@ This is to set some interface reflections of evil state.
 By default re-indenting blocks in evil is kind of nightmare. This will fix it:
 
 #+BEGIN_SRC emacs-lisp
-  (evil-collection-init)
   (defun turbo_mack/evil-shift-left-visual ()
     "Move selected block to left."
 
