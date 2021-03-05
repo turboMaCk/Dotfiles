@@ -41,18 +41,6 @@ This is to setup user. *This is probably first think you want to change in your 
 
 * Core configuration
 
-Setup environment and exec path. This is using ~exec-path-from-shell~ package.
-
-These are one of the most important settings for Emacs' core and GUI.
-
-Start Emacs server if it's not running. This allows you to use ~emacsclient [filename]~ to attach to already running Emacs.
-
-#+BEGIN_SRC emacs-lisp
-  (require 'server)
-  (unless (server-running-p)
-    (server-start))
-#+END_SRC
-
 This stops emacs adding customised settings to init.el.
 I try to avoid using customize anyway, preferring programmatic control of variables.
 Creating it as a temporary file effectively disables it (i.e. any changes are session local).
@@ -98,12 +86,6 @@ Setup fringes (spaces around windows).
   (setq-default truncate-lines t)
   (setq line-spacing 3)
   (set-face-attribute 'default nil :height 100)
-#+END_SRC
-
-Setup garbage collection to gain some extra performance.
-
-#+BEGIN_SRC emacs-lisp
-  (run-with-idle-timer (* 60 3) t #'garbage-collect)
 #+END_SRC
 
 Setup compilation.
@@ -532,13 +514,6 @@ Still writing a lot of JS daily for good and bad.
     (local-set-key (kbd "C-x C-e") 'nodejs-repl-send-last-sexp))
 
   (add-hook 'js2-mode 'turbo_mack/init-js-bindings)
-
-  ;; JSX support (REACT.js)
-  (add-to-list 'auto-mode-alist '("\\.jsx\\'" . js2-jsx-mode))
-  (add-hook 'js2-mode-hook 'flow-minor-enable-automatically)
-  (with-eval-after-load 'flycheck
-    (flycheck-add-mode 'javascript-flow 'flow-minor-mode)
-    (flycheck-add-next-checker 'javascript-flow 'javascript-eslint))
 #+END_SRC
 
 ** Typescript
@@ -984,6 +959,7 @@ This is to set some interface reflections of evil state.
 By default re-indenting blocks in evil is kind of nightmare. This will fix it:
 
 #+BEGIN_SRC emacs-lisp
+  (evil-collection-init)
   (defun turbo_mack/evil-shift-left-visual ()
     "Move selected block to left."
 
@@ -1049,7 +1025,7 @@ Magit is my favorite GIT interface of all time. This will setup Magit itself as 
 
 #+BEGIN_SRC emacs-lisp
   (require 'magit)
-  (require 'evil-magit)
+  (evil-collection-magit-init)
 #+END_SRC
 
 Bind to C-g
