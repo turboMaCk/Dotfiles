@@ -495,7 +495,6 @@ Still writing a lot of JS daily for good and bad.
 
 #+BEGIN_SRC emacs-lisp :results none
   (require 'js2-mode)
-  (require 'nvm)
   (require 'npm-mode)
   (require 'nodejs-repl)
   (require 'skewer-mode)
@@ -725,7 +724,7 @@ Disabling stack based flycheck checker:
 Another ML like language
 
 #+BEGIN_SRC emacs-lisp
-(add-hook 'purescript-mode-hook #'haskell-indentation-mode)
+(add-hook 'purescript-mode-hook #'purescript-indent-mode)
 #+END_SRC
 
 ** Ruby
@@ -902,7 +901,9 @@ Emacs way of doing things by default rather then bending every key map I can.
   (setq evil-magic 'very-magic)
   (setq evil-want-C-u-scroll t)
   (setq evil-undo-system 'undo-fu)
+  (setq evil-want-keybinding nil)
 
+  (require 'evil)
   (evil-mode t)
 
 
@@ -1024,7 +1025,7 @@ Magit is my favorite GIT interface of all time. This will setup Magit itself as 
 
 #+BEGIN_SRC emacs-lisp
   (require 'magit)
-  (evil-collection-magit-init)
+  (evil-collection-init 'magit)
 #+END_SRC
 
 Bind to C-g
@@ -1145,89 +1146,10 @@ Setup languages support for literate programming capabilities.
   ;;(setq org-confirm-babel-evaluate nil)
 #+END_SRC
 
-** ORG-JIRA
-
-Setup JIRA project management tool integration.
-
-Documentation of package is located on [[https://github.com/ahungry/org-jira/tree/51a1b2248ec421aecdd38aaf5c2876a036b08bb7][github]]
-
-*** GlobalWebIndex settings
-
-#+BEGIN_SRC emacs-lisp :exports none
-  (setq jiralib-url "https://globalwebindex.atlassian.net")
-#+END_SRC
-
 #+BEGIN_NAME QUOTE
 If you don't want to enter your credentials (login/password) each time you go to connect, you can add to your ~/.authinfo.gpg or ~/.authinfo file, in a format similar to:
 ~machine your-site.atlassian.net login you@example.com password yourPassword port 80~
 #+END_NAME
-
-* Wanderlust
-
-The email client of my choice.
-
-Quick configuration.
-
-#+BEGIN_SRC emacs-lisp :results none
-  (autoload 'wl "wl" "Wanderlust" t)
-#+END_SRC
-
-* Twitter
-
-Configuration of [[https://github.com/hayamiz/twittering-mode][twittering-mode]].
-
-#+BEGIN_SRC emacs-lisp :results none
-  (setq twittering-icon-mode t)
-#+END_SRC
-
-* Slack
-Setup [[https://github.com/yuya373/emacs-slack][emacs-slack]] for slack integration.
-#+BEGIN_SRC emacs-lisp :results none
-  (require 'slack)
-  (setq slack-buffer-emojify t)
-  (setq slack-prefer-current-team t)
-
-  ;; This are example binding from package README
-  ;; I'll probably change those later
-  (evil-define-key 'normal slack-info-mode-map
-    ",u" 'slack-room-update-messages)
-  (evil-define-key 'normal slack-mode-map
-    ",c" 'slack-buffer-kill
-    ",ra" 'slack-message-add-reaction
-    ",rr" 'slack-message-remove-reaction
-    ",rs" 'slack-message-show-reaction-users
-    ",pl" 'slack-room-pins-list
-    ",pa" 'slack-message-pins-add
-    ",pr" 'slack-message-pins-remove
-    ",mm" 'slack-message-write-another-buffer
-    ",me" 'slack-message-edit
-    ",md" 'slack-message-delete
-    ",u" 'slack-room-update-messages
-    ",2" 'slack-message-embed-mention
-    ",3" 'slack-message-embed-channel
-    "\C-n" 'slack-buffer-goto-next-message
-    "\C-p" 'slack-buffer-goto-prev-message)
-  (evil-define-key 'normal slack-edit-message-mode-map
-    ",k" 'slack-message-cancel-edit
-    ",s" 'slack-message-send-from-buffer
-    ",2" 'slack-message-embed-mention)
-#+END_SRC
-
-** Slack Organizations
-
-*** GlobalWebIndex
-
-#+BEGIN_SRC emacs-lisp :results none
-  (slack-register-team
-   :name "globalwebindex"
-   :default t
-   :client-id ""
-   :client-secret ""
-   :token turbo_mack/secret/slack_token_gwi
-   :subscribed-channels '(team-platform platform-engineering engineering)
-   :full-and-display-names t
-   )
-#+END_SRC
 
 * Bindings
 
