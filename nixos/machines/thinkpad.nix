@@ -142,16 +142,6 @@
     # check https://www.x.org/releases/X11R7.6/doc/xorg-docs/input/XKB-Config.html
     xkbOptions = "ctrl:nocaps,caps:none,lv3:rwin_switch,grp:alt_space_toggle,altwin:swap_alt_win";
 
-    # screen locking
-    xautolock = {
-      enable = true;
-      locker = "${pkgs.xlockmore}/bin/xlock -mode ant";
-      extraOptions = [ "-detectsleep" ];
-      killer = "${pkgs.systemd}/bin/systemctl suspend";
-      killtime = 10; # 10 is minimal value
-      time = 5;
-    };
-
     # Enable touchpad support.
     libinput = {
       enable = true;
@@ -163,6 +153,16 @@
         clickMethod = "clickfinger";
       };
     };
+  };
+
+  # Don't sleep
+  services.xserver = {
+    serverFlagsSection = ''
+      Option "BlankTime" "0"
+      Option "StandbyTime" "0"
+      Option "SuspendTime" "0"
+      Option "OffTime" "0"
+    '';
   };
 
   services.logind.lidSwitch = "suspend";
