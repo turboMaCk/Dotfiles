@@ -906,6 +906,8 @@ Emacs way of doing things by default rather then bending every key map I can.
   (require 'evil)
   (evil-mode t)
 
+  ;; dirred mode
+  (evil-collection-dired-setup)
 
   (defun turbo_mack/map-basic-evil-commands ()
     "Setup W/Q commands."
