@@ -31,4 +31,6 @@ self: super:
       sha256 = "0d5z6cbj9dg3hjw84pyg75f8dwdvi2mqxb9ic8dfqzk064ssiv7y";
     };
   };
+
+  renoise = super.callPackage ../pkgs/renoise.nix {};
 }
