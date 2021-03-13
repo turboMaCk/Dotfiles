@@ -19,6 +19,7 @@
       "wheel"
       "disk"
       "audio"
+      "jackaudio"
       "video"
       "networkmanager"
       "vboxusers"

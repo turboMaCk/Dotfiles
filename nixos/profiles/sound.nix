@@ -1,10 +1,13 @@
 { config, pkgs, ... }:
 {
-  hardware.pulseaudio = {
-    # Sound config
+  services.pipewire = {
     enable = true;
-    package = pkgs.pulseaudioFull;
-    extraModules = [ pkgs.pulseaudio-modules-bt ];
-    support32Bit = true;
+    alsa = {
+      enable = true;
+      support32Bit = true;
+    };
+    pulse.enable = true;
   };
+
+  hardware.pulseaudio.enable = false;
 }
