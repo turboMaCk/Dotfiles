@@ -18,19 +18,17 @@ self: super:
       inherit (darwin.apple_sdk.frameworks) AppKit GSS ImageIO;
     };
 
-  fourmolu = with self.haskell.lib; justStaticExecutables
-    (overrideCabal self.haskellPackages.fourmolu (old: {
-      version = "0.3.0.0";
-      src = fetchTarball https://github.com/parsonsmatt/fourmolu/archive/45a8478b8e6ba48b4ce228d4aaee3cb9f5aa08f6.tar.gz;
-    }));
+  fourmolu = with self.haskell.lib; justStaticExecutables self.haskellPackages.fourmolu;
 
-  discord = super.discord.override rec {
-    version = "0.0.13";
-    src = self.fetchurl {
-      url = "https://dl.discordapp.net/apps/linux/${version}/discord-${version}.tar.gz";
-      sha256 = "0d5z6cbj9dg3hjw84pyg75f8dwdvi2mqxb9ic8dfqzk064ssiv7y";
-    };
-  };
+  # magnetophonDSP = super.magnetophonDSP // {
+  #   MBdistortion = super.magnetophonDSP.MBdistortion.override {
+  #     version = "1.1.1";
+  #     src = self.fetchurl {
+  #       url = "https://github.com/turboMaCk/MBdistortion/archive/10e35084b88c559f1b63760cf40fd5ef5a6745a5.tar.gz";
+  #       sha256 = "0z3p20r2mrcg58bff1b56gf6lsdgxx49g3i8r430d8jyqhim5r63";
+  #     };
+  #   };
+  # };
 
   renoise = super.callPackage ../pkgs/renoise.nix {
     releasePath = /home/marek/.local/share/rns_331_linux_x86_64.tar.gz;
