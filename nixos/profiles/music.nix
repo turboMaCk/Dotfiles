@@ -14,6 +14,7 @@
     zynaddsubfx
     wine
     helm
+    tall-reverb
     magnetophonDSP.CharacterCompressor
     magnetophonDSP.CompBus
     magnetophonDSP.ConstantDetuneChorus

@@ -33,4 +33,6 @@ self: super:
   renoise = super.callPackage ../pkgs/renoise.nix {
     releasePath = /home/marek/.local/share/rns_331_linux_x86_64.tar.gz;
   };
+
+  tall-reverb = super.callPackage ../pkgs/tal-reverb.nix {};
 }
