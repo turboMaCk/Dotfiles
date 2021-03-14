@@ -23,6 +23,7 @@
       ../profiles/holmusk.nix
       ../profiles/vpn.nix
       ../profiles/samba.nix
+      ../profiles/music.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
