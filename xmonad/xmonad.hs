@@ -306,11 +306,11 @@ myManageHook =
         [ className =? "stalonetray" --> doIgnore
         , className =? ".obs-wrapped" --> doFloat
         , className =? "Peek" --> doFloat
-        , className =? "slack" --> doFloat -- not working properly it seems
         , className =? "discord" --> doFloat
         , className =? "Gimp" --> doFloat
         , className =? "Keybase" --> doFloat
         , className =? "Calculator" --> doFloat
+        , className =? "QjackCtl" --> doFloat
         , Docks.manageDocks
         , isFullscreen --> doF W.focusDown <+> doFullFloat
         ]
