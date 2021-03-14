@@ -35,4 +35,5 @@ self: super:
   };
 
   tall-reverb = super.callPackage ../pkgs/tal-reverb.nix {};
+  zebralette-mini-zebra = super.callPackage ../pkgs/mini-zebra.nix {};
 }

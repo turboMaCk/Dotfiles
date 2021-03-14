@@ -4,7 +4,9 @@
     ./desktop-base.nix
   ];
 
-  environment.systemPackages = with pkgs; [];
+  environment.systemPackages = with pkgs; [
+    kate
+  ];
 
   # X11 settings
   services.xserver = {

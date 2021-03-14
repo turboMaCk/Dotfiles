@@ -14,7 +14,6 @@
     zynaddsubfx
     wine
     helm
-    tall-reverb
     magnetophonDSP.CharacterCompressor
     magnetophonDSP.CompBus
     magnetophonDSP.ConstantDetuneChorus
@@ -24,6 +23,10 @@
     magnetophonDSP.VoiceOfFaust
     magnetophonDSP.faustCompressors
     magnetophonDSP.shelfMultiBand
+
+    # Defined in overlay
+    tall-reverb
+    zebralette-mini-zebra
   ];
 
   services.pipewire.jack.enable = true;
