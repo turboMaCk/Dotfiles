@@ -11,15 +11,13 @@ stdenv.mkDerivation {
     mkdir -p $out/lib/vst
     cp -r Zebra2/* $out/lib
 
-    ls -la $out/lib
-
-    ln -sf $out/lib/Zebra2.64.so $out/lib/vst/Zebra2.64.so
+    ln -f $out/lib/Zebra2.64.so $out/lib/vst/Zebra2.64.so
   '';
 
   postFixup = ''
     patchelf \
       --set-rpath ${expat}/lib:${libxcb}/lib:${libuuid.out}/lib \
-      $out/lib/Zebra2.64.so
+      $out/lib/vst/Zebra2.64.so
 
     patchelf \
       --set-interpreter $(cat $NIX_CC/nix-support/dynamic-linker) \
