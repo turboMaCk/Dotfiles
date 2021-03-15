@@ -7,13 +7,18 @@
     ardour
 
     # DSP plugins
+
+    # utils
     carla
+    wine
+
+    # collections
     calf
     tap-plugins
     caps
     zynaddsubfx
-    wine
-    helm
+    artyFX
+    distrho
     magnetophonDSP.CharacterCompressor
     magnetophonDSP.CompBus
     magnetophonDSP.ConstantDetuneChorus
@@ -24,9 +29,20 @@
     magnetophonDSP.faustCompressors
     magnetophonDSP.shelfMultiBand
 
+    # synths
+    helm
+    tunefish
+    surge
+    xsynth_dssi
+    sorcer
+
+    # eq
+    eq10q
+
     # Defined in overlay
     tall-reverb
     zebralette-mini-zebra
+    vcv-rack
   ];
 
   services.pipewire.jack.enable = true;

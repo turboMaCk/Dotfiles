@@ -20,7 +20,6 @@
     # Themes
     xorg.xcursorthemes
     lxappearance
-    pavucontrol
 
     # KDE utils
     gwenview

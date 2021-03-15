@@ -1,7 +1,7 @@
 { stdenv, unzip, alsaLib, llvmPackages, freetype }:
 
 stdenv.mkDerivation {
-  pname = "TAL-Reverb";
+  pname = "TAL-Reverb-4";
   version = "4.64";
   src = builtins.fetchurl "https://tal-software.com/downloads/plugins/TAL-Reverb-4_64_linux.zip";
   nativeBuildInputs = [ unzip ];

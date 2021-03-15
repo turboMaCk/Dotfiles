@@ -7,7 +7,7 @@
     [ <nixos-hardware/common/pc/ssd>
       ../nixpkgs.nix
       ../profiles/base.nix
-      ../profiles/sound.nix
+      ../profiles/sound-traditional.nix
       ../profiles/kde.nix
       ../users/marek.nix
       ../users/nikola.nix
