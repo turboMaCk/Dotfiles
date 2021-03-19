@@ -30,6 +30,7 @@
     magnetophonDSP.shelfMultiBand
 
     # synths
+    surge
     helm
     tunefish
     surge

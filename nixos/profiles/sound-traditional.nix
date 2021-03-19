@@ -4,15 +4,16 @@
     pavucontrol
     jack_capture
     qjackctl
+    jack2Full
   ];
 
-  services.jack = {
-    jackd = {
-      enable = true;
-      extraOptions = [ "-dalsa" "--device" "hw:1,0" ];
-      package = pkgs.jack2Full;
-    };
-  };
+  # services.jack = {
+  #   jackd = {
+  #     enable = true;
+  #     extraOptions = [ "-dalsa" "--device" "hw:1,0" ];
+  #     package = pkgs.jack2Full;
+  #   };
+  # };
 
   hardware.pulseaudio = {
     enable = true;
