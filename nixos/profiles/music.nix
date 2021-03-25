@@ -10,7 +10,8 @@
 
     # utils
     carla
-    wine
+    ffmpeg
+    flac
 
     # collections
     calf

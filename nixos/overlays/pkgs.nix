@@ -18,17 +18,7 @@ self: super:
       inherit (darwin.apple_sdk.frameworks) AppKit GSS ImageIO;
     };
 
-  fourmolu = with self.haskell.lib; justStaticExecutables self.haskellPackages.fourmolu;
-
-  # magnetophonDSP = super.magnetophonDSP // {
-  #   MBdistortion = super.magnetophonDSP.MBdistortion.override {
-  #     version = "1.1.1";
-  #     src = self.fetchurl {
-  #       url = "https://github.com/turboMaCk/MBdistortion/archive/10e35084b88c559f1b63760cf40fd5ef5a6745a5.tar.gz";
-  #       sha256 = "0z3p20r2mrcg58bff1b56gf6lsdgxx49g3i8r430d8jyqhim5r63";
-  #     };
-  #   };
-  # };
+  fourmolu = with self.haskell.lib; justStaticExecutables (doJailbreak self.haskellPackages.fourmolu);
 
   renoise = super.callPackage ../pkgs/renoise.nix {
     releasePath = /home/marek/.local/share/rns_331_linux_x86_64.tar.gz;

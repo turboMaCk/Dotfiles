@@ -121,6 +121,7 @@
       ExecStart = "${pkgs.mattermost-desktop}/bin/mattermost-desktop --hidden";
       ExecStop = "${pkgs.procps}/bin/pkill mattermost-desktop";
       Restart = "on-failure";
+      TimeoutStartSec = "3600";
     };
   };
 }

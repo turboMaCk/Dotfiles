@@ -5,7 +5,8 @@
 { pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    spago
+    # needs to be updated
+    # spago
     purescript
   ];
 }
