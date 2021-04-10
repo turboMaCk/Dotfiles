@@ -310,7 +310,7 @@ This loads my customized version of twilight theme.
 
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-  (load-theme 'fogus t)
+  ;(load-theme 'fogus t)
 #+END_SRC
 
 Making sense of love to all the sweet things on internet.
@@ -500,8 +500,6 @@ Still writing a lot of JS daily for good and bad.
   (require 'skewer-mode)
   (require 'ember-mode)
   (require 'handlebars-mode)
-  (require 'flow-minor-mode)
-  (require 'flycheck-flow)
 
   ;; enable flycheck
   (add-hook 'js2-mode-hook
