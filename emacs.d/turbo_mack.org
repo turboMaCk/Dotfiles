@@ -310,7 +310,7 @@ This loads my customized version of twilight theme.
 
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-  ;(load-theme 'fogus t)
+  (load-theme 'moe-dark t)
 #+END_SRC
 
 Making sense of love to all the sweet things on internet.
@@ -348,7 +348,7 @@ Setup comments style to be more visible
   ;; pink comments
   (set-face-foreground 'font-lock-comment-face "light pink")
   ;; black bg behind current line
-  (set-face-background 'hl-line "#000000")
+  (set-face-background 'hl-line "#222222")
 #+END_SRC
 
 * Toggle Transparency
