@@ -58,6 +58,11 @@ in
     networkmanager_strongswan
   ];
 
+  # !!! Insecure packages
+  nixpkgs.config.permittedInsecurePackages = [
+    "python2.7-Pillow-6.2.2"
+  ];
+
   # Allow unfree packages :'(
   nixpkgs.config.allowUnfree = true;
 
