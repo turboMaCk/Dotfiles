@@ -13,11 +13,18 @@ To be honest while re-evaluating this I actually think that my original solution
 API directly - was the best of these. Anyway I believe Cask will be rock solid solution which will
 scale for years.
 
+* Disable syntax highlighting
+because I like to make life harder when ever I have an opportunity to do so
+
+#+BEGIN_SRC emacs-lisp
+  (global-font-lock-mode 0)
+#+END_SRC
+
 * Secrets
 
 Some settings used within this file needs some secret variables to be set.
 For this you need to create ~secrets.el~ within your ~.emacs.d/~ directory.
-There is example file you can copy:
+There is example file you can copy
 
 #+BEGIN_SRC sh
   cp ~/emacs.d/secrets.example.el ~/emacs.d/secrets.el
@@ -618,7 +625,7 @@ Automatically run LSP server (don't want to for now)
    '(haskell-process-suggest-remove-import-lines t)
    '(haskell-process-auto-import-loaded-modules t)
    '(haskell-tags-on-save nil)
-   '(haskell-process-type 'cabal-new-repl)
+   ;;'(haskell-process-type 'cabal-new-repl)
    '(haskell-process-log t)
    '(ormolu-process-path "fourmolu"))
 
@@ -699,7 +706,7 @@ Haskell sandbox wrapper
 Disabling stack based flycheck checker:
 
 #+BEGIN_SRC emacs-lisp :results none
-  (add-to-list 'flycheck-disabled-checkers 'haskell-stack-ghc)
+  ;;(add-to-list 'flycheck-disabled-checkers 'haskell-stack-ghc)
 #+END_SRC
 
 *** TODO Improve performance of auto complete
