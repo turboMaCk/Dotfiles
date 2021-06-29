@@ -4,7 +4,7 @@
     renoise
     qjackctl
     jack2
-    ardour
+    # ardour
 
     # DSP plugins
 
