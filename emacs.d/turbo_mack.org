@@ -13,13 +13,6 @@ To be honest while re-evaluating this I actually think that my original solution
 API directly - was the best of these. Anyway I believe Cask will be rock solid solution which will
 scale for years.
 
-* Disable syntax highlighting
-because I like to make life harder when ever I have an opportunity to do so
-
-#+BEGIN_SRC emacs-lisp
-  (global-font-lock-mode 0)
-#+END_SRC
-
 * Secrets
 
 Some settings used within this file needs some secret variables to be set.
