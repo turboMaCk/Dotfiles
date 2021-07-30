@@ -113,15 +113,15 @@
   };
 
   # matter-most service
-  systemd.user.services.mattermost-desktop = {
-    description = "Mattermost desktop";
-    wantedBy = [ "graphical-session.target" ];
-    serviceConfig = {
-      Type = "exec";
-      ExecStart = "${pkgs.mattermost-desktop}/bin/mattermost-desktop --hidden";
-      ExecStop = "${pkgs.procps}/bin/pkill mattermost-desktop";
-      Restart = "on-failure";
-      TimeoutStartSec = "3600";
-    };
-  };
+  # systemd.user.services.mattermost-desktop = {
+  #   description = "Mattermost desktop";
+  #   wantedBy = [ "graphical-session.target" ];
+  #   serviceConfig = {
+  #     Type = "exec";
+  #     ExecStart = "${pkgs.mattermost-desktop}/bin/mattermost-desktop --hidden";
+  #     ExecStop = "${pkgs.procps}/bin/pkill mattermost-desktop";
+  #     Restart = "on-failure";
+  #     TimeoutStartSec = "3600";
+  #   };
+  # };
 }
