@@ -57,7 +57,7 @@
     '';
 
     # Setup kernel
-    kernelPackages = pkgs.linuxPackages_5_10;
+    # kernelPackages = pkgs.linuxPackages_5_10;
   };
 
   # virtualbox is not compatible with the 5.10 kernel

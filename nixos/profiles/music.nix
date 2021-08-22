@@ -43,7 +43,7 @@
 
     # Defined in overlay
     tall-reverb
-    zebralette-mini-zebra
+    # zebralette-mini-zebra
     vcv-rack
   ];
 
