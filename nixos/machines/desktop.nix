@@ -8,7 +8,8 @@
       ../nixpkgs.nix
       ../profiles/base.nix
       ../profiles/sound-traditional.nix
-      ../profiles/kde.nix
+      # ../profiles/kde.nix
+      ../profiles/xmonad.nix
       ../users/marek.nix
       ../users/nikola.nix
       ../profiles/virtualization.nix
