@@ -765,13 +765,13 @@ brew install rbenv
 ** Markdown
     When I can't use org I go for the markdown.
 
-#+BEGIN_SRC emacs-lisp
-  (require 'markdown-mode+)
+#+BkGIN_SRC emacs-lisp
+  ;;(require 'markdown-mode+)
 
   ;; Grammar niceness
-  (add-hook 'markdown-mode
-            (lambda ()
-              (writegood-mode)))
+  ;;(add-hook 'markdown-mode
+            ;;(lambda ()
+              ;;(writegood-mode)))
 #+END_SRC
 
 *** TODO Spell checking
