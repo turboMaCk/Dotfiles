@@ -310,7 +310,7 @@ This loads my customized version of twilight theme.
 
 #+BEGIN_SRC emacs-lisp
   (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-  (load-theme 'moe-dark t)
+  (load-theme 'wombat t)
 #+END_SRC
 
 Making sense of love to all the sweet things on internet.
