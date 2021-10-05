@@ -57,7 +57,6 @@ Plugin 'godlygeek/tabular'
 Plugin 'majutsushi/tagbar'
 
 " Snippets
-Plugin 'garbas/vim-snipmate'
 Plugin 'honza/vim-snippets'
 " Source support_function.vim to support vim-snippets.
 if filereadable(expand("~/.vim/bundle/vim-snippets/snippets/support_functions.vim"))
