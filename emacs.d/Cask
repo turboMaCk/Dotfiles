@@ -100,6 +100,7 @@
 (depends-on "skewer-mode")
 (depends-on "smartparens")
 (depends-on "smooth-scrolling")
+(depends-on "terraform-mode")
 (depends-on "tide")
 (depends-on "tuareg")
 (depends-on "typescript-mode")

@@ -44,5 +44,11 @@ in {
     # pkgs.yubioath-desktop
     # pkgs.yubico-pam
     # pkgs.yubico-piv-tool
+
+    # deployment
+    # using manually downloaded binary to get the right version
+    # pkgs.terraform
+    pkgs.packer
+    pkgs.ssm-session-manager-plugin
   ];
 }

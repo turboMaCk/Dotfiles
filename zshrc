@@ -8,6 +8,7 @@
 
 # prezto depends on coreutils
 # This is fix for error in prompt on MacOS
+# mac specific hack for GNU coreutils
 export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 
 # Source Prezto.
@@ -16,7 +17,7 @@ if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
 fi
 
 # Vim as editor
-export EDITOR="vim"
+export EDITOR="emacsclient -t"
 
 # Emacs as visual editor
 export VISUAL="emacsclient -n -c"
@@ -41,14 +42,14 @@ function _wttr() {
   curl $url
 }
 
-# NVM
+# NVM on mac
 if which brew > /dev/null; then
   export NVM_DIR=~/.nvm
   source "$(brew --prefix nvm)/nvm.sh";
 fi
 
 # OPAM (OCaml) configuration
-# . /home/masdrek/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
+# . /home/marek/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
 
 # source aliases
 if [ -f ~/.aliases ]; then
@@ -70,10 +71,14 @@ export PATH=$PATH:$HOME/.local/bin
 export PATH=$PATH:$HOME/.npm/bin
 
 # The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/marek/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/marek/google-cloud-sdk/path.zsh.inc'; fi
+if [ -f '/Users/marek/google-cloud-sdk/path.zsh.inc' ]; then
+  source '/Users/marek/google-cloud-sdk/path.zsh.inc';
+fi
 
 # The next line enables shell command completion for gcloud.
-if [ -f '/Users/marek/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/marek/google-cloud-sdk/completion.zsh.inc'; fi
+if [ -f '/Users/marek/google-cloud-sdk/completion.zsh.inc' ]; then
+  source '/Users/marek/google-cloud-sdk/completion.zsh.inc';
+fi
 
 # Silence direnv
 # see https://github.com/direnv/direnv/issues/68
