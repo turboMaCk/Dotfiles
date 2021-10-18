@@ -15,5 +15,6 @@
         create-elm-app
         elm-xref
         elm-json
+        elm-review
     ];
 }
