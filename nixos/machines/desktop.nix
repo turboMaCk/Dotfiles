@@ -140,8 +140,8 @@
       enable = true;
       rules = {
         "chrom*|slack|discord|evolution|Firefox|brave-browser" = ''
-        None,      Up,   Button4, 8
-        None,      Down, Button5, 8
+        None,      Up,   Button4, 4
+        None,      Down, Button5, 4
         Shift_L,   Up,   Shift_L|Button4, 4
         Shift_L,   Down, Shift_L|Button5, 4
         Control_L, Up,   Control_L|Button4

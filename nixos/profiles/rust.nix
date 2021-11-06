@@ -3,6 +3,7 @@
 { environment.systemPackages = with pkgs; [
     cargo
     cargo-generate
+    cargo-web
 
     # stdenv deps
     gcc
