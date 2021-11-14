@@ -5,6 +5,10 @@
     cargo-generate
     cargo-web
 
+    # tools
+    rust-analyzer
+    clippy
+
     # stdenv deps
     gcc
     gnumake
