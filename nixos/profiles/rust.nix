@@ -4,9 +4,11 @@
     cargo
     cargo-generate
     cargo-web
+    rustup
 
     # tools
     rust-analyzer
+    rustfmt
     clippy
 
     # stdenv deps

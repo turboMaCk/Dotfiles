@@ -20,15 +20,6 @@
     zynaddsubfx
     artyFX
     distrho
-    magnetophonDSP.CharacterCompressor
-    magnetophonDSP.CompBus
-    magnetophonDSP.ConstantDetuneChorus
-    # magnetophonDSP.MBdistortion
-    magnetophonDSP.LazyLimiter
-    magnetophonDSP.RhythmDelay
-    magnetophonDSP.VoiceOfFaust
-    magnetophonDSP.faustCompressors
-    magnetophonDSP.shelfMultiBand
 
     # synths
     surge

@@ -450,6 +450,16 @@ Enable flycheck
 ;;(global-flycheck-mode t)
 #+END_SRC
 
+* LSP (language server protocol integration)
+
+Setup global LSP configuration
+
+#+BEGIN_SRC emacs-lisp
+  (setq
+   lsp-keymap-prefix "C-c l"
+   lsp-ui-doc-enable nil)
+#+END_SRC
+
 * Languages and Platforms
 
 This part of configuration handles settings for specific languages and major modes in general.
@@ -597,16 +607,6 @@ using cabal:
   cabal install -g hindent
   cabal install -g hasktags
   cabal install -g stylish-haskell
-#+END_SRC
-
-Automatically run LSP server (don't want to for now)
-
-#+BEGIN_SRC emacs-lisp :results none
-  (require 'lsp)
-  (require 'lsp-haskell)
-  ;; Hooks so haskell and literate haskell major modes trigger LSP setup
-  ;; (add-hook 'haskell-mode-hook #'lsp)
-  ;(add-hook 'haskell-literate-mode-hook #'lsp)
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp :results none
@@ -780,8 +780,8 @@ brew install rbenv
 ** Erlang
 
 #+BEGIN_SRC emacs-lisp
-  (require 'erlang)
-  (require 'erlang-start)
+  ;;(require 'erlang)
+  ;;(require 'erlang-start)
 #+END_SRC
 
 ** Elixir
@@ -1204,8 +1204,8 @@ This is exactly what this part is about.
   (define-key evil-motion-state-map (kbd "C-_") 'text-scale-decrease)
 
   "Winner mode"
-  (define-key evil-normal-state-map (kbd "C-c l") 'winner-redo)
-  (define-key evil-normal-state-map (kbd "C-c h") 'winner-undo)
+  ;;(define-key evil-normal-state-map (kbd "C-c l") 'winner-redo)
+  ;;(define-key evil-normal-state-map (kbd "C-c h") 'winner-undo)
 
   "Org mode"
   (define-key evil-normal-state-map (kbd "C-M-l") 'org-do-demote)

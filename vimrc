@@ -63,16 +63,6 @@ if filereadable(expand("~/.vim/bundle/vim-snippets/snippets/support_functions.vi
     source ~/.vim/bundle/vim-snippets/snippets/support_functions.vim
 endif
 
-" You complete me
-Plugin 'marijnh/tern_for_vim'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'SirVer/ultisnips'
-
-" Neocomplete cache
-"Plugin 'Shougo/neocomplcache'
-"Plugin 'Shougo/neosnippet'
-"Plugin 'Shougo/neosnippet-snippets'
-
 " Dash documentation tool
 Plugin 'rizzatti/dash.vim'
 
@@ -724,7 +714,3 @@ let g:syntastic_auto_loc_list = 1
 let g:elm_syntastic_show_warnings = 1
 
 let g:elm_format_autosave = 1
-let g:ycm_semantic_triggers = {
-     \ 'elm' : ['.'],
-     \}
-
