@@ -8,6 +8,7 @@
       ../nixpkgs.nix
       ../profiles/base.nix
       ../profiles/sound-traditional.nix
+      ../profiles/vulkan.nix
       # ../profiles/kde.nix
       ../profiles/xmonad.nix
       ../users/marek.nix
@@ -25,7 +26,7 @@
       ../profiles/samba.nix
       # Extra
       # ../profiles/data-science.nix
-      ../profiles/unison.nix
+      # ../profiles/unison.nix
       ../profiles/stream.nix
       ../profiles/gaming.nix
       ../profiles/admin.nix # things for booring administrative tasks
