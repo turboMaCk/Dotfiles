@@ -824,10 +824,17 @@ brew install rbenv
   (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
 #+END_SRC
 
+Key bindings specific to rust
+
+#+BEGIN_SRC emacs-lisp
+  (define-key rust-mode-map (kbd "C-c C-c") 'rustic-cargo-build)
+  (define-key rust-mode-map (kbd "C-c C-r") 'rustic-cargo-run)
+#+END_SRC
+
+** Nix
 *** TODO Improve integration
     Especially I would like to make sure integration with fly check works as expected.
 
-** Nix
 
 I'm using nix-mode to get support for nix expression files.
 However mode is not enabled for ~*.nix~ files by default.
