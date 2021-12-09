@@ -170,4 +170,5 @@
   '';
 
   networking.hosts."127.0.0.1" = [ "meadow.cdmp.local" "coach.meadow.cdmp.local" ];
+  networking.nameservers = ["1.1.1.1" "1.0.0.1"];
 }
