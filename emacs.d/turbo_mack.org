@@ -345,8 +345,8 @@ Theme agnostic UI settings
 Setup comments style to be more visible
 
 #+BEGIN_SRC emacs-lisp :results none
-  ;; pink comments
-  (set-face-foreground 'font-lock-comment-face "light pink")
+  ;; purple comments
+  (set-face-foreground 'font-lock-comment-face "#B193A6")
   ;; dark bg behind current line
   (set-face-background 'hl-line "#111111")
 #+END_SRC
