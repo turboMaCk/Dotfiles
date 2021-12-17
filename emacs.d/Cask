@@ -10,6 +10,7 @@
 (depends-on "cmake-ide")
 (depends-on "cmake-mode")
 (depends-on "color-identifiers-mode")
+(depends-on "color-theme-sanityinc-tomorrow")
 (depends-on "company-ghci")
 (depends-on "company-rtags")
 (depends-on "dhall-mode")
