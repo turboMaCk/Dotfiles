@@ -73,6 +73,7 @@ Show Line numbers in programming mode.
 
 #+BEGIN_SRC emacs-lisp
   (add-hook 'prog-mode-hook 'linum-mode)
+  (add-hook 'conf-toml-mode-hook 'linum-mode)
 #+END_SRC
 
 Setup fringes (spaces around windows).
