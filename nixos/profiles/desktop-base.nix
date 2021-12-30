@@ -16,6 +16,7 @@
     # Others
     flameshot # screeshots
     obs-studio
+    gthumb # image viewer
 
     # Themes
     xorg.xcursorthemes
