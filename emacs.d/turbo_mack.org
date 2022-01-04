@@ -105,6 +105,7 @@ Setup compilation.
 
 Setup Directories for backups etc.
 
+
 #+BEGIN_SRC emacs-lisp
   ;; Bookamrks
   (setq-default bookmark-default-file "~/.emacs.d/bookmakrs")
@@ -458,7 +459,17 @@ Setup global LSP configuration
 #+BEGIN_SRC emacs-lisp
   (setq
    lsp-keymap-prefix "C-c l"
-   lsp-ui-doc-enable nil)
+   ;; lsp-ui-doc-enable nil
+   )
+#+END_SRC
+
+* Yasnipet
+
+also used by LSP for hints
+
+#+BEGIN_SRC emacs-lisp
+(require 'yasnippet)
+(yas-global-mode 1)
 #+END_SRC
 
 * Languages and Platforms

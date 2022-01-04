@@ -59,6 +59,7 @@ import XMonad.Layout.ResizableTile
 import XMonad.Layout.SubLayouts
 import XMonad.Layout.ThreeColumns (ThreeCol (..))
 import XMonad.Layout.WindowNavigation
+import qualified XMonad.Layout.Fullscreen as F
 import qualified XMonad.Util.Brightness as Brightness
 
 -------------------------------------
@@ -96,10 +97,12 @@ myConfig =
                 <+> manageHook def
                 <+> Docks.manageDocks
                 <+> manageScratchPad
+                <+> F.fullscreenManageHook
         , handleEventHook =
             Docks.docksEventHook
                 <+> ewmhDesktopsEventHook
                 <+> fullscreenEventHook
+                <+> F.fullscreenEventHook
         , borderWidth = 4
         , startupHook = myStartupHook <+> ewmhDesktopsStartup
         , logHook = ewmhDesktopsLogHook
@@ -335,7 +338,7 @@ myLayoutHook =
         smartBorders $
             workspaceDir "/home/marek" $
                 windowNavigation $
-                    tall ||| wide ||| threeCol ||| boringAuto Full
+                    tall ||| F.fullscreenFull (boringAuto Simplest)
   where
     space = smartSpacing 5
     tall =
@@ -344,14 +347,14 @@ myLayoutHook =
                 subLayout [] Simplest $
                     boringWindows $
                         ResizableTall 1 (3 / 100) (1 / 2) []
-    wide =
-        boringAuto $
-            space $
-                Mirror $ ResizableTall 1 (2 / 100) (5 / 6) []
+    -- wide =
+    --     boringAuto $
+    --         space $
+    --             Mirror $ ResizableTall 1 (2 / 100) (5 / 6) []
 
-    threeCol =
-        Tabbed.addTabs shrinkText tabbedConf $
-            space $
-                subLayout [] Simplest $
-                    boringWindows $
-                        ThreeColMid 1 (3 / 100) (2 / 3)
+    -- threeCol =
+    --     Tabbed.addTabs shrinkText tabbedConf $
+    --         space $
+    --             subLayout [] Simplest $
+    --                 boringWindows $
+    --                     ThreeColMid 1 (3 / 100) (2 / 3)
