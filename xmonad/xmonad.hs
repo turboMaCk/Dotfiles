@@ -314,7 +314,7 @@ myManageHook =
         , className =? "Keybase" --> doFloat
         , className =? "Calculator" --> doFloat
         , className =? "QjackCtl" --> doFloat
-        , className =? "bevy-test" --> doFloat
+        , className =? "game" --> doFloat
         , Docks.manageDocks
         , isFullscreen --> doF W.focusDown <+> doFullFloat
         ]

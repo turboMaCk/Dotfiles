@@ -7,7 +7,7 @@
     [ <nixos-hardware/common/pc/ssd>
       ../nixpkgs.nix
       ../profiles/base.nix
-      ../profiles/sound-traditional.nix
+      ../profiles/sound-pipewire.nix
       ../profiles/vulkan.nix
       # ../profiles/kde.nix
       ../profiles/xmonad.nix
@@ -97,15 +97,22 @@
   # Enable sound.
   sound.enable = true;
 
+  # Force radv over amdvlk
+  environment.variables.AMD_VULKAN_ICD = "RADV";
+
   hardware = {
     # graphic card requires this (AMDGPU)
     enableRedistributableFirmware = true;
 
     opengl = {
       enable = true;
-      driSupport = true;
 
       # Vulkan
+      driSupport = true;
+      driSupport32Bit = true;
+
+      # Disabling amdclk
+      # see https://github.com/bevyengine/bevy/issues/3288#issuecomment-1004056533
       extraPackages = with pkgs; [
         amdvlk
       ];
@@ -171,4 +178,9 @@
 
   networking.hosts."127.0.0.1" = [ "meadow.cdmp.local" "coach.meadow.cdmp.local" ];
   networking.nameservers = ["1.1.1.1" "1.0.0.1"];
+
+  # Enable mitm proxy certs
+  # security.pki.certificateFiles = [
+  #   /home/marek/.mitmproxy/mitmproxy-ca.pem
+  # ];
 }

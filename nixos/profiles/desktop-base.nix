@@ -82,7 +82,7 @@
   # Emacs
   services.emacs = {
     enable = true;
-    package = pkgs.emacs27;
+    package = pkgs.emacs;
   };
 
 
