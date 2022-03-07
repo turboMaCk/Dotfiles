@@ -20,6 +20,15 @@ let
   '';
 in
 {
+  # Enable flakes
+  nix = {
+    package = pkgs.nixUnstable; # or versioned attributes like nix_2_4
+    extraOptions = ''
+      experimental-features = nix-command flakes
+    '';
+    settings.sandbox = true;
+  };
+
   environment.systemPackages = with pkgs; [
     tmux
     cask
@@ -99,6 +108,4 @@ in
     gpg-connect-agent /bye
     export SSH_AUTH_SOCK=$(gpgconf --list-dirs agent-ssh-socket)
   '';
-
-  nix.useSandbox = true;
 }

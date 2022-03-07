@@ -21,20 +21,20 @@
 
 
   # Setup binary caches
-  nix = {
-    binaryCaches = [
-      "https://hydra.iohk.io"
-      "https://cache.nixos.org/"
-      "https://nixcache.reflex-frp.org"
+  nix.settings = {
+    substituters = [
+      # "https://hydra.iohk.io"
+      # "https://cache.nixos.org/"
+      # "https://nixcache.reflex-frp.org"
       # "https://all-hies.cachix.org"
-      "https://miso-haskell.cachix.org"
+      # "https://miso-haskell.cachix.org"
     ];
-    binaryCachePublicKeys = [
-      "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
-      "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI="
-      # "all-hies.cachix.org-1:JjrzAOEUsD9ZMt8fdFbzo3jNAyEWlPAwdVuHw4RD43k="
-      "miso-haskell.cachix.org-1:6N2DooyFlZOHUfJtAx1Q09H0P5XXYzoxxQYiwn6W1e8="
-    ];
-    trustedUsers = [ "root" "marek" ];
+    # tursted-public-keys = [
+    #   "hydra.iohk.io:f/Ea+s+dFdN+3Y/G+FDgSq+a5NEWhJGzdjvKNGv0/EQ="
+    #   "ryantrinkle.com-1:JJiAKaRv9mWgpVAz8dwewnZe0AzzEAzPkagE9SP5NWI="
+    #   # "all-hies.cachix.org-1:JjrzAOEUsD9ZMt8fdFbzo3jNAyEWlPAwdVuHw4RD43k="
+    #   "miso-haskell.cachix.org-1:6N2DooyFlZOHUfJtAx1Q09H0P5XXYzoxxQYiwn6W1e8="
+    # ];
+    trusted-users = [ "root" "marek" ];
   };
 }

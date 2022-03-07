@@ -13,6 +13,6 @@
   networking.firewall.allowedUDPPorts = [ 137 138 3702 ];
 
   environment.systemPackages = [
-    pkgs.cifs_utils
+    pkgs.cifs-utils
   ];
 }

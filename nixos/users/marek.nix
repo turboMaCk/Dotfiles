@@ -39,7 +39,7 @@
         spotify
         wire-desktop
         lf
-        ag
+        silver-searcher
         vlc
         gource
         weechat
