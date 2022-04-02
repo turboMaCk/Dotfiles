@@ -1,12 +1,6 @@
 { config, pkgs, ... }:
 
 let
-  my_vim =
-    pkgs.vim_configurable.override {
-      python = pkgs.python3;
-      name = "my-vim";
-    };
-
   nix-prune-roots = pkgs.writeScriptBin "nix-prune-roots" ''
     #!/usr/bin/env bash
 
@@ -37,7 +31,7 @@ in
     nix-prune-roots
     python
     python3
-    my_vim
+    vim
     lsof
     wget
     git
