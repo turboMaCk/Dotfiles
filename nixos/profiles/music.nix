@@ -22,7 +22,7 @@
     distrho
 
     # synths
-    surge
+    #surge
     helm
     tunefish
     surge

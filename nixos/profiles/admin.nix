@@ -3,6 +3,6 @@
 {
   environment.systemPackages = with pkgs; [
     libreoffice
-    scribus
+ #   scribus
   ];
 }
