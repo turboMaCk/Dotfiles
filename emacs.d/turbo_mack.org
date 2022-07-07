@@ -308,6 +308,12 @@ Speedup tramp mode
 
 * Color Theme
 
+Setup GUI font
+
+#+BEGIN_SRC emacs-lisp
+  (add-to-list 'default-frame-alist '(font . "monospace 10"))
+#+END_SRC
+
 This loads my customized version of twilight theme.
 
 #+BEGIN_SRC emacs-lisp
