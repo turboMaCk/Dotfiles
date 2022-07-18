@@ -18,7 +18,7 @@ self: super:
       inherit (darwin.apple_sdk.frameworks) AppKit GSS ImageIO;
     };
 
-  fourmolu = with self.haskell.lib; justStaticExecutables self.haskell.packages.ghc922.fourmolu;
+  fourmolu = with self.haskell.lib; justStaticExecutables self.haskell.packages.ghc923.fourmolu;
 
   renoise = super.callPackage ../pkgs/renoise.nix {
     releasePath = /home/marek/.local/share/rns_331_linux_x86_64.tar.gz;
