@@ -18,9 +18,10 @@
   hardware.pulseaudio = {
     enable = true;
     package = pkgs.pulseaudioFull;
-    extraModules = [ pkgs.pulseaudio-modules-bt ];
     support32Bit = true;
   };
+
+  hardware.bluetooth.hsphfpd.enable = true;
 
   # NOTE: not needed with musnix which takes care of this implicitely
   security.pam.loginLimits = [

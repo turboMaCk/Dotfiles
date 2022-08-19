@@ -22,10 +22,6 @@ export PATH="/usr/bin:$PATH"
 # Mac with Home Brew specific
 export MANPATH="/usr/local/opt/coreutils/libexec/gnuman:$MANPATH"
 
-# NIX path
-source ~/.nix-profile/etc/profile.d/nix.sh
-nix-env -i nss-cacert
-
 # Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
 export PATH="$HOME/.rvm/bin:$PATH"
 
