@@ -417,7 +417,7 @@ content-background = ${color.light-blue}
 content-foreground = ${color.fg}
 content-padding = 3
 
-click-left = rofi -modi drun,run -show drun -theme "$HOME/Dotfiles/rofi/launcher.rasi" -kb-row-select "Tab" -kb-row-tab ""
+click-left = rofi -modi drun,run -show drun -theme "$HOME/Dotfiles/rofi/launcher.rasi"
 
 [module/sysmenu]
 type = custom/text

@@ -20,7 +20,7 @@ import XMonad.Hooks.EwmhDesktops (
     ewmhDesktopsEventHook,
     ewmhDesktopsLogHook,
     ewmhDesktopsStartup,
-    fullscreenEventHook,
+    ewmhFullscreen,
  )
 import qualified XMonad.Hooks.ManageDocks as Docks
 import XMonad.Hooks.ManageHelpers (doFullFloat, isFullscreen)
@@ -54,12 +54,12 @@ import Graphics.X11.ExtraTypes.XF86
 import qualified XMonad.Actions.Volume as Volume
 import XMonad.Layout.BoringWindows
 import XMonad.Layout.Decoration (shrinkText)
+import qualified XMonad.Layout.Fullscreen as F
 import XMonad.Layout.MouseResizableTile (mouseResizableTile)
 import XMonad.Layout.ResizableTile
 import XMonad.Layout.SubLayouts
 import XMonad.Layout.ThreeColumns (ThreeCol (..))
 import XMonad.Layout.WindowNavigation
-import qualified XMonad.Layout.Fullscreen as F
 import qualified XMonad.Util.Brightness as Brightness
 
 -------------------------------------
@@ -67,7 +67,7 @@ import qualified XMonad.Util.Brightness as Brightness
 -------------------------------------
 
 main :: IO ()
-main = xmonad $ ewmh $ myConfig
+main = xmonad $ Docks.docks $ ewmhFullscreen $ ewmh $ myConfig
 
 -------------------------------------
 -- Config
@@ -95,16 +95,10 @@ myConfig =
         , manageHook =
             myManageHook
                 <+> manageHook def
-                <+> Docks.manageDocks
                 <+> manageScratchPad
                 <+> F.fullscreenManageHook
-        , handleEventHook =
-            Docks.docksEventHook
-                <+> ewmhDesktopsEventHook
-                <+> fullscreenEventHook
-                <+> F.fullscreenEventHook
         , borderWidth = 4
-        , startupHook = myStartupHook <+> ewmhDesktopsStartup
+        , startupHook = myStartupHook
         , logHook = ewmhDesktopsLogHook
         }
 
@@ -166,9 +160,7 @@ myWorkspaces =
 
 rofi :: String
 rofi =
-    [r| rofi -modi drun,run -show drun -theme "$HOME/Dotfiles/rofi/launcher.rasi" \
-                 -kb-row-select "Tab" -kb-row-tab "" \
-                 |]
+    [r| rofi -modi drun,run -show drun -theme "$HOME/Dotfiles/rofi/launcher.rasi" |]
 
 myKeys conf@(XConfig{XMonad.modMask = modMasq}) =
     M.fromList $
@@ -347,14 +339,15 @@ myLayoutHook =
                 subLayout [] Simplest $
                     boringWindows $
                         ResizableTall 1 (3 / 100) (1 / 2) []
-    -- wide =
-    --     boringAuto $
-    --         space $
-    --             Mirror $ ResizableTall 1 (2 / 100) (5 / 6) []
 
-    -- threeCol =
-    --     Tabbed.addTabs shrinkText tabbedConf $
-    --         space $
-    --             subLayout [] Simplest $
-    --                 boringWindows $
-    --                     ThreeColMid 1 (3 / 100) (2 / 3)
+-- wide =
+--     boringAuto $
+--         space $
+--             Mirror $ ResizableTall 1 (2 / 100) (5 / 6) []
+
+-- threeCol =
+--     Tabbed.addTabs shrinkText tabbedConf $
+--         space $
+--             subLayout [] Simplest $
+--                 boringWindows $
+--                     ThreeColMid 1 (3 / 100) (2 / 3)
