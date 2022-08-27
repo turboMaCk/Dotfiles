@@ -17,9 +17,6 @@ import XMonad.Actions.CopyWindow (copyToAll)
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops (
     ewmh,
-    ewmhDesktopsEventHook,
-    ewmhDesktopsLogHook,
-    ewmhDesktopsStartup,
     ewmhFullscreen,
  )
 import qualified XMonad.Hooks.ManageDocks as Docks
@@ -99,7 +96,6 @@ myConfig =
                 <+> F.fullscreenManageHook
         , borderWidth = 4
         , startupHook = myStartupHook
-        , logHook = ewmhDesktopsLogHook
         }
 
 -- then define your scratchpad management separately:
