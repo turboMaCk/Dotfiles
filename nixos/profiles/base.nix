@@ -70,6 +70,7 @@ in
   nixpkgs.config.allowUnfree = true;
 
   services.xserver.layout = "us,cz";
+  services.xserver.xkbVariant = ",qwerty";
 
   # Select internationalisation properties.
   console = {

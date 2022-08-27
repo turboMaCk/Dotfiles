@@ -63,8 +63,6 @@
   # X11 settings
   services.xserver = {
     enable = true;
-    # 2d graphics acceleration
-    useGlamor = true;
 
     # Display Manager
     displayManager = {

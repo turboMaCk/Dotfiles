@@ -176,8 +176,31 @@
     ${pkgs.gnugrep}/bin/grep 'XHC.*enable' /proc/acpi/wakeup | ${pkgs.gawk}/bin/awk '{print $4}' | ${pkgs.gnused}/bin/sed -e 's/pci://g' > /sys/bus/pci/drivers/xhci_hcd/bind
   '';
 
-  networking.hosts."127.0.0.1" = [ "meadow.cdmp.local" "coach.meadow.cdmp.local" ];
+  networking.hosts."127.0.0.1" = [ "meadow.cdmp.local" "coach.meadow.cdmp.local" "neuroblu.local" ];
   networking.nameservers = ["1.1.1.1" "1.0.0.1"];
+
+  networking.nat = {
+      enable = true;
+      externalInterface = "enp5s0"; # see ifconfig for interface information
+      # # forwardPorts = [{ sourcePort = 80; destination = "127.0.0.1:3000"; proto = "tcp"; }];
+      forwardPorts = [{
+        destination = "127.0.0.1:3000";
+        proto = "tcp";
+        sourcePort = 80;
+      }];
+  };
+
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [ 80 ];
+  };
+
+  boot.kernelModules = [
+    "iptable_nat"
+    "iptable_filter"
+    "xt_nat"
+  ];
+
 
   # Enable mitm proxy certs
   # security.pki.certificateFiles = [
