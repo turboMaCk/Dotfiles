@@ -31,7 +31,7 @@ in
     nix-prune-roots
     python
     python3
-    vim
+    vim_configurable
     lsof
     wget
     git
