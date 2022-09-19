@@ -12,4 +12,8 @@
         # webpack-imagemin-plugin
         pkgconfig autoconf automake libtool nasm autogen zlib libpng
     ];
+    # Fix openssl issue in nodejs
+    # see: https://stackoverflow.com/questions/69692842/error-message-error0308010cdigital-envelope-routinesunsupported
+    # and: https://stackoverflow.com/questions/69962209/what-is-openssl-legacy-provider-in-node-js-v17
+    environment.sessionVariables.NODE_OPTIONS = "--openssl-legacy-provider";
 }
