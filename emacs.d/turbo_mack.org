@@ -287,6 +287,22 @@ those whenever I open Emacs.
 (setq default-directory "~/Projects")
 #+END_SRC
 
+** LSP recommended perfomrance settings
+
+#+BEGIN_SRC emacs-lisp
+  ;; Set limit on reading process output
+  ;; default is 4k
+  (setq read-process-output-max (* 1024 1024)) ;; 1mb
+
+  ;; The default setting is too low for lsp-mode's needs due to the fact that client/server communication generates a lot of memory/garbage.
+  (setq gc-cons-threshold 100000000)
+
+  ;; lsp-mode can be compiled in 2 modes plist and hash-table based lsp-use-plists flag.
+  ;; plists provide better performance in deserialization and also put less presure than hash-tables
+  ;; This would require export LSP_USE_PLISTS=true at the time of installation of LSP package
+  ;; TODO: Consider adding this.
+#+END_SRC
+
 * Tramp mode
 
 I'm using tramp-mode mainly to access remote machines via ssh.
