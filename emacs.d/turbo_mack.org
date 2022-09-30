@@ -476,6 +476,12 @@ Enable flycheck
 
 * LSP (language server protocol integration)
 
+Require dap's cpptools mode for debugging capabilities in Rust.
+
+#+BEGIN_SRC elmacs-list
+  (require 'dap-cpptools)
+#+END_SRC
+
 Setup global LSP configuration
 
 #+BEGIN_SRC emacs-lisp

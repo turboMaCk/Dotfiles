@@ -74,7 +74,7 @@
   # urxvtd
   services.urxvtd = {
     enable = true;
-    package = pkgs.rxvt_unicode-with-plugins;
+    package = pkgs.rxvt-unicode;
   };
 
   # Emacs

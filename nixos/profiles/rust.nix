@@ -16,7 +16,7 @@
     gcc
     gnumake
     openssl
-    pkgconfig
+    pkg-config
     binutils
   ];
 }

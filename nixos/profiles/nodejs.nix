@@ -10,7 +10,7 @@
         yarn
         nodePackages.node2nix
         # webpack-imagemin-plugin
-        pkgconfig autoconf automake libtool nasm autogen zlib libpng
+        pkg-config autoconf automake libtool nasm autogen zlib libpng
     ];
     # Fix openssl issue in nodejs
     # see: https://stackoverflow.com/questions/69692842/error-message-error0308010cdigital-envelope-routinesunsupported
