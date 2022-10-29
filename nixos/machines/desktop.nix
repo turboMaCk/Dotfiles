@@ -31,7 +31,7 @@
       ../profiles/gaming.nix
       ../profiles/admin.nix # things for booring administrative tasks
       ../profiles/rc.nix
-      #../profiles/music.nix
+      ../profiles/music.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
