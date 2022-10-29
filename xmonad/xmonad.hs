@@ -326,7 +326,7 @@ myLayoutHook =
         smartBorders $
             workspaceDir "/home/marek" $
                 windowNavigation $
-                    tall ||| noBorders (F.fullscreenFull (boringAuto Simplest))
+                    tall ||| full
   where
     space = smartSpacing 5
     tall =
@@ -335,6 +335,9 @@ myLayoutHook =
                 subLayout [] Simplest $
                     boringWindows $
                         ResizableTall 1 (3 / 100) (1 / 2) []
+
+    full =
+        noBorders $ Tabbed.addTabs shrinkText tabbedConf $ boringAuto $ F.fullscreenFull $ Simplest
 
 -- wide =
 --     boringAuto $
