@@ -72,8 +72,9 @@ because it avoids autoloads of elisp modes)
 Show Line numbers in programming mode.
 
 #+BEGIN_SRC emacs-lisp
+  (add-hook 'conf-toml-mode-hook 'prog-mode)
   (add-hook 'prog-mode-hook 'linum-mode)
-  (add-hook 'conf-toml-mode-hook 'linum-mode)
+  (add-hook 'prog-mode-hook 'column-number-mode)
 #+END_SRC
 
 Setup fringes (spaces around windows).
