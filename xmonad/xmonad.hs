@@ -22,7 +22,7 @@ import XMonad.Hooks.EwmhDesktops (
 import qualified XMonad.Hooks.ManageDocks as Docks
 import XMonad.Hooks.ManageHelpers (doFullFloat, isFullscreen)
 import qualified XMonad.Hooks.SetWMName as WMName
-import XMonad.Layout.NoBorders (smartBorders)
+import XMonad.Layout.NoBorders (noBorders, smartBorders)
 import XMonad.Layout.Simplest (Simplest (..))
 import qualified XMonad.Layout.Tabbed as Tabbed
 import XMonad.Layout.WorkspaceDir (changeDir, workspaceDir)
@@ -326,7 +326,7 @@ myLayoutHook =
         smartBorders $
             workspaceDir "/home/marek" $
                 windowNavigation $
-                    tall ||| F.fullscreenFull (boringAuto Simplest)
+                    tall ||| noBorders (F.fullscreenFull (boringAuto Simplest))
   where
     space = smartSpacing 5
     tall =
