@@ -1,10 +1,10 @@
 [user]
   name = Marek Fajkus
   email = marek.faj@gmail.com
-	singingkey = 8725E42820286274355C00F495585219BA6FE2CC
+  singingkey = 8725E42820286274355C00F495585219BA6FE2CC
 
 [init]
-	defaultBranch = main
+  defaultBranch = main
 
 [github]
   user = turbomack
@@ -23,19 +23,49 @@
 
 [core]
   excludesfile = ~/.gitignore_global
-  editor = vim
+  editor = emacsclinet -t
 
 [diff]
-  tool = vimdiff
+  tool = ediffclient
   algorithm = patience
 
 [difftool]
   prompt = false
 
+[difftool "ediff"]
+  cmd = emacs --eval \"(ediff-files \\\"$LOCAL\\\" \\\"$REMOTE\\\")\"
+
+[difftool "ediffclient"]
+  cmd = emacsclient -t --eval \"(ediff-files \\\"$LOCAL\\\" \\\"$REMOTE\\\")\"
+
 [merge]
-  tool = fugitive
+  tool = ediffclient
   conflictstyle = diff3
   ff = only
+
+[mergetool]
+  keepBackup = false
+
+[mergetool "ediff"]
+  cmd = emacs --eval \"(ediff-merge-files-with-ancestor \\\"$LOCAL\\\" \\\"$REMOTE\\\" \\\"$BASE\\\" nil \\\"$MERGED\\\")\"
+
+[mergetool "ediffclient"]
+  cmd = emacsclinet -t --eval \"(ediff-merge-files-with-ancestor \\\"$LOCAL\\\" \\\"$REMOTE\\\" \\\"$BASE\\\" nil \\\"$MERGED\\\")\"
+
+[mergetool "fugitive"]
+  cmd = vim -f -c \"Gdiff\" \"$MERGED\"
+
+[diff "sopsdiffer"]
+  textconv = sops -d
+
+[fetch]
+  prune = true
+
+[commit]
+  gpgsign = true
+
+[gpg]
+  program = gpg2
 
 [web]
   browser = firefox
@@ -104,21 +134,3 @@
   # resolve conflicts using ours version #
   ########################################
   checkout-ours = !git diff --name-only --diff-filter=U | xargs git checkout --ours
-
-[mergetool]
-  keepBackup = false
-
-[mergetool "fugitive"]
-  cmd = vim -f -c \"Gdiff\" \"$MERGED\"
-
-[diff "sopsdiffer"]
-	textconv = sops -d
-
-[fetch]
-	prune = true
-
-[commit]
-	gpgsign = true
-
-[gpg]
-	program = gpg2
