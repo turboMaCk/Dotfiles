@@ -90,6 +90,12 @@ Setup fringes (spaces around windows).
   (set-face-attribute 'default nil :height 100)
 #+END_SRC
 
+Setup clipboard:
+
+#+BEGIN_SRC emacs-lisp :results none
+  (custom-set-variables '(x-select-enable-clipboard t))
+#+END_SRC
+
 Setup compilation.
 
 #+BEGIN_SRC emacs-lisp
@@ -373,7 +379,7 @@ Setup comments style to be more visible
   ;; purple comments
   (set-face-foreground 'font-lock-comment-face "#B193A6")
   ;; dark bg behind current line
-  (set-face-background 'hl-line "#111111")
+  ;;(set-face-background 'hl-line "#111111")
 #+END_SRC
 
 * Toggle Transparency

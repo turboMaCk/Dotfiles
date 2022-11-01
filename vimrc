@@ -91,7 +91,7 @@ Plugin 'dsawardekar/ember.vim'
 Plugin 'mxw/vim-jsx'
 
 " ELM
-Plugin 'lambdatoast/elm.vim'
+Plugin 'elm-tooling/elm-vim'
 
 " JAVA
 "Plugin 'derekwyatt/vim-scala'

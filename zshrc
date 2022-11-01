@@ -20,7 +20,7 @@ fi
 export EDITOR="emacsclient -t"
 
 # Emacs as visual editor
-export VISUAL="emacsclient -n -c"
+export VISUAL="emacsclient -t"
 
 # Customize to your needs...
 
