@@ -1,6 +1,6 @@
 [submodule "prezto"]
 	path = prezto
-	url = https://github.com/sorin-ionescu/prezto.git
+	url = https://github.com/turboMaCk/prezto.git
 [submodule "prezto-Prague-Shell"]
 	path = prezto-Prague-Shell
 	url = https://github.com/turboMaCk/prezto-Prague-Shell.git
