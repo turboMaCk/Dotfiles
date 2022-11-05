@@ -5,6 +5,7 @@
 (depends-on "bash-completion")
 (depends-on "caml")
 (depends-on "cargo")
+(depends-on "centered-window")
 (depends-on "cider")
 (depends-on "clojure-mode")
 (depends-on "cmake-ide")

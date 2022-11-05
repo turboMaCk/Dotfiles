@@ -29,7 +29,6 @@
       # ../profiles/unison.nix
       ../profiles/stream.nix
       ../profiles/gaming.nix
-      ../profiles/admin.nix # things for booring administrative tasks
       ../profiles/rc.nix
       ../profiles/music.nix
     ];
