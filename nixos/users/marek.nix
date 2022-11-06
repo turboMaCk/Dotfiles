@@ -37,7 +37,6 @@
         slack
         discord
         spotify
-        wire-desktop
         lf
         silver-searcher
         vlc

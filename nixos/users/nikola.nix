@@ -29,7 +29,6 @@
         slack
         discord
         spotify
-        wire-desktop
         vlc
         gource
         aspell
