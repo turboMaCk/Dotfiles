@@ -36,7 +36,6 @@ in {
     dropbox
     sync-rwe-assets
     pkgs.awscli2
-    pkgs.teams
 
     # yubikey
     pkgs.yubikey-manager
