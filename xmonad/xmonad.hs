@@ -12,7 +12,7 @@
 -- Marek Fajkus <marek.faj@gmail.com> @turbo_MaCk                        --
 -- https://github.com/turboMaCk                                          --
 ---------------------------------------------------------------------------
-import XMonad
+import XMonad hiding (doFloat)
 import XMonad.Actions.CopyWindow (copyToAll)
 import XMonad.Hooks.DynamicLog
 import XMonad.Hooks.EwmhDesktops (
@@ -20,7 +20,7 @@ import XMonad.Hooks.EwmhDesktops (
     ewmhFullscreen,
  )
 import qualified XMonad.Hooks.ManageDocks as Docks
-import XMonad.Hooks.ManageHelpers (doFullFloat, isFullscreen)
+import XMonad.Hooks.ManageHelpers (doFullFloat, doRectFloat, isFullscreen)
 import qualified XMonad.Hooks.SetWMName as WMName
 import XMonad.Layout.NoBorders (noBorders, smartBorders)
 import XMonad.Layout.Simplest (Simplest (..))
@@ -30,11 +30,7 @@ import XMonad.Layout.WorkspaceDir (changeDir, workspaceDir)
 import XMonad.Layout.Spacing (smartSpacing)
 import XMonad.Prompt
 import qualified XMonad.StackSet as W
-import XMonad.Util.NamedScratchpad
-import XMonad.Util.Scratchpad (
-    scratchpadManageHook,
-    scratchpadSpawnActionTerminal,
- )
+import qualified XMonad.Util.NamedScratchpad as NS
 import XMonad.Util.SpawnOnce (spawnOnce)
 
 import qualified Codec.Binary.UTF8.String as UTF8
@@ -100,19 +96,14 @@ myConfig =
 
 -- then define your scratchpad management separately:
 manageScratchPad :: ManageHook
-manageScratchPad = scratchpadManageHook (W.RationalRect l t w h)
-  where
-    h = 0.3 -- terminal height, 30%
-    w = 1 -- terminal width, 100%
-    t = 1 - h -- distance from top edge, 90%
-    l = 1 - w -- distance from left edge, 0%
+manageScratchPad = NS.namedScratchpadManageHook scratchpads
 
 scratchpads =
-    [ NS "obs" "obs" (className =? ".obs-wrapped") defaultFloating
-    , NS "peek" "peek" (className =? "Peek") defaultFloating
-    , NS "slack" "slack" (className =? "slack") defaultFloating
-    , NS "discord" "Discord" (className =? "discord") defaultFloating
-    , NS "keybase-gui" "keybase-gui" (className =? "Keybase") defaultFloating
+    [ NS.NS "obs" "obs" (className =? ".obs-wrapped") doFloat
+    , NS.NS "peek" "peek" (className =? "Peek") doFloat
+    , NS.NS "slack" "slack" (className =? "slack") doFloat
+    , NS.NS "discord" "discord" (className =? "discord") doFloat
+    , NS.NS "keybase-gui" "keybase-gui" (className =? "Keybase") doFloat
     ]
   where
     role = stringProperty "WM_WINDOW_ROLE"
@@ -158,12 +149,19 @@ rofi :: String
 rofi =
     [r| rofi -modi drun,run -show drun -theme "$HOME/Dotfiles/rofi/launcher.rasi" |]
 
+floatRect :: W.RationalRect
+floatRect = W.RationalRect (1 / 4) (1 / 6) (1 / 2) (4 / 5)
+
 toggleFloat :: Window -> X ()
 toggleFloat w = windows $
     \s ->
         if M.member w (W.floating s)
             then W.sink w s
-            else (W.float w (W.RationalRect (1 / 4) (1 / 6) (1 / 2) (4 / 5)) s)
+            else (W.float w floatRect s)
+
+-- Overide Xmonad's `doFloat`
+doFloat :: ManageHook
+doFloat = doRectFloat floatRect
 
 myKeys conf@(XConfig{XMonad.modMask = modMasq}) =
     M.fromList $
