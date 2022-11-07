@@ -158,6 +158,13 @@ rofi :: String
 rofi =
     [r| rofi -modi drun,run -show drun -theme "$HOME/Dotfiles/rofi/launcher.rasi" |]
 
+toggleFloat :: Window -> X ()
+toggleFloat w = windows $
+    \s ->
+        if M.member w (W.floating s)
+            then W.sink w s
+            else (W.float w (W.RationalRect (1 / 4) (1 / 6) (1 / 2) (4 / 5)) s)
+
 myKeys conf@(XConfig{XMonad.modMask = modMasq}) =
     M.fromList $
         -- launch a terminal
@@ -204,7 +211,7 @@ myKeys conf@(XConfig{XMonad.modMask = modMasq}) =
         , -- Expand the master area
           ((modMasq, xK_l), sendMessage Expand)
         , -- Push window back into tiling
-          ((modMasq, xK_t), withFocused $ windows . W.sink)
+          ((modMasq, xK_t), withFocused toggleFloat)
         , -- Increment the number of windows in the master area
           ((modMasq, xK_comma), sendMessage (IncMasterN 1))
         , -- Deincrement the number of windows in the master area
