@@ -150,7 +150,7 @@ rofi =
     [r| rofi -modi drun,run -show drun -theme "$HOME/Dotfiles/rofi/launcher.rasi" |]
 
 floatRect :: W.RationalRect
-floatRect = W.RationalRect (1 / 4) (1 / 6) (1 / 2) (4 / 5)
+floatRect = W.RationalRect (1 / 8) (1 / 8) (3 / 4) (4 / 5)
 
 toggleFloat :: Window -> X ()
 toggleFloat w = windows $
