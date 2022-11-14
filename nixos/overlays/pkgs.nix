@@ -14,7 +14,6 @@ self: super:
   tall-reverb = super.callPackage ../pkgs/tal-reverb-4.nix {};
   tall-noisemaker = super.callPackage ../pkgs/tal-noisemaker.nix {};
   zebralette-mini-zebra = super.callPackage ../pkgs/mini-zebra.nix {};
-  cargo-generate = super.callPackage ../pkgs/cargo-generate.nix {};
   # carla = super.carla.overrideAttrs (old: {
   #   postFixup = old.postFixup + ''
   #     sed -i 's/--with-appname="$0"/--with-appname="carla"/g' $out/bin/.carla-wrapped
