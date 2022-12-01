@@ -86,4 +86,7 @@ _direnv_hook() {
   eval "$(direnv export zsh 2> >( egrep -v -e '^direnv: (loading|export|unloading)' ))"
 };
 
+# Avoid issues with `#` syntax for nix
+alias nix="noglob nix"
+
 eval "$(direnv hook zsh)"
