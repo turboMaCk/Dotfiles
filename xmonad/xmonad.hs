@@ -53,6 +53,7 @@ import XMonad.Layout.ResizableTile
 import XMonad.Layout.SubLayouts
 import XMonad.Layout.ThreeColumns (ThreeCol (..))
 import XMonad.Layout.WindowNavigation
+import qualified XMonad.ManageHook as ManageHook
 import qualified XMonad.Util.Brightness as Brightness
 
 -------------------------------------
@@ -220,11 +221,11 @@ myKeys conf@(XConfig{XMonad.modMask = modMasq}) =
         , -- Quit xmonad
           ((modMasq .|. shiftMask, xK_0), io (exitWith ExitSuccess))
         , -- Sratchpads
-          ((modMasq .|. shiftMask, xK_f), namedScratchpadAction scratchpads "slack")
-        , ((modMasq .|. shiftMask, xK_d), namedScratchpadAction scratchpads "discord")
-        , ((modMasq .|. shiftMask, xK_g), namedScratchpadAction scratchpads "peek")
-        , ((modMasq .|. shiftMask, xK_h), namedScratchpadAction scratchpads "obs")
-        , ((modMasq .|. shiftMask, xK_s), namedScratchpadAction scratchpads "keybase-gui")
+          ((modMasq .|. shiftMask, xK_f), NS.namedScratchpadAction scratchpads "slack")
+        , ((modMasq .|. shiftMask, xK_d), NS.namedScratchpadAction scratchpads "discord")
+        , ((modMasq .|. shiftMask, xK_g), NS.namedScratchpadAction scratchpads "peek")
+        , ((modMasq .|. shiftMask, xK_h), NS.namedScratchpadAction scratchpads "obs")
+        , ((modMasq .|. shiftMask, xK_s), NS.namedScratchpadAction scratchpads "keybase-gui")
         , -- Struts...
           ((modMasq, xK_b), sendMessage $ Docks.ToggleStrut Docks.U)
         , -- Restart xmonad
@@ -299,7 +300,9 @@ myStartupHook = do
 myManageHook :: Query (Endo WindowSet)
 myManageHook =
     composeAll
-        [ className =? "stalonetray" --> doIgnore
+        [ Docks.manageDocks
+        , isFullscreen --> doF W.focusDown <+> doFullFloat
+        , className =? "stalonetray" --> doIgnore
         , className =? ".obs-wrapped" --> doFloat
         , className =? "Peek" --> doFloat
         , className =? "discord" --> doFloat
@@ -307,9 +310,7 @@ myManageHook =
         , className =? "Keybase" --> doFloat
         , className =? "Calculator" --> doFloat
         , className =? "QjackCtl" --> doFloat
-        , className =? "game" --> doFloat
-        , Docks.manageDocks
-        , isFullscreen --> doF W.focusDown <+> doFullFloat
+        , className =? "game" --> ManageHook.doFloat
         ]
 
 -------------------------------
