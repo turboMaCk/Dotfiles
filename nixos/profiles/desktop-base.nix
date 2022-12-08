@@ -21,10 +21,6 @@
     # Themes
     xorg.xcursorthemes
     lxappearance
-
-    # KDE utils
-    gwenview
-    transmission-qt
   ];
 
   # Packages
