@@ -9,8 +9,8 @@
       ../profiles/base.nix
       ../profiles/sound-pipewire.nix
       ../profiles/vulkan.nix
-      # ../profiles/kde.nix
-      ../profiles/xmonad.nix
+      ../profiles/kde.nix
+      # ../profiles/xmonad.nix
       ../users/marek.nix
       ../users/nikola.nix
       ../profiles/virtualization.nix
