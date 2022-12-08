@@ -40,6 +40,7 @@
 (depends-on "flycheck-rust")
 (depends-on "flymake-go")
 (depends-on "fontawesome")
+(depends-on "gdscript-mode")
 (depends-on "glsl-mode")
 (depends-on "go")
 (depends-on "go-mode")
