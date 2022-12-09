@@ -61,9 +61,6 @@
     # kernelPackages = pkgs.linuxPackages_5_10;
   };
 
-  # virtualbox is not compatible with the 5.10 kernel
-  virtualisation.virtualbox.host.enable = false;
-
   networking = {
     hostName = "nixos-mainframe"; # Define your hostname.
   };

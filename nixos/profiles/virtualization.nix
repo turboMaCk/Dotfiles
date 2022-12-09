@@ -1,8 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  # Virtualization & Docker
-
   environment.systemPackages = with pkgs; [
     docker-compose
   ];
@@ -17,10 +15,10 @@
     };
 
     # set on the machine level for now
-    # virtualbox.host = {
-    #   enable = true;
-    #   # enableExtensionPack = true;
-    #   # enableHardening = true;
-    # };
+    virtualbox.host = {
+      enable = false;
+      enableExtensionPack = true;
+      enableHardening = true;
+    };
   };
 }

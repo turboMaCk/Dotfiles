@@ -52,10 +52,6 @@
     };
   };
 
-  # virtualbox is not compatible with the 5.10 kernel
-  # here we can enable it though
-  virtualisation.virtualbox.host.enable = true;
-
   networking = {
     hostName = "nixos"; # Define your hostname.
   };
