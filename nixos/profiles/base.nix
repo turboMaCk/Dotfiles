@@ -23,6 +23,9 @@ in
     settings.sandbox = true;
   };
 
+  # enable ntfs support via NTFS-3G
+  boot.supportedFilesystems = [ "ntfs" ];
+
   environment.systemPackages = with pkgs; [
     tmux
     cask

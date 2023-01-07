@@ -16,7 +16,7 @@
 
     # set on the machine level for now
     virtualbox.host = {
-      enable = false;
+      enable = true;
       enableExtensionPack = true;
       enableHardening = true;
     };

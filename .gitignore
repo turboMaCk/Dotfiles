@@ -10,3 +10,4 @@ emacs.d/session.*
 /emacs.d/.lsp*
 /emacs.d/tramp
 /emacs.d/eln-cache/
+/emacs.d/.cache/
