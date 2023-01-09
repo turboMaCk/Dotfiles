@@ -36,6 +36,11 @@
   # Use the systemd-boot EFI boot loader.
   boot = {
     loader = {
+      efi = {
+        canTouchEfiVariables = true;
+        # assuming /boot is the mount point of the  EFI partition in NixOS (as the installation section recommends).
+        efiSysMountPoint = "/boot";
+      };
 
       # Using grub instead of systemd-boot
       # see https://github.com/NixOS/nixpkgs/issues/97426
@@ -44,8 +49,11 @@
       grub = {
         enable = true;
         efiSupport = true;
-        efiInstallAsRemovable = true;
-        device = "/dev/nvme0n1";
+
+        # dualboot requires this
+        version = 2;
+        useOSProber = true;
+        device = "nodev";
       };
     };
 
@@ -124,6 +132,9 @@
     };
 
     cpu.amd.updateMicrocode = true;
+
+    # Enable logitech wheel controller
+    new-lg4ff.enable = true;
   };
 
   # XORG
@@ -196,7 +207,6 @@
     "iptable_filter"
     "xt_nat"
   ];
-
 
   # Enable mitm proxy certs
   # security.pki.certificateFiles = [
