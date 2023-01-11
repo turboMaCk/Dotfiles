@@ -67,6 +67,7 @@ in
   # !!! Insecure packages
   nixpkgs.config.permittedInsecurePackages = [
     "python2.7-Pillow-6.2.2"
+    "python-2.7.18.6"
   ];
 
   # Allow unfree packages :'(
