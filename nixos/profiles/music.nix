@@ -33,7 +33,7 @@
     eq10q
 
     # Defined in overlay
-    tall-reverb
+    # tall-reverb
     # zebralette-mini-zebra
     vcv-rack
   ];

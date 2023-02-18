@@ -108,24 +108,6 @@
     # graphic card requires this (AMDGPU)
     enableRedistributableFirmware = true;
 
-    opengl = {
-      enable = true;
-
-      # Vulkan
-      driSupport = true;
-      driSupport32Bit = true;
-
-      # Disabling amdclk
-      # see https://github.com/bevyengine/bevy/issues/3288#issuecomment-1004056533
-      extraPackages = with pkgs; [
-        amdvlk
-      ];
-
-      extraPackages32 = with pkgs; [
-        driversi686Linux.amdvlk
-      ];
-    };
-
     # Bluetooth
     bluetooth = {
       enable = true;

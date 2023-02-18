@@ -7,13 +7,13 @@
     vulkan-tools
   ];
 
-  hardware.opengl.driSupport = true;
-  hardware.opengl.extraPackages = with pkgs; [
-    amdvlk
-  ];
-  # For 32 bit applications
-  # Only available on unstable
-  hardware.opengl.extraPackages32 = with pkgs; [
-    driversi686Linux.amdvlk
-  ];
+  hardware.opengl = {
+    enable = true;
+    # Vulkan
+    driSupport = true;
+    driSupport32Bit = true;
+
+    # Disabling amdvlk
+    # see https://github.com/bevyengine/bevy/issues/3288#issuecomment-1004056533
+  };
 }
