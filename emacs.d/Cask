@@ -58,6 +58,7 @@
 (depends-on "ini-mode")
 (depends-on "key-chord")
 (depends-on "latex-preview-pane")
+(depends-on "litex-mode")
 (depends-on "lsp-haskell")
 (depends-on "lsp-mode")
 (depends-on "lsp-ui")
