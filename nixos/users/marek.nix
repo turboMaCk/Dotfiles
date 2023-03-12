@@ -53,6 +53,7 @@
         keybase-gui
         zoom-us
         thunderbird
+        signal-desktop
     ];
   };
 }

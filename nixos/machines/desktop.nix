@@ -185,7 +185,7 @@
 
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 80 ];
+    # allowedTCPPorts = [ 80 ];
   };
 
   boot.kernelModules = [
@@ -198,4 +198,16 @@
   # security.pki.certificateFiles = [
   #   /home/marek/.mitmproxy/mitmproxy-ca.pem
   # ];
+
+  # Configure postgres (ad hoc)
+  services.postgresql = {
+    enable = false;
+    package = pkgs.postgresql_15;
+    enableTCPIP = true;
+    authentication = pkgs.lib.mkOverride 10 ''
+      local all all trust
+      host all all 127.0.0.1/32 trust
+      host all all ::1/128 trust
+    '';
+  };
 }
