@@ -13,6 +13,11 @@
     rofi
     rofi-pass
     dunst # notifications
+
+    # gtk
+    gnome.nautilus
+    nautilus-open-any-terminal
+    font-manager
   ];
 
   # X11 settings

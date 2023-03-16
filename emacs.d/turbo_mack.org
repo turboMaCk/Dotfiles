@@ -865,9 +865,6 @@ brew install rbenv
 
   (require 'cargo)
   (add-hook 'rust-mode-hook 'cargo-minor-mode)
-
-  (require 'flycheck-rust)
-  (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
 #+END_SRC
 
 Key bindings specific to rust
