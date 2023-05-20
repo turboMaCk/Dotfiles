@@ -27,9 +27,6 @@ TAGS
 *.gz
 *.iso
 *.jar
-*.rar
-*.tar
-*.zip
 
 # vim swap files #
 ##################

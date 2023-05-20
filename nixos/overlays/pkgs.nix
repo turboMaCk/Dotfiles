@@ -5,17 +5,7 @@ rec {
   #   - https://github.com/NixOS/nixpkgs/issues/67032#issuecomment-607732200
   liblapack = super.liblapack.override { shared = true; };
 
-  customHaskellPackages = self.haskell.packages.ghc925.override {
-    overrides = self: super: {
-      fourmolu = self.callHackageDirect {
-        pkg = "fourmolu";
-        ver = "0.6.0.0";
-        sha256 = "eIXM8YENyyg3lq//EAV80IZ2vdbXtxysMro52RzKZE0=";
-      } {};
-    };
-  };
-
-  fourmolu = with self.haskell.lib; justStaticExecutables customHaskellPackages.fourmolu;
+  fourmolu = with self.haskell.lib; justStaticExecutables self.haskell.packages.ghc96.fourmolu_0_12_0_0;
 
   renoise = super.callPackage ../pkgs/renoise.nix {
     releasePath = /home/marek/.local/share/rns_331_linux_x86_64.tar.gz;

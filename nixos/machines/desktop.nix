@@ -170,7 +170,7 @@
   '';
 
   networking.hosts."127.0.0.1" = [ "meadow.cdmp.local" "coach.meadow.cdmp.local" "neuroblu.local" ];
-  networking.nameservers = ["1.1.1.1" "1.0.0.1"];
+  # networking.nameservers = ["1.1.1.1" "1.0.0.1"];
 
   networking.nat = {
       enable = true;
