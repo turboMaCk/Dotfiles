@@ -23,7 +23,7 @@
 
 [core]
   excludesfile = ~/.gitignore_global
-  editor = emacsclient -t
+  editor = vim
 
 [diff]
   tool = ediffclient

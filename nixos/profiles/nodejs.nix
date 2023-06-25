@@ -6,7 +6,7 @@
 
 {
     environment.systemPackages = with pkgs; [
-        nodejs-16_x
+        nodejs-18_x
         yarn
         nodePackages.node2nix
         # webpack-imagemin-plugin
