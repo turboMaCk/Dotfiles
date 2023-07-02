@@ -51,7 +51,6 @@
         efiSupport = true;
 
         # dualboot requires this
-        version = 2;
         useOSProber = true;
         device = "nodev";
       };
