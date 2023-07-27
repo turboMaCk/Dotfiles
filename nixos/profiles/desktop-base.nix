@@ -34,7 +34,7 @@
   fonts = {
     fontDir.enable = true;
     enableGhostscriptFonts = true;
-    fonts = with pkgs; [
+    packages = with pkgs; [
       anonymousPro
       corefonts
       dejavu_fonts
