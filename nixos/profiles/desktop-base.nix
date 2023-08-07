@@ -10,9 +10,6 @@
     firefox
     brave
 
-    # GTK utils
-    peek # screen recording to gif
-
     # Others
     flameshot # screeshots
     obs-studio

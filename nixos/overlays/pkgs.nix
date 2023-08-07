@@ -5,7 +5,7 @@ rec {
   #   - https://github.com/NixOS/nixpkgs/issues/67032#issuecomment-607732200
   liblapack = super.liblapack.override { shared = true; };
 
-  fourmolu = with self.haskell.lib; justStaticExecutables self.haskell.packages.ghc96.fourmolu;
+  fourmolu = with self.haskell.lib; justStaticExecutables self.haskellPackages.fourmolu;
 
   renoise = super.callPackage ../pkgs/renoise.nix {
     releasePath = /home/marek/.local/share/rns_331_linux_x86_64.tar.gz;
