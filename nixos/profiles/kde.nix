@@ -8,6 +8,7 @@
     kate
     gwenview
     transmission-qt
+    libsForQt5.kalk
   ];
 
   # X11 settings

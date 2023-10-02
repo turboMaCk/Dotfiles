@@ -32,7 +32,6 @@ in
     which
     nix-prefetch-scripts
     nix-prune-roots
-    python
     python3
     vim_configurable
     lsof
