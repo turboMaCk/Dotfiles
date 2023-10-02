@@ -33,6 +33,7 @@
     fontDir.enable = true;
     enableGhostscriptFonts = true;
     packages = with pkgs; [
+      joypixels
       anonymousPro
       corefonts
       dejavu_fonts
