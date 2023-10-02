@@ -1,12 +1,8 @@
 #! /usr/bin/env bash
 
-# save locations
-cwd="$(dirname "$0")"
-pwd="$(pwd)"
-
-# CD to dotfiles
-cd $cwd
-cd ..
+# Dotfiles directory
+dotfiles_dir="$(pwd)"
+backup_dir="$(pwd)/backup"
 
 # Files to backup and symlink
 dotfiles=('agrc'
@@ -25,12 +21,6 @@ dotfiles=('agrc'
           'Xmodmap'
           'xmonad')
 
-# Backup directory
-backup_dir="$(pwd)/backup"
-
-# Dotfiles directory
-dotfiles_dir="$(pwd)"
-
 # backup first
 printf "Backup old files using $backup_dir directory\n"
 
@@ -41,7 +31,7 @@ if [ -d "$backup_dir" ]; then
 else
   printf "Creating backup directory...\n"
 
-  mkdir $backup_dir
+  mkdir -p $backup_dir
 fi
 
 printf "Backup current dotfiles...\n"
@@ -78,13 +68,17 @@ ln -fs $dotfiles_dir/dunstrc $HOME/.config/dunst/dunstrc
 mkdir -p $HOME/.weechat
 ln -fs $dotfiles_dir/irc.conf $HOME/.weechat/irc.conf
 
+# kitty
+mkdir -p $HOME/.config/kitty
+ln -fs $dotfiles_dir/kitty.conf $HOME/.config/kitty/kitty.conf
+
 # symlink neovim
 # ln -fs ~/.vim ~/.nvim
 
 # symlink .emacs.d
 if [ -d "$HOME/.emacs.d" ]; then
   echo "Backing up old .emacs.d"
-  mv -f $HOME/.emacs.d/ $backup_dir
+  mv -f $HOME/.emacs.d $backup_dir
 fi
 ln -fs $dotfiles_dir/emacs.d $HOME/.emacs.d
 # Setup secrets
