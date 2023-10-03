@@ -9,7 +9,7 @@
 # Triger `vcs_info 'prompt'` before loading Prezto.
 # We want the first call to this happen before prezto will
 # `unsetopt CASE_GLOB` which will have negative effect on the performance.
-# Calling before case sensitive globing make initial start much faster.
+# Calling this before case sensitive globing makes initial start much faster.
 # see: https://github.com/nix-community/home-manager/issues/2255
 autoload -Uz vcs_info
 vcs_info 'prompt'
