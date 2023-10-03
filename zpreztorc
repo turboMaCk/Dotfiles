@@ -11,7 +11,9 @@
 #
 
 # Set case-sensitivity for completion, history lookup, etc.
-# zstyle ':prezto:*:*' case-sensitive 'yes'
+# This is sort of required to get reasonable performance
+# see: https://github.com/sorin-ionescu/prezto/issues/2057
+zstyle ':prezto:*:*' case-sensitive 'yes'
 
 # Color output (auto set to 'no' on dumb terminals).
 zstyle ':prezto:*:*' color 'yes'
@@ -28,6 +30,7 @@ zstyle ':prezto:module:gnu-utility' prefix 'g'
 
 # Set the Zsh functions to load (man zshcontrib).
 # zstyle ':prezto:load' zfunction 'zargs' 'zmv'
+#
 
 # Set the Prezto modules to load (browse modules).
 # The order matters.
@@ -39,10 +42,10 @@ zstyle ':prezto:load' pmodule \
    'directory' \
    'spectrum' \
    'utility' \
-   'completion' \
    'prompt' \
    'history-substring-search' \
    'git' \
+   'completion' \
 #  'node' \
 #  'python' \
 #  'homebrew' \

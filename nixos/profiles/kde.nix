@@ -9,6 +9,7 @@
     gwenview
     transmission-qt
     libsForQt5.kalk
+    qdirstat
   ];
 
   # X11 settings
