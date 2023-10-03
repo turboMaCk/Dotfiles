@@ -6,15 +6,24 @@
 #   Marek Fajkus <marek.faj@gmail.com>
 #
 
-# prezto depends on coreutils
-# This is fix for error in prompt on MacOS
-# mac specific hack for GNU coreutils
-#export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+# Triger `vcs_info 'prompt'` before loading Prezto.
+# We want the first call to this happen before prezto will
+# `unsetopt CASE_GLOB` which will have negative effect on the performance.
+# Calling before case sensitive globing make initial start much faster.
+# see: https://github.com/nix-community/home-manager/issues/2255
+autoload -Uz vcs_info
+vcs_info 'prompt'
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
+
+# prezto depends on coreutils
+# This is fix for error in prompt on MacOS
+# mac specific hack for GNU coreutils
+#export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
+
 
 # Vim as editor
 export EDITOR="vim"
@@ -64,3 +73,10 @@ _direnv_hook() {
 
 # eval dir env
 eval "$(direnv hook zsh)"
+
+
+# Set case-sensitivity for completion, history lookup, etc.
+# This is sort of required to get reasonable performance
+# see: https://github.com/sorin-ionescu/prezto/issues/2057
+#zstyle ':prezto:*:*' case-sensitive 'yes'
+

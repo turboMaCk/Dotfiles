@@ -13,7 +13,7 @@
 # Set case-sensitivity for completion, history lookup, etc.
 # This is sort of required to get reasonable performance
 # see: https://github.com/sorin-ionescu/prezto/issues/2057
-zstyle ':prezto:*:*' case-sensitive 'yes'
+#zstyle ':prezto:*:*' case-sensitive 'yes'
 
 # Color output (auto set to 'no' on dumb terminals).
 zstyle ':prezto:*:*' color 'yes'
