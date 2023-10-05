@@ -2,7 +2,8 @@ alias g="git"
 alias tm="tmux"
 
 # emacs
-alias em="emacsclient -cn"
+alias em="emacsclient -c"
+alias emc="emacsclient -n"
 
 # vim
 alias vi="vim"
