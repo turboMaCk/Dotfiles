@@ -10,9 +10,9 @@
 
 ;;; Code:
 ;; Custom loads
-;; (add-to-list 'load-path
-;;    (expand-file-name "plugin"
-;;                      user-emacs-directory))
+(add-to-list 'load-path
+   (expand-file-name "plugin"
+                     user-emacs-directory))
 
 ;; Disable package.el
 ;; we're going to use straight.el instead
