@@ -79,10 +79,19 @@ if [ -d "$HOME/.emacs.d" ]; then
   echo "Backing up old .emacs.d"
   mv -f $HOME/.emacs.d $backup_dir
 fi
-ln -fs $dotfiles_dir/emacs.d $HOME/.emacs.d
-# Setup secrets
-cp $HOME/.emacs.d/secrets.example.el $HOME/.emacs.d/secrets.el
 
+# Symlink emacs.d stuff
+mkdir -p $HOME/.emacs.d
+ln -fs $dotfiles_dir/emacs.d/plugin $HOME/.emacs.d/plugin
+ln -fs $dotfiles_dir/emacs.d/init.el $HOME/.emacs.d/init.el
+;; Load Config from Org file
+(defun turbo_mack/load-config ()
+  "Compile and load whole configuration."
+
+  (org-babel-load-file
+   (expand-file-name "turbo_mack.org"
+                     user-emacs-directory)))
+ln -fs $dotfiles_dir/emacs.d/turbo_mack.org $HOME/.emacs.d/turbo_mack.org
 
 # CD back
 cd $pwd

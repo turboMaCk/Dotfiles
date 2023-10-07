@@ -5,32 +5,15 @@
 This is my Emacs configuration I'm sharing with world as a literate program containing some basics explanation
 and my evaluation on experience I have white maintaining Emacs Operating System.
 
-I'm using [[https://github.com/cask/cask][Cask]] for managing my packages. In past I was using plain ~package.el~ API in elisp
-as well as [[https://github.com/jwiegley/use-package][use-package]] and custom lisp macro for dependencies management.
+I'm using [[https://github.com/radian-software/straight.el][straight.el]] for managing my packages. Defining dependencies within ~init.el~
+since I can't bother with ~use-package~ stuff.
 
 However from my experience neither of this scales well as your configuration grows.
 To be honest while re-evaluating this I actually think that my original solution - using ~package.el~
 API directly - was the best of these. Anyway I believe Cask will be rock solid solution which will
 scale for years.
 
-* Secrets
-
-Some settings used within this file needs some secret variables to be set.
-For this you need to create ~secrets.el~ within your ~.emacs.d/~ directory.
-There is example file you can copy
-
-#+BEGIN_SRC sh
-  cp ~/emacs.d/secrets.example.el ~/emacs.d/secrets.el
-#+END_SRC
-
-** Load Secrets
-
-#+BEGIN_SRC emacs-lisp :results none
- (load "~/.emacs.d/secrets.el")
-#+END_SRC
-
 * Setup User Info
-
 
 This is to setup user. *This is probably first think you want to change in your fork.*
 
@@ -469,18 +452,9 @@ Line ends sanitization.
 (add-hook 'find-file-hook 'turbo_mack/find-file-check-line-endings)
 #+END_SRC
 
-* Linting
-
-Enable flycheck
-
-#+BEGIN_SRC emacs-lisp
-(require 'flycheck)
-;;(global-flycheck-mode t)
-#+END_SRC
-
 * LSP (language server protocol integration)
 
-Require dap's cpptools mode for debugging capabilities in Rust.
+require dap's cpptools mode for debugging capabilities in Rust.
 
 #+BEGIN_SRC elmacs-list
   (require 'dap-cpptools)
@@ -819,40 +793,6 @@ brew install rbenv
 
 *** TODO Spell checking
     Turn on spell check automatically.
-
-** Erlang
-
-#+BEGIN_SRC emacs-lisp
-  ;;(require 'erlang)
-  ;;(require 'erlang-start)
-#+END_SRC
-
-** Elixir
-    Elixir is build on top of Erlang and OTP but has similar syntax to Ruby.
-    This allows us to reuse some features from ~ruby-mode~.
-
-#+BEGIN_SRC emacs-lisp
-  (require 'elixir-mode)
-  (add-to-list 'elixir-mode-hook
-               (defun auto-activate-ruby-end-mode-for-elixir-mode ()
-                 (set (make-variable-buffer-local 'ruby-end-expand-keywords-before-re)
-                      "\\(?:^\\|\\s-+\\)\\(?:do\\)")
-                 (set (make-variable-buffer-local 'ruby-end-check-statement-modifiers) nil)
-                 (ruby-end-mode +1)))
-#+END_SRC
-
-** Clojure
-    Just basic integration which
-
-#+BEGIN_SRC emacs-lisp
-  (require 'clojure-mode)
-  (require 'cider)
-  (require 'flycheck-clojure)
-#+END_SRC
-
-*** TODO Improve
-    Clojure has some super powerful integration. I will add them if needed.
-    You can follow [[http://www.braveclojure.com/basic-emacs/][this awesome article]] (or [[http://clojure-doc.org/articles/tutorials/emacs.html][this]])for more information.
 
 ** Rust
     This is just a first spike and not well-tested integration improved integration.
