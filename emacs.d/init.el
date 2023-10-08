@@ -71,7 +71,6 @@
 (straight-use-package 'evil-smartparens)
 (straight-use-package 'evil-surround)
 (straight-use-package 'evil-visualstar)
-(straight-use-package 'exec-path-from-shell)
 (straight-use-package 'fic-mode)
 (straight-use-package 'fontawesome)
 (straight-use-package 'gdscript-mode)
@@ -146,6 +145,10 @@
 (straight-use-package 'xclip)
 (straight-use-package 'yaml-mode)
 (straight-use-package 'yasnippet-snippets)
+(if (not (eq system-type 'windows-nt))
+  (straight-use-package 'exec-path-from-shell)
+  (print "Skipping exec-path-from-shell on Windows")
+)
 
 
 (setq user-full-name "Marek Fajkus"
@@ -325,7 +328,11 @@
 ;; disable anoying gui popups
 (setq use-dialog-box nil)
 
-(setq default-directory "~/Projects")
+(if (eq system-type 'windows-nt)
+    ;; use %USERPROFILE% on Windows
+    (setq default-directory (concat (getenv "USERPROFILE") "/Projects"))
+    (setq default-directory "~/Projects")
+)
 
 ;; Set limit on reading process output
 ;; default is 4k
@@ -416,7 +423,9 @@
     (set-buffer-file-coding-system 'undecided-unix)
     (set-buffer-modified-p nil)))
 
-(add-hook 'find-file-hook 'turbo_mack/find-file-check-line-endings)
+(if (not (eq system-type 'windows-nt))
+  (add-hook 'find-file-hook 'turbo_mack/find-file-check-line-endings)
+)
 
 (require 'dap-cpptools)
 
@@ -908,19 +917,24 @@
 
 ;; LINUX
 
-(when window-system
-    (exec-path-from-shell-copy-env "SSH_AGENT_PID")
-    (exec-path-from-shell-copy-env "SSH_AUTH_SOCK"))
+(if (eq system-type 'windows-nt)
+  (print "Skipping SSH on Windows")
+  (when window-system
+      (exec-path-from-shell-copy-env "SSH_AGENT_PID")
+      (exec-path-from-shell-copy-env "SSH_AUTH_SOCK"))
+)
 
 
 ;; MACOS (not used much)
 
-(exec-path-from-shell-initialize)
+(if (eq system-type 'darwin)
+  ((exec-path-from-shell-initialize)
   (when (fboundp 'osx-clip-board-mode)
             (set-face-attribute 'default nil :height 120)
             (osx-clip-board-mode t)
             (exec-path-from-shell-initialize))
-(setq mac-command-modifier 'C)
+  (setq mac-command-modifier 'C))
+)
 
 (provide 'init)
 ;;; init.el ends here
