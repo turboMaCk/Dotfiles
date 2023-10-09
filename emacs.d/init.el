@@ -3,12 +3,9 @@
 ;;; Commentary:
 ;; Main Emacs file responsible for loading all packages and configuration file.
 
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-
 
 ;;; Code:
+
 ;; Custom loads
 (add-to-list 'load-path
    (expand-file-name "plugin"
@@ -35,11 +32,107 @@
 
 (straight-use-package 'org)
 
+;; Configure  user
+(setq user-full-name "Marek Fajkus"
+  user-mail-address "marek.faj@gmail.com")
+
+;; This stops emacs adding customised settings to init.el.
+;; I try to avoid using customize anyway, preferring programmatic control of variables.
+;; Creating it as a temporary file effectively disables it (i.e. any changes are session local).
+(setq custom-file (make-temp-file "emacs-custom"))
+
+;; Disable dummy parts of GUI like scroll-bars.
+(when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
+(when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
+(when (fboundp 'menu-bar-mode)
+  (if (display-graphic-p)
+    (if (memq window-system '(mac ns))
+      (menu-bar-mode t)
+      (menu-bar-mode -1))
+    (menu-bar-mode -1)))
+
+;; Start scratch in text mode (usefull to get a faster Emacs load time
+;; because it avoids autoloads of elisp modes)
+(setq initial-major-mode 'text-mode)
+
+;; Show Line numbers in programming mode.
+(add-hook 'conf-toml-mode-hook 'prog-mode)
+(add-hook 'prog-mode-hook 'linum-mode)
+(add-hook 'prog-mode-hook 'column-number-mode)
+
+;; Setup fringes (spaces around windows).
+(when (display-graphic-p)
+  (fringe-mode 2)
+  (setq-default left-fringe-width 12)
+  (setq-default right-fringe-width 0))
+
+(setq-default truncate-lines t)
+(setq line-spacing 3)
+(set-face-attribute 'default nil :height 100)
+
+;; Setup clipboard:
+(custom-set-variables '(x-select-enable-clipboard t))
+
+;; Setup directories
+;; Bookamrks
+(setq-default bookmark-default-file "~/.emacs.d/bookmakrs")
+(setq-default bookmark-save-flag t)
+;; Backups
+(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
+(setq delete-old-versions -1)
+(setq version-control t)
+(setq vc-make-backup-files t)
+(setq auto-save-file-name-transforms '((".*" "~/.emacs.d/auto-save-list/" t)))
+;; History
+(setq-default savehist-file "~/.emacs.d/savehist")
+(savehist-mode t)
+(setq history-length t)
+(setq history-delete-duplicates t)
+(setq-default savehist-save-minibuffer-history t)
+(setq-default savehist-additional-variables
+      '(kill-ring
+        search-ring
+        regexp-search-ring))
+;; Ediff
+(setq-default ediff-split-window-function 'split-window-horizontally)
+(setq-default ediff-window-setup-function 'ediff-setup-windows-plain)
+
+;; re-builder
+(setq-default reb-re-syntax 'string) ;; fix backslash madness
+
+;; Using midnight mode to clean up old buffers periodically.
+(require 'midnight)
+(midnight-delay-set 'midnight-delay 0)
+
+;; Compilation config
+(setq-default compilation-always-kill t)
+(setq compilation-ask-about-save nil)
+
+(add-hook 'compilation-filter-hook
+    (lambda ()
+      (when (eq major-mode 'compilation-mode)
+        (require 'ansi-color)
+        (let ((inhibit-read-only t))
+    (ansi-color-applu-on-region (point-min) (point-max))))))
+
+;; Enable winner-mode if available
+(when (fboundp 'winner-mode)
+  (winner-mode t))
+
+;; Hacks before packages get loaded
+
 ;; Magit hack
 ;; see https://stackoverflow.com/questions/55986401/emacs-magit-requred-feature-isearch-was-not-provided
 (provide 'isearch)
 
-;; Dependecies
+;; Fix seq issue in magit
+;; see https://github.com/magit/magit/issues/5011#issuecomment-1732622958
+(defun seq-keep (function sequence)
+  "Apply FUNCTION to SEQUENCE and return the list of all the non-nil results."
+  (delq nil (seq-map function sequence)))
+
+;; Load all dependecies so we don't need to be afraid of moving stuff around Dependecies
+(straight-use-package 'magit)
 (straight-use-package 'helm)
 (straight-use-package 'dap-mode)
 (straight-use-package 'simple-httpd)
@@ -93,7 +186,6 @@
 (straight-use-package 'lsp-haskell)
 (straight-use-package 'lsp-mode)
 (straight-use-package 'lsp-ui)
-(straight-use-package 'magit)
 (straight-use-package 'markdown-preview-mode)
 (straight-use-package 'multiple-cursors)
 (straight-use-package 'nix-mode)
@@ -144,97 +236,20 @@
 (straight-use-package 'xclip)
 (straight-use-package 'yaml-mode)
 (straight-use-package 'yasnippet-snippets)
+;; Just for non windows systems!
 (if (not (eq system-type 'windows-nt))
   (straight-use-package 'exec-path-from-shell)
   (print "Skipping exec-path-from-shell on Windows")
 )
 
-
-(setq user-full-name "Marek Fajkus"
-  user-mail-address "marek.faj@gmail.com")
-
-(setq custom-file (make-temp-file "emacs-custom"))
-
-(when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
-(when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
-(when (fboundp 'menu-bar-mode)
-  (if (display-graphic-p)
-    (if (memq window-system '(mac ns))
-      (menu-bar-mode t)
-      (menu-bar-mode -1))
-    (menu-bar-mode -1)))
-
-
-(setq initial-major-mode 'text-mode)
-
-(add-hook 'conf-toml-mode-hook 'prog-mode)
-(add-hook 'prog-mode-hook 'linum-mode)
-(add-hook 'prog-mode-hook 'column-number-mode)
-
-(when (display-graphic-p)
-  (fringe-mode 2)
-  (setq-default left-fringe-width 12)
-  (setq-default right-fringe-width 0))
-
-(setq-default truncate-lines t)
-(setq line-spacing 3)
-(set-face-attribute 'default nil :height 100)
-
-(custom-set-variables '(x-select-enable-clipboard t))
-
-(setq-default compilation-always-kill t)
-(setq compilation-ask-about-save nil)
-
-(add-hook 'compilation-filter-hook
-  (lambda ()
-    (when (eq major-mode 'compilation-mode)
-      (require 'ansi-color)
-      (let ((inhibit-read-only t))
-        (ansi-color-applu-on-region (point-min) (point-max))))))
-
-;; Bookamrks
-(setq-default bookmark-default-file "~/.emacs.d/bookmakrs")
-(setq-default bookmark-save-flag t)
-
-;; Backups
-(setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
-(setq delete-old-versions -1)
-(setq version-control t)
-(setq vc-make-backup-files t)
-(setq auto-save-file-name-transforms '((".*" "~/.emacs.d/auto-save-list/" t)))
-
-;; History
-(setq-default savehist-file "~/.emacs.d/savehist")
-(savehist-mode t)
-(setq history-length t)
-(setq history-delete-duplicates t)
-(setq-default savehist-save-minibuffer-history t)
-(setq-default savehist-additional-variables
-  '(kill-ring
-     search-ring
-     regexp-search-ring))
-
-;; Edif
-(setq-default ediff-split-window-function 'split-window-horizontally)
-(setq-default ediff-window-setup-function 'ediff-setup-windows-plain)
-
-;; re-builder
-(setq-default reb-re-syntax 'string) ;; fix backslash madness
-
-(when (fboundp 'winner-mode)
-  (winner-mode t))
-
-(require 'midnight)
-(midnight-delay-set 'midnight-delay 0)
-
-;; saveplace
+;; Saveplace
 (require 'saveplace)
 (setq-default save-place t)
 
-;; smooth-scrolling
+;; Smooth-scrolling
 (require 'smooth-scrolling)
 
-;; recentf
+;; Recentf
 (require 'recentf)
 (recentf-mode t)
 (setq recentf-save-file "~/.emacs.d/recentf")
@@ -269,10 +284,12 @@
 ;; hl line mode
 (global-hl-line-mode t)
 
+;; Better scrolling
 (setq scroll-conservatively 9999
       scroll-preserve-screen-position t
       scroll-margin 3)
 
+;; Better names for duplicated buffers
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward
       uniquify-separator "/"
@@ -536,12 +553,6 @@
 (eval-after-load 'haskell-mode
   '(define-key haskell-mode-map [f8] 'haskell-navigate-imports))
 
-;; Fix path
-;; (let ((my-cabal-path (expand-file-name "~/.cabal/bin")))
-;;   (setenv "PATH" (concat my-cabal-path path-separator (getenv "PATH")))
-;;   (add-to-list 'exec-path my-cabal-path))
-
-
 (eval-after-load 'haskell-mode '(progn
                                   (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
                                   (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
@@ -722,18 +733,14 @@
 
 ;; MAGIT
 
-;; Fix seq issue in magit
-;; see https://github.com/magit/magit/issues/5011#issuecomment-1732622958
-(defun seq-keep (function sequence)
-  "Apply FUNCTION to SEQUENCE and return the list of all the non-nil results."
-  (delq nil (seq-map function sequence)))
-
 (evil-collection-init 'magit)
 (define-key evil-normal-state-map (kbd "C-g") 'magit-status)
 
 ;; Perspective
 
 (require 'perspective)
+(global-set-key (kbd "C-x C-b") 'persp-list-buffers)
+(customize-set-variable 'persp-mode-prefix-key (kbd "C-c M-p"))
 (persp-mode t)
 
 (require 'org)
@@ -893,21 +900,19 @@
   (define-key evil-motion-state-map (kbd "SPC") 'persp-switch)
   (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile-find-file)
 
-
-
 ;; Autocomplete
   (eval-after-load 'company
     '(progn
       (define-key company-active-map (kbd "C-j") 'company-select-next)
       (define-key company-active-map (kbd "C-k") 'company-select-previous)))
 
-;; cursors
+;; Cursors
 (require 'multiple-cursors)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
-;; term
+;; Term
 (defun turbo_mack/toggle-term()
   "Splits window and open terminal."
 

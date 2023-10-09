@@ -134,7 +134,7 @@ Setup Directories for backups etc.
     (winner-mode t))
 #+END_SRC
 
-Using midnight mode to clean up old buffers with periodically.
+Using midnight mode to clean up old buffers periodically.
 
 #+BEGIN_SRC emacs-lisp
   (require 'midnight)

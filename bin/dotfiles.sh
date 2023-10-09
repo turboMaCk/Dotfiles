@@ -74,7 +74,8 @@ ln -fs $DOTFILES_DIR/kitty.conf $HOME/.config/kitty/kitty.conf
 # symlink .emacs.d
 if [ -d "$HOME/.emacs.d" ]; then
   echo "Backing up old .emacs.d"
-  mv -f $HOME/.emacs.d $BACKUP_DIR
+  mv $HOME/.emacs.d/init.el $BACKUP_DIR/init.el
+  mv $HOME/.emacs.d/plugin $BACKUP_DIR/plugin
 fi
 
 # Symlink emacs.d stuff
