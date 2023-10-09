@@ -11,3 +11,4 @@ emacs.d/session.*
 /emacs.d/tramp
 /emacs.d/eln-cache/
 /emacs.d/.cache/
+/emacs.d/straight/

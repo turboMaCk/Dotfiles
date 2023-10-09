@@ -1,11 +1,11 @@
 #! /usr/bin/env bash
 
 # Dotfiles directory
-dotfiles_dir="$(pwd)"
-backup_dir="$(pwd)/backup"
+DOTFILES_DIR="$(pwd)"
+BACKUP_DIR="$(pwd)/backup"
 
 # Files to backup and symlink
-dotfiles=('agrc'
+DOTFILES=('agrc'
           'gemrc'
           'gitconfig'
           'gitignore_global'
@@ -21,26 +21,26 @@ dotfiles=('agrc'
           'xmonad')
 
 # backup first
-printf "Backup old files using $backup_dir directory\n"
+printf "Backup old files using $BACKUP_DIR directory\n"
 
-if [ -d "$backup_dir" ]; then
+if [ -d "$BACKUP_DIR" ]; then
   printf "Removing old backup...\n"
 
-  rm -rf $backup_dir
+  rm -rf $BACKUP_DIR
 else
   printf "Creating backup directory...\n"
 
-  mkdir -p $backup_dir
+  mkdir -p $BACKUP_DIR
 fi
 
 printf "Backup current dotfiles...\n"
 
 # loop all files
-for i in "${dotfiles[@]}"; do
+for i in "${DOTFILES[@]}"; do
 
   # check if file exist
   if [ -f "~/.$i" ]; then
-    mv ~/.$i $backup_dir/$i
+    mv ~/.$i $BACKUP_DIR/$i
   fi
 done
 
@@ -48,8 +48,8 @@ done
 printf "Creating symlinks to $pwd directory\n"
 
 # loop all
-for i in "${dotfiles[@]}"; do
-  ln -fs $dotfiles_dir/$i $HOME/.$i
+for i in "${DOTFILES[@]}"; do
+  ln -fs $DOTFILES_DIR/$i $HOME/.$i
 done
 
 # create vim directories
@@ -57,32 +57,31 @@ mkdir -p $HOME/.vim/{backup,tmp,undo,view}
 
 # polybar
 mkdir -p $HOME/.config/polybar
-ln -fs $dotfiles_dir/polybar $HOME/.config/polybar/config
+ln -fs $DOTFILES_DIR/polybar $HOME/.config/polybar/config
 
 # dunst
 mkdir -p $HOME/.config/dunst
-ln -fs $dotfiles_dir/dunstrc $HOME/.config/dunst/dunstrc
+ln -fs $DOTFILES_DIR/dunstrc $HOME/.config/dunst/dunstrc
 
 # weechat
 mkdir -p $HOME/.weechat
-ln -fs $dotfiles_dir/irc.conf $HOME/.weechat/irc.conf
+ln -fs $DOTFILES_DIR/irc.conf $HOME/.weechat/irc.conf
 
 # kitty
 mkdir -p $HOME/.config/kitty
-ln -fs $dotfiles_dir/kitty.conf $HOME/.config/kitty/kitty.conf
-
-# symlink neovim
-# ln -fs ~/.vim ~/.nvim
+ln -fs $DOTFILES_DIR/kitty.conf $HOME/.config/kitty/kitty.conf
 
 # symlink .emacs.d
 if [ -d "$HOME/.emacs.d" ]; then
   echo "Backing up old .emacs.d"
-  mv -f $HOME/.emacs.d $backup_dir
+  mv $HOME/.emacs.d/init.el $BACKUP_DIR/init.el
+  mv $HOME/.emacs.d/plugin $BACKUP_DIR/plugin
 fi
-ln -fs $dotfiles_dir/emacs.d $HOME/.emacs.d
-# Setup secrets
-cp $HOME/.emacs.d/secrets.example.el $HOME/.emacs.d/secrets.el
 
+# Symlink emacs.d stuff
+mkdir -p $HOME/.emacs.d
+ln -fs $DOTFILES_DIR/emacs.d/plugin $HOME/.emacs.d/plugin
+ln -fs $DOTFILES_DIR/emacs.d/init.el $HOME/.emacs.d/init.el
 
 # CD back
 cd $pwd
