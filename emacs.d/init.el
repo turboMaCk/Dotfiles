@@ -39,7 +39,6 @@
 ;; see https://stackoverflow.com/questions/55986401/emacs-magit-requred-feature-isearch-was-not-provided
 (provide 'isearch)
 
-
 ;; Dependecies
 (straight-use-package 'helm)
 (straight-use-package 'dap-mode)
@@ -723,7 +722,12 @@
 
 ;; MAGIT
 
-(require 'magit)
+;; Fix seq issue in magit
+;; see https://github.com/magit/magit/issues/5011#issuecomment-1732622958
+(defun seq-keep (function sequence)
+  "Apply FUNCTION to SEQUENCE and return the list of all the non-nil results."
+  (delq nil (seq-map function sequence)))
+
 (evil-collection-init 'magit)
 (define-key evil-normal-state-map (kbd "C-g") 'magit-status)
 
