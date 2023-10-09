@@ -71,9 +71,6 @@ ln -fs $dotfiles_dir/irc.conf $HOME/.weechat/irc.conf
 mkdir -p $HOME/.config/kitty
 ln -fs $dotfiles_dir/kitty.conf $HOME/.config/kitty/kitty.conf
 
-# symlink neovim
-# ln -fs ~/.vim ~/.nvim
-
 # symlink .emacs.d
 if [ -d "$HOME/.emacs.d" ]; then
   echo "Backing up old .emacs.d"
