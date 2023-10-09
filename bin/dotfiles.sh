@@ -84,14 +84,6 @@ fi
 mkdir -p $HOME/.emacs.d
 ln -fs $dotfiles_dir/emacs.d/plugin $HOME/.emacs.d/plugin
 ln -fs $dotfiles_dir/emacs.d/init.el $HOME/.emacs.d/init.el
-;; Load Config from Org file
-(defun turbo_mack/load-config ()
-  "Compile and load whole configuration."
-
-  (org-babel-load-file
-   (expand-file-name "turbo_mack.org"
-                     user-emacs-directory)))
-ln -fs $dotfiles_dir/emacs.d/turbo_mack.org $HOME/.emacs.d/turbo_mack.org
 
 # CD back
 cd $pwd
