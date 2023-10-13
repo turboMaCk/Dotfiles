@@ -1,7 +1,7 @@
 Xft.antialias: 1
 
 URxvt*termName: xterm-256color
-URxvt.font: xft:monospace:size=10
+URxvt.font: xft:monospace:size=10,xft:Noto Color Emoji
 URxvt.scrollBar: false
 
 URxvt*foreground: #f2f2f2

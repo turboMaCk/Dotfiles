@@ -115,6 +115,12 @@
         (let ((inhibit-read-only t))
     (ansi-color-applu-on-region (point-min) (point-max))))))
 
+;; Configure emoji font
+(when (member "EmojiOne Color" (font-family-list))
+  (set-fontset-font
+    t 'symbol (font-spec :family "EmojiOne Color") nil 'prepend))
+
+
 ;; Enable winner-mode if available
 (when (fboundp 'winner-mode)
   (winner-mode t))
@@ -171,7 +177,6 @@
 (straight-use-package 'go-mode)
 (straight-use-package 'graphene)
 (straight-use-package 'handlebars-mode)
-(straight-use-package 'haskell-mode)
 (straight-use-package 'helm)
 (straight-use-package 'helm-ag)
 (straight-use-package 'helm-css-scss)
@@ -183,7 +188,9 @@
 (straight-use-package 'key-chord)
 (straight-use-package 'latex-preview-pane)
 (straight-use-package 'litex-mode)
+(straight-use-package 'haskell-mode)
 (straight-use-package 'lsp-haskell)
+(straight-use-package 'ormolu)
 (straight-use-package 'lsp-mode)
 (straight-use-package 'lsp-ui)
 (straight-use-package 'markdown-preview-mode)
@@ -208,8 +215,9 @@
 (straight-use-package 'psc-ide)
 (straight-use-package 'psci)
 (straight-use-package 'purescript-mode)
+(straight-use-package 'rescript-mode)
+;; (straight-use-package 'lsp-rescript)
 (straight-use-package 'rainbow-delimiters)
-(straight-use-package 'reason-mode)
 (straight-use-package 'recentf)
 (straight-use-package 'restclient)
 (straight-use-package 'robe)
