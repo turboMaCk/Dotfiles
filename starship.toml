@@ -58,7 +58,7 @@ format = '[$version](bold blue)'
 
 [nix_shell]
 disabled = false
-impure_msg = '[nix-shell](bold red)'
-pure_msg = '[nix-shell](bold green)'
-unknown_msg = '[nix-shell](bold yellow)'
+impure_msg = '[nix](bold red)'
+pure_msg = '[nix](bold green)'
+unknown_msg = '[nix](bold yellow)'
 format = '[\[](243)$state[\]](243) '
