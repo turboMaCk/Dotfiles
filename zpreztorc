@@ -42,19 +42,9 @@ zstyle ':prezto:load' pmodule \
    'directory' \
    'spectrum' \
    'utility' \
-   'prompt' \
    'history-substring-search' \
    'git' \
    'completion' \
-#  'node' \
-#  'python' \
-#  'homebrew' \
-#  'osx' \
-#  'ruby' \
-#  'rails' \
-#  'ssh' \
-#  'tmux'
-
 
 #
 # Editor

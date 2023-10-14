@@ -6,13 +6,17 @@
 #   Marek Fajkus <marek.faj@gmail.com>
 #
 
+# Use starship instead of prezto prompt
+# if there is no nix install via: curl -sS https://starship.rs/install.sh | sh
+eval "$(starship init zsh)"
+
 # Triger `vcs_info 'prompt'` before loading Prezto.
 # We want the first call to this happen before prezto will
 # `unsetopt CASE_GLOB` which will have negative effect on the performance.
 # Calling this before case sensitive globing makes initial start much faster.
 # see: https://github.com/nix-community/home-manager/issues/2255
-autoload -Uz vcs_info
-vcs_info 'prompt'
+#autoload -Uz vcs_info
+#vcs_info 'prompt'
 
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
@@ -23,7 +27,6 @@ fi
 # This is fix for error in prompt on MacOS
 # mac specific hack for GNU coreutils
 #export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
-
 
 # Vim as editor
 export EDITOR="vim"
@@ -40,18 +43,10 @@ function _dmenv() {
   eval $(docker-machine env $1)
 };
 
-# OPAM (OCaml) configuration
-# . /home/marek/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true
-
 # Source aliases
 if [ -f ~/.aliases ]; then
     . ~/.aliases
 fi
-
-
-# GO PATH madness
-export GOPATH=$HOME/go
-export PATH=$PATH:$GOROOT/bin:$GOPATH/bin
 
 # NPM gloabl install
 # npm config set prefix $HOME/.npm
@@ -73,10 +68,3 @@ _direnv_hook() {
 
 # eval dir env
 eval "$(direnv hook zsh)"
-
-
-# Set case-sensitivity for completion, history lookup, etc.
-# This is sort of required to get reasonable performance
-# see: https://github.com/sorin-ionescu/prezto/issues/2057
-#zstyle ':prezto:*:*' case-sensitive 'yes'
-

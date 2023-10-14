@@ -73,6 +73,9 @@ in
     direnv
     openssl
 
+    # shell prompt
+    starship
+
     #vpn
     networkmanager-l2tp
     networkmanager_strongswan

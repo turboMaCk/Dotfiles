@@ -6,7 +6,6 @@ BACKUP_DIR="$(pwd)/backup"
 
 # Files to backup and symlink
 DOTFILES=('agrc'
-          'gemrc'
           'gitconfig'
           'gitignore_global'
           'tmux.conf'
@@ -14,6 +13,7 @@ DOTFILES=('agrc'
           'vimrc'
           'zpreztorc'
           'zshrc'
+          'bashrc'
           'aliases'
           'ghci'
           'Xresources'
@@ -37,11 +37,13 @@ printf "Backup current dotfiles...\n"
 
 # loop all files
 for i in "${DOTFILES[@]}"; do
-
   # check if file exist
-  if [ -f "~/.$i" ]; then
-    mv ~/.$i $BACKUP_DIR/$i
+  file="$HOME/$i"
+  if [ -f $file ]; then
+    mv $HOME/.$i $BACKUP_DIR/$i
   fi
+
+  exit 2
 done
 
 # symlink new
@@ -54,6 +56,9 @@ done
 
 # create vim directories
 mkdir -p $HOME/.vim/{backup,tmp,undo,view}
+
+# starship
+ln -fs $DOTFILES_DIR/starship.toml $HOME/.config
 
 # polybar
 mkdir -p $HOME/.config/polybar
@@ -71,11 +76,9 @@ ln -fs $DOTFILES_DIR/irc.conf $HOME/.weechat/irc.conf
 mkdir -p $HOME/.config/kitty
 ln -fs $DOTFILES_DIR/kitty.conf $HOME/.config/kitty/kitty.conf
 
-# symlink .emacs.d
-if [ -d "$HOME/.emacs.d" ]; then
-  echo "Backing up old .emacs.d"
+# check if file exist
+if [ -f "$HOME/.emacs.d/init.el" ]; then
   mv $HOME/.emacs.d/init.el $BACKUP_DIR/init.el
-  mv $HOME/.emacs.d/plugin $BACKUP_DIR/plugin
 fi
 
 # Symlink emacs.d stuff

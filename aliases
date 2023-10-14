@@ -19,6 +19,7 @@ alias dcs="docker-compose stop"
 alias documents="cd ~/Documents/"
 alias downloads="cd ~/Downloads/"
 alias dotfiles="cd ~/Dotfiles/"
+alias pro="cd ~/Projects/"
 alias desktop="cd ~/Desktop/"
 
 # tmux aliases

@@ -1,0 +1,64 @@
+"$schema" = 'https://starship.rs/config-schema.json'
+
+
+# Inserts a blank line between shell prompts
+add_newline = true
+# Use custom format
+format = '''
+[┌ ](blue)$username$hostname [λ](bold blue) $directory $git_branch$git_status $package
+[└ ](blue)$nix_shell[\$ ](blue)
+'''
+right_format = '''
+$git_metrics
+'''
+
+[username]
+style_user = 'green'
+style_root = 'red bold'
+format = '[$user]($style)'
+disabled = false
+show_always = true
+
+[hostname]
+ssh_only = false
+format = '[$ssh_symbol](bold blue)[@$hostname](yellow)'
+disabled = false
+
+[directory]
+truncation_length = 8
+truncate_to_repo = false
+style = 'blue'
+format = '[$read_only]($read_only_style)[$path]($style)'
+read_only = "r:"
+truncation_symbol = '…/'
+[directory.substitutions]
+'~/Projects/' = 'Proj:'
+'~/Dotfiles/' = 'DOT:'
+
+[git_branch]
+symbol = ''
+format = '[\[](243)[$symbol](yellow)[$branch](green)[\]](243)'
+truncation_length = 64
+truncation_symbol = '>'
+ignore_branches = []
+
+[git_status]
+style = '243'
+format = '([\[$all_status$ahead_behind\]]($style))'
+disabled = false
+
+[git_metrics]
+added_style = 'green'
+deleted_style = 'red'
+format = '[+$added]($added_style)[/](243)[-$deleted]($deleted_style) '
+disabled = false
+
+[package]
+format = '[$version](bold blue)'
+
+[nix_shell]
+disabled = false
+impure_msg = '[nix-shell](bold red)'
+pure_msg = '[nix-shell](bold green)'
+unknown_msg = '[nix-shell](bold yellow)'
+format = '[\[](243)$state[\]](243) '
