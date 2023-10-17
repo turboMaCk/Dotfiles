@@ -42,8 +42,6 @@ for i in "${DOTFILES[@]}"; do
   if [ -f $file ]; then
     mv $HOME/.$i $BACKUP_DIR/$i
   fi
-
-  exit 2
 done
 
 # symlink new
