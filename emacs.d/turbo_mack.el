@@ -1,66 +1,25 @@
-;;; Package --- Summary
+(load "~/.emacs.d/secrets.el")
 
-;;; Commentary:
-;; Main Emacs file responsible for loading all packages and configuration file.
-
-
-;;; Code:
-
-;; Custom loads
-(add-to-list 'load-path
-   (expand-file-name "plugin"
-                     user-emacs-directory))
-
-;; Disable package.el
-;; we're going to use straight.el instead
-(setq package-enable-at-startup nil)
-
-;; Load straight.el
-;; https://github.com/radian-software/straight.el
-(defvar bootstrap-version)
-(let ((bootstrap-file
-       (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-      (bootstrap-version 6))
-  (unless (file-exists-p bootstrap-file)
-    (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/radian-software/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
-      (goto-char (point-max))
-      (eval-print-last-sexp)))
-  (load bootstrap-file nil 'nomessage))
-
-(straight-use-package 'org)
-
-;; Configure  user
 (setq user-full-name "Marek Fajkus"
-  user-mail-address "marek.faj@gmail.com")
+      user-mail-address "marek.faj@gmail.com")
 
-;; This stops emacs adding customised settings to init.el.
-;; I try to avoid using customize anyway, preferring programmatic control of variables.
-;; Creating it as a temporary file effectively disables it (i.e. any changes are session local).
 (setq custom-file (make-temp-file "emacs-custom"))
 
-;; Disable dummy parts of GUI like scroll-bars.
 (when (fboundp 'tool-bar-mode) (tool-bar-mode -1))
 (when (fboundp 'scroll-bar-mode) (scroll-bar-mode -1))
 (when (fboundp 'menu-bar-mode)
   (if (display-graphic-p)
-    (if (memq window-system '(mac ns))
-      (menu-bar-mode t)
-      (menu-bar-mode -1))
+      (if (memq window-system '(mac ns))
+          (menu-bar-mode t)
+          (menu-bar-mode -1))
     (menu-bar-mode -1)))
 
-;; Start scratch in text mode (usefull to get a faster Emacs load time
-;; because it avoids autoloads of elisp modes)
 (setq initial-major-mode 'text-mode)
 
-;; Show Line numbers in programming mode.
 (add-hook 'conf-toml-mode-hook 'prog-mode)
 (add-hook 'prog-mode-hook 'linum-mode)
 (add-hook 'prog-mode-hook 'column-number-mode)
 
-;; Setup fringes (spaces around windows).
 (when (display-graphic-p)
   (fringe-mode 2)
   (setq-default left-fringe-width 12)
@@ -70,19 +29,29 @@
 (setq line-spacing 3)
 (set-face-attribute 'default nil :height 100)
 
-;; Setup clipboard:
 (custom-set-variables '(x-select-enable-clipboard t))
 
-;; Setup directories
+(setq-default compilation-always-kill t)
+(setq compilation-ask-about-save nil)
+
+(add-hook 'compilation-filter-hook
+	  (lambda ()
+	    (when (eq major-mode 'compilation-mode)
+	      (require 'ansi-color)
+	      (let ((inhibit-read-only t))
+		(ansi-color-applu-on-region (point-min) (point-max))))))
+
 ;; Bookamrks
 (setq-default bookmark-default-file "~/.emacs.d/bookmakrs")
 (setq-default bookmark-save-flag t)
+
 ;; Backups
 (setq backup-directory-alist '(("." . "~/.emacs.d/backups")))
 (setq delete-old-versions -1)
 (setq version-control t)
 (setq vc-make-backup-files t)
 (setq auto-save-file-name-transforms '((".*" "~/.emacs.d/auto-save-list/" t)))
+
 ;; History
 (setq-default savehist-file "~/.emacs.d/savehist")
 (savehist-mode t)
@@ -93,172 +62,28 @@
       '(kill-ring
         search-ring
         regexp-search-ring))
-;; Ediff
+
+;; Edif
 (setq-default ediff-split-window-function 'split-window-horizontally)
 (setq-default ediff-window-setup-function 'ediff-setup-windows-plain)
 
 ;; re-builder
 (setq-default reb-re-syntax 'string) ;; fix backslash madness
 
-;; Using midnight mode to clean up old buffers periodically.
-(require 'midnight)
-(midnight-delay-set 'midnight-delay 0)
-
-;; Compilation config
-(setq-default compilation-always-kill t)
-(setq compilation-ask-about-save nil)
-
-(add-hook 'compilation-filter-hook
-    (lambda ()
-      (when (eq major-mode 'compilation-mode)
-        (require 'ansi-color)
-        (let ((inhibit-read-only t))
-    (ansi-color-applu-on-region (point-min) (point-max))))))
-
-;; Configure emoji font
-(when (member "EmojiOne Color" (font-family-list))
-  (set-fontset-font
-    t 'symbol (font-spec :family "EmojiOne Color") nil 'prepend))
-
-
-;; Enable winner-mode if available
 (when (fboundp 'winner-mode)
   (winner-mode t))
 
-;; Hacks before packages get loaded
+(require 'midnight)
+(midnight-delay-set 'midnight-delay 0)
 
-;; Magit hack
-;; see https://stackoverflow.com/questions/55986401/emacs-magit-requred-feature-isearch-was-not-provided
-(provide 'isearch)
-
-;; Fix seq issue in magit
-;; see https://github.com/magit/magit/issues/5011#issuecomment-1732622958
-(defun seq-keep (function sequence)
-  "Apply FUNCTION to SEQUENCE and return the list of all the non-nil results."
-  (delq nil (seq-map function sequence)))
-
-;; Load all dependecies so we don't need to be afraid of moving stuff around Dependecies
-(straight-use-package 'magit)
-(straight-use-package 'helm)
-(straight-use-package 'dap-mode)
-(straight-use-package 'simple-httpd)
-(straight-use-package 'autumn-light-theme)
-(straight-use-package 'bash-completion)
-(straight-use-package 'caml)
-(straight-use-package 'js2-mode)
-(straight-use-package 'npm-mode)
-(straight-use-package 'cargo)
-(straight-use-package 'centered-window)
-(straight-use-package 'cmake-ide)
-(straight-use-package 'cmake-mode)
-(straight-use-package 'color-identifiers-mode)
-(straight-use-package 'color-theme-sanityinc-tomorrow)
-(straight-use-package 'company-ghci)
-(straight-use-package 'company-rtags)
-(straight-use-package 'dhall-mode)
-(straight-use-package 'diminish)
-(straight-use-package 'direnv)
-(straight-use-package 'dockerfile-mode)
-(straight-use-package 'editorconfig)
-(straight-use-package 'elm-mode)
-(straight-use-package 'ess)
-(straight-use-package 'evil)
-(straight-use-package 'evil-collection)
-(straight-use-package 'evil-commentary)
-(straight-use-package 'evil-org)
-(straight-use-package 'evil-smartparens)
-(straight-use-package 'evil-surround)
-(straight-use-package 'evil-visualstar)
-(straight-use-package 'fic-mode)
-(straight-use-package 'fontawesome)
-(straight-use-package 'gdscript-mode)
-(straight-use-package 'glsl-mode)
-(straight-use-package 'go)
-(straight-use-package 'go-mode)
-(straight-use-package 'graphene)
-(straight-use-package 'handlebars-mode)
-(straight-use-package 'helm)
-(straight-use-package 'helm-ag)
-(straight-use-package 'helm-css-scss)
-(straight-use-package 'helm-projectile)
-(straight-use-package 'hindent)
-(straight-use-package 'htmlize)
-(straight-use-package 'idris-mode)
-(straight-use-package 'ini-mode)
-(straight-use-package 'key-chord)
-(straight-use-package 'latex-preview-pane)
-(straight-use-package 'litex-mode)
-(straight-use-package 'haskell-mode)
-(straight-use-package 'lsp-haskell)
-(straight-use-package 'ormolu)
-(straight-use-package 'lsp-mode)
-(straight-use-package 'lsp-ui)
-(straight-use-package 'markdown-mode)
-(straight-use-package 'markdown-preview-mode)
-(straight-use-package 'multiple-cursors)
-(straight-use-package 'nix-mode)
-(straight-use-package 'nix-sandbox)
-(straight-use-package 'nodejs-repl)
-(straight-use-package 'npm-mode)
-(straight-use-package 'nyan-mode)
-(straight-use-package 'ob-restclient)
-(straight-use-package 'ob-typescript)
-(straight-use-package 'org)
-(straight-use-package 'org-bullets)
-(straight-use-package 'org-evil)
-(straight-use-package 'org-ref)
-(straight-use-package 'ormolu)
-(straight-use-package 'pbcopy)
-(straight-use-package 'perspective)
-(straight-use-package 'php-mode)
-(straight-use-package 'presentation)
-(straight-use-package 'projectile)
-(straight-use-package 'psc-ide)
-(straight-use-package 'psci)
-(straight-use-package 'purescript-mode)
-(straight-use-package 'rescript-mode)
-;; (straight-use-package 'lsp-rescript)
-(straight-use-package 'rainbow-delimiters)
-(straight-use-package 'recentf)
-(straight-use-package 'restclient)
-(straight-use-package 'robe)
-(straight-use-package 'rtags)
-(straight-use-package 'rust-mode)
-(straight-use-package 'rustic)
-(straight-use-package 's)
-(straight-use-package 'saveplace)
-(straight-use-package 'scss-mode)
-(straight-use-package 'shm)
-(straight-use-package 'smartparens)
-(straight-use-package 'smooth-scrolling)
-(straight-use-package 'svelte-mode)
-(straight-use-package 'terraform-mode)
-(straight-use-package 'tide)
-(straight-use-package 'toml-mode)
-(straight-use-package 'tuareg)
-(straight-use-package 'typescript-mode)
-(straight-use-package 'undo-fu)
-(straight-use-package 'web-mode)
-(straight-use-package 'which-key)
-(straight-use-package 'with-editor)
-(straight-use-package 'writegood-mode)
-(straight-use-package 'xclip)
-(straight-use-package 'yaml-mode)
-(straight-use-package 'yasnippet-snippets)
-;; Just for non windows systems!
-(if (not (eq system-type 'windows-nt))
-  (straight-use-package 'exec-path-from-shell)
-  (print "Skipping exec-path-from-shell on Windows")
-)
-
-;; Saveplace
+;; saveplace
 (require 'saveplace)
 (setq-default save-place t)
 
-;; Smooth-scrolling
+;; smooth-scrolling
 (require 'smooth-scrolling)
 
-;; Recentf
+;; recentf
 (require 'recentf)
 (recentf-mode t)
 (setq recentf-save-file "~/.emacs.d/recentf")
@@ -280,7 +105,7 @@
 ;; dired
 (require 'dired)
 (add-hook 'dired-load-hook
-  (function (lambda () (load "dired-x"))))
+          (function (lambda () (load "dired-x"))))
 
 ;; create files from dired mode
 (define-key dired-mode-map "c" 'find-file)
@@ -293,12 +118,10 @@
 ;; hl line mode
 (global-hl-line-mode t)
 
-;; Better scrolling
 (setq scroll-conservatively 9999
       scroll-preserve-screen-position t
       scroll-margin 3)
 
-;; Better names for duplicated buffers
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'forward
       uniquify-separator "/"
@@ -353,12 +176,6 @@
 ;; disable anoying gui popups
 (setq use-dialog-box nil)
 
-(if (eq system-type 'windows-nt)
-    ;; use %USERPROFILE% on Windows
-    (setq default-directory (concat (getenv "USERPROFILE") "/Projects"))
-    (setq default-directory "~/Projects")
-)
-
 ;; Set limit on reading process output
 ;; default is 4k
 (setq read-process-output-max (* 1024 1024)) ;; 1mb
@@ -403,18 +220,20 @@
 
 ;; purple comments
 (set-face-foreground 'font-lock-comment-face "#B193A6")
+;; dark bg behind current line
+;;(set-face-background 'hl-line "#111111")
 
 (defun toggle-transparency ()
   (interactive)
   (let ((alpha (frame-parameter nil 'alpha)))
     (set-frame-parameter
-    nil 'alpha
-    (if (eql (cond ((numberp alpha) alpha)
+     nil 'alpha
+     (if (eql (cond ((numberp alpha) alpha)
                     ((numberp (cdr alpha)) (cdr alpha))
                     ;; Also handle undocumented (<active> <inactive>) form.
                     ((numberp (cadr alpha)) (cadr alpha)))
               100)
-        '(85 . 50) '(100 . 100)))))
+         '(85 . 50) '(100 . 100)))))
 (global-set-key (kbd "C-c t") 'toggle-transparency)
 
 (require 'which-key)
@@ -422,6 +241,9 @@
 
 (setenv "DICTIONARY" "en_GB")
 (setq ispell-program-name "aspell")
+
+(custom-set-variables
+ '(markdown-command "/usr/bin/pandoc"))
 
 ;; Indentation
 (setq-default indent-tabs-mode nil)
@@ -448,16 +270,15 @@
     (set-buffer-file-coding-system 'undecided-unix)
     (set-buffer-modified-p nil)))
 
-(if (not (eq system-type 'windows-nt))
-  (add-hook 'find-file-hook 'turbo_mack/find-file-check-line-endings)
-)
+(add-hook 'find-file-hook 'turbo_mack/find-file-check-line-endings)
 
-(require 'dap-cpptools)
+(require 'flycheck)
+;;(global-flycheck-mode t)
 
 (setq
-  lsp-keymap-prefix "C-c l"
-  lsp-ui-doc-enable nil
-  )
+ lsp-keymap-prefix "C-c l"
+ ;; lsp-ui-doc-enable nil
+ )
 
 (require 'yasnippet)
 (yas-global-mode 1)
@@ -477,9 +298,13 @@
 
 (require 'scss-mode)
 
+(require 'web-mode)
+
 (require 'js2-mode)
 (require 'npm-mode)
 (require 'nodejs-repl)
+(require 'skewer-mode)
+(require 'ember-mode)
 (require 'handlebars-mode)
 
 ;; enable flycheck
@@ -493,15 +318,12 @@
 
 (add-hook 'js2-mode 'turbo_mack/init-js-bindings)
 
-;; npm install -g typescript
-;; npm install -g tide
-
 (require 'typescript-mode)
 (require 'tide)
 
 ;; Turn on typescript-mode for tsx files
 (add-to-list 'auto-mode-alist
-              '("\\.tsx\\'" . typescript-mode) t)
+             '("\\.tsx\\'" . typescript-mode) t)
 
 (defun turbo_mack/init-tide-mode ()
   "Setup tide (typescript syntax checker)."
@@ -526,26 +348,17 @@
 (add-hook 'elm-mode-hook #'rainbow-delimiters-mode)
 ;; (add-hook 'elm-mode-hook #'lsp)
 
-;; [[https://github.com/serras/emacs-haskell-tutorial/blob/master/tutorial.md][There]] is a great article about setting up Emacs for Haskell development by Serras.
-
-;; This configuration is using several packages which requires installed binaries:
-
-;; - [[https://github.com/chrisdone/hindent][hindent-mode]] takes care of formatting
-;; - [[https://github.com/marcotmarcot/hasktags][hasktags]] is tool for creating tag files
-;; - [[https://github.com/jaspervdj/stylish-haskell][stylish-haskell]] is another code formatting tool
-;; - [[https://hackage.haskell.org/package/fourmolu][fourmolu]] is another code formatting tool
-
 (require 'haskell-mode)
 (require 'hindent)
 (load-library "ormolu")
 
 (custom-set-variables
-  '(haskell-process-suggest-remove-import-lines t)
-  '(haskell-process-auto-import-loaded-modules t)
-  '(haskell-tags-on-save nil)
-  ;;'(haskell-process-type 'cabal-new-repl)
-  '(haskell-process-log t)
-  '(ormolu-process-path "fourmolu"))
+ '(haskell-process-suggest-remove-import-lines t)
+ '(haskell-process-auto-import-loaded-modules t)
+ '(haskell-tags-on-save nil)
+ ;;'(haskell-process-type 'cabal-new-repl)
+ '(haskell-process-log t)
+ '(ormolu-process-path "fourmolu"))
 
 (defun turbo_mack/haskell-setup ()
     "setup haskell specific configuration"
@@ -562,6 +375,12 @@
 (eval-after-load 'haskell-mode
   '(define-key haskell-mode-map [f8] 'haskell-navigate-imports))
 
+;; Fix path
+;; (let ((my-cabal-path (expand-file-name "~/.cabal/bin")))
+;;   (setenv "PATH" (concat my-cabal-path path-separator (getenv "PATH")))
+;;   (add-to-list 'exec-path my-cabal-path))
+
+
 (eval-after-load 'haskell-mode '(progn
                                   (define-key haskell-mode-map (kbd "C-c C-l") 'haskell-process-load-or-reload)
                                   (define-key haskell-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
@@ -572,20 +391,25 @@
                                   (define-key haskell-mode-map (kbd "C-c C-f") 'ormolu-format-buffer)))
 
 (eval-after-load 'haskell-cabal '(progn
-                                    (define-key haskell-cabal-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
-                                    (define-key haskell-cabal-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
-                                    (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
-                                    (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
+                                   (define-key haskell-cabal-mode-map (kbd "C-c C-z") 'haskell-interactive-switch)
+                                   (define-key haskell-cabal-mode-map (kbd "C-c C-k") 'haskell-interactive-mode-clear)
+                                   (define-key haskell-cabal-mode-map (kbd "C-c C-c") 'haskell-process-cabal-build)
+                                   (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
 
-  ;; LSP based haskell intergration
-  ;; (require 'lsp)
-  ;; (require 'lsp-haskell)
-  ;; (add-hook 'haskell-mode-hook #'lsp)
+;; LSP based haskell intergration
+;; (require 'lsp)
+;; (require 'lsp-haskell)
+;; (add-hook 'haskell-mode-hook #'lsp)
 
-  ;; (add-hook 'haskell-mode-hook 'lsp)
-  ;; (add-hook 'haskell-mode-hook 'direnv-update-environment)
+;; (add-hook 'haskell-mode-hook 'lsp)
+;; (add-hook 'haskell-mode-hook 'direnv-update-environment)
 
 (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
+
+;; flycheck
+
+;; (require 'flycheck-haskell)
+;; (add-hook 'haskell-mode-hook #'flycheck-haskell-setup)
 
 (require 'company-ghci)
 (push 'company-ghci company-backends)
@@ -593,8 +417,19 @@
 ;;; To get completions in the REPL
 (add-hook 'haskell-interactive-mode-hook 'company-mode)
 
-;; purescript
+;; (setq haskell-process-wrapper-function
+;;         (lambda (args) (apply 'nix-shell-command (nix-current-sandbox) args)))
+
+;;(add-to-list 'flycheck-disabled-checkers 'haskell-stack-ghc)
+
 (add-hook 'purescript-mode-hook #'purescript-indent-mode)
+
+;;(require 'rbenv)
+;;(rbenv-use-corresponding)
+
+;; Rails
+;; (require 'projectile-rails)
+;; (add-hook 'projectile-mode-hook 'projectile-rails-on)
 
 (require 'yaml-mode)
 
@@ -606,19 +441,33 @@
 
 (add-hook #'robe-mode-hook #'ac-robe-setup)
 
+;;(require 'erlang)
+;;(require 'erlang-start)
+
+(require 'elixir-mode)
+(add-to-list 'elixir-mode-hook
+             (defun auto-activate-ruby-end-mode-for-elixir-mode ()
+               (set (make-variable-buffer-local 'ruby-end-expand-keywords-before-re)
+                    "\\(?:^\\|\\s-+\\)\\(?:do\\)")
+               (set (make-variable-buffer-local 'ruby-end-check-statement-modifiers) nil)
+               (ruby-end-mode +1)))
+
+(require 'clojure-mode)
+(require 'cider)
+(require 'flycheck-clojure)
 
 (require 'rust-mode)
 
 (require 'cargo)
 (add-hook 'rust-mode-hook 'cargo-minor-mode)
+
 (define-key rust-mode-map (kbd "C-c C-c") 'rustic-cargo-build)
 (define-key rust-mode-map (kbd "C-c C-r") 'rustic-cargo-run)
 
-
 (require 'nix-mode)
 (add-to-list 'auto-mode-alist
-              '("\\.nix\\'" . (lambda ()
-                                (nix-mode))))
+             '("\\.nix\\'" . (lambda ()
+                               (nix-mode))))
 
 (require 'smartparens)
 
@@ -643,13 +492,12 @@
 ;; TODO: add custom face
 (require 'fic-mode)
 (custom-set-variables
-  '(fic-highlighted-words '("FIXME" "TODO" "BUG" "HACK")))
+ '(fic-highlighted-words '("FIXME" "TODO" "BUG" "HACK")))
 
 ;; turn on fic-mode
 (add-hook 'prog-mode-hook 'fic-mode)
 
-
-;; EVIL
+(require 'restclient)
 
 (setq evil-search-module 'evil-search)
 (setq evil-magic 'very-magic)
@@ -684,6 +532,9 @@
 (require 'evil-visualstar)
 (global-evil-visualstar-mode t)
 
+;; This package doesn't need to be init manually.
+;;(require 'navigate)
+
 (setq evil-emacs-state-cursor '("red" box))
 (setq evil-normal-state-cursor '("green" box))
 (setq evil-visual-state-cursor '("orange" box))
@@ -712,16 +563,8 @@
 (define-key evil-visual-state-map [tab] 'turbo_mack/evil-shift-right-visual)
 (define-key evil-visual-state-map [S-tab] 'turbo_mack/evil-shift-left-visual)
 
-;; Keybinding for my git alias
-(defun turbo_mack/prune-branches ()
-  "Prune branches that were merge in remote"
-
-  (interactive)
-  (message (shell-command-to-string "git prune-branches")))
-
-(evil-define-key 'normal magit-mode-map (kbd "C-c x") 'turbo_mack/prune-branches)
-
-;; HELM
+(require 'helm)
+(require 'helm-config)
 
 (defun turbo_mack/init-helm ()
   "Init helm."
@@ -749,17 +592,12 @@
 
 (require 'helm-ag)
 
-;; MAGIT
-
+(require 'magit)
 (evil-collection-init 'magit)
+
 (define-key evil-normal-state-map (kbd "C-g") 'magit-status)
 
-
-;; Perspective
-
 (require 'perspective)
-(global-set-key (kbd "C-x C-b") 'persp-list-buffers)
-(customize-set-variable 'persp-mode-prefix-key (kbd "C-c M-p"))
 (persp-mode t)
 
 (require 'org)
@@ -779,8 +617,6 @@
 
 ;; projectile invalidate cache
 (global-set-key (kbd "C-c i") 'projectile-invalidate-cache)
-
-;; Org Mode
 
 ;; bulet mode
 (add-hook 'org-mode-hook 'org-bullets-mode)
@@ -816,133 +652,147 @@
 (require 'evil-org)
 (add-hook 'org-mode-hook 'evil-org-mode)
 (evil-org-set-key-theme '(navigation insert textobjects additional calendar))
-
 (require 'evil-org-agenda)
 (evil-org-agenda-set-keys)
 
-;; Markdown
+;;(require 'ob-sh)
+;;(require 'ob-shell)
+;;(require 'ob-emacs-lisp)
+;;(require 'ob-ruby)
+;;(require 'ob-js)
+;;(require 'ob-typescript)
+;;;; ob-elm.el is part of this repository
+;;(require 'ob-elm)
+;;(require 'ob-haskell)
+;;(require 'ob-C)
+;;(require 'ob-restclient)
 
-;; setup spell-checking
-(add-hook 'markdown-mode-hook
-          (lambda ()
-            (flyspell-mode)))
+;;(org-babel-do-load-languages
+;; 'org-babel-load-languages
+;; '((sh . t)
+;;   (shell .t)
+;;   (emacs-lisp . t)
+;;   (ruby . t)
+;;   (js . t)
+;;   (typescript . t)
+;;   (elm . t)
+;;   (haskell . t)
+;;   (C . t)
+;;   (restclient . t)))
 
-;; Grammar niceness
-(add-hook 'markdown-mode-hook
-          (lambda ()
-            (writegood-mode)))
+;;;; disable confirmation of evaluation
+;;(setq org-confirm-babel-evaluate nil)
 
-;; BINDINGS
+(defun turbo_mack/vsplit-and-skip()
+  "split verticaly and skip to new window."
 
-  (defun turbo_mack/vsplit-and-skip()
-    "split verticaly and skip to new window."
+  (interactive)
+  (evil-window-vsplit)
+  (windmove-right))
 
-    (interactive)
-    (evil-window-vsplit)
-    (windmove-right))
+(defun turbo_mack/split-and-skip()
+  "split horizontaly and skip to new window."
 
-  (defun turbo_mack/split-and-skip()
-    "split horizontaly and skip to new window."
+  (interactive)
+  (evil-window-split)
+  (windmove-down))
 
-    (interactive)
-    (evil-window-split)
-    (windmove-down))
+(defun turbo_mack/rotate-windows-helper(x d)
+  (if (equal (cdr x) nil) (set-window-buffer (car x) d)
+    (set-window-buffer (car x) (window-buffer (cadr x))) (turbo_mack/rotate-windows-helper (cdr x) d)))
 
-  (defun turbo_mack/rotate-windows-helper(x d)
-    (if (equal (cdr x) nil) (set-window-buffer (car x) d)
-      (set-window-buffer (car x) (window-buffer (cadr x))) (turbo_mack/rotate-windows-helper (cdr x) d)))
+(defun turbo_mack/rotate-windows ()
+  "Rotate Emacs windows."
 
-  (defun turbo_mack/rotate-windows ()
-    "Rotate Emacs windows."
+  (interactive)
+  (turbo_mack/rotate-windows-helper (window-list) (window-buffer (car (window-list))))
+  (select-window (car (last (window-list)))))
 
-    (interactive)
-    (turbo_mack/rotate-windows-helper (window-list) (window-buffer (car (window-list))))
-    (select-window (car (last (window-list)))))
+"Window navigation"
+(define-key evil-motion-state-map (kbd "C-h") 'windmove-left)
+(define-key evil-motion-state-map (kbd "C-j") 'windmove-down)
+(define-key evil-motion-state-map (kbd "C-k") 'windmove-up)
+(define-key evil-motion-state-map (kbd "C-l") 'windmove-right)
+(define-key evil-motion-state-map (kbd "C-w r") 'turbo_mack/rotate-windows)
 
-  "Window navigation"
-  (define-key evil-motion-state-map (kbd "C-h") 'windmove-left)
-  (define-key evil-motion-state-map (kbd "C-j") 'windmove-down)
-  (define-key evil-motion-state-map (kbd "C-k") 'windmove-up)
-  (define-key evil-motion-state-map (kbd "C-l") 'windmove-right)
-  (define-key evil-motion-state-map (kbd "C-w r") 'turbo_mack/rotate-windows)
+"Window spliting"
+(define-key evil-window-map (kbd "v") 'turbo_mack/vsplit-and-skip)
+(define-key evil-window-map (kbd "s") 'turbo_mack/split-and-skip)
 
-  "Window spliting"
-  (define-key evil-window-map (kbd "v") 'turbo_mack/vsplit-and-skip)
-  (define-key evil-window-map (kbd "s") 'turbo_mack/split-and-skip)
+"Window resizing"
+(define-key evil-motion-state-map (kbd "C-=") 'enlarge-window-horizontally)
+(define-key evil-motion-state-map (kbd "C--") 'shrink-window-horizontally)
 
-  "Window resizing"
-  (define-key evil-motion-state-map (kbd "C-=") 'enlarge-window-horizontally)
-  (define-key evil-motion-state-map (kbd "C--") 'shrink-window-horizontally)
+"Resize text"
+(define-key evil-motion-state-map (kbd "C-+") 'text-scale-increase)
+(define-key evil-motion-state-map (kbd "C-_") 'text-scale-decrease)
 
-  "Resize text"
-  (define-key evil-motion-state-map (kbd "C-+") 'text-scale-increase)
-  (define-key evil-motion-state-map (kbd "C-_") 'text-scale-decrease)
+"Winner mode"
+;;(define-key evil-normal-state-map (kbd "C-c l") 'winner-redo)
+;;(define-key evil-normal-state-map (kbd "C-c h") 'winner-undo)
 
-  "Winner mode"
-  ;;(define-key evil-normal-state-map (kbd "C-c l") 'winner-redo)
-  ;;(define-key evil-normal-state-map (kbd "C-c h") 'winner-undo)
+"Org mode"
+(define-key evil-normal-state-map (kbd "C-M-l") 'org-do-demote)
+(define-key evil-normal-state-map (kbd "C-M-h") 'org-do-promote)
 
-  "Org mode"
-  (define-key evil-normal-state-map (kbd "C-M-l") 'org-do-demote)
-  (define-key evil-normal-state-map (kbd "C-M-h") 'org-do-promote)
+(define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
+(define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
 
-  (define-key evil-normal-state-map (kbd "j") 'evil-next-visual-line)
-  (define-key evil-normal-state-map (kbd "k") 'evil-previous-visual-line)
+(defun turbo_mack/minibuffer-keyboard-quit ()
+  "Abort recursive edit.
+In Delete Selection mode, if the mark is active, just deactivate it;
+then it takes a second \\[keyboard-quit] to abort the minibuffer."
 
-  (defun turbo_mack/minibuffer-keyboard-quit ()
-    "Abort recursive edit.
-  In Delete Selection mode, if the mark is active, just deactivate it;
-  then it takes a second \\[keyboard-quit] to abort the minibuffer."
+  (interactive)
+  (if (and delete-selection-mode transient-mark-mode mark-active)
+      (setq deactivate-mark  t)
+    (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
+    (abort-recursive-edit)))
 
-    (interactive)
-    (if (and delete-selection-mode transient-mark-mode mark-active)
-        (setq deactivate-mark  t)
-      (when (get-buffer "*Completions*") (delete-windows-on "*Completions*"))
-      (abort-recursive-edit)))
+"ESC to quit"
+(define-key evil-normal-state-map [escape] 'keyboard-quit)
+(define-key evil-visual-state-map [escape] 'keyboard-quit)
+(define-key minibuffer-local-map [escape] 'turbo_mack/minibuffer-keyboard-quit)
+(define-key minibuffer-local-ns-map [escape] 'turbo_mack/minibuffer-keyboard-quit)
+(define-key minibuffer-local-completion-map [escape] 'turbo_mack/minibuffer-keyboard-quit)
+(define-key minibuffer-local-must-match-map [escape] 'turbo_mack/minibuffer-keyboard-quit)
+(define-key minibuffer-local-isearch-map [escape] 'turbo_mack/minibuffer-keyboard-quit)
+(global-set-key [escape] 'evil-exit-emacs-state)
 
-  "ESC to quit"
-  (define-key evil-normal-state-map [escape] 'keyboard-quit)
-  (define-key evil-visual-state-map [escape] 'keyboard-quit)
-  (define-key minibuffer-local-map [escape] 'turbo_mack/minibuffer-keyboard-quit)
-  (define-key minibuffer-local-ns-map [escape] 'turbo_mack/minibuffer-keyboard-quit)
-  (define-key minibuffer-local-completion-map [escape] 'turbo_mack/minibuffer-keyboard-quit)
-  (define-key minibuffer-local-must-match-map [escape] 'turbo_mack/minibuffer-keyboard-quit)
-  (define-key minibuffer-local-isearch-map [escape] 'turbo_mack/minibuffer-keyboard-quit)
-  (global-set-key [escape] 'evil-exit-emacs-state)
+(require 'key-chord)
 
-  (require 'key-chord)
+(key-chord-mode 1)
+(key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
+(key-chord-define evil-insert-state-map "kj" 'evil-normal-state)
 
-  (key-chord-mode 1)
-  (key-chord-define evil-insert-state-map "jk" 'evil-normal-state)
-  (key-chord-define evil-insert-state-map "kj" 'evil-normal-state)
+(define-key helm-map (kbd "C-j") 'helm-next-line)
+(define-key helm-map (kbd "C-k") 'helm-previous-line)
 
-  ;; helm vim like
-  (define-key helm-map (kbd "C-j") 'helm-next-line)
-  (define-key helm-map (kbd "C-k") 'helm-previous-line)
+(global-set-key (kbd "M-x") 'helm-M-x)
+(define-key evil-motion-state-map (kbd "C-x b") 'helm-buffers-list)
+(define-key evil-motion-state-map (kbd "C-x r b") 'helm-bookmarks)
+(define-key evil-motion-state-map (kbd "C-x y") 'helm-show-kill-ring)
+(define-key evil-motion-state-map (kbd "C-x C-f") 'helm-find-files)
 
-  (global-set-key (kbd "M-x") 'helm-M-x)
-  (define-key evil-motion-state-map (kbd "C-x b") 'helm-buffers-list)
-  (define-key evil-motion-state-map (kbd "C-x r b") 'helm-bookmarks)
-  (define-key evil-motion-state-map (kbd "C-x y") 'helm-show-kill-ring)
-  (define-key evil-motion-state-map (kbd "C-x C-f") 'helm-find-files)
+(define-key evil-motion-state-map (kbd "C-c C-p") 'helm-projectile-switch-project)
+(define-key evil-motion-state-map (kbd "SPC") 'persp-switch)
+(define-key evil-normal-state-map (kbd "C-p") 'helm-projectile-find-file)
 
-  (define-key evil-motion-state-map (kbd "C-c C-p") 'helm-projectile-switch-project)
-  (define-key evil-motion-state-map (kbd "SPC") 'persp-switch)
-  (define-key evil-normal-state-map (kbd "C-p") 'helm-projectile-find-file)
+;; auto-complete
+;;(define-key ac-mode-map (kbd "C-j") 'ac-next)
+;;(define-key ac-mode-map (kbd "C-k") 'ac-previous)
 
-;; Autocomplete
-  (eval-after-load 'company
-    '(progn
-      (define-key company-active-map (kbd "C-j") 'company-select-next)
-      (define-key company-active-map (kbd "C-k") 'company-select-previous)))
+  ;; company
+(eval-after-load 'company
+  '(progn
+    (define-key company-active-map (kbd "C-j") 'company-select-next)
+    (define-key company-active-map (kbd "C-k") 'company-select-previous)))
 
-;; Cursors
 (require 'multiple-cursors)
 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)
 
-;; Term
 (defun turbo_mack/toggle-term()
   "Splits window and open terminal."
 
@@ -953,27 +803,16 @@
 
 (define-key evil-normal-state-map (kbd "C-t") 'turbo_mack/toggle-term)
 
+(define-key evil-normal-state-map (kbd "C-S-s") 'slack-select-rooms)
 
-;; LINUX
-
-(if (eq system-type 'windows-nt)
-  (print "Skipping SSH on Windows")
-  (when window-system
-      (exec-path-from-shell-copy-env "SSH_AGENT_PID")
-      (exec-path-from-shell-copy-env "SSH_AUTH_SOCK"))
-)
-
-
-;; MACOS (not used much)
-
-(if (eq system-type 'darwin)
-  ((exec-path-from-shell-initialize)
+(exec-path-from-shell-initialize)
   (when (fboundp 'osx-clip-board-mode)
             (set-face-attribute 'default nil :height 120)
             (osx-clip-board-mode t)
             (exec-path-from-shell-initialize))
-  (setq mac-command-modifier 'C))
-)
 
-(provide 'init)
-;;; init.el ends here
+(setq mac-command-modifier 'C)
+
+(when window-system
+    (exec-path-from-shell-copy-env "SSH_AGENT_PID")
+    (exec-path-from-shell-copy-env "SSH_AUTH_SOCK"))
