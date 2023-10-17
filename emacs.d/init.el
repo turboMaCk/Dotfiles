@@ -193,6 +193,7 @@
 (straight-use-package 'ormolu)
 (straight-use-package 'lsp-mode)
 (straight-use-package 'lsp-ui)
+(straignt-use-package 'markdown-mode)
 (straight-use-package 'markdown-preview-mode)
 (straight-use-package 'multiple-cursors)
 (straight-use-package 'nix-mode)
@@ -711,6 +712,15 @@
 (define-key evil-visual-state-map [tab] 'turbo_mack/evil-shift-right-visual)
 (define-key evil-visual-state-map [S-tab] 'turbo_mack/evil-shift-left-visual)
 
+;; Keybinding for my git alias
+(defun turbo_mack/prune-branches ()
+  "Prune branches that were merge in remote"
+
+  (interactive)
+  (message (shell-command-to-string "git prune-branches")))
+
+(evil-define-key 'normal magit-mode-map (kbd "C-c x") 'turbo_mack/prune-branches)
+
 ;; HELM
 
 (defun turbo_mack/init-helm ()
@@ -744,6 +754,7 @@
 (evil-collection-init 'magit)
 (define-key evil-normal-state-map (kbd "C-g") 'magit-status)
 
+
 ;; Perspective
 
 (require 'perspective)
@@ -768,6 +779,8 @@
 
 ;; projectile invalidate cache
 (global-set-key (kbd "C-c i") 'projectile-invalidate-cache)
+
+;; Org Mode
 
 ;; bulet mode
 (add-hook 'org-mode-hook 'org-bullets-mode)
@@ -800,15 +813,24 @@
 (setq org-default-notes-file (concat org-directory "/agenda.org"))
 (setq org-agenda-files (list (concat org-directory "/agenda.org")))
 
-
 (require 'evil-org)
 (add-hook 'org-mode-hook 'evil-org-mode)
 (evil-org-set-key-theme '(navigation insert textobjects additional calendar))
+
 (require 'evil-org-agenda)
 (evil-org-agenda-set-keys)
 
+;; Markdown
 
+;; setup spell-checking
+(add-hook 'markdown-mode-hook
+          (lambda ()
+            (flyspell-mode)))
 
+;; Grammar niceness
+(add-hook 'markdown-mode-hook
+          (lambda ()
+            (writegood-mode)))
 
 ;; BINDINGS
 
