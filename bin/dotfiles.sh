@@ -80,9 +80,10 @@ if [ -f "$HOME/.emacs.d/init.el" ]; then
 fi
 
 # Symlink emacs.d stuff
-mkdir -p $HOME/.emacs.d
+mkdir -p $HOME/.emacs.d/straight
 ln -fs $DOTFILES_DIR/emacs.d/plugin $HOME/.emacs.d/plugin
 ln -fs $DOTFILES_DIR/emacs.d/init.el $HOME/.emacs.d/init.el
+ln -fs $DOTFILES_DIR/emacs.d/straight/versions $HOME/.emacs.d/straight/versions
 
 # CD back
 cd $pwd

@@ -1,14 +1,2 @@
 backup
-emacs.d/request
-emacs.d/secrets.el
-emacs.d/emojis/
-emacs.d/url/
-emacs.d/bookmakrs
-emacs.d/transient
-emacs.d/session.*
 /xmonad/prompt-history
-/emacs.d/.lsp*
-/emacs.d/tramp
-/emacs.d/eln-cache/
-/emacs.d/.cache/
-/emacs.d/straight/
