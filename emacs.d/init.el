@@ -597,6 +597,7 @@
 (add-hook 'purescript-mode-hook #'purescript-indent-mode)
 
 (require 'yaml-mode)
+(add-hook 'yaml-mode-hook 'linum-mode)
 
 (require 'robe)
 (add-hook 'ruby-mode-hook 'robe-mode)
