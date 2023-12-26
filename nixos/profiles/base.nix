@@ -104,8 +104,8 @@ in
   };
   services.pcscd.enable = true;
 
-  # lorri
-  services.lorri.enable = false;
+  # Enable QMK
+  hardware.keyboard.qmk.enable = true;
 
   location = {
     provider = "geoclue2";

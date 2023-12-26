@@ -12,6 +12,6 @@
   # enable service discovery (useful for network printers)
   services.avahi = {
     enable = true;
-    nssmdns = true;
+    nssmdns6 = true;
   };
 }

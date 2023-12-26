@@ -35,6 +35,9 @@
 
   # Use the systemd-boot EFI boot loader.
   boot = {
+    # Enable NTFS support
+    supportedFilesystems = [ "ntfs" ];
+
     loader = {
       efi = {
         canTouchEfiVariables = true;

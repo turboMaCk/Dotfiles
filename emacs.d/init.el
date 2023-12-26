@@ -55,9 +55,8 @@
 ;; because it avoids autoloads of elisp modes)
 (setq initial-major-mode 'text-mode)
 
-;; Show Line numbers in programming mode.
+;; Enable prog-mode for toml mode
 (add-hook 'conf-toml-mode-hook 'prog-mode)
-(add-hook 'prog-mode-hook 'linum-mode)
 (add-hook 'prog-mode-hook 'column-number-mode)
 
 ;; Setup fringes (spaces around windows).
@@ -596,8 +595,11 @@
 ;; purescript
 (add-hook 'purescript-mode-hook #'purescript-indent-mode)
 
+;; Since 26 linum-mode is dead buit there is this global mode hook
+(when (version<= "26.0.50" emacs-version )
+  (global-display-line-numbers-mode))
+
 (require 'yaml-mode)
-(add-hook 'yaml-mode-hook 'linum-mode)
 
 (require 'robe)
 (add-hook 'ruby-mode-hook 'robe-mode)
