@@ -10,7 +10,6 @@
       ../profiles/sound-pipewire.nix
       ../profiles/vulkan.nix
       ../profiles/kde.nix
-      # ../profiles/xmonad.nix
       ../users/marek.nix
       ../users/nikola.nix
       ../profiles/virtualization.nix
@@ -19,14 +18,11 @@
       ../profiles/haskell.nix
       ../profiles/purescript.nix
       ../profiles/rust.nix
-      #../profiles/ocaml.nix
       ../profiles/printing.nix
       ../profiles/holmusk.nix
       ../profiles/vpn.nix
       ../profiles/samba.nix
       # Extra
-      # ../profiles/data-science.nix
-      # ../profiles/unison.nix
       ../profiles/stream.nix
       ../profiles/gaming.nix
       ../profiles/rc.nix
@@ -69,6 +65,12 @@
 
     # Setup kernel
     # kernelPackages = pkgs.linuxPackages_5_10;
+
+    kernelModules = [
+      "iptable_nat"
+      "iptable_filter"
+      "xt_nat"
+    ];
   };
 
   networking = {
@@ -98,11 +100,8 @@
   # services.openssh.enable = true;
   # programs.ssh.startAgent = true;
 
-  # Open ports in the firewall.
-  networking.firewall.allowedTCPPorts = [ 1234 8000 3000 ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
+  # networking.firewall.
   # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # Enable sound.
   sound.enable = true;
@@ -171,8 +170,10 @@
     ${pkgs.gnugrep}/bin/grep 'XHC.*enable' /proc/acpi/wakeup | ${pkgs.gawk}/bin/awk '{print $4}' | ${pkgs.gnused}/bin/sed -e 's/pci://g' > /sys/bus/pci/drivers/xhci_hcd/bind
   '';
 
-  networking.hosts."127.0.0.1" = [ "meadow.cdmp.local" "coach.meadow.cdmp.local" "neuroblu.local" ];
-  # networking.nameservers = ["1.1.1.1" "1.0.0.1"];
+  networking = {
+    hosts."127.0.0.1" = [];
+    # nameservers = ["1.1.1.1" "1.0.0.1"];
+  };
 
   networking.nat = {
       enable = true;
@@ -188,13 +189,8 @@
   networking.firewall = {
     enable = true;
     # allowedTCPPorts = [ 80 ];
+    # allowedUDPPorts = [ ... ];
   };
-
-  boot.kernelModules = [
-    "iptable_nat"
-    "iptable_filter"
-    "xt_nat"
-  ];
 
   # Enable mitm proxy certs
   # security.pki.certificateFiles = [
