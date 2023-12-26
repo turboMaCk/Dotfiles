@@ -159,17 +159,6 @@
   # Enable ssh daemon
   services.openssh.enable = true;
 
-  # Fix XHCI suspend bug
-  # see: https://github.com/NixOS/nixpkgs/issues/109048
-  powerManagement.powerDownCommands = ''
-    ${pkgs.gnugrep}/bin/grep 'XHC.*enable' /proc/acpi/wakeup | ${pkgs.gawk}/bin/awk '{print $4}' | ${pkgs.gnused}/bin/sed -e 's/pci://g' > /sys/bus/pci/drivers/xhci_hcd/unbind
-  '';
-
-  # Wake up hack
-  powerManagement.resumeCommands = ''
-    ${pkgs.gnugrep}/bin/grep 'XHC.*enable' /proc/acpi/wakeup | ${pkgs.gawk}/bin/awk '{print $4}' | ${pkgs.gnused}/bin/sed -e 's/pci://g' > /sys/bus/pci/drivers/xhci_hcd/bind
-  '';
-
   networking = {
     hosts."127.0.0.1" = [];
     # nameservers = ["1.1.1.1" "1.0.0.1"];
