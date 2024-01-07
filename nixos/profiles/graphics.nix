@@ -12,6 +12,8 @@ in {
   environment.systemPackages = with pkgs; [
     inkscape
     gimp
+    blender
+    librecad
     # figma-app
   ];
 }

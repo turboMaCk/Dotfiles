@@ -9,6 +9,7 @@
     # browsers
     firefox
     brave
+    google-chrome
 
     # Others
     flameshot # screeshots
