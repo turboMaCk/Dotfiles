@@ -17,7 +17,7 @@
     calf
     tap-plugins
     caps
-    zynaddsubfx
+    # zynaddsubfx
     artyFX
     distrho
 

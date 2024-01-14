@@ -38,8 +38,8 @@ in {
     pkgs.awscli2
 
     # yubikey
-    pkgs.yubikey-manager
-    pkgs.yubikey-manager-qt
+    # pkgs.yubikey-manager
+    # pkgs.yubikey-manager-qt
     # pkgs.yubioath-desktop
     # pkgs.yubico-pam
     # pkgs.yubico-piv-tool
