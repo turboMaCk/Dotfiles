@@ -81,8 +81,10 @@ in
     networkmanager_strongswan
   ];
 
-  services.xserver.layout = "us,cz";
-  services.xserver.xkbVariant = ",qwerty";
+  services.xserver.xkb = {
+    layout = "us,cz";
+    variant = ",qwerty";
+  };
 
   # Select internationalisation properties.
   console = {
