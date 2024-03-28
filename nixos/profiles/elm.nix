@@ -8,7 +8,7 @@
         elm
         elm-format
         elm-test
-        elm-verify-examples
+        # elm-verify-examples
         elm-analyse
         elm-doc-preview
         elm-language-server
