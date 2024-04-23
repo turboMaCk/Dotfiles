@@ -59,12 +59,10 @@
   # X11 settings
   services.xserver = {
     enable = true;
+  };
 
-    # Display Manager
-    displayManager = {
-       sddm.enable = true;
-       lightdm.enable = false;
-    };
+  services.displayManager = {
+    sddm.enable = true;
   };
 
   # urxvtd
