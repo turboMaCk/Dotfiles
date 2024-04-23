@@ -75,10 +75,6 @@ in
 
     # shell prompt
     starship
-
-    #vpn
-    networkmanager-l2tp
-    networkmanager_strongswan
   ];
 
   services.xserver.xkb = {

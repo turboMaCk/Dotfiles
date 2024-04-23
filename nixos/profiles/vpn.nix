@@ -1,12 +1,16 @@
 { config, pkgs, ... }:
 {
+  environment.systemPackages = with pkgs; [
+    networkmanager-l2tp
+    networkmanager_strongswan
+  ];
+
   networking.networkmanager = {
     enable = true;
     enableStrongSwan = true;
-    extraConfig = ''
-      [main]
-      rc-manager=resolvconf
-    '';
+    settings = {
+      main.rc-manager = "resolvconf";
+    };
   };
 
   services.strongswan = {
