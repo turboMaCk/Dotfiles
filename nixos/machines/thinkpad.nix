@@ -140,7 +140,9 @@
     xkbOptions = "ctrl:nocaps,caps:none,lv3:rwin_switch,grp:alt_space_toggle,altwin:swap_alt_win";
 
     # Enable touchpad support.
-    libinput = {
+  };
+
+  services.libinput = {
       enable = true;
 
       touchpad = {
@@ -150,7 +152,6 @@
         clickMethod = "clickfinger";
       };
     };
-  };
 
   # Don't sleep
   services.xserver = {

@@ -136,8 +136,6 @@
       Option "OffTime" "0"
     '';
 
-    libinput.enable = false; # touchbar
-
     imwheel = {
       enable = true;
       rules = {
@@ -155,6 +153,8 @@
       ];
     };
   };
+
+  services.libinput.enable = false;
 
   # Enable ssh daemon
   services.openssh.enable = true;

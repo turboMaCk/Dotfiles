@@ -577,12 +577,10 @@
                                     (define-key haskell-cabal-mode-map (kbd "C-c c") 'haskell-process-cabal)))
 
   ;; LSP based haskell intergration
-  ;; (require 'lsp)
-  ;; (require 'lsp-haskell)
-  ;; (add-hook 'haskell-mode-hook #'lsp)
-
+  (require 'lsp)
+  (require 'lsp-haskell)
+  ;; (add-hook 'haskell-mode-hook 'direnv-mode)
   ;; (add-hook 'haskell-mode-hook 'lsp)
-  ;; (add-hook 'haskell-mode-hook 'direnv-update-environment)
 
 (add-hook 'haskell-mode-hook 'interactive-haskell-mode)
 

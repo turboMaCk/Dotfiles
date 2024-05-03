@@ -17,6 +17,7 @@
     zlib
     stack
     pkgs.fourmolu
+    pkgs.haskell-language-server
   ];
 
 

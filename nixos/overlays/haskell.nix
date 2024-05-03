@@ -9,4 +9,6 @@ self: super:
       });
     };
   };
+
+  haskell-language-server = super.haskell-language-server.override { supportedGhcVersions = [ "94" ]; };
 }
