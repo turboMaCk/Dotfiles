@@ -11,6 +11,8 @@ rec {
     releasePath = /home/marek/.local/share/rns_331_linux_x86_64.tar.gz;
   };
 
+  opentofu = self.callPackage ../pkgs/opentofu.nix {};
+
   tall-reverb = super.callPackage ../pkgs/tal-reverb-4.nix {};
   tall-noisemaker = super.callPackage ../pkgs/tal-noisemaker.nix {};
   zebralette-mini-zebra = super.callPackage ../pkgs/mini-zebra.nix {};
