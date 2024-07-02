@@ -7,7 +7,7 @@
   environment.systemPackages = with pkgs; [
     kate
     gwenview
-    transmission-qt
+    transmission_3-qt
     libsForQt5.kalk
     qdirstat
   ];
