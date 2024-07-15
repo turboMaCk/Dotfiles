@@ -4,7 +4,7 @@
     rustc
     cargo
     cargo-generate
-    cargo-web
+    # cargo-web # broken in newer nixpkgs
     # rustup # pulls incompatible binaries 2022-09-04
 
     # tools
