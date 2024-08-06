@@ -244,6 +244,7 @@
 (straight-use-package 'xclip)
 (straight-use-package 'yaml-mode)
 (straight-use-package 'yasnippet-snippets)
+(straight-use-package 'org-present)
 ;; Just for non windows systems!
 (if (not (eq system-type 'windows-nt))
   (straight-use-package 'exec-path-from-shell)
@@ -790,6 +791,9 @@
 (add-hook 'org-mode-hook
           (lambda ()
             (flyspell-mode)))
+
+;; Disable image sizes
+(setq org-image-actual-width nil)
 
 ;; Grammar niceness
 (add-hook 'org-mode-hook

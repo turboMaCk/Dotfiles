@@ -103,9 +103,6 @@
   # networking.firewall.
   # Or disable the firewall altogether.
 
-  # Enable sound.
-  sound.enable = true;
-
   # Force radv over amdvlk
   environment.variables.AMD_VULKAN_ICD = "RADV";
 
