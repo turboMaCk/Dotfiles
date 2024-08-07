@@ -18,12 +18,10 @@
       ../profiles/haskell.nix
       ../profiles/purescript.nix
       ../profiles/rust.nix
-      # ../profiles/ocaml.nix
       ../profiles/printing.nix
       ../profiles/holmusk.nix
       ../profiles/vpn.nix
       ../profiles/samba.nix
-      # ../profiles/music.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -104,9 +102,6 @@
           };
     };
   };
-
-  # Enable sound.
-  sound.enable = true;
 
   hardware = {
     # Trackpoint settings
