@@ -135,7 +135,7 @@
     # X11 XKB key map
     # Mainly Caps -> Ctrl
     # check https://www.x.org/releases/X11R7.6/doc/xorg-docs/input/XKB-Config.html
-    xkbOptions = "ctrl:nocaps,caps:none,lv3:rwin_switch,grp:alt_space_toggle,altwin:swap_alt_win";
+    xkb.options = "ctrl:nocaps,caps:none,lv3:rwin_switch,grp:alt_space_toggle,altwin:swap_alt_win";
 
     # Enable touchpad support.
   };
