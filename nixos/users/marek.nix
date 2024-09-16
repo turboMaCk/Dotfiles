@@ -32,7 +32,6 @@
     shell = pkgs.zsh;
 
     packages = with pkgs; [
-        browserpass
         dropbox
         slack
         discord
