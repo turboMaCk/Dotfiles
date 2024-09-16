@@ -173,7 +173,7 @@ myKeys conf@(XConfig{XMonad.modMask = modMasq}) =
         , -- launch a browser
           ((modMasq .|. shiftMask, xK_b), spawn "firefox")
         , -- launch emacs client frame
-          ((modMasq .|. shiftMask, xK_o), spawn "emacsclient -n -c")
+          ((modMasq .|. shiftMask, xK_o), spawn "emacsclient -n -c $PWD")
         , -- screenshot
           ((modMasq .|. shiftMask, xK_p), spawn "flameshot gui")
         , -- launch rofi

@@ -31,6 +31,9 @@
       efi.canTouchEfiVariables = true;
     };
 
+    # Enable QEMU with aarch64
+    binfmt.emulatedSystems = [ "aarch64-linux" ];
+
     # Kernel 5.4 has issues with i915 driver (intel gpu)
     #kernelPackages = pkgs.linuxPackages_4_19;
 
