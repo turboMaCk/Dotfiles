@@ -9,7 +9,7 @@
     [ <nixos-hardware/lenovo/thinkpad/t480s>
       ../nixpkgs.nix
       ../profiles/base.nix
-      ../profiles/sound-pipewire.nix
+      ../profiles/sound-traditional.nix
       ../profiles/xmonad.nix
       ../users/marek.nix
       ../profiles/virtualization.nix

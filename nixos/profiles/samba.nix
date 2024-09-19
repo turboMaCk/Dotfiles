@@ -3,7 +3,7 @@
   services.samba = {
     enable = true;
     nsswins = true;
-    enableWinbindd = true;
+    winbindd.enable = true;
   };
   services.samba-wsdd = {
     enable = true;

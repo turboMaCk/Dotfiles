@@ -15,7 +15,7 @@
     dunst # notifications
 
     # gtk
-    gnome.nautilus
+    nautilus
     nautilus-open-any-terminal
     font-manager
   ];
