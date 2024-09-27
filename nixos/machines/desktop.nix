@@ -18,7 +18,7 @@
       ../profiles/haskell.nix
       ../profiles/purescript.nix
       ../profiles/rust.nix
-      ../profiles/printing.nix
+      # ../profiles/printing.nix
       ../profiles/holmusk.nix
       ../profiles/vpn.nix
       ../profiles/samba.nix
