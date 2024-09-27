@@ -128,7 +128,7 @@
     };
 
     # GPU support
-    opengl.extraPackages = [ pkgs.vaapiIntel ];
+    graphics.extraPackages = [ pkgs.vaapiIntel ];
   };
 
   services.xserver = {
