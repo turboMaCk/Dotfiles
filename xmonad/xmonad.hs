@@ -180,7 +180,7 @@ myKeys conf@(XConfig{XMonad.modMask = modMasq}) =
           ((modMasq, xK_p), spawn rofi)
         , -- launch fori-pass
           ((modMasq, xK_o), spawn "rofi-pass")
-        , -- launch ranger.
+        , -- launch lf.
           ((modMasq .|. shiftMask, xK_m), spawn $ myTerminal ++ " -e lf")
         , -- close focused window
           ((modMasq, xK_q), kill)
