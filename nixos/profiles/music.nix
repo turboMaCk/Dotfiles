@@ -19,12 +19,12 @@
     caps
     # zynaddsubfx
     artyFX
-    distrho
+    # distrho
 
     # synths
     #surge
     helm
-    tunefish
+    #tunefish
     surge
     xsynth_dssi
     sorcer

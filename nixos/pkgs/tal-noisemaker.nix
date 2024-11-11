@@ -1,4 +1,4 @@
-{ stdenv, unzip, alsaLib, llvmPackages, freetype }:
+{ stdenv, unzip, alsa-lib, llvmPackages, freetype }:
 
 stdenv.mkDerivation {
   pname = "TAL-NoiseMaker";
@@ -15,7 +15,7 @@ stdenv.mkDerivation {
 
   postFixup = ''
     patchelf \
-      --set-rpath ${alsaLib}/lib:${stdenv.cc.cc.lib}/lib:${freetype}/lib \
+      --set-rpath ${alsa-lib}/lib:${stdenv.cc.cc.lib}/lib:${freetype}/lib \
       $out/lib/vst/libTAL-NoiseMaker.so
 
     chmod +x $out/lib/vst/libTAL-NoiseMaker.so
