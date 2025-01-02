@@ -2,13 +2,10 @@
 {
   environment.systemPackages = with pkgs; [
     # xorg
-    xterm
-    xdo
-    xclip
+    alacritty
 
     # browsers
     firefox
-    brave
     google-chrome
 
     # Others
@@ -16,6 +13,7 @@
     obs-studio
     gthumb # image viewer
     peek # screen recorder
+
 
     # Themes
     xorg.xcursorthemes

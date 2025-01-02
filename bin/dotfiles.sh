@@ -17,7 +17,6 @@ DOTFILES=('agrc'
           'aliases'
           'ghci'
           'Xresources'
-          'Xmodmap'
           'xmonad')
 
 # backup first

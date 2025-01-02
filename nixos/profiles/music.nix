@@ -36,6 +36,10 @@
     # tall-reverb
     # zebralette-mini-zebra
     vcv-rack
+
+    # Guitar
+    guitarix
+    gxplugins-lv2
   ];
 
   services.pipewire.jack.enable = true;

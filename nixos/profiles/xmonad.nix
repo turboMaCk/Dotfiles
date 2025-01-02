@@ -9,6 +9,10 @@
     polybar
     feh
 
+    xterm
+    xdo
+    xclip
+
     # xmonad miscelaneous
     rofi
     rofi-pass

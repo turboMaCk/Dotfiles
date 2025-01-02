@@ -8,7 +8,7 @@ rec {
   fourmolu = with self.haskell.lib; justStaticExecutables self.haskellPackages.fourmolu;
 
   renoise = super.callPackage ../pkgs/renoise.nix {
-    releasePath = /home/marek/.local/share/rns_331_linux_x86_64.tar.gz;
+    releasePath = /home/marek/.local/share/rns_344_linux_x86_64.tar.gz;
   };
 
   opentofu = self.callPackage ../pkgs/opentofu.nix {};

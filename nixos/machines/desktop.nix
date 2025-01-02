@@ -11,7 +11,7 @@
       ../profiles/vulkan.nix
       ../profiles/kde.nix
       ../users/marek.nix
-      ../users/nikola.nix
+      # ../users/nikola.nix
       ../profiles/virtualization.nix
       ../profiles/elm.nix
       ../profiles/nodejs.nix
@@ -23,10 +23,10 @@
       ../profiles/vpn.nix
       ../profiles/samba.nix
       # Extra
-      ../profiles/stream.nix
-      ../profiles/gaming.nix
-      ../profiles/rc.nix
-      ../profiles/music.nix
+      # ../profiles/stream.nix
+      # ../profiles/gaming.nix
+      # ../profiles/rc.nix
+     ../profiles/music.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
@@ -51,9 +51,15 @@
 
         # dualboot requires this
         useOSProber = true;
-        device = "nodev";
+        devices = [ "nodev" ];
+        extraEntries = ''
+            menuentry "Windows" {
+              chainloader (hd0,1)+1
+            }
+          '';
       };
     };
+
     # Enable QEMU with aarch32
     binfmt.emulatedSystems = [ "armv7l-linux" ];
 
@@ -85,7 +91,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-     libreoffice-qt
+     # libreoffice-qt
      hunspell
      hunspellDicts.en_US
    ];
@@ -134,23 +140,6 @@
       Option "SuspendTime" "0"
       Option "OffTime" "0"
     '';
-
-    imwheel = {
-      enable = true;
-      rules = {
-        "chrom*|slack|discord|evolution|Firefox|brave-browser" = ''
-        None,      Up,   Button4, 4
-        None,      Down, Button5, 4
-        Shift_L,   Up,   Shift_L|Button4, 4
-        Shift_L,   Down, Shift_L|Button5, 4
-        Control_L, Up,   Control_L|Button4
-        Control_L, Down, Control_L|Button5
-      '';
-      };
-      extraOptions = [
-        "--buttons=45"
-      ];
-    };
   };
 
   services.libinput.enable = false;
@@ -205,5 +194,18 @@
       host all all 127.0.0.1/32 trust
       host all all ::1/128 trust
     '';
+  };
+
+  services.avahi = {
+    nssmdns4 = true;
+    enable = true;
+    ipv4 = true;
+    ipv6 = true;
+
+    publish = {
+      enable = true;
+      addresses = true;
+      workstation = true;
+    };
   };
 }
