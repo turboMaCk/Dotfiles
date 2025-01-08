@@ -152,7 +152,6 @@
 (straight-use-package 'centered-window)
 (straight-use-package 'cmake-ide)
 (straight-use-package 'cmake-mode)
-(straight-use-package 'color-identifiers-mode)
 (straight-use-package 'color-theme-sanityinc-tomorrow)
 (straight-use-package 'company-ghci)
 (straight-use-package 'company-rtags)
@@ -639,9 +638,6 @@
 (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
 (require 'diminish)
-
-(global-color-identifiers-mode)
-(diminish 'color-identifiers-mode)
 
 ;; autocomplete
 (add-hook 'after-init-hook 'global-company-mode)
