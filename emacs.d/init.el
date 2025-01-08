@@ -11,6 +11,9 @@
    (expand-file-name "plugin"
                      user-emacs-directory))
 
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
+
 ;; Disable package.el
 ;; we're going to use straight.el instead
 (setq package-enable-at-startup nil)
@@ -30,7 +33,6 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-(straight-use-package 'org)
 
 ;; Configure  user
 (setq user-full-name "Marek Fajkus"
@@ -164,6 +166,7 @@
 (straight-use-package 'evil)
 (straight-use-package 'evil-collection)
 (straight-use-package 'evil-commentary)
+(straight-use-package 'org)
 (straight-use-package 'evil-org)
 (straight-use-package 'evil-smartparens)
 (straight-use-package 'evil-surround)
@@ -245,6 +248,12 @@
 (straight-use-package 'yaml-mode)
 (straight-use-package 'yasnippet-snippets)
 (straight-use-package 'org-present)
+(straight-use-package 'gleam-ts-mode)
+(straight-use-package 'clang-format)
+
+(use-package gleam-ts-mode
+  :mode (rx ".gleam" eos))
+
 ;; Just for non windows systems!
 (if (not (eq system-type 'windows-nt))
   (straight-use-package 'exec-path-from-shell)
@@ -467,7 +476,9 @@
 (defun turbo_mack/my_c ()
   (interactive)
   "setup compile command"
-  (set (make-local-variable 'compile-command) "make"))
+  (set (make-local-variable 'compile-command) "make")
+  (setq-default c-basic-offset 4)
+  )
 
 
 (add-hook 'c-mode-hook 'turbo_mack/my_c)
