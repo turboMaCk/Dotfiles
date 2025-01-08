@@ -1,7 +1,6 @@
 { config, pkgs, ... }:
 {
   environment.systemPackages = with pkgs; [
-    # xorg
     alacritty
 
     # browsers
@@ -13,7 +12,6 @@
     obs-studio
     gthumb # image viewer
     peek # screen recorder
-
 
     # Themes
     xorg.xcursorthemes
@@ -46,7 +44,7 @@
       terminus_font
       ttf_bitstream_vera
       ubuntu_font_family
-      #emojione broken 
+      #emojione broken
     ];
   };
 
@@ -59,39 +57,10 @@
     enable = true;
   };
 
-  services.displayManager = {
-    sddm.enable = true;
-  };
-
-  # urxvtd
-  services.urxvtd = {
-    enable = true;
-    package = pkgs.rxvt-unicode;
-  };
-
   # Emacs
   services.emacs = {
     enable = true;
     package = pkgs.emacs;
-  };
-
-
-  # Redshift
-  services.redshift = {
-    enable = true;
-    temperature.night = 2500;
-  };
-
-  # Dropbox service
-  systemd.user.services.dropbox = {
-    description = "Dropbox service";
-    wantedBy = [ "graphical-session.target" ];
-    serviceConfig = {
-      Type = "exec";
-      ExecStart = "${pkgs.dropbox}/bin/dropbox";
-      ExecStop = "${pkgs.procps}/bin/pkill dropbox";
-      Restart = "on-failure";
-    };
   };
 
   # keybase
@@ -102,17 +71,4 @@
   services.kbfs = {
     enable = true;
   };
-
-  # matter-most service
-  # systemd.user.services.mattermost-desktop = {
-  #   description = "Mattermost desktop";
-  #   wantedBy = [ "graphical-session.target" ];
-  #   serviceConfig = {
-  #     Type = "exec";
-  #     ExecStart = "${pkgs.mattermost-desktop}/bin/mattermost-desktop --hidden";
-  #     ExecStop = "${pkgs.procps}/bin/pkill mattermost-desktop";
-  #     Restart = "on-failure";
-  #     TimeoutStartSec = "3600";
-  #   };
-  # };
 }

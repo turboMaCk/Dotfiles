@@ -6,6 +6,7 @@
 
   environment.systemPackages = with pkgs; [
     # other xorg utils
+    rxvt-unicode
     polybar
     feh
 
@@ -40,8 +41,36 @@
     };
   };
 
+  services.displayManager = {
+    sddm.enable = true;
+  };
+
+  # urxvtd
+  services.urxvtd = {
+    enable = true;
+    package = pkgs.rxvt-unicode;
+  };
+
   # autorandr
   services.autorandr.enable = true;
+
+  # Redshift
+  services.redshift = {
+    enable = true;
+    temperature.night = 2500;
+  };
+
+  # Dropbox service
+  systemd.user.services.dropbox = {
+    description = "Dropbox service";
+    wantedBy = [ "graphical-session.target" ];
+    serviceConfig = {
+      Type = "exec";
+      ExecStart = "${pkgs.dropbox}/bin/dropbox";
+      ExecStop = "${pkgs.procps}/bin/pkill dropbox";
+      Restart = "on-failure";
+    };
+  };
 
   # Picom compositor (compton alternative)
   services.picom = {

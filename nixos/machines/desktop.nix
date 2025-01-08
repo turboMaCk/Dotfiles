@@ -11,7 +11,6 @@
       ../profiles/vulkan.nix
       ../profiles/kde.nix
       ../users/marek.nix
-      # ../users/nikola.nix
       ../profiles/virtualization.nix
       ../profiles/elm.nix
       ../profiles/nodejs.nix
@@ -91,7 +90,7 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-     # libreoffice-qt
+     libreoffice-qt
      hunspell
      hunspellDicts.en_US
    ];
@@ -142,20 +141,10 @@
     '';
   };
 
-  services.libinput.enable = false;
+  services.libinput.enable = true;
 
   # Enable ssh daemon
   services.openssh.enable = true;
-
-  # Restart USB because mouse don't like to wake up
-  powerManagement.powerDownCommands = ''
-    ${pkgs.gnugrep}/bin/grep 'XHC.*enable' /proc/acpi/wakeup | ${pkgs.gawk}/bin/awk '{print $4}' | ${pkgs.gnused}/bin/sed -e 's/pci://g' > /sys/bus/pci/drivers/xhci_hcd/unbind
-  '';
-
-  # Wake up hack
-  powerManagement.resumeCommands = ''
-    ${pkgs.gnugrep}/bin/grep 'XHC.*enable' /proc/acpi/wakeup | ${pkgs.gawk}/bin/awk '{print $4}' | ${pkgs.gnused}/bin/sed -e 's/pci://g' > /sys/bus/pci/drivers/xhci_hcd/bind
-  '';
 
   networking = {
     hosts."127.0.0.1" = [];
