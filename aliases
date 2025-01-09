@@ -3,6 +3,7 @@ alias tm="tmux"
 
 # emacs
 alias em="emacsclient -c"
+alias et="emacsclient -tty"
 alias emc="emacsclient -n"
 
 # vim

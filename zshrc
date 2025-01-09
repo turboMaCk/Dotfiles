@@ -29,7 +29,7 @@ fi
 #export PATH="/usr/local/opt/coreutils/libexec/gnubin:$PATH"
 
 # Vim as editor
-export EDITOR="vim"
+export EDITOR="emacsclient --tty"
 
 # Emacs as visual editor
 export VISUAL="emacsclient -cn"
