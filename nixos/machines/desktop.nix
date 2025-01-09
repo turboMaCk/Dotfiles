@@ -22,8 +22,8 @@
       ../profiles/vpn.nix
       ../profiles/samba.nix
       # Extra
-      # ../profiles/stream.nix
-      # ../profiles/gaming.nix
+      ../profiles/stream.nix
+      ../profiles/gaming.nix
       # ../profiles/rc.nix
      ../profiles/music.nix
     ];
