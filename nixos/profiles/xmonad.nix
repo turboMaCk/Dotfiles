@@ -7,6 +7,7 @@
   environment.systemPackages = with pkgs; [
     # other xorg utils
     rxvt-unicode
+    alacritty
     polybar
     feh
 
@@ -40,6 +41,11 @@
       ];
     };
   };
+
+  # Configure pinentry to QT
+  # Otherwise I won't be able to sign commits
+  # from Emacs
+  programs.gnupg.agent.pinentryPackage = pkgs.pinentry-qt;
 
   services.displayManager = {
     sddm.enable = true;

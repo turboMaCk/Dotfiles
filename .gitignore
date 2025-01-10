@@ -2,3 +2,5 @@ backup
 /xmonad/prompt-history
 /xmonad/build-*
 *.elc
+/emacs.d/plugin
+/emacs.d/straight

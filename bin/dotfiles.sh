@@ -17,7 +17,8 @@ DOTFILES=('agrc'
           'aliases'
           'ghci'
           'Xresources'
-          'xmonad')
+          'xmonad'
+          'alacritty.toml')
 
 # backup first
 printf "Backup old files using $BACKUP_DIR directory\n"

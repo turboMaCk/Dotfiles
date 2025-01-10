@@ -68,7 +68,7 @@ main = xmonad $ Docks.docks $ ewmhFullscreen $ ewmh $ myConfig
 -------------------------------------
 
 myTerminal :: String
-myTerminal = "urxvt"
+myTerminal = "alacritty"
 
 red = "#fb4934"
 bg1 = "#3c3836"
