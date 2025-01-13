@@ -60,7 +60,7 @@
     };
 
     # Enable QEMU with aarch32
-    binfmt.emulatedSystems = [ "armv7l-linux" ];
+    binfmt.emulatedSystems = [ "armv7l-linux" "aarch64-linux" ];
 
     initrd.preLVMCommands = ''
       echo '  ______   __  __     ______     ______     ______     __    __     ______     ______     __  __  '
