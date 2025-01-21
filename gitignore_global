@@ -4,7 +4,6 @@ TAGS
 
 # Compiled source #
 ###################
-*.app
 *.class
 *.dll
 *.exe

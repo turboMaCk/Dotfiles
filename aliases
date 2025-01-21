@@ -10,12 +10,6 @@ alias emc="emacsclient -n"
 alias vi="vim"
 alias v="vim"
 
-# docker
-alias dco="docker-compose"
-alias dme="_dmenv"
-alias dcu="docker-compose up"
-alias dcs="docker-compose stop"
-
 # folder aliases
 alias documents="cd ~/Documents/"
 alias downloads="cd ~/Downloads/"
