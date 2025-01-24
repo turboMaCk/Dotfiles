@@ -40,22 +40,13 @@
         efiSysMountPoint = "/boot";
       };
 
-      # Using grub instead of systemd-boot
-      # see https://github.com/NixOS/nixpkgs/issues/97426
-      systemd-boot.enable = false;
-
       grub = {
         enable = true;
         efiSupport = true;
 
         # dualboot requires this
         useOSProber = true;
-        devices = [ "nodev" ];
-        extraEntries = ''
-            menuentry "Windows" {
-              chainloader (hd0,1)+1
-            }
-          '';
+        device = "nodev";
       };
     };
 
