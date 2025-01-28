@@ -929,8 +929,8 @@
   (key-chord-define evil-insert-state-map "kj" 'evil-normal-state)
 
   ;; helm vim like
-  (define-key helm-map (kbd "C-j") 'helm-next-line)
-  (define-key helm-map (kbd "C-k") 'helm-previous-line)
+  (define-key helm-map (kbd "C-j") 'helm-next-source)
+  (define-key helm-map (kbd "C-k") 'helm-previous-source)
 
   (global-set-key (kbd "M-x") 'helm-M-x)
   (define-key evil-motion-state-map (kbd "C-x b") 'helm-buffers-list)
