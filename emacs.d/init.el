@@ -140,10 +140,8 @@
 
 ;; Load all dependecies so we don't need to be afraid of moving stuff around Dependecies
 (straight-use-package 'magit)
-(straight-use-package 'helm)
 (straight-use-package 'dap-mode)
 (straight-use-package 'simple-httpd)
-(straight-use-package 'autumn-light-theme)
 (straight-use-package 'bash-completion)
 (straight-use-package 'caml)
 (straight-use-package 'js2-mode)
@@ -737,6 +735,9 @@
 
   (helm-mode t)
   (helm-autoresize-mode t)
+  ;; Disable cycling in source
+  ;; see: https://github.com/emacs-helm/helm/issues/2705#issuecomment-2619220523
+  (setq helm-move-to-line-cycle-in-source nil)
   ;; This will set header bg color to dark gray
   (set-face-attribute 'helm-source-header nil :background "#141414" :foreground "#f8f8f8"))
 
@@ -929,8 +930,8 @@
   (key-chord-define evil-insert-state-map "kj" 'evil-normal-state)
 
   ;; helm vim like
-  (define-key helm-map (kbd "C-j") 'helm-next-source)
-  (define-key helm-map (kbd "C-k") 'helm-previous-source)
+  (define-key helm-map (kbd "C-j") 'helm-next-line)
+  (define-key helm-map (kbd "C-k") 'helm-previous-line)
 
   (global-set-key (kbd "M-x") 'helm-M-x)
   (define-key evil-motion-state-map (kbd "C-x b") 'helm-buffers-list)
