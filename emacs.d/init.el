@@ -958,12 +958,24 @@
 
 ;; Term
 (defun turbo_mack/toggle-term()
-  "Splits window and open terminal."
-
+  "Toggle a terminal window at the bottom of the screen."
   (interactive)
-  (split-window-below)
-  (windmove-down)
-  (term "/usr/bin/env zsh"))
+  (let ((buffer-name "*terminal*"))
+    (if (get-buffer buffer-name)
+        (if (get-buffer-window buffer-name)
+            ;; If the terminal is visible, delete its window
+            (delete-window (get-buffer-window buffer-name))
+          ;; Otherwise, show the existing terminal buffer
+          (progn
+            (split-window-below)
+            (other-window 1)
+            (switch-to-buffer buffer-name)))
+      ;; If there's no terminal buffer, create one
+      (progn
+        (split-window-below)
+        (other-window 1)
+        (term "/usr/bin/env zsh")
+        (rename-buffer buffer-name)))))
 
 (define-key evil-normal-state-map (kbd "C-t") 'turbo_mack/toggle-term)
 
