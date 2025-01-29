@@ -749,6 +749,7 @@
   "Initialize projectlile."
 
   (setq projectile-enable-caching -1)
+  (setq projectile-per-project-compilation-buffer t)
   (projectile-global-mode t))
 
 (turbo_mack/init-projectile)
@@ -962,7 +963,7 @@
   (interactive)
   (split-window-below)
   (windmove-down)
-  (term "/usr/bin/zsh"))
+  (term "/usr/bin/env zsh"))
 
 (define-key evil-normal-state-map (kbd "C-t") 'turbo_mack/toggle-term)
 
