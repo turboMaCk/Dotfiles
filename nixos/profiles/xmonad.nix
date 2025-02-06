@@ -20,10 +20,12 @@
     rofi-pass
     dunst # notifications
 
-    # gtk
-    nautilus
-    nautilus-open-any-terminal
-    font-manager
+    kdePackages.dolphin
+    kdePackages.qtsvg
+    kdePackages.dolphin-plugins
+    kdePackages.breeze-icons
+    kdePackages.kio-fuse #to mount remote filesystems via FUSE
+    kdePackages.kio-extras #extra protocols support (sftp, fish and more)
   ];
 
   # X11 settings
