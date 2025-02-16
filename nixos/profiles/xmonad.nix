@@ -26,7 +26,16 @@
     kdePackages.breeze-icons
     kdePackages.kio-fuse #to mount remote filesystems via FUSE
     kdePackages.kio-extras #extra protocols support (sftp, fish and more)
+    kdePackages.konsole
+    kdePackages.gwenview
+    kdePackages.kservice
+    kdePackages.plasma-workspace
   ];
+
+  # Fix unpopulated MIME menus in dolphin
+  environment.etc."/xdg/menus/applications.menu".text = builtins.readFile "${pkgs.kdePackages.plasma-workspace}/etc/xdg/menus/plasma-applications.menu";
+  xdg.menus.enable = true;
+  xdg.mime.enable = true;
 
   # X11 settings
   services.xserver = {
