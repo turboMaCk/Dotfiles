@@ -288,6 +288,12 @@
 (add-hook 'dired-load-hook
   (function (lambda () (load "dired-x"))))
 
+;; Enable setting target in dirred
+;; This makes moving files around in dirred simple
+;; see https://emacs.stackexchange.com/a/5604/10497
+(setq dired-dwim-target t)
+
+
 ;; create files from dired mode
 (define-key dired-mode-map "c" 'find-file)
 
