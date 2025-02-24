@@ -5,8 +5,8 @@
   ];
 
   environment.systemPackages = with pkgs; [
-    kate
-    gwenview
+    kdePackages.kate
+    kdePackages.gwenview
     transmission_3-qt
     libsForQt5.kalk
     qdirstat
