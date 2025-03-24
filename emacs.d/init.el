@@ -178,7 +178,6 @@
 (straight-use-package 'handlebars-mode)
 (straight-use-package 'helm)
 (straight-use-package 'helm-ag)
-(straight-use-package 'helm-css-scss)
 (straight-use-package 'helm-projectile)
 (straight-use-package 'hindent)
 (straight-use-package 'htmlize)
@@ -226,7 +225,6 @@
 (straight-use-package 'rustic)
 (straight-use-package 's)
 (straight-use-package 'saveplace)
-(straight-use-package 'scss-mode)
 (straight-use-package 'shm)
 (straight-use-package 'smartparens)
 (straight-use-package 'smooth-scrolling)
@@ -488,8 +486,6 @@
 
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 (c++-mode)
-
-(require 'scss-mode)
 
 (require 'js2-mode)
 (require 'npm-mode)
