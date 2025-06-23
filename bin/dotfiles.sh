@@ -68,7 +68,7 @@ ln -fs $DOTFILES_DIR/dunstrc $HOME/.config/dunst/dunstrc
 
 # weechat
 mkdir -p $HOME/.weechat
-ln -fs $DOTFILES_DIR/irc.conf $HOME/.weechat/irc.conf
+ln -fs $DOTFILES_DIR/irc.conf $HOME/.conf/weechat/irc.conf
 
 # kitty
 mkdir -p $HOME/.config/kitty

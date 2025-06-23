@@ -9,7 +9,8 @@
     # DSP plugins
 
     # utils
-    carla
+    # removed due to https://github.com/NixOS/nixpkgs/issues/389149
+    # carla
     ffmpeg
     flac
 
