@@ -7,7 +7,6 @@
 
   networking.networkmanager = {
     enable = true;
-    enableStrongSwan = true;
     settings = {
       main.rc-manager = "resolvconf";
     };

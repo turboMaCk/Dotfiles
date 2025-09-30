@@ -8,7 +8,7 @@
     kdePackages.kate
     kdePackages.gwenview
     transmission_3-qt
-    libsForQt5.kalk
+    kdePackages.kalk
     qdirstat
     wl-clipboard
   ];
