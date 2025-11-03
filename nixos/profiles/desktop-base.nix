@@ -43,7 +43,7 @@
       source-code-pro
       terminus_font
       ttf_bitstream_vera
-      ubuntu_font_family
+      ubuntu-classic
       #emojione broken
     ];
   };

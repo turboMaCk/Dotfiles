@@ -16,13 +16,13 @@ in
 {
   environment.systemPackages = with pkgs; [
     # Shell base utils
-    which lsof wget vim_configurable dig tree unzip killall libnotify jq file openssl
+    which lsof wget vim-full dig tree unzip killall libnotify jq file openssl
 
     # Shell fancier improvements
     tmux starship htop cloc direnv cachix pass
 
     # Git
-    git gitAndTools.tig
+    git tig
 
     # C compiling
     gcc gnumake

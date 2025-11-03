@@ -43,16 +43,15 @@ in
 
   environment.systemPackages = with pkgs; [
     tmux
-    cask
     which
     nix-prefetch-scripts
     nix-prune-roots
     python3
-    vim_configurable
+    vim-full
     lsof
     wget
     git
-    gitAndTools.tig
+    tig
     pass
     gnupg
     gcc
