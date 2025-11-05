@@ -7,7 +7,7 @@
   environment.systemPackages = with pkgs; [
     kdePackages.kate
     kdePackages.gwenview
-    transmission_3-qt
+    transmission_4-qt
     kdePackages.kalk
     qdirstat
     wl-clipboard
