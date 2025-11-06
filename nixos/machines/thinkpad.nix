@@ -129,7 +129,7 @@
     };
 
     # GPU support
-    graphics.extraPackages = [ pkgs.vaapiIntel ];
+    graphics.extraPackages = [ pkgs.intel-vaapi-driver ];
   };
 
   services.xserver = {
@@ -162,7 +162,7 @@
     '';
   };
 
-  services.logind.lidSwitch = "suspend";
+  services.logind.settings.Login.HandleLidSwitch = "suspend";
 
   # xss-lock subscribes to the systemd-events suspend, hibernate, lock-session,
   # and unlock-session with appropriate actions (run locker and wait for user to unlock or kill locker).
