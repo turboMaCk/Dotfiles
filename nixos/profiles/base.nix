@@ -74,6 +74,9 @@ in
 
     # shell prompt
     starship
+
+    # Github cli utlility
+    gh
   ];
 
   services.xserver.xkb = {
