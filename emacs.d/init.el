@@ -755,6 +755,7 @@
   (projectile-global-mode t))
 
 (turbo_mack/init-projectile)
+(define-key evil-normal-state-map (kbd "C-c m") 'projectile-compile-project)
 
 ;; Setup Helm-Projectile integration
 (require 'helm-projectile)
