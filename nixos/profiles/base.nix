@@ -77,6 +77,9 @@ in
 
     # Github cli utlility
     gh
+
+    # manpages
+    linux-manual man-pages man-pages-posix
   ];
 
   services.xserver.xkb = {
@@ -109,6 +112,12 @@ in
 
   location = {
     provider = "geoclue2";
+  };
+
+  documentation = {
+    enable = true;
+    man.enable = true;
+    man.generateCaches = true;
   };
 
   environment.shellInit = ''

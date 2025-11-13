@@ -9,5 +9,6 @@
     gf
     lldb
     valgrind
+    jetbrains.clion
   ];
 }

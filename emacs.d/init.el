@@ -49,9 +49,12 @@
 (when (fboundp 'menu-bar-mode)
   (if (display-graphic-p)
     (if (memq window-system '(mac ns))
-      (menu-bar-mode t)
+      (menu-bar-mode -1)
       (menu-bar-mode -1))
     (menu-bar-mode -1)))
+
+;; Configure GDB
+(setq gdb-many-windows t)
 
 ;; Start scratch in text mode (usefull to get a faster Emacs load time
 ;; because it avoids autoloads of elisp modes)
