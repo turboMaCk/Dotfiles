@@ -3,7 +3,6 @@
 ;;; Commentary:
 ;; Main Emacs file responsible for loading all packages and configuration file.
 
-
 ;;; Code:
 
 ;; Custom loads
@@ -764,7 +763,13 @@
 (require 'helm-projectile)
 (setq helm-projectile-fuzzy-match t)
 
+
+;; follow files when highlighted in helm
+(custom-set-variables
+ '(helm-follow-mode-persistent t))
+
 (require 'helm-ag)
+(define-key evil-normal-state-map (kbd "C-c f") 'helm-ag-project-root)
 
 ;; MAGIT
 
@@ -939,6 +944,16 @@
   ;; helm vim like
   (define-key helm-map (kbd "C-j") 'helm-next-line)
   (define-key helm-map (kbd "C-k") 'helm-previous-line)
+  ;; jump to window above
+  (defun turbo_mack/helm-jump-to-source ()
+    "Execute persistent action in Helm and then jump to the next window (source buffer)."
+    (interactive)
+    (let* ((helm-window (selected-window))
+         ;; Get the *other* window in the current frame
+         (target-window (next-window helm-window)))
+    (helm-execute-persistent-action)
+    (select-window target-window)))
+  (define-key helm-map (kbd "C-c C-k") 'turbo_mack/helm-jump-to-source)
 
   (global-set-key (kbd "M-x") 'helm-M-x)
   (define-key evil-motion-state-map (kbd "C-x b") 'helm-buffers-list)
