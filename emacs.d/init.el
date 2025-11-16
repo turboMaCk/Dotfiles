@@ -108,15 +108,27 @@
 (midnight-delay-set 'midnight-delay 0)
 
 ;; Compilation config
+(require 'compile)
 (setq-default compilation-always-kill t)
 (setq compilation-ask-about-save nil)
+;; enable ANSI colors
+(add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
 
-(add-hook 'compilation-filter-hook
-    (lambda ()
-      (when (eq major-mode 'compilation-mode)
-        (require 'ansi-color)
-        (let ((inhibit-read-only t))
-    (ansi-color-applu-on-region (point-min) (point-max))))))
+;; Elm compiler error matching
+;; Add a new entry to the compilation-error-regexp-alist-alist for Elm
+
+(defun turbo_mack/my_c ()
+  (interactive)
+  "setup compile command"
+  (set (make-local-variable 'compile-command) "make")
+  (setq-default c-basic-offset 4)
+  )
+(add-hook 'c-mode-hook 'turbo_mack/my_c)
+(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
+(c++-mode)
+
+(push 'elm compilation-error-regexp-alist)
+(push '(elm "---\ \([a-z-/]+\.elm\)" 1 0 0) compilation-error-regexp-alist-alist)
 
 ;; Configure emoji font
 (when (member "EmojiOne Color" (font-family-list))
@@ -473,21 +485,6 @@
 
 (require 'yasnippet)
 (yas-global-mode 1)
-
-(require 'compile)
-
-(defun turbo_mack/my_c ()
-  (interactive)
-  "setup compile command"
-  (set (make-local-variable 'compile-command) "make")
-  (setq-default c-basic-offset 4)
-  )
-
-
-(add-hook 'c-mode-hook 'turbo_mack/my_c)
-
-(add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
-(c++-mode)
 
 (require 'js2-mode)
 (require 'npm-mode)
