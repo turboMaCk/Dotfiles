@@ -71,6 +71,12 @@
     ];
   };
 
+  # Swapping to file because swap partitions are pointless
+  swapDevices = [{
+    device = "/var/lib/swapfile";
+    size = 32*1024; # 32 GB
+  }];
+
   # Expriemtnatl - ollama for LLMs
   services.ollama = {
     enable = true;
