@@ -7,6 +7,9 @@
 
   networking.networkmanager = {
     enable = true;
+    plugins = with pkgs; [
+      networkmanager-openvpn
+    ];
     settings = {
       main.rc-manager = "resolvconf";
     };

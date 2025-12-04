@@ -127,9 +127,6 @@
 (add-to-list 'auto-mode-alist '("\\.h\\'" . c++-mode))
 (c++-mode)
 
-(push 'elm compilation-error-regexp-alist)
-(push '(elm "---\ \([a-z-/]+\.elm\)" 1 0 0) compilation-error-regexp-alist-alist)
-
 ;; Configure emoji font
 (when (member "EmojiOne Color" (font-family-list))
   (set-fontset-font
