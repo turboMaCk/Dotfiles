@@ -117,7 +117,9 @@ in
   documentation = {
     enable = true;
     man.enable = true;
-    man.generateCaches = true;
+    # This is very slow to rebuild
+    # see https://discourse.nixos.org/t/slow-build-at-building-man-cache/52365/11
+    # man.generateCaches = true;
   };
 
   environment.shellInit = ''
