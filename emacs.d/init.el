@@ -541,6 +541,10 @@
 ;; - [[https://github.com/jaspervdj/stylish-haskell][stylish-haskell]] is another code formatting tool
 ;; - [[https://hackage.haskell.org/package/fourmolu][fourmolu]] is another code formatting tool
 
+
+;; Some syntax highlighting for wasm
+(add-to-list 'auto-mode-alist '("\\.wat\\'" . lisp-mode))
+
 (require 'haskell-mode)
 (require 'hindent)
 (load-library "ormolu")
@@ -752,6 +756,10 @@
 
 (turbo_mack/init-projectile)
 (define-key evil-normal-state-map (kbd "C-c m") 'projectile-compile-project)
+
+;; recompilation when in compile mode
+(eval-after-load 'compile
+  '(define-key compilation-mode-map (kbd "C-c C-c") 'recompile))
 
 ;; Setup Helm-Projectile integration
 (require 'helm-projectile)
