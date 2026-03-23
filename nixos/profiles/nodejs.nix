@@ -8,8 +8,7 @@
     environment.systemPackages = with pkgs; [
         nodejs
         yarn
-        nodePackages.node2nix
-        # webpack-imagemin-plugin
+        # nodePackages.node2nix
         pkg-config autoconf automake libtool nasm autogen zlib libpng
     ];
     # Fix openssl issue in nodejs

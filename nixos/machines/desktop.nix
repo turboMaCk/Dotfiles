@@ -25,7 +25,7 @@
       ../profiles/stream.nix
       ../profiles/gaming.nix
       # ../profiles/rc.nix
-     ../profiles/music.nix
+      # ../profiles/music.nix
     ];
 
   # Use the systemd-boot EFI boot loader.
