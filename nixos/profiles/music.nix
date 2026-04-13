@@ -23,11 +23,8 @@
     # distrho
 
     # synths
-    #surge
     helm
     #tunefish
-    surge
-    xsynth_dssi
     sorcer
 
     # eq
