@@ -14,7 +14,7 @@
     peek # screen recorder
 
     # Themes
-    xorg.xcursorthemes
+    xcursor-themes
     lxappearance
   ];
 
