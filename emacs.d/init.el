@@ -284,7 +284,7 @@
 (run-with-timer 1800 1800 'recentf-save-list)
 
 ;; pcomplete
-(setq-default pcomplete-ignore-case t)
+(setq-default completion-ignore-case t)
 
 ;; imenu
 (setq-default imenu-auto-rescan t)
