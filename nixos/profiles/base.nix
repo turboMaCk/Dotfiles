@@ -67,6 +67,7 @@ in
     cachix
     jq
     file
+    zip
     # package seems to be broken
     # tldr-hs
     direnv
