@@ -55,6 +55,9 @@
 ;; Configure GDB
 (setq gdb-many-windows t)
 
+;; increase GC threshold (LSP recommended)
+(setq gc-cons-threshold 100000000)
+
 ;; Start scratch in text mode (usefull to get a faster Emacs load time
 ;; because it avoids autoloads of elisp modes)
 (setq initial-major-mode 'text-mode)
@@ -447,7 +450,8 @@
 ;; Indentation
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
-(setq indent-line-function 'insert-tab)
+(setq-default c-basic-offset 4)
+
 (electric-pair-mode)
 
 ;; Remove trailing witespaces
