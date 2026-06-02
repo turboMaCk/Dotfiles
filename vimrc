@@ -24,9 +24,6 @@ Plugin 'tomtom/tlib_vim'
 " Editor config is another have to
 Plugin 'editorconfig/editorconfig-vim'
 
-" ~Ack~ AG is better than grep
-Plugin 'rking/ag.vim'
-
 Plugin 'matthewtodd/vim-twilight'
 
 " basic plugins

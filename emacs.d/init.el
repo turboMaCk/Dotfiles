@@ -13,10 +13,6 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 
-
-;; Read $PATH from shell
-(exec-path-from-shell-initialize)
-
 ;; Disable package.el
 ;; we're going to use straight.el instead
 (setq package-enable-at-startup nil)
@@ -195,7 +191,6 @@
 (straight-use-package 'graphene)
 (straight-use-package 'handlebars-mode)
 (straight-use-package 'helm)
-(straight-use-package 'helm-ag)
 (straight-use-package 'helm-projectile)
 (straight-use-package 'hindent)
 (straight-use-package 'htmlize)
@@ -263,6 +258,9 @@
 (straight-use-package 'org-present)
 (straight-use-package 'gleam-ts-mode)
 (straight-use-package 'clang-format)
+
+;; Read $PATH from shell
+(exec-path-from-shell-initialize)
 
 (use-package gleam-ts-mode
   :mode (rx ".gleam" eos))
@@ -777,9 +775,6 @@
 ;; follow files when highlighted in helm
 (custom-set-variables
  '(helm-follow-mode-persistent t))
-
-(require 'helm-ag)
-(define-key evil-normal-state-map (kbd "C-c f") 'helm-ag-project-root)
 
 ;; MAGIT
 

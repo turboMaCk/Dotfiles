@@ -37,7 +37,6 @@
         discord
         spotify
         lf
-        silver-searcher
         vlc
         gource
         weechat
