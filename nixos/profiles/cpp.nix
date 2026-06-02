@@ -7,8 +7,8 @@
     # debugging
     gdb
     gf
-    lldb
     valgrind
+    clang-tools
     jetbrains.clion
   ];
 }

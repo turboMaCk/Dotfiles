@@ -13,6 +13,10 @@
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/"))
 
+
+;; Read $PATH from shell
+(exec-path-from-shell-initialize)
+
 ;; Disable package.el
 ;; we're going to use straight.el instead
 (setq package-enable-at-startup nil)
