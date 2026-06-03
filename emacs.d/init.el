@@ -258,6 +258,7 @@
 (straight-use-package 'org-present)
 (straight-use-package 'gleam-ts-mode)
 (straight-use-package 'clang-format)
+(straight-use-package 'gptel)
 
 ;; Read $PATH from shell
 (exec-path-from-shell-initialize)
@@ -406,7 +407,7 @@
 (add-to-list 'default-frame-alist '(font . "monospace 10"))
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-(load-theme 'sanityinc-tomorrow-night t)
+;; (load-theme 'sanityinc-tomorrow-night t)
 
 (require 'nyan-mode)
 (defun turbo_mack/init-nyan-mode ()
@@ -747,7 +748,8 @@
   ;; see: https://github.com/emacs-helm/helm/issues/2705#issuecomment-2619220523
   (setq helm-move-to-line-cycle-in-source nil)
   ;; This will set header bg color to dark gray
-  (set-face-attribute 'helm-source-header nil :background "#141414" :foreground "#f8f8f8"))
+  ;; (set-face-attribute 'helm-source-header nil :background "#141414" :foreground "#f8f8f8")
+  )
 
 (turbo_mack/init-helm)
 
@@ -1014,6 +1016,8 @@
       (exec-path-from-shell-copy-env "SSH_AGENT_PID")
       (exec-path-from-shell-copy-env "SSH_AUTH_SOCK"))
 )
+
+;;
 
 
 ;; MACOS (not used much)
