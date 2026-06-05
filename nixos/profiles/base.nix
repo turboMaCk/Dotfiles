@@ -80,7 +80,7 @@ in
     gh
 
     # manpages
-    linux-manual man-pages man-pages-posix
+    linux-manual man-pages man-pages-posix man-pages-posix
   ];
 
   services.xserver.xkb = {
