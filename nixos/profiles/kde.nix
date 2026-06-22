@@ -12,6 +12,7 @@
     qdirstat
     wl-clipboard
     kdePackages.kdeplasma-addons
+    kdePackages.kolourpaint
   ];
 
   # X11 settings
