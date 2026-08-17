@@ -51,6 +51,12 @@
          haskellPackages.raw-strings-qq
       ];
     };
+
+    libinput = {
+      enable = true;
+      mouse.accelProfile = "adaptive";
+      mouse.accelSpeed = "2.0";
+    };
   };
 
   # Configure pinentry to QT

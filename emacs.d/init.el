@@ -737,6 +737,14 @@
 
 (evil-define-key 'normal magit-mode-map (kbd "C-c x") 'turbo_mack/prune-branches)
 
+;; keybindgs for man pages
+(defun turbo_mack/setup_man ()
+  "Configure key bindings for an-mode"
+  (interactive)
+  (define-key Man-mode-map (kbd "C-c C-c") 'man-follow))
+
+(add-hook 'man-mode-hook 'turbo_mack/setup_man)
+
 ;; HELM
 
 (defun turbo_mack/init-helm ()
