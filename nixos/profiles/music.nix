@@ -27,9 +27,6 @@
     #tunefish
     sorcer
 
-    # eq
-    eq10q
-
     # Defined in overlay
     # tall-reverb
     # zebralette-mini-zebra
