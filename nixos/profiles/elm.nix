@@ -8,11 +8,11 @@
         elm
         elm-format
         elm-test
-        elm-verify-examples
-        elm-analyse
-        elm-doc-preview
+      # elm-verify-examples
+      # elm-analyse
+      # elm-doc-preview
         elm-language-server
-        elm-xref
+       # elm-xref
         elm-json
         elm-review
     ];

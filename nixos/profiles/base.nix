@@ -30,6 +30,7 @@ in
     "nodejs-16.20.0"
     "nodejs-14.21.3"
     "openssl-1.1.1t"
+    "keybase-gui-6.5.1"
   ];
 
   # Allow unfree packages :'(
@@ -65,11 +66,10 @@ in
     libnotify
     direnv
     cachix
+    ripgrep
     jq
     file
     zip
-    # package seems to be broken
-    # tldr-hs
     direnv
     openssl
 

@@ -153,6 +153,7 @@
   (delq nil (seq-map function sequence)))
 
 ;; Load all dependecies so we don't need to be afraid of moving stuff around Dependecies
+(defvar magit-auto-revert-mode t)
 (straight-use-package 'magit)
 (straight-use-package 'dap-mode)
 (straight-use-package 'simple-httpd)
