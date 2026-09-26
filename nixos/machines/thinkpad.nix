@@ -71,7 +71,7 @@
   ];
 
   # Open ports in the firewall.
- networking.firewall.allowedTCPPorts = [ 8000 ];
+ networking.firewall.allowedTCPPorts = [ 80 8000 7125 5353 ];
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
@@ -181,6 +181,20 @@
       '';
     };
   };
+
+ services.avahi = {
+    enable = true;
+    nssmdns = true;
+    # publish = {
+    #   enable = true;
+    #   addresses = true;
+    # };
+  };
+
+  # networking.networkmanager.connectionConfig = {
+  #   "connection.mdns" = 2;
+  # };
+
 
   # Set hosts
   # networking.hosts."128.199.58.247" = [ "planning-game.com" ];

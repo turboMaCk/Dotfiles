@@ -17,7 +17,6 @@
 
     # xmonad miscelaneous
     rofi
-    rofi-pass
     dunst # notifications
 
     kdePackages.dolphin
