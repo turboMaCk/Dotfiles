@@ -40,7 +40,7 @@ in
   };
 
   # enable ntfs support via NTFS-3G
-  boot.supportedFilesystems = [ "ntfs" ];
+  boot.supportedFilesystems = [ "ntfs" "nfs" ];
 
   environment.systemPackages = with pkgs; [
     tmux
