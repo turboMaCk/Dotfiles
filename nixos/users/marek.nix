@@ -42,10 +42,6 @@
         weechat
         aspell
         aspellDicts.en
-        aspellDicts.en
-        aspellDicts.en-computers
-        # Currently broken - fixed by 101194 - uncomment later
-        # aspellDicts.en-science
         aspellDicts.cs
         zeal
         keybase-gui

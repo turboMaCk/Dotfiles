@@ -6,7 +6,6 @@
 
   environment.systemPackages = with pkgs; [
     # other xorg utils
-    rxvt-unicode
     alacritty
     polybar
     feh
@@ -65,12 +64,6 @@
 
   services.displayManager = {
     sddm.enable = true;
-  };
-
-  # urxvtd
-  services.urxvtd = {
-    enable = true;
-    package = pkgs.rxvt-unicode;
   };
 
   # autorandr
