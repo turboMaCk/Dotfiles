@@ -42,7 +42,7 @@
       powerline-fonts
       source-code-pro
       terminus_font
-      ttf_bitstream_vera
+      ttf-bitstream-vera
       ubuntu-classic
       #emojione broken
     ];
