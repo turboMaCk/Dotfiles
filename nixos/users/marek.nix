@@ -48,6 +48,7 @@
         zoom-us
         thunderbird
         signal-desktop
+        music-assistant-desktop
     ];
   };
 }

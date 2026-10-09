@@ -45,6 +45,7 @@ in
   environment.systemPackages = with pkgs; [
     tmux
     which
+    dig
     nix-prefetch-scripts
     nix-prune-roots
     python3
