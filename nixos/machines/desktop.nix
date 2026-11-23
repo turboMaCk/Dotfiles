@@ -15,7 +15,7 @@
       ../profiles/elm.nix
       ../profiles/nodejs.nix
       ../profiles/haskell.nix
-      ../profiles/purescript.nix
+      #../profiles/purescript.nix
       ../profiles/rust.nix
       # ../profiles/printing.nix
       ../profiles/holmusk.nix
