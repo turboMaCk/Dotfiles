@@ -408,7 +408,7 @@
 (add-to-list 'default-frame-alist '(font . "monospace 10"))
 
 (add-to-list 'custom-theme-load-path "~/.emacs.d/themes")
-;; (load-theme 'sanityinc-tomorrow-night t)
+(load-theme 'sanityinc-tomorrow-night t)
 
 (require 'nyan-mode)
 (defun turbo_mack/init-nyan-mode ()

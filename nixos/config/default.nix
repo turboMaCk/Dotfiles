@@ -9,14 +9,6 @@
     settings.sandbox = true;
   };
 
-  # !!! Insecure packages
-  nixpkgs.config.permittedInsecurePackages = [
-    "python2.7-Pillow-6.2.2"
-    "python-2.7.18.6"
-    "nodejs-16.20.0"
-    "nodejs-14.21.3"
-    "openssl-1.1.1t"
-  ];
 
   # Allow unfree packages :'(
   nixpkgs.config = {

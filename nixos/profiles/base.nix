@@ -14,6 +14,14 @@ let
   '';
 in
 {
+
+  # !!! Insecure packages
+  nixpkgs.config.permittedInsecurePackages = [
+    #"openssl-1.1.1t"
+    "keybase-gui-6.6.3"
+    "clion-2026.2.4.1"
+  ];
+
   # Enable flakes
   nix = {
     package = pkgs.nix;
@@ -22,16 +30,6 @@ in
     '';
     settings.sandbox = true;
   };
-
-  # !!! Insecure packages
-  nixpkgs.config.permittedInsecurePackages = [
-    "python2.7-Pillow-6.2.2"
-    "python-2.7.18.6"
-    "nodejs-16.20.0"
-    "nodejs-14.21.3"
-    "openssl-1.1.1t"
-    "keybase-gui-6.5.1"
-  ];
 
   # Allow unfree packages :'(
   nixpkgs.config = {
